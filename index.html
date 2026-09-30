@@ -216,6 +216,51 @@ pre.prompt{font-family:var(--mono);font-size:.82rem;white-space:pre-wrap;word-br
 .locklist li{display:flex;align-items:center;gap:12px;border:1px solid var(--rule-dark);border-radius:999px;padding:8px 16px 8px 8px}
 .locklist li::before{content:"";flex:none;width:30px;height:30px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101414' stroke-width='2'%3E%3Crect x='5' y='11' width='14' height='9' rx='2'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/16px no-repeat}
 html{font-size:15px}
+/* compact layout: fit the preview on about one screen */
+html{font-size:14px}
+body{padding-block:12px 24px}
+.wrap{gap:10px;max-width:1080px}
+.cover{min-height:0;padding:16px 24px 18px}
+.cover h1{font-size:clamp(1.9rem,4vw,2.8rem);margin-top:14px;padding-top:0}
+.cover .pillrow{margin-top:10px;gap:6px}
+.tagpill{font-size:.82rem;padding:2px 5px 2px 12px}
+.tagpill.o,.tagpill.w,.tagpill.l{padding-right:12px}
+.overview,.asksec,.panel,.cta{padding:18px 24px}
+.overview h2,.asksec h2,.cta h2{font-size:clamp(1.3rem,2.4vw,1.7rem)}
+.ov-top{gap:20px;align-items:center}
+.ovlead{margin-top:10px;padding-top:8px;font-size:.95rem}
+.ovnote{margin-top:6px}
+.bignums{padding:2px 12px;border-radius:22px}
+.bignums div{padding:6px 8px 8px}
+.bignums b{font-size:clamp(1.5rem,2.6vw,2rem)}
+.band{margin-top:14px}
+.steps{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;gap:8px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{grid-template-columns:36px minmax(0,1fr);column-gap:10px;padding:6px 14px 6px 6px;border-radius:24px}
+.steps li::before{width:36px;height:36px;font-size:.9rem}
+.steps b{font-size:.92rem}
+.steps span{font-size:.8rem}
+.bleed{display:none}
+.asksec h2{margin-bottom:10px}
+#ask{min-height:64px;padding:10px 14px;font-size:.95rem}
+.ask{gap:8px}
+.chip{font-size:.75rem;padding:3px 10px}
+.btn.primary{padding:8px 20px;font-size:.95rem}
+.locked h3{font-size:clamp(1.2rem,2.2vw,1.5rem)}
+.locklead{margin:6px 0 10px}
+.locklist{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+@media (max-width:900px){.locklist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.locklist{grid-template-columns:minmax(0,1fr)}}
+.locklist li{font-size:.82rem;padding:5px 12px 5px 5px;gap:8px}
+.locklist li::before{width:24px;height:24px;background-size:13px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px}
+.cta p{margin:4px 0 0;font-size:.9rem;flex:1 1 360px}
+.cta h2{flex:1 1 100%}
+.cta::after{display:none}
+.credit{padding:12px 24px}
+.ctabtn{font-size:.9rem;padding:7px 16px}
+.cover h1{margin-top:8px}
 </style>
 
 <div class="wrap">
@@ -223,7 +268,7 @@ html{font-size:15px}
     <div class="topline">
       <div class="brand">
         <svg viewBox="0 0 14 16" aria-hidden="true"><path d="M2 1h7a4 4 0 0 1 0 8H5v6H2z" fill="#DDF65B"/></svg>
-        Manager Playbook
+        Free preview
       </div>
       <span class="pill">Weiwei Hu</span>
     </div>
@@ -233,7 +278,6 @@ html{font-size:15px}
       <span class="tagpill o">Say what you need</span>
       <span class="tagpill w">Pick a framework</span>
       <span class="tagpill l">Get a plan</span>
-      <span class="tagpill o">Free preview</span>
     </div>
   </header>
 
