@@ -358,7 +358,7 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
       </div>
       <div class="topright">
         <span class="pill">Weiwei Hu</span>
-        <a class="btn topcta" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
+        <a class="btn topcta" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get the full playbook</a>
       </div>
     </div>
     <h1>Manager Playbook</h1>
@@ -437,7 +437,7 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
       </details>
       <div class="btns">
         <button class="btn primary" type="submit" id="run">Get my plan</button>
-        <a class="btn ctabtn" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
+        <a class="btn ctabtn" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get the full playbook</a>
         <button class="btn" type="button" id="stop" hidden>Stop</button>
       </div>
       <p class="note" id="avail">Connecting to Claude…</p>
@@ -463,9 +463,9 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
   <section class="out" id="out" aria-live="polite"></section>
 
   <section class="cta" aria-labelledby="ctatitle">
-    <h2 id="ctatitle">Want the full version?</h2>
-    <p>Send me a message on LinkedIn and I'll share access. The full version runs your own requests, lets you switch frameworks and turns your weekly notes into a report.</p>
-    <a class="btn primary" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
+    <h2 id="ctatitle">Get the full playbook</h2>
+    <p>Run your own requests, switch between frameworks and turn your weekly notes into a report. Monthly subscription. After you subscribe, I'll add your Claude account and email you the link.</p>
+    <a class="btn primary" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get the full playbook</a>
   </section>
 
   <footer class="credit">
@@ -831,7 +831,7 @@ function showLocked(){
   lock.append(ul); out.append(lock);
 }
 async function runAgent(i){
-  $("#avail").textContent = "Getting a plan is for members. Message me on LinkedIn for access.";
+  $("#avail").textContent = "Getting a plan is part of the full playbook. See below.";
   document.querySelector(".cta")?.scrollIntoView({behavior:"smooth", block:"center"});
 }
 
@@ -922,7 +922,7 @@ function drawWTasks(){
 }
 
 async function runWeekly(taskId){
-  $("#wavail").textContent = "Weekly reports are for members. Message me on LinkedIn for access.";
+  $("#wavail").textContent = "Weekly reports are part of the full playbook. See below.";
   showLocked(); document.querySelector(".cta")?.scrollIntoView({behavior:"smooth", block:"center"});
 }
 
