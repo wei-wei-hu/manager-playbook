@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free preview of Manager Playbook by Weiwei Hu. Tell it a work situation and get a framework, a script and a checklist.">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Manager Playbook Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: a deck of full-bleed slides in four grounds (charcoal, stone grey, mint, lime), extended light headlines, outlined circle grids and pill rows as the recurring motif. */
+:root{
+  --page:#F3F3F1; --char-a:#15242A; --char-b:#2F312D; --stone:#D9D9D9; --paper:#FAFAF8;
+  --mint:#27E3A5; --lime:#DDF65B; --white:#F7F7F5; --ink:#101414; --ink-soft:#3C4442; --on-dark:#F4F5F2; --on-dark-soft:rgba(244,245,242,.7);
+  --rule-dark:rgba(244,245,242,.35); --rule-light:rgba(16,20,20,.55);
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Archivo","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --dark:linear-gradient(180deg,var(--char-a) 0%,var(--char-b) 100%);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#0B1113; color-scheme:dark}}
+:root[data-theme="dark"]{--page:#0B1113; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:20px 56px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:125%;font-weight:400;letter-spacing:-.02em;line-height:1;margin:0;text-wrap:balance}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+
+/* ---------- cover ---------- */
+.cover{position:relative;overflow:hidden;background:var(--dark);color:var(--on-dark);padding:26px clamp(20px,4vw,44px) 34px}
+.brand{display:flex;align-items:center;gap:8px;font-size:.95rem}
+.brand svg{width:14px;height:16px}
+.pill{border:1px solid var(--rule-dark);border-radius:999px;padding:3px 14px;font-size:.8rem;color:var(--on-dark-soft);font-variant-numeric:tabular-nums}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;align-items:center}
+.tagpill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:4px 6px 4px 16px;font-size:.95rem;border:1px solid var(--rule-dark)}
+.tagpill.m{background:var(--mint);color:var(--ink);border-color:var(--mint);padding-right:6px}
+.tagpill.m::after{content:"";width:16px;height:16px;border-radius:50%;background:var(--white);border:1px solid var(--ink)}
+.tagpill.l{background:var(--lime);color:var(--ink);border-color:var(--lime);padding-right:16px}
+.tagpill.w{background:var(--white);color:var(--ink);border-color:var(--white);padding-right:16px}
+.tagpill.o{padding-right:16px}
+.tagpill b{font-weight:600;font-variant-numeric:tabular-nums}
+
+.ask{border:1px solid var(--rule-dark);border-radius:28px;padding:18px;display:flex;flex-direction:column;gap:12px;background:rgba(24,36,40,.94)}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;display:block;margin-bottom:6px;color:var(--on-dark-soft)}
+#ask{width:100%;min-height:110px;resize:vertical;border:0;border-radius:18px;padding:12px 16px;background:var(--white);color:var(--ink);font-size:1rem}
+.ask select{width:100%;border:1px solid var(--rule-dark);background:transparent;border-radius:999px;padding:6px 12px;color:var(--on-dark)}
+.ask select option{color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:400px){.row2{grid-template-columns:1fr}}
+details summary{cursor:pointer;color:var(--on-dark-soft);font-size:.88rem}
+.history{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.8rem;border:1px solid var(--rule-light);border-radius:999px;padding:4px 12px;background:transparent;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ask .chip{border-color:var(--rule-dark);color:var(--on-dark)}
+.ask .chip:hover{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--rule-light);background:transparent;border-radius:999px;padding:7px 16px;cursor:pointer}
+.btn:hover{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.btn.primary{background:var(--lime);color:var(--ink);border-color:var(--lime);padding:10px 24px;font-size:1rem;font-weight:600}
+.btn.primary:hover{background:var(--mint);border-color:var(--mint)}
+.ask .btn:not(.primary){color:var(--on-dark);border-color:var(--rule-dark)}
+.btn[disabled]{opacity:.6;cursor:default}
+.note{font-size:.85rem;margin:0;color:var(--on-dark-soft)}
+
+/* ---------- slides ---------- */
+.out{display:flex;flex-direction:column;gap:18px;min-width:0}
+.panel{position:relative;overflow:hidden;min-width:0;padding:clamp(20px,3.4vw,40px);background:var(--paper);color:var(--ink)}
+.panel .btn{border-color:var(--rule-light)}
+.t-dark{background:var(--dark);color:var(--on-dark)}
+.t-dark .btn{border-color:var(--rule-dark);color:var(--on-dark)}
+.t-stone{background:var(--stone)}
+.t-mint{background:var(--mint)}
+.t-lime{background:var(--lime)}
+
+.out-head{background:var(--stone);padding-right:clamp(20px,30vw,340px)}
+.out-head::before{content:"";position:absolute;right:clamp(10px,4vw,60px);top:-30px;width:220px;height:330px;
+  background:
+    radial-gradient(circle at 55px 55px,transparent 54px,var(--rule-light) 54.5px,transparent 55.5px),
+    radial-gradient(circle at 165px 55px,var(--mint) 54px,var(--ink) 54.5px,transparent 55.5px),
+    radial-gradient(circle at 55px 165px,transparent 54px,var(--rule-light) 54.5px,transparent 55.5px),
+    radial-gradient(circle at 165px 165px,transparent 54px,var(--rule-light) 54.5px,transparent 55.5px),
+    radial-gradient(circle at 55px 275px,var(--lime) 54px,var(--ink) 54.5px,transparent 55.5px),
+    radial-gradient(circle at 165px 275px,transparent 54px,var(--rule-light) 54.5px,transparent 55.5px)}
+@media (max-width:700px){.out-head{padding-right:clamp(20px,3.4vw,40px);padding-top:150px}.out-head::before{transform:scale(.55);transform-origin:top right;top:-20px}}
+.out-head>*{position:relative}
+.status{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:.88rem;color:var(--ink-soft)}
+.tag{font-size:.78rem;padding:3px 14px;border-radius:999px;border:1px solid var(--ink);color:var(--ink)}
+.tag.live{background:var(--mint);border-color:var(--mint)}
+.busy{background:var(--dark);color:var(--on-dark)}
+.busy .tag{color:var(--ink)}
+.out-head h2{font-size:clamp(2.2rem,5.4vw,4rem);margin:22px 0 22px}
+.out-head .sum{margin:0;max-width:62ch;padding-top:14px;border-top:1px solid var(--ink)}
+.care{margin:16px 0 0;display:inline-flex;gap:10px;align-items:flex-start;background:var(--lime);border-radius:18px;padding:10px 16px;font-size:.9rem;max-width:62ch}
+.care::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--ink);margin-top:6px}
+.fws{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.busy .chip.fw{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+
+.sec h3{font-size:clamp(1.5rem,3vw,2.2rem);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sec-body{margin-top:22px}
+.toggle{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:left;letter-spacing:inherit}
+.arrow{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid currentColor;font-size:.7rem;flex:none;font-stretch:100%;transition:transform .15s}
+.toggle[aria-expanded="true"] .arrow{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.arrow{transition:none}}
+.copy{font-size:.8rem;padding:5px 14px;font-stretch:100%;letter-spacing:0;font-family:var(--body)}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+
+/* numbered pill rows, from the contents slide */
+.fitlist,.kitlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:n}
+.fitlist li,.kitlist li{counter-increment:n;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;align-items:center;border:1px solid currentColor;border-radius:40px;padding:8px 18px 8px 8px}
+.fitlist li::before,.kitlist li::before{content:counter(n,decimal-leading-zero);grid-row:span 3;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-stretch:125%;font-size:1.25rem;color:var(--ink);background:var(--white)}
+.fitlist .chip,.kitlist .chip{border:0;padding:0;background:none;color:inherit;font-family:var(--display);font-stretch:112%;font-size:1.08rem;cursor:default;white-space:normal;overflow:visible;font-weight:400}
+.fitlist li>span:last-child,.kitlist li>span:last-child{font-size:.88rem;opacity:.8}
+.t-mint .kitlist li::before{border:1px solid var(--ink)}
+.t-mint .kitlist li:nth-child(3n+2)::before{background:var(--char-a);color:var(--on-dark)}
+
+.script{white-space:pre-wrap;margin:0;font-size:1.02rem;line-height:1.75;max-width:72ch}
+pre.prompt{font-family:var(--mono);font-size:.82rem;white-space:pre-wrap;word-break:break-word;border:1px solid var(--rule-dark);border-radius:24px;padding:18px 20px;margin:0}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.check li{border-top:1px solid currentColor;padding:10px 0}
+.check li:first-child{border-top:0;padding-top:0}
+.check label{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.check input{appearance:none;flex:none;width:18px;height:18px;border-radius:50%;border:1px solid currentColor;margin-top:2px;cursor:pointer}
+.check input:checked{background:var(--lime);border-color:var(--lime)}
+.warnlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.warnlist li{position:relative;padding-left:22px}
+.warnlist li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;border-radius:50%;background:currentColor}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--ink);border-radius:28px;padding:6px 10px}
+.tablewrap table{border-collapse:collapse;width:100%;min-width:480px;font-size:.9rem}
+.tablewrap th{text-align:left;font-weight:600;padding:12px;border-bottom:1px solid var(--ink)}
+.tablewrap td{padding:11px 12px;vertical-align:top;border-top:1px solid var(--rule-light)}
+.tablewrap tr:first-child td{border-top:0}
+.tablewrap td:first-child{font-family:var(--display);font-stretch:112%}
+@media (prefers-reduced-motion:no-preference){.pulse{animation:p 1.2s ease-in-out infinite}@keyframes p{50%{opacity:.45}}}
+.byline{margin:16px 0 0;font-size:.9rem;color:var(--on-dark-soft)}
+.byline b{color:var(--on-dark);font-weight:600}
+.credit{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 20px;padding:20px clamp(20px,3.4vw,40px);background:var(--dark);color:var(--on-dark-soft);font-size:.88rem}
+.credit p{margin:0}
+.credit nav{display:flex;gap:8px;flex-wrap:wrap}
+.credit a{color:var(--on-dark);text-decoration:none;border:1px solid var(--rule-dark);border-radius:999px;padding:4px 14px}
+.credit a:hover{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.tablewrap td.ex{font-style:italic;color:var(--ink-soft)}
+.exlabel{display:inline-block;font-style:normal;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;background:var(--lime);color:var(--ink);border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:1px}
+.fitlist li::before{background:var(--lime)}
+.subhead{font-size:1.2rem;margin:28px 0 12px;color:var(--on-dark-soft)}
+.fitlist .means{font-size:.85rem;color:var(--lime);margin:2px 0 4px;letter-spacing:.01em}
+.fitlist li.pick{cursor:pointer;transition:background .15s,border-color .15s}
+.fitlist li.pick:hover{border-color:var(--lime)}
+.fitlist li.sel{border-color:var(--lime);background:rgba(221,246,91,.12)}
+.inuse{display:inline-block;margin-left:10px;font-family:var(--body);font-stretch:100%;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;background:var(--lime);color:var(--ink);border-radius:999px;padding:1px 8px;vertical-align:3px}
+.pickhint{margin:-8px 0 14px;font-size:.88rem;color:var(--on-dark-soft)}
+.picknote{margin:12px 0 0;font-size:.88rem;color:var(--lime)}
+.asksec{background:var(--dark);color:var(--on-dark);padding:clamp(20px,3.4vw,40px)}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.cover{min-height:clamp(340px,44vw,520px);display:flex;flex-direction:column}
+.cover h1{font-size:clamp(3rem,9vw,7rem);font-weight:400;margin-top:auto;padding-top:clamp(80px,12vw,150px)}
+.cover .pillrow{margin-top:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.overview{background:var(--stone);padding:clamp(20px,3.4vw,40px);position:relative;overflow:hidden}
+.ov-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+@media (max-width:760px){.ov-top{grid-template-columns:minmax(0,1fr)}}
+.overview h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+.ovlead{margin:22px 0 0;padding-top:16px;border-top:1px solid var(--ink);max-width:52ch;font-size:1.02rem}
+.ovnote{margin:14px 0 0;font-size:.88rem;color:var(--ink-soft);max-width:52ch}
+.bignums{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:32px;padding:6px 18px}
+.bignums div{padding:14px 10px 16px;display:flex;flex-direction:column;gap:4px}
+.bignums div:nth-child(odd){border-right:1px solid var(--ink)}
+.bignums div:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+.bignums div:nth-child(even){padding-left:20px}
+.bignums b{font-family:var(--display);font-stretch:125%;font-weight:400;font-size:clamp(2.6rem,6vw,4rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bignums span{font-size:.82rem;color:var(--ink-soft)}
+.band{position:relative;margin:clamp(24px,4vw,40px) calc(-1 * clamp(20px,3.4vw,40px)) 0;padding:0 clamp(20px,3.4vw,40px)}
+.bleed{position:absolute;height:58px;border-radius:999px;top:50%;margin-top:-29px}
+.bleed.bl{left:-40px;width:clamp(90px,11vw,160px);background:var(--lime)}
+.bleed.br{right:-40px;width:clamp(90px,11vw,160px);background:var(--white);border:1px solid var(--ink)}
+@media (max-width:900px){.bleed{display:none}}
+.steps{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;counter-reset:st;max-width:900px;position:relative}
+@media (max-width:640px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{counter-increment:st;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;align-items:center;align-content:center;border:1px solid var(--ink);border-radius:999px;padding:8px 22px 8px 8px;background:var(--stone)}
+.steps li::before{content:counter(st,decimal-leading-zero);grid-row:span 2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--lime);border:1px solid var(--ink);font-family:var(--display);font-stretch:125%;font-size:1.15rem}
+.steps b{font-family:var(--display);font-stretch:112%;font-weight:400;font-size:1.05rem}
+.steps span{font-size:.85rem;color:var(--ink-soft)}
+
+.asksec h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:22px}
+.asksec .ask{max-width:820px;border:0;padding:0;background:none;border-radius:0}
+
+/* circle rows along the top, from the Services and Why Choose Us slides */
+.sec.deco-d,.sec.deco-l{padding-top:calc(clamp(20px,3.4vw,40px) + 96px)}
+.sec.deco-d::before,.sec.deco-l::before{content:"";position:absolute;left:0;right:0;top:0;height:84px;pointer-events:none}
+.sec.deco-d::before{background:
+  radial-gradient(circle at 42px 42px,var(--lime) 41px,transparent 41.5px) right 20px top 0/84px 84px no-repeat,
+  radial-gradient(circle at 42px 42px,transparent 41px,var(--rule-dark) 41.5px,transparent 42.5px) right 20px top 0/84px 84px repeat-x}
+.sec.deco-l::before{background:
+  radial-gradient(circle at 42px 42px,var(--char-a) 41px,transparent 41.5px) right 10px top 0/84px 84px no-repeat,
+  radial-gradient(circle at 42px 42px,transparent 41px,var(--rule-light) 41.5px,transparent 42.5px) right 10px top 0/84px 84px repeat-x}
+.cta{background:var(--lime);color:var(--ink);padding:clamp(24px,4vw,48px);position:relative;overflow:hidden}
+.cta h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+.cta p{max-width:56ch;margin:16px 0 22px;font-size:1.02rem}
+.cta .btn.primary{background:var(--char-a);color:var(--on-dark);border-color:var(--char-a);text-decoration:none;display:inline-block}
+.cta .btn.primary:hover{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid var(--rule-light);box-shadow:-110px 110px 0 -1px var(--lime),-110px 110px 0 0 var(--rule-light)}
+@media (max-width:640px){.cta::after{display:none}}
+.ctabtn{color:var(--on-dark);text-decoration:none;border-color:var(--rule-dark)}
+.teaser .sec-body{position:relative;max-height:9.5em;overflow:hidden}
+.teaser .sec-body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5em;background:linear-gradient(transparent,var(--paper))}
+.locked h3{font-size:clamp(1.5rem,3vw,2.2rem)}
+.locklead{margin:14px 0 12px;color:var(--on-dark-soft)}
+.locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.locklist li{display:flex;align-items:center;gap:12px;border:1px solid var(--rule-dark);border-radius:999px;padding:8px 16px 8px 8px}
+.locklist li::before{content:"";flex:none;width:30px;height:30px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101414' stroke-width='2'%3E%3Crect x='5' y='11' width='14' height='9' rx='2'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/16px no-repeat}
+</style>
+
+<div class="wrap">
+  <header class="cover">
+    <div class="topline">
+      <div class="brand">
+        <svg viewBox="0 0 14 16" aria-hidden="true"><path d="M2 1h7a4 4 0 0 1 0 8H5v6H2z" fill="#DDF65B"/></svg>
+        Manager Playbook
+      </div>
+      <span class="pill">Weiwei Hu</span>
+    </div>
+    <h1>Manager Playbook</h1>
+    <div class="pillrow">
+      <span class="tagpill m">Everyday manager help</span>
+      <span class="tagpill o">Say what you need</span>
+      <span class="tagpill w">Pick a framework</span>
+      <span class="tagpill l">Get a plan</span>
+      <span class="tagpill o">Free preview</span>
+    </div>
+  </header>
+
+  <section class="overview" aria-labelledby="ovtitle">
+    <div class="ov-top">
+      <div class="ov-text">
+        <h2 id="ovtitle">How it works</h2>
+        <p class="ovlead">This playbook helps you handle everyday manager situations. Tell it what's going on, and you get a plan you can use today.</p>
+        <p class="ovnote">This is a free preview. Getting a plan is for members.</p>
+      </div>
+      <div class="bignums" aria-label="What it draws on">
+        <div><b>13</b><span>frameworks</span></div>
+        <div><b>41</b><span>templates and scripts</span></div>
+        <div><b>30</b><span>AI prompts</span></div>
+        <div><b>10</b><span>workplace routines</span></div>
+      </div>
+    </div>
+    <div class="band">
+      <span class="bleed bl" aria-hidden="true"></span><span class="bleed br" aria-hidden="true"></span>
+      <ol class="steps">
+        <li><b>Say what you need</b><span>Plain words. Add facts and numbers if you have them.</span></li>
+        <li><b>See the best framework</b><span>Plus a few others, each with a short note.</span></li>
+        <li><b>Tap to switch</b><span>Pick another framework. The plan below gets rebuilt.</span></li>
+        <li><b>Use the plan</b><span>Table, script, questions, checklist and an AI prompt.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="asksec" aria-labelledby="asktitle">
+    <h2 id="asktitle">What do you need?</h2>
+    <form class="ask" id="form" autocomplete="off">
+      <div>
+        <label class="sr" for="ask">Describe your situation</label>
+        <textarea id="ask" placeholder="Example: I need a script for a 1:1 with someone who keeps missing deadlines"></textarea>
+      </div>
+      <div class="history" id="examples" aria-label="Example requests"></div>
+      <details id="opts">
+        <summary>Options</summary>
+        <div class="row2" style="margin-top:10px">
+          <div>
+            <label class="label" for="lang">Language</label>
+            <select id="lang">
+              <option value="English">English</option>
+              <option value="Simplified Chinese">Simplified Chinese</option>
+              <option value="Bilingual">Bilingual</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="tone">Tone</label>
+            <select id="tone">
+              <option>Warm and direct</option>
+              <option>Formal</option>
+              <option>Brief, bullet-style</option>
+              <option>Encouraging coach</option>
+            </select>
+          </div>
+        </div>
+      </details>
+      <div class="btns">
+        <button class="btn primary" type="submit" id="run">Get my plan</button>
+        <a class="btn ctabtn" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+        <button class="btn" type="button" id="stop" hidden>Stop</button>
+      </div>
+      <p class="note" id="avail">Connecting to Claude…</p>
+    </form>
+  </section>
+
+
+  <section class="out" id="out" aria-live="polite"></section>
+
+  <section class="cta" aria-labelledby="ctatitle">
+    <h2 id="ctatitle">Get the full playbook</h2>
+    <p>Run your own situations: 1:1s, feedback, reports, saying no, meetings and more. Tap any framework to rebuild the plan. New scripts and templates every month.</p>
+    <a class="btn primary" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+  </section>
+
+  <footer class="credit">
+    <p>© 2026 Weiwei Hu. All rights reserved.</p>
+    <nav aria-label="Weiwei Hu online">
+      <a href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Website</a>
+      <a href="https://github.com/wei-wei-hu" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+const FW = {
+  SCQA:{use:"Structure a report so it lands",steps:[["Situation","Background or context"],["Complication","The main problem or challenge"],["Question","The key question it raises"],["Answer","Your solution or recommendation"]]},
+  PDCA:{use:"Run a project review loop",steps:[["Plan","Set goals and the process"],["Do","Carry out the plan, record details"],["Check","Evaluate results, find problems"],["Act","Adjust and improve from the findings"]]},
+  SMART:{use:"Turn a wish into a goal",steps:[["Specific","Clear and concrete"],["Measurable","Quantified so it can be checked"],["Achievable","A stretch, still reachable"],["Relevant","Tied to the bigger goal"],["Time-bound","A clear deadline"]]},
+  AIDA:{use:"Motivate or persuade people",steps:[["Attention","Catch their attention"],["Interest","Keep them interested"],["Desire","Turn interest into want"],["Action","Prompt a specific action"]]},
+  ACE:{use:"Make a quick, sound decision",steps:[["Assess","Gather information, identify key factors"],["Choose","Weigh trade-offs, pick the best option"],["Execute","Act decisively with an implementation plan"]]},
+  "5W2H":{use:"Untangle a complex problem",steps:[["Why","Root cause and purpose"],["What","Specific content and scope"],["Who","Owner and people involved"],["When","Deadlines and milestones"],["Where","Location or scope"],["How","Method and steps"],["How much","Cost and resources"]]},
+  STAR:{use:"Tell a story or answer an interview question",steps:[["Situation","Background of the event"],["Task","The task or challenge you faced"],["Action","What you did"],["Result","Outcome and impact"]]},
+  MAET:{use:"Run a productive meeting",steps:[["Meeting objective","Purpose and expected outcome"],["Agenda","Clear agenda with time per item"],["Efficiency","Stay on topic, send materials ahead"],["Teamwork","Get everyone involved, record each item"]]},
+  SCUBA:{use:"Give a talk that moves people",steps:[["Situation","A relatable scene"],["Complication","The problem or challenge"],["Understanding","Causes and impact"],["Solution","Your method or proposal"],["Action","A concrete call to action"]]},
+  DESC:{use:"Handle a conflict calmly",steps:[["Describe","The facts, without blame"],["Express","Your feelings and view"],["Suggest","A constructive proposal"],["Consequences","What each choice leads to"]]},
+  Eisenhower:{use:"Sort work by urgency and importance",steps:[["Urgent + important","Do it now"],["Important, not urgent","Plan it and work on it step by step"],["Urgent, not important","Delegate it"],["Neither","Drop it"]]},
+  GTD:{use:"Get a pile of tasks under control",steps:[["Capture","Collect every task and idea in one system"],["Clarify","Sort each item and set priority"],["Organize","Group by priority and category"],["Reflect","Review regularly, adjust the plan"],["Engage","Work the plan"]]},
+  CAR:{use:"Write a summary or year-end review",steps:[["Context","Background and your task"],["Action","What you did, in detail"],["Result","Outcomes and impact, with numbers"]]}
+};
+
+const SOP = {
+  intake:{name:"Task intake",flow:["Hear the ask","Say the goal back in your own words","Agree what done looks like","Ask what help you'll get","Agree a due date","Send a short written note"],key:"Both people should leave with the same picture of the job. Nail down help and dates before you start, then write it down where you both can see it.",script:"Just so we're on the same page: you need [what], done means [standard], and it's due [date]. I'll need [help] from [person]. Can you reply yes if that's right?"},
+  priority:{name:"Setting priorities",flow:["Write down everything on your plate","Mark what's urgent","Mark what matters","Put each one in its box","Block time for the top box first"],key:"Do what's urgent and matters today. Book time for what matters but can wait. Hand off what's urgent but small. Drop the rest.",script:"Right now I'm on [A], [B] and [C]. If I take this on first, [A] slips to [date]. Which one should move?"},
+  no:{name:"Saying no",flow:["Take the request","Wait before you answer","Check your time, help and the payoff","Give a straight answer","Suggest another route"],key:"If it doesn't move the main goal or help you grow, it's fine to say no. Don't stew over it.",script:"I can't take this on before [date] because I'm on [project]. If it can't wait, [person] may be able to help sooner."},
+  escalate:{name:"Asking for help mid-project",flow:["Spot the problem early","Come up with two or three fixes","Weigh each one","Say exactly what you need","Take it to your manager"],key:"Raise problems early. Bring options so your manager only has to pick one.",script:"We have a problem with [issue]. I see two ways to fix it: [option A], which costs [downside], or [option B], which costs [downside]. Which way do you want to go?"},
+  report:{name:"Reporting up",flow:["Start with the headline your boss wants","Then the numbers: progress, risk, cost","Finish with what you suggest and what you need"],key:"Before you write, ask what your boss will want to know first. Always end with the help you need.",script:"Quick update on [project]: we're at [X]% and [on or off] track. The main risk is [risk], which could cost [amount]. I suggest [action]. To do that, I need [support]. OK to go ahead?"},
+  review:{name:"Review",flow:["Write down what happened","Find out why","Pull out what worked","Change what didn't","Try it on the next job"],key:"Keep notes while the work is happening, not just at the end. Tell your manager what you learned.",script:"Act as an experienced coach for [role]. Below are my notes on a piece of work: what I did, what happened, where I got stuck. Sort the problems into three groups: mistakes in doing the work, gaps in how the team or process worked, and wrong assumptions I made. Then list three things to change next time."},
+  record:{name:"Keeping a written record",flow:["Talk it through","Check you both mean the same thing","Agree the goal, the output and the date","Write it down","Bold the key points","Save it where you can find it"],key:"If you agreed it out loud, write it down the same day.",script:"Here's what I took from our chat: 1. [point] 2. [point] 3. [point]. Did I miss anything?"},
+  ask:{name:"Asking good questions",flow:["Notice what you don't know","Look it up first, with a time limit","Still stuck? Ask someone","Share what you found and tried"],key:"Try on your own first, AI included, for a set time. Then ask, and bring what you already know.",script:"I've been looking into [topic]. So far I think [your understanding], but I'm stuck on [question]. Do you have a minute to help?"},
+  proposal:{name:"Writing a proposal",flow:["Name the problem","List the limits you have to work within","Sketch the outline","Fill it in","Look for holes","Make it plain enough for an outsider","Send it"],key:"Plan before you write. Page one has the background in one line, your answer in one line and no more than three suggestions. Keep it to three levels with three points each. Think about what your boss will ask and answer it up front.",script:""},
+  minutes:{name:"AI meeting minutes",flow:["First pass: list every decision and task, with where it came up; keep open topics in a separate list","Second pass: keep only real decisions and tasks, five items max"],key:"Four parts: decisions, tasks (who, what, by when), open issues, and one line of background. Skip greetings, ideas that were dropped, and opinions that didn't turn into decisions.",script:"Write short minutes from the meeting notes below. Use four parts only, with five bullets in total at most: 1. What we decided. 2. Tasks: name, task, due date. 3. Open issues. 4. One line of background. Skip greetings, dropped ideas and personal opinions unless they became decisions. [Paste notes]"}
+};
+
+const AIUSE = [
+  ["Research","Look things up and list the main points with links"],
+  ["Reading files","Get the key points and risks from a long document"],
+  ["Writing","Draft an email or message from what you want to say"],
+  ["Summarizing","Turn meeting notes into decisions, tasks, names and dates"],
+  ["Spreadsheets","Sort data, add it up and spot odd numbers"],
+  ["Slide decks","Plan the slides and write a title for each"],
+  ["Images","Make a simple graphic from a plain description"],
+  ["Learning","Explain something new in simple words, then test you"],
+  ["Comparing","Line up options by price, pros, cons and hidden costs"],
+  ["Repetitive tasks","Hand off the same steps you do every week"]
+];
+
+const PLAYBOOKS = [
+  {id:"auto",label:"Let the agent choose",fw:[],sop:[]},
+  {id:"report",label:"Report results or problems upward",fw:["SCQA"],sop:["report"]},
+  {id:"intake",label:"Take on a new task",fw:["SMART"],sop:["intake","record"]},
+  {id:"priority",label:"Prioritize a big workload",fw:["Eisenhower","GTD"],sop:["priority"]},
+  {id:"no",label:"Push back on or decline a request",fw:["Eisenhower"],sop:["no"]},
+  {id:"escalate",label:"Flag a risk and ask for support",fw:["ACE"],sop:["escalate"]},
+  {id:"decide",label:"Make a decision",fw:["ACE","5W2H"],sop:[]},
+  {id:"untangle",label:"Untangle a messy problem",fw:["5W2H"],sop:[]},
+  {id:"goal",label:"Set a goal or target",fw:["SMART"],sop:[]},
+  {id:"meeting",label:"Plan and run a meeting",fw:["MAET"],sop:["record"]},
+  {id:"minutes",label:"Write meeting minutes with AI",fw:["MAET"],sop:["minutes"]},
+  {id:"conflict",label:"Resolve a conflict",fw:["DESC"],sop:["record"]},
+  {id:"motivate",label:"Motivate or persuade the team",fw:["AIDA"],sop:[]},
+  {id:"talk",label:"Prepare a talk or speech",fw:["SCUBA"],sop:[]},
+  {id:"story",label:"Tell a story or answer an interview question",fw:["STAR"],sop:[]},
+  {id:"review",label:"Review a project",fw:["PDCA"],sop:["review"]},
+  {id:"summary",label:"Write a work or year-end summary",fw:["CAR"],sop:[]},
+  {id:"ask",label:"Ask a good question",fw:[],sop:["ask"]},
+  {id:"proposal",label:"Write a proposal",fw:["SCQA"],sop:["proposal"]},
+  {id:"tasks",label:"Organize many tasks",fw:["GTD"],sop:["priority"]}
+];
+
+
+// Keywords that point a plain-language request at a playbook (used for instant matches and the offline template)
+const KW = {
+  oneonone:["1:1","1-1","one-on-one","one on one","check-in","checkin","feedback","underperform","performance","disengaged","coaching","late","deadline","attitude"],
+  report:["report","update","boss","manager","leadership","sales drop","results"],
+  intake:["new task","assigned","handover","new project"],
+  priority:["priorit","overwhelm","too many","busy","urgent","time"],
+  no:["say no","decline","refuse","push back"],
+  escalate:["risk","help","escalat","budget","resource","support","blocked"],
+  decide:["decide","decision","choose","option"],
+  untangle:["problem","why","root cause","messy","analy"],
+  goal:["goal","target","kpi","okr"],
+  meeting:["meeting","agenda","huddle"],
+  minutes:["minutes","notes","recap"],
+  conflict:["conflict","argument","tension","complain","disagree"],
+  motivate:["motivat","inspire","morale","rally","persuade"],
+  talk:["speech","talk","present","town hall"],
+  story:["interview","story","example of"],
+  review:["review","retro","lesson","post-mortem"],
+  summary:["summary","year-end","self-review","self review","appraisal"],
+  ask:["question","ask my","not sure how"],
+  proposal:["proposal","pitch","business case","plan for"],
+  tasks:["to-do","todo","tasks","organize","gtd"],
+  weekly:["next week","weekly plan","friday notes","monday","this week","weekly"],
+  manageup:["my own manager","my manager","managing up","my boss 1:1"]
+};
+PLAYBOOKS.push({id:"oneonone",label:"Run a 1:1 conversation",fw:["DESC","SMART"],sop:["record"]},{id:"weekly",label:"Plan the team week",fw:["GTD","Eisenhower"],sop:["priority"]},{id:"manageup",label:"Prepare a 1:1 with your manager",fw:["CAR"],sop:["report"]});
+
+const EXAMPLES = ["I need a script for a 1:1","Prep my 1:1 with my own manager","Build next week's plan from my Friday notes","A team member keeps missing deadlines","Cut scope or add a contractor?","Tell my boss sales dropped 12% this month","Say no to an extra project","Write my year-end summary"];
+
+const EXAMPLE = { ask: "", out: null };
+
+// ---------- AI Management Toolkit (Weiwei Hu) ----------
+const KIT = (() => { try { return JSON.parse(document.getElementById("kit").textContent); } catch(e){ return {}; } })();
+const KITTABS = {feedback:"feedback-scripts", meeting:"meeting-templates", decision:"decision-templates", planning:"work-planning-templates", review:"performance-review-templates"};
+function sections(md){
+  return (md || "").split(/^## /m).slice(1).map(chunk => {
+    const lines = chunk.split("\n"); const title = lines[0].trim(); const body = lines.slice(1).join("\n");
+    const quote = body.match(/"([^"]{20,})"/);
+    const rows = body.split("\n").filter(l => /^\|/.test(l) && !/^\|[-\s|]+\|$/.test(l)).map(l => l.split("|")[1].trim()).filter(Boolean);
+    let gist = rows.length > 1 ? rows.slice(1).join(" · ") : quote ? quote[1] : body.replace(/[#|*`]/g, "").trim();
+    if (gist.length > 170) gist = gist.slice(0, 167) + "…";
+    return {title, gist};
+  });
+}
+const PROMPTS = (KIT["prompt-library"] || "").split(/^### /m).slice(1).map(chunk => {
+  const title = chunk.split("\n")[0].trim(); const code = chunk.match(/```text\n([\s\S]*?)```/);
+  const when = (chunk.split("\n")[1] || "").startsWith("Use when") ? chunk.split("\n")[1].trim() : "";
+  return {title, when, text: code ? code[1].trim() : ""};
+}).filter(x => x.text);
+const WEEK = (KIT["weekly-operating-map"] || "").split("\n").filter(l => /^\| (Mon|Tues|Wednes|Thurs|Fri)day/.test(l)).map(l => {
+  const c = l.split("|").map(x => x.trim()); return {day:c[1], focus:c[2], output:c[5]};
+});
+
+const $ = s => document.querySelector(s);
+const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+let sample = null, ctl = null, current = null, lastInput = null, currentMode = "example";
+
+function store(k, v){ try{ if (v === undefined) return JSON.parse(localStorage.getItem(k) || "null"); localStorage.setItem(k, JSON.stringify(v)); }catch(e){ return null; } }
+function readForm(){ return {ask:$("#ask").value.trim(), lang:$("#lang").value, tone:$("#tone").value}; }
+
+function match(text){
+  const t = text.toLowerCase();
+  return Object.entries(KW).map(([id, words]) => ({id, score: words.filter(w => t.includes(w)).length}))
+    .filter(x => x.score).sort((a,b) => b.score - a.score).map(x => PLAYBOOKS.find(p => p.id === x.id)).filter(Boolean);
+}
+
+function knowledge(){
+  const fw = Object.entries(FW).map(([k,v]) => `${k} – ${v.use}: ` + v.steps.map(s => `${s[0]} = ${s[1]}`).join("; ")).join("\n");
+  const sop = Object.values(SOP).map(s => `${s.name}: ${s.flow.join(" → ")}. Key point: ${s.key}${s.script ? " Script: " + s.script : ""}`).join("\n");
+  const ai = AIUSE.map(a => `${a[0]}: ${a[1]}`).join("\n");
+  const k = KIT;
+  return `FRAMEWORKS\n${fw}\n\nWORKPLACE ROUTINES\n${sop}\n\nAI USE CASES\n${ai}\n\n=== AI MANAGEMENT TOOLKIT (Weiwei Hu) ===\n${k["operating-rules"]}\n\n${k["source-method"]}\n\n${k["manager-input-intake"]}\n\n${k["feedback-scripts"]}\n\n${k["meeting-templates"]}\n\n${k["decision-templates"]}\n\n${k["work-planning-templates"]}\n\n${k["performance-review-templates"]}\n\nPROMPT LIBRARY TITLES\n${PROMPTS.map(x => x.title).join("\n")}`;
+}
+
+function buildPrompt(i){
+  const hints = match(i.ask).slice(0,2).map(p => [...p.fw, ...p.sop.map(s => SOP[s].name)].join(" + ")).join("; ");
+  return `You are a practical management coach for store and team managers. Using ONLY the material below (the 13 frameworks, workplace routines, AI uses, and the AI Management Toolkit with its templates, scripts and operating rules), pick the best framework(s) and templates for the user's request and build what they need. When you name a template or script, use a plain description (for example "One-on-one agenda" or "Missed-deadline feedback script"), never its number or the toolkit's name. Follow the toolkit's operating rules: use the user's facts, never invent employee behavior or HR facts, label assumptions, and make every action carry an owner and a date.
+
+${knowledge()}
+
+REQUEST
+"${i.ask}"
+${hints ? `A keyword match suggests: ${hints}. Use your own judgment.` : ""}
+Tone: ${i.tone}
+Language: ${i.lang === "Bilingual" ? "English, and add a Simplified Chinese version of the script at the end of the script field." : i.lang}
+
+If details are missing, make reasonable assumptions and mark the spots the user should fill in with [brackets].
+
+WRITING RULES (follow strictly in every field):
+1. Simple human language. Write plainly, in short sentences. Good: "I need help with this issue."
+2. Never use AI giveaway words or phrases: "real", "clarity", "dive into", "deep dive", "unleash potential", "unlock potential", "shape", "game-changing", "empower", "leverage", "navigate", "foster", "robust". Bad: "Let's dive into this game-changing solution." Use everyday words.
+3. Get to the point. No filler.
+4. Write the way people talk. Starting a sentence with "And" or "But" is fine.
+5. No marketing language or hype. Be honest about what something does. Bad: "This revolutionary product will transform your life." Good: "This product can help you." Never promise results a plan cannot guarantee; say "this can help" or "this should help".
+6. Tell the truth. Say yes or no plainly. Don't force enthusiasm.
+7. Loose, spoken-style grammar is fine if it sounds more natural.
+8. No stacked adjectives or adverbs. Stick to facts and the key message.
+9. Make it easy to understand on the first read.
+10. No soft, vague AI wording. Never write "feels heavy", "quiet", "quieter", "energy", "show up", "hold space", "lean in", "bandwidth" or "vibe". Name the concrete thing: "What's hard right now?", "hasn't said much in meetings", "has less time".
+The script must sound like a manager talking to a person, not a corporate memo.
+
+Reply with only one JSON object:
+{"title": short name,
+ "summary": 1-2 sentences on what the user wants to achieve,
+ "best": [1-2 items: the method(s) that matter most, each either a framework/routine or a template/script from the material, {"name": plain name, "means": what it stands for or what it is, 10 words max (for acronyms spell out the letters, e.g. "Situation → Task → Action → Result"), "why": one sentence}],
+ "alternatives": [2-3 items {"name": plain name of another framework or template, "means": same as above, "why": when it would be the better choice}],
+ "script": complete words to say or send, structured by the best framework's steps,
+ "questions": [0-4 good questions to ask, if it's a conversation],
+ "checklist": [3-5 concrete before/after actions],
+ "watchouts": [1-3 pitfalls],
+ "table": the most useful toolkit table filled in with the user's facts, as {"title": string, "columns": [strings], "rows": [[strings]]}, 3-8 rows. Order the columns: the item, then "What to cover", then a last column named "Examples" where each cell is a short example that starts with "e.g.". Never use a "Your notes" column.; use null if a table would not help,
+ "care_note": one sentence if the topic touches HR, legal, pay, performance improvement plans or termination (reminding the user these need human review and company policy); otherwise null,
+ "ai_prompt": one reusable prompt for the follow-up work, adapted from the toolkit's prompt library where one fits}`;
+}
+
+// ---------- rendering ----------
+function copyBtn(getText, label = "Copy"){
+  const b = el("button", "btn copy", label); b.type = "button";
+  b.onclick = async () => {
+    try { await navigator.clipboard.writeText(getText()); b.textContent = "Copied"; }
+    catch(e){ b.textContent = "Select and copy"; }
+    setTimeout(() => b.textContent = label, 1600);
+  };
+  return b;
+}
+function closedSet(){ return new Set(store("sopdesk.closed") || []); }
+function makeToggle(btn, body, key){
+  const set = (open) => { btn.setAttribute("aria-expanded", open); body.hidden = !open; };
+  set(!closedSet().has(key));
+  btn.onclick = () => { const open = btn.getAttribute("aria-expanded") !== "true"; set(open);
+    const c = closedSet(); open ? c.delete(key) : c.add(key); store("sopdesk.closed", [...c]); };
+  return set;
+}
+function section(title, copyText){
+  const TONE = {"Best framework":"t-dark deco-d","Also consider":"t-dark","Questions to ask":"t-lime deco-l","Checklist":"t-dark","Watch out":"t-stone","Follow-up AI prompt":"t-dark"};
+  const s = el("div", "panel sec " + (TONE[title] || "")); const h = el("h3");
+  const t = el("button", "toggle"); t.type = "button"; t.append(el("span", "arrow", "▸"), el("span", null, title));
+  h.append(t); if (copyText) h.append(copyBtn(copyText));
+  const body = el("div", "sec-body"); s.append(h, body);
+  s.add = (...n) => body.append(...n); s.setOpen = makeToggle(t, body, title); s.toggleBtn = t;
+  return s;
+}
+function asText(o){
+  const L = [o.title, "", o.summary, "", "Frameworks: " + [...(o.best||[]), ...(o.alternatives||[])].map((b,n) => `${String(n+1).padStart(2,"0")} ${b.name}`).join(", "), "", "SCRIPT", o.script || ""];
+  if (o.questions?.length){ L.push("", "QUESTIONS TO ASK"); o.questions.forEach(q => L.push("- " + q)); }
+  L.push("", "CHECKLIST"); (o.checklist||[]).forEach(c => L.push("- " + c));
+  if (o.watchouts?.length){ L.push("", "WATCH OUT"); o.watchouts.forEach(w => L.push("- " + w)); }
+  if (o.table?.rows?.length){ L.push("", (o.table.title || "TEMPLATE").toUpperCase(), o.table.columns.join(" | ")); o.table.rows.forEach(r => L.push(r.join(" | "))); }
+  if (o.care_note) L.push("", "NOTE: " + o.care_note);
+  if (o.ai_prompt) L.push("", "AI PROMPT", o.ai_prompt);
+  return L.join("\n");
+}
+
+function allFrameworks(o){ return [...(o.best || []), ...(o.alternatives || [])]; }
+function meansOf(b){ return b.means || (FW[b.name] ? FW[b.name].steps.map(x => x[0]).join(" → ") : ""); }
+
+function render(o, mode){
+  current = o; currentMode = mode; if (typeof o.sel !== "number") o.sel = 0;
+  const out = $("#out"); out.replaceChildren();
+  const head = el("div", "panel out-head");
+  const st = el("div", "status");
+  st.append(el("span", "tag" + (mode === "live" ? " live" : ""), mode === "live" ? "Your plan" : mode === "template" ? "Template" : "Example"));
+  if (mode === "example") st.append(el("span", null, "This is a sample of what you get."));
+  if (mode === "template") st.append(el("span", null, "Picked from keywords. Fill in the brackets yourself."));
+  head.append(st, el("h2", null, o.title || "Your plan"));
+  if (o.summary) head.append(el("p", "sum", o.summary));
+  out.append(head);
+
+  const items = allFrameworks(o);
+  if (items.length){
+    const s = section("Best framework");
+    if (items.length > 1) s.add(el("p", "pickhint", "In the full playbook, tap one to rebuild the plan with it."));
+    const ul = el("ul", "fitlist");
+    items.forEach((b, n) => {
+      const li = el("li", "pick" + (n === o.sel ? " sel" : "")); li.tabIndex = 0; li.setAttribute("role", "button"); li.setAttribute("aria-pressed", n === o.sel);
+      const name = el("span", "chip fw", b.name); if (n === o.sel) name.append(el("span", "inuse", o.loading ? "Loading…" : "In use"));
+      li.append(name); const m = meansOf(b); if (m) li.append(el("span", "means", m)); li.append(el("span", null, b.why));
+      const go = () => pickFramework(n); li.onclick = go; li.onkeydown = e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); go(); } };
+      ul.append(li);
+    });
+    s.add(ul); if (o.pickNote) s.add(el("p", "picknote", o.pickNote)); out.append(s);
+  }
+
+  if (o.loading){
+    const p = el("div", "panel status busy"); const stop = el("button", "btn copy", "Stop"); stop.type = "button"; stop.onclick = () => ctl?.abort();
+    p.append(el("span", "tag live pulse", "Working"), el("span", null, `Rebuilding the plan with ${o.loading}. Takes 20 to 60 seconds.`), stop);
+    out.append(p); return;
+  }
+  const d = o.sel === 0 ? o : (o.variants?.[items[o.sel]?.name] || o);
+  // Demo: show a short part of the script, then lock the rest.
+  const teaser = section("Script"); teaser.classList.add("teaser"); teaser.add(el("p", "script", d.script || "")); out.append(teaser);
+  const lock = el("div", "panel locked t-dark"); lock.append(el("h3", null, "The rest of the plan"), el("p", "locklead", "In the full playbook you also get:"));
+  const ul = el("ul", "locklist"); ["The full script","A filled-in table (here, a one-on-one agenda)","Questions to ask","A checklist for before and after","Things to watch out for","A follow-up AI prompt","Your own requests, and tap to switch frameworks"].forEach(t => ul.append(el("li", null, t)));
+  lock.append(ul); out.append(lock);
+  return;
+  if (d.care_note) head.append(el("p", "care", d.care_note));
+
+  if (d.table?.columns?.length && d.table?.rows?.length){
+    const tt = d.table; const tsv = () => [tt.columns, ...tt.rows].map(r => r.join("\t")).join("\n");
+    const s = section(tt.title || "Filled template", tsv); s.classList.add("t-stone"); const w = el("div", "tablewrap"); const t = el("table");
+    const hr = el("tr"); tt.columns.forEach(c => hr.append(el("th", null, c))); const th = el("thead"); th.append(hr); t.append(th);
+    const tb = el("tbody"); tt.rows.forEach(r => { const tr = el("tr"); r.forEach(c => { const v = String(c ?? ""); const td = el("td", /^e\.g\./i.test(v) ? "ex" : null); td.textContent = v.replace(/^e\.g\.\s*/i, ""); tr.append(td); }); tb.append(tr); }); t.append(tb);
+    w.append(t); s.add(w); out.append(s);
+  }
+
+  if (d.script){ const s = section("Script", () => d.script); s.add(el("p", "script", d.script)); out.append(s); }
+
+  const two = el("div", "two");
+  if (d.questions?.length){ const s = section("Questions to ask"); const ul = el("ul", "warnlist q"); d.questions.forEach(q => ul.append(el("li", null, q))); s.add(ul); two.append(s); }
+  if (d.checklist?.length){
+    const s = section("Checklist"); const ul = el("ul", "check");
+    d.checklist.forEach((c,n) => { const li = el("li"); const lab = el("label"); const cb = el("input"); cb.type = "checkbox"; cb.id = "ck" + n; lab.append(cb, el("span", null, c)); li.append(lab); ul.append(li); });
+    s.add(ul); two.append(s);
+  }
+  if (d.watchouts?.length){ const s = section("Watch out"); const ul = el("ul", "warnlist"); d.watchouts.forEach(w => ul.append(el("li", null, w))); s.add(ul); two.append(s); }
+  if (two.children.length) out.append(two);
+
+  if (d.ai_prompt){ const s = section("Follow-up AI prompt", () => d.ai_prompt); s.add(el("pre", "prompt", d.ai_prompt)); out.append(s); }
+}
+
+// Offline version of a plan built on one framework, from its steps.
+function templateVariant(b){
+  const fw = FW[b.name]; const sop = Object.values(SOP).find(x => x.name === b.name);
+  const steps = fw ? fw.steps : sop ? sop.flow.map(f => [f, ""]) : [];
+  return {
+    table: steps.length ? {title: b.name, columns: ["Step", "What to cover", "Examples"], rows: steps.map(x => [x[0], x[1] || "[What you'll say or do]", "e.g. [your example]"])} : null,
+    script: steps.map(x => `${x[0]}: [${x[1] || "your words"}]`).join("\n\n") || (sop?.script || ""),
+    questions: [], checklist: sop ? sop.flow.slice(0,5) : [], watchouts: [], ai_prompt: ""
+  };
+}
+
+async function pickFramework(n){
+  const o = current; if (!o || n === o.sel) return;
+  o.pickNote = "Switching frameworks is part of the full playbook."; render(o, currentMode);
+}
+function persist(o){ if (currentMode === "live" && lastInput?.ask) saveHistory(lastInput, o); }
+
+function templateFor(i){
+  const hits = match(i.ask); const pb = hits[0] || PLAYBOOKS.find(p => p.id === "untangle");
+  const fwKey = pb.fw[0]; const sops = pb.sop.map(s => SOP[s]);
+  const skeleton = fwKey ? FW[fwKey].steps.map(s => `${s[0]}: [${s[1]}]`).join("\n\n") : "";
+  return {
+    title: pb.label, summary: i.ask,
+    best: [...pb.fw.map(f => ({name:f, why:FW[f].use + "."})), ...sops.map(s => ({name:s.name, why:s.key}))].slice(0,2),
+    alternatives: hits.slice(1,4).map(p => ({name:[...p.fw, ...p.sop.map(s => SOP[s].name)][0], why:p.label + "."})).filter(a => a.name),
+    script: [skeleton, sops.find(s => s.script)?.script].filter(Boolean).join("\n\n"), questions: [],
+    checklist: sops.flatMap(s => s.flow).slice(0,5), watchouts: [], ai_prompt: ""
+  };
+}
+
+// ---------- agent ----------
+function setBusy(on, msg){
+  $("#run").disabled = on; $("#stop").hidden = !on;
+  if (on){
+    const p = el("div", "panel status busy"); p.append(el("span", "tag live pulse", "Working"), el("span", null, msg));
+    const hits = match(lastInput?.ask || ""); if (hits.length){ const f = el("div", "fws"); hits.slice(0,3).forEach(h => [...h.fw, ...h.sop.map(s => SOP[s].name)].forEach(n => f.append(el("span", "chip fw", n)))); p.append(f); }
+    $("#out").prepend(p);
+  } else document.querySelector("#out .busy")?.remove();
+}
+function errCopy(e){
+  const c = e?.code;
+  if (["not_granted","sampling_disabled","capability_disabled","not_declared"].includes(c)) return "Claude isn't available here, so this is a basic template.";
+  if (c === "rate_limited") return "Too many requests right now. Try again in a minute.";
+  if (c === "session_expired") return "Sign in to claude.ai again, then try again.";
+  if (c === "refused") return "Claude won't answer this one. Try wording it differently.";
+  if (c === "invalid_json") return "The answer came back broken. Hit Get my plan again.";
+  return "Couldn't reach Claude. Hit Get my plan again.";
+}
+function valid(o){ return o && typeof o === "object" && typeof o.script === "string"; }
+function call(prompt, cacheOpt){ ctl = new AbortController(); return sample.json(prompt, {signal: ctl.signal, cache: cacheOpt}); }
+
+function showLocked(){
+  const out = $("#out"); out.replaceChildren();
+  const lock = el("div", "panel locked t-dark");
+  lock.append(el("h3", null, "Your plan shows up here"), el("p", "locklead", "For members. After you type what you need, you get:"));
+  const ul = el("ul", "locklist");
+  ["The best framework, plus 4 others to try","A filled-in table","A full script you can use today","Questions to ask","A checklist for before and after","Things to watch out for","A follow-up AI prompt","Tap any framework to rebuild the plan"].forEach(t => ul.append(el("li", null, t)));
+  lock.append(ul); out.append(lock);
+}
+async function runAgent(i){
+  // Demo: the agent is off. Show the upsell instead.
+  $("#avail").textContent = "Getting a plan is for members. See below.";
+  document.querySelector(".cta")?.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+
+$("#form").onsubmit = e => { e.preventDefault(); runAgent(readForm()); };
+$("#stop").onclick = () => ctl?.abort();
+$("#ask").addEventListener("keydown", e => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) $("#form").requestSubmit(); });
+
+// ---------- examples & history ----------
+EXAMPLES.forEach(x => { const c = el("button", "chip", x); c.type = "button"; c.onclick = () => { $("#ask").value = x; $("#ask").focus(); }; $("#examples").append(c); });
+// Keeps each viewer's last 6 results in their own browser, so a reload or page update brings them back.
+function saveHistory(i, o){ const h = (store("mp.results") || []).filter(x => x.ask !== i.ask); h.unshift({ask:i.ask, lang:i.lang, tone:i.tone, out:o}); store("mp.results", h.slice(0,6)); drawHistory(); }
+function showSaved(x){ $("#ask").value = x.ask; if (x.lang) $("#lang").value = x.lang; if (x.tone) $("#tone").value = x.tone; lastInput = {ask:x.ask, lang:x.lang, tone:x.tone}; render(x.out, "live"); }
+function drawHistory(){
+  const h = (store("mp.results") || []).filter(x => x && x.ask && valid(x.out)); $("#histWrap").hidden = !h.length; const box = $("#history"); box.replaceChildren();
+  h.forEach(x => { const c = el("button", "chip", x.ask.slice(0,40)); c.type = "button"; c.title = "Show this result again: " + x.ask; c.onclick = () => { showSaved(x); $("#out").scrollIntoView({behavior:"smooth"}); }; box.append(c); });
+}
+
+// ---------- library ----------
+
+// ---------- boot ----------
+showLocked();
+$("#avail").textContent = "This is the free preview. Plans are for members.";
+</script>
+
+</body>
+</html>
