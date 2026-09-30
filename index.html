@@ -270,6 +270,21 @@ body{padding-block:12px 24px}
 @media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
 .out-head{padding-right:clamp(24px,30vw,230px)}
 .out-head::before{transform:scale(.5)}
+/* roomier layout, closer to the template's slides */
+html{font-size:15px}
+.wrap{max-width:1040px;gap:14px}
+.wrap>.cover,.wrap>.overview,.wrap>.asksec,.wrap>.cta,.wrap>.credit,#out .panel{padding-left:clamp(20px,4vw,52px);padding-right:clamp(20px,4vw,52px)}
+.wrap>.overview,.wrap>.asksec,#out .panel{padding-top:clamp(22px,3vw,36px);padding-bottom:clamp(22px,3vw,36px)}
+.wrap>.cover{padding-top:22px;padding-bottom:26px}
+.cover h1{font-size:clamp(2.6rem,6.4vw,5rem)}
+.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.two{gap:14px}
+.out-head{padding-right:clamp(24px,28vw,300px)}
+.out-head::before{transform:scale(.6)}
+.script{font-size:1rem;line-height:1.7}
+#out .panel.deco-d,#out .panel.deco-l{padding-top:112px}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
