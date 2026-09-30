@@ -285,6 +285,40 @@ html{font-size:15px}
 .out-head::before{transform:scale(.6)}
 .script{font-size:1rem;line-height:1.7}
 #out .panel.deco-d,#out .panel.deco-l{padding-top:112px}
+.fullbadge{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:var(--ink);border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:600}
+.fullbadge::before{content:"✓"}
+/* more vertical room: the page felt squeezed top to bottom */
+.wrap{max-width:900px;gap:20px}
+body{line-height:1.65}
+.wrap>.cover{padding-top:30px;padding-bottom:40px}
+.cover h1{margin-top:40px}
+.cover .pillrow{margin-top:20px}
+.wrap>.overview,.wrap>.asksec,#out .panel,.wrap>.cta{padding-top:clamp(32px,4.5vw,52px);padding-bottom:clamp(32px,4.5vw,52px)}
+#out .panel.deco-d,#out .panel.deco-l{padding-top:124px}
+.ovlead{margin-top:18px;padding-top:14px}
+.ovnote{margin-top:12px}
+.band{margin-top:28px}
+.steps{gap:12px}
+.steps li{padding-top:12px;padding-bottom:12px}
+.bignums div{padding:12px 10px 14px}
+.asksec h2{margin-bottom:18px}
+.ask{gap:14px}
+.modes{margin-bottom:16px}
+.out{gap:20px}
+.out-head h2{margin:18px 0 16px}
+.sec-body{margin-top:20px}
+.fitlist{gap:12px}
+.fitlist li{padding-top:10px;padding-bottom:10px}
+.fitlist .means{margin:4px 0 6px}
+.tablewrap td{padding-top:13px;padding-bottom:13px}
+.check li{padding:12px 0}
+.warnlist{gap:14px}
+.script{line-height:1.8}
+.locklist{gap:10px}
+.locklist li{padding-top:8px;padding-bottom:8px}
+.credit{padding-top:18px;padding-bottom:18px}
+.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
