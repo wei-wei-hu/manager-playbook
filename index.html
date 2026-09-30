@@ -358,7 +358,7 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
       </div>
       <div class="topright">
         <span class="pill">Weiwei Hu</span>
-        <a class="btn topcta" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+        <a class="btn topcta" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
       </div>
     </div>
     <h1>Manager Playbook</h1>
@@ -437,7 +437,7 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
       </details>
       <div class="btns">
         <button class="btn primary" type="submit" id="run">Get my plan</button>
-        <a class="btn ctabtn" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+        <a class="btn ctabtn" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
         <button class="btn" type="button" id="stop" hidden>Stop</button>
       </div>
       <p class="note" id="avail">Connecting to Claude…</p>
@@ -463,9 +463,9 @@ h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
   <section class="out" id="out" aria-live="polite"></section>
 
   <section class="cta" aria-labelledby="ctatitle">
-    <h2 id="ctatitle">Get the full playbook</h2>
-    <p>Run your own situations: 1:1s, feedback, reports, saying no, meetings and more. Tap any framework to rebuild the plan. Turn your weekly notes into a report. New scripts and templates every month.</p>
-    <a class="btn primary" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+    <h2 id="ctatitle">Want the full version?</h2>
+    <p>Send me a message on LinkedIn and I'll share access. The full version runs your own requests, lets you switch frameworks and turns your weekly notes into a report.</p>
+    <a class="btn primary" href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener">Get access</a>
   </section>
 
   <footer class="credit">
@@ -707,7 +707,6 @@ function render(o, mode){
   const head = el("div", "panel out-head");
   const st = el("div", "status");
   st.append(el("span", "tag" + (mode === "live" ? " live" : ""), mode === "live" ? "Your plan" : mode === "template" ? "Template" : "Example"));
-  if (mode === "example") st.append(el("span", null, "This is a sample. Type your own and hit Get my plan."));
   if (mode === "template") st.append(el("span", null, "Picked from keywords. Fill in the brackets yourself."));
   head.append(st, el("h2", null, o.title || "Your plan"));
   if (o.summary) head.append(el("p", "sum", o.summary));
@@ -832,7 +831,7 @@ function showLocked(){
   lock.append(ul); out.append(lock);
 }
 async function runAgent(i){
-  $("#avail").textContent = "Getting a plan is for members. See below.";
+  $("#avail").textContent = "Getting a plan is for members. Message me on LinkedIn for access.";
   document.querySelector(".cta")?.scrollIntoView({behavior:"smooth", block:"center"});
 }
 
@@ -923,7 +922,7 @@ function drawWTasks(){
 }
 
 async function runWeekly(taskId){
-  $("#wavail").textContent = "Weekly reports are for members. See below.";
+  $("#wavail").textContent = "Weekly reports are for members. Message me on LinkedIn for access.";
   showLocked(); document.querySelector(".cta")?.scrollIntoView({behavior:"smooth", block:"center"});
 }
 
