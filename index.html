@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Free preview of Manager Playbook by Weiwei Hu. Describe your situation and get the right framework, filled in with your facts.">
+<meta name="description" content="Free preview of Manager Playbook by Weiwei Hu, an AI agent for your daily work as a manager.">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <title>Manager Playbook Preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
 <style>
 /* Layout: a deck of full-bleed slides in four grounds (charcoal, stone grey, mint, lime), extended light headlines, outlined circle grids and pill rows as the recurring motif. */
 :root{
@@ -18,7 +18,7 @@
   --mint:#27E3A5; --lime:#DDF65B; --white:#F7F7F5; --ink:#101414; --ink-soft:#3C4442; --on-dark:#F4F5F2; --on-dark-soft:rgba(244,245,242,.7);
   --rule-dark:rgba(244,245,242,.35); --rule-light:rgba(16,20,20,.55);
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --body:"Archivo","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   --dark:linear-gradient(180deg,var(--char-a) 0%,var(--char-b) 100%);
 }
@@ -28,7 +28,7 @@
 *{box-sizing:border-box}
 body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:20px 56px}
 .wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
-h1,h2,h3,h4{font-family:var(--display);font-stretch:125%;font-weight:400;letter-spacing:-.02em;line-height:1;margin:0;text-wrap:balance}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:108%;font-weight:400;letter-spacing:-.02em;line-height:1;margin:0;text-wrap:balance}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--mint);outline-offset:2px}
 
@@ -114,8 +114,8 @@ details summary{cursor:pointer;color:var(--on-dark-soft);font-size:.88rem}
 /* numbered pill rows, from the contents slide */
 .fitlist,.kitlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:n}
 .fitlist li,.kitlist li{counter-increment:n;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;align-items:center;border:1px solid currentColor;border-radius:40px;padding:8px 18px 8px 8px}
-.fitlist li::before,.kitlist li::before{content:counter(n,decimal-leading-zero);grid-row:span 3;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-stretch:125%;font-size:1.25rem;color:var(--ink);background:var(--white)}
-.fitlist .chip,.kitlist .chip{border:0;padding:0;background:none;color:inherit;font-family:var(--display);font-stretch:112%;font-size:1.08rem;cursor:default;white-space:normal;overflow:visible;font-weight:400}
+.fitlist li::before,.kitlist li::before{content:counter(n,decimal-leading-zero);grid-row:span 3;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-stretch:108%;font-size:1.25rem;color:var(--ink);background:var(--white)}
+.fitlist .chip,.kitlist .chip{border:0;padding:0;background:none;color:inherit;font-family:var(--display);font-stretch:104%;font-size:1.08rem;cursor:default;white-space:normal;overflow:visible;font-weight:400}
 .fitlist li>span:last-child,.kitlist li>span:last-child{font-size:.88rem;opacity:.8}
 .t-mint .kitlist li::before{border:1px solid var(--ink)}
 .t-mint .kitlist li:nth-child(3n+2)::before{background:var(--char-a);color:var(--on-dark)}
@@ -137,7 +137,7 @@ pre.prompt{font-family:var(--mono);font-size:.82rem;white-space:pre-wrap;word-br
 .tablewrap th{text-align:left;font-weight:600;padding:12px;border-bottom:1px solid var(--ink)}
 .tablewrap td{padding:11px 12px;vertical-align:top;border-top:1px solid var(--rule-light)}
 .tablewrap tr:first-child td{border-top:0}
-.tablewrap td:first-child{font-family:var(--display);font-stretch:112%}
+.tablewrap td:first-child{font-family:var(--display);font-stretch:104%}
 @media (prefers-reduced-motion:no-preference){.pulse{animation:p 1.2s ease-in-out infinite}@keyframes p{50%{opacity:.45}}}
 .byline{margin:16px 0 0;font-size:.9rem;color:var(--on-dark-soft)}
 .byline b{color:var(--on-dark);font-weight:600}
@@ -175,7 +175,7 @@ pre.prompt{font-family:var(--mono);font-size:.82rem;white-space:pre-wrap;word-br
 .bignums div:nth-child(odd){border-right:1px solid var(--ink)}
 .bignums div:nth-child(-n+2){border-bottom:1px solid var(--ink)}
 .bignums div:nth-child(even){padding-left:20px}
-.bignums b{font-family:var(--display);font-stretch:125%;font-weight:400;font-size:clamp(2.6rem,6vw,4rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bignums b{font-family:var(--display);font-stretch:108%;font-weight:400;font-size:clamp(2.6rem,6vw,4rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .bignums span{font-size:.82rem;color:var(--ink-soft)}
 .band{position:relative;margin:clamp(24px,4vw,40px) calc(-1 * clamp(20px,3.4vw,40px)) 0;padding:0 clamp(20px,3.4vw,40px)}
 .bleed{position:absolute;height:58px;border-radius:999px;top:50%;margin-top:-29px}
@@ -185,8 +185,8 @@ pre.prompt{font-family:var(--mono);font-size:.82rem;white-space:pre-wrap;word-br
 .steps{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;counter-reset:st;max-width:900px;position:relative}
 @media (max-width:640px){.steps{grid-template-columns:minmax(0,1fr)}}
 .steps li{counter-increment:st;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:14px;align-items:center;align-content:center;border:1px solid var(--ink);border-radius:999px;padding:8px 22px 8px 8px;background:var(--stone)}
-.steps li::before{content:counter(st,decimal-leading-zero);grid-row:span 2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--lime);border:1px solid var(--ink);font-family:var(--display);font-stretch:125%;font-size:1.15rem}
-.steps b{font-family:var(--display);font-stretch:112%;font-weight:400;font-size:1.05rem}
+.steps li::before{content:counter(st,decimal-leading-zero);grid-row:span 2;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--lime);border:1px solid var(--ink);font-family:var(--display);font-stretch:108%;font-size:1.15rem}
+.steps b{font-family:var(--display);font-stretch:104%;font-weight:400;font-size:1.05rem}
 .steps span{font-size:.85rem;color:var(--ink-soft)}
 
 .asksec h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:22px}
@@ -323,6 +323,11 @@ body{line-height:1.65}
 .valuelist li{position:relative;padding-left:26px;font-size:.95rem}
 .valuelist li::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--lime);border:1px solid var(--ink)}
 .valuelist b{font-weight:600}
+/* taller, easier-to-read letters */
+html{font-size:16px}
+body,button,input,select,textarea{font-family:var(--body)}
+h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.1}
+.cover h1{letter-spacing:-.02em}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
@@ -367,12 +372,12 @@ body{line-height:1.65}
     <div class="ov-top">
       <div class="ov-text">
         <h2 id="ovtitle">Why managers use it</h2>
-        <p class="ovlead">Most manager playbooks hand you a blank template and leave the hard part to you. This one does the hard part. Describe your situation in a sentence, and it picks the right framework from 13 proven ones, fills it in with your facts, and gives you the words to say.</p>
+        <p class="ovlead">Manager Playbook is an AI agent for your daily work as a manager. Tell it what you need, and it gives you a practical framework, a clear plan and the words to say, ready in minutes.</p>
         <ul class="valuelist">
-          <li><b>Built around your situation.</b> Every plan uses your names, numbers and dates.</li>
-          <li><b>The right framework, picked for you.</b> See why it fits, and tap to try another.</li>
+          <li><b>Built around your daily work.</b> 1:1s, feedback, team meetings, reports, priorities and more.</li>
+          <li><b>A practical framework for each situation.</b> See why it fits, and tap to try another.</li>
           <li><b>Ready to use in minutes.</b> What to say, questions to ask and a checklist, in plain words.</li>
-          <li><b>Your weekly report, done.</b> Paste messy notes and get a report, a 3-minute talk or your boss's likely questions.</li>
+          <li><b>Your weekly report, done.</b> Turn your notes into a report, a 3-minute talk or the questions your boss may ask.</li>
         </ul>
         <p class="ovnote">This is a free preview. Getting a plan is for members.</p>
       </div>
