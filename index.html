@@ -259,10 +259,17 @@ body{padding-block:12px 24px}
 .wrap>.cover{padding-top:16px;padding-bottom:18px}
 .wrap>.overview,.wrap>.asksec{padding-top:22px;padding-bottom:22px}
 /* narrower page, bigger title */
-.wrap{max-width:960px}
+.wrap{max-width:820px}
 .cover h1{font-size:clamp(2.4rem,6vw,4rem);margin-top:22px}
 .wrap>.cover{padding-top:18px;padding-bottom:22px}
 .cover .pillrow{margin-top:14px}
+/* fit the 820px width */
+.two{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.out-head{padding-right:clamp(24px,30vw,230px)}
+.out-head::before{transform:scale(.5)}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
