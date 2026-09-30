@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Free preview of Manager Playbook by Weiwei Hu. Tell it a work situation and get a framework, a script and a checklist.">
+<meta name="description" content="Free preview of Manager Playbook by Weiwei Hu. Describe your situation and get the right framework, filled in with your facts.">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -319,6 +319,10 @@ body{line-height:1.65}
 .credit{padding-top:18px;padding-bottom:18px}
 .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.valuelist{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:56ch}
+.valuelist li{position:relative;padding-left:26px;font-size:.95rem}
+.valuelist li::before{content:"";position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--lime);border:1px solid var(--ink)}
+.valuelist b{font-weight:600}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
@@ -362,8 +366,14 @@ body{line-height:1.65}
   <section class="overview" aria-labelledby="ovtitle">
     <div class="ov-top">
       <div class="ov-text">
-        <h2 id="ovtitle">How it works</h2>
-        <p class="ovlead">This playbook helps you handle everyday manager situations. Tell it what's going on, and you get a plan you can use today.</p>
+        <h2 id="ovtitle">Why managers use it</h2>
+        <p class="ovlead">Most manager playbooks hand you a blank template and leave the hard part to you. This one does the hard part. Describe your situation in a sentence, and it picks the right framework from 13 proven ones, fills it in with your facts, and gives you the words to say.</p>
+        <ul class="valuelist">
+          <li><b>Built around your situation.</b> Every plan uses your names, numbers and dates.</li>
+          <li><b>The right framework, picked for you.</b> See why it fits, and tap to try another.</li>
+          <li><b>Ready to use in minutes.</b> What to say, questions to ask and a checklist, in plain words.</li>
+          <li><b>Your weekly report, done.</b> Paste messy notes and get a report, a 3-minute talk or your boss's likely questions.</li>
+        </ul>
         <p class="ovnote">This is a free preview. Getting a plan is for members.</p>
       </div>
       <div class="bignums" aria-label="What it draws on">
