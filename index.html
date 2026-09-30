@@ -282,6 +282,10 @@ body{padding-block:12px 24px}
 .cta p{margin:4px 0 0;font-size:.9rem;flex:1 1 360px;max-width:62ch}
 .cta .btn.primary{background:var(--char-a);color:var(--on-dark);border-color:var(--char-a);text-decoration:none;display:inline-block}
 .cta .btn.primary:hover{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.topright{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.topcta{background:var(--lime);color:var(--ink);border-color:var(--lime);text-decoration:none;font-size:.85rem;font-weight:600;padding:6px 16px}
+.topcta:hover{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+@media (max-width:420px){.topright .pill{display:none}}
 .ctabtn{color:var(--on-dark);text-decoration:none;border-color:var(--rule-dark);font-size:.9rem;padding:7px 16px}
 </style>
 
@@ -292,7 +296,10 @@ body{padding-block:12px 24px}
         <svg viewBox="0 0 14 16" aria-hidden="true"><path d="M2 1h7a4 4 0 0 1 0 8H5v6H2z" fill="#DDF65B"/></svg>
         Free preview
       </div>
-      <span class="pill">Weiwei Hu</span>
+      <div class="topright">
+        <span class="pill">Weiwei Hu</span>
+        <a class="btn topcta" href="https://weiweihu.carrd.co" target="_blank" rel="noopener">Get the full playbook</a>
+      </div>
     </div>
     <h1>Manager Playbook</h1>
     <div class="pillrow">
