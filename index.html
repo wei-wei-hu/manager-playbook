@@ -258,6 +258,11 @@ body{padding-block:12px 24px}
 .wrap>.cover,.wrap>.overview,.wrap>.asksec,.wrap>.cta,.wrap>.credit,#out .panel{padding-left:clamp(18px,3vw,40px);padding-right:clamp(18px,3vw,40px)}
 .wrap>.cover{padding-top:16px;padding-bottom:18px}
 .wrap>.overview,.wrap>.asksec{padding-top:22px;padding-bottom:22px}
+/* narrower page, bigger title */
+.wrap{max-width:960px}
+.cover h1{font-size:clamp(2.4rem,6vw,4rem);margin-top:22px}
+.wrap>.cover{padding-top:18px;padding-bottom:22px}
+.cover .pillrow{margin-top:14px}
 .locked h3{font-size:clamp(1.15rem,2vw,1.45rem)}
 .locklead{margin:6px 0 10px;color:var(--on-dark-soft)}
 .locklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
