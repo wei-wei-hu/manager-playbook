@@ -429,7 +429,13 @@ const SOP = {
   record:{name:"Keeping a written record",flow:["Talk it through","Check you both mean the same thing","Agree the goal, the output and the date","Write it down","Bold the key points","Save it where you can find it"],key:"If you agreed it out loud, write it down the same day.",script:"Here's what I took from our chat: 1. [point] 2. [point] 3. [point]. Did I miss anything?"},
   ask:{name:"Asking good questions",flow:["Notice what you don't know","Look it up first, with a time limit","Still stuck? Ask someone","Share what you found and tried"],key:"Try on your own first, AI included, for a set time. Then ask, and bring what you already know.",script:"I've been looking into [topic]. So far I think [your understanding], but I'm stuck on [question]. Do you have a minute to help?"},
   proposal:{name:"Writing a proposal",flow:["Name the problem","List the limits you have to work within","Sketch the outline","Fill it in","Look for holes","Make it plain enough for an outsider","Send it"],key:"Plan before you write. Page one has the background in one line, your answer in one line and no more than three suggestions. Keep it to three levels with three points each. Think about what your boss will ask and answer it up front.",script:""},
-  minutes:{name:"AI meeting minutes",flow:["First pass: list every decision and task, with where it came up; keep open topics in a separate list","Second pass: keep only real decisions and tasks, five items max"],key:"Four parts: decisions, tasks (who, what, by when), open issues, and one line of background. Skip greetings, ideas that were dropped, and opinions that didn't turn into decisions.",script:"Write short minutes from the meeting notes below. Use four parts only, with five bullets in total at most: 1. What we decided. 2. Tasks: name, task, due date. 3. Open issues. 4. One line of background. Skip greetings, dropped ideas and personal opinions unless they became decisions. [Paste notes]"}
+  minutes:{name:"AI meeting minutes",flow:["First pass: list every decision and task, with where it came up; keep open topics in a separate list","Second pass: keep only actual decisions and tasks, five items max"],key:"Four parts: decisions, tasks (who, what, by when), open issues, and one line of background. Skip greetings, ideas that were dropped, and opinions that didn't turn into decisions.",script:"Write short minutes from the meeting notes below. Use four parts only, with five bullets in total at most: 1. What we decided. 2. Tasks: name, task, due date. 3. Open issues. 4. One line of background. Skip greetings, dropped ideas and personal opinions unless they became decisions. [Paste notes]"},
+  crossteam:{name:"Asking another team for help",flow:["Start with what's in it for them: why the work matters and how it helps their team","Name who does what: who does the work, who signs off, who gives input, who stays informed (RACI)","Spell out what you need, how good it has to be and the date"],key:"Treat it as a shared win. Asking for a favor with no date or standard gets you a slow, vague answer. One person signs off, and the date is in writing.",script:"Opening: \"The [launch] is a top company project, and we'd like your team's help with [work]. Once it ships, it should make the product stronger and put your team's work in front of more people.\" Closing: \"Here's what I need: [deliverable], [standard], done by [date]. The brief is attached. Message me anytime with questions.\""},
+  decision:{name:"Asking your boss for a decision",flow:["Lead with your recommendation and the main risks in one sentence","Lay out 2 or 3 options and compare cost, time and impact","Recommend one, ask for the decision and say what you'll do next"],key:"Your boss should get the point in 30 seconds. Bring options and a pick, and keep ownership of the problem. A problem dropped on your boss's desk with no options slows everyone down.",script:"Opening: \"On [project], I suggest option A. There are two risks: the timeline is tight and the cost goes up.\" Closing: \"Given [client relationship / long-term value], I lean toward A. If you agree, I'll get the team moving this afternoon.\""},
+  trail:{name:"Closing the loop in writing",flow:["Before you leave the room, say back who does what by when","Within 10 minutes, post a short summary in the team chat and ask people to confirm","For key decisions, email the people involved, copy your manager and attach the notes"],key:"Out loud, then in the chat, then by email for anything important. If something slips later, the record shows what everyone agreed, so nobody has to argue about who said what.",script:"Out loud: \"Let me check: your side sends the data, I write the plan, and we're done by next Monday. Right?\" In the chat: \"Meeting summary: 1. @[name] sends the raw data by [date]. 2. I write the plan by [date]. 3. Next meeting [date, time]. 4. Flag any changes early. Please reply to confirm.\""},
+  meetingrun:{name:"Running a meeting that ends in a decision",flow:["Before: only meet if you have a clear goal, the right people (those who decide or must act) and an agenda sent ahead","During: run on a clock. 5 min goal and agenda, 20 min on the problem, 10 min to decide and name owners, 5 min to confirm actions","After: within 2 hours, send the decision, owner, due date and follow-up"],key:"Every meeting ends in a decision, every decision gets an owner, and every owner has a date. If a meeting can't produce a decision, cancel it.",script:"Opening: \"We have 40 minutes. By the end we need to decide [question]. Agenda: [items].\" At minute 25: \"Let's decide. Who owns it and by when?\""},
+  incident:{name:"Handling an urgent problem",flow:["Stop the damage first: put in a temporary fix, contain the scope, protect people, data and equipment, prevent knock-on effects","Tell your manager within 5 minutes: what happened, the impact, your first plan and what you need","Find the root cause with 5 Whys and put prevention in place"],key:"Contain it, report it, then fix the cause. Don't panic, don't hide it, don't shift blame. Trying to fix it quietly first is how a small problem turns into a big loss.",script:"\"[Name], we have a problem with [X]. I've already put a temporary fix in place to contain it. Likely cause: [X]. Impact so far: [X]. What I need: [X]. Options: 1) [option] ([pros / risks]) 2) [option] ([pros / risks]). Which way should we go?\""},
+  retro:{name:"Project review with numbers",flow:["Line up the targets: the goal and key metrics agreed at the start","Compare target vs actual for each metric, with numbers","For each miss, find the root cause and set one change for next time"],key:"The point is to find what to do differently next time. Nobody gets blamed. Back each point with numbers, and turn each lesson into a step in the process.",script:"\"We aimed for [target] and got [actual]. The main reason was [cause]. Next time we'll [change], owned by [name].\""}
 };
 
 const AIUSE = [
@@ -455,17 +461,21 @@ const PLAYBOOKS = [
   {id:"decide",label:"Make a decision",fw:["ACE","5W2H"],sop:[]},
   {id:"untangle",label:"Untangle a messy problem",fw:["5W2H"],sop:[]},
   {id:"goal",label:"Set a goal or target",fw:["SMART"],sop:[]},
-  {id:"meeting",label:"Plan and run a meeting",fw:["MAET"],sop:["record"]},
+  {id:"meeting",label:"Plan and run a meeting",fw:["MAET"],sop:["meetingrun","trail"]},
   {id:"minutes",label:"Write meeting minutes with AI",fw:["MAET"],sop:["minutes"]},
   {id:"conflict",label:"Resolve a conflict",fw:["DESC"],sop:["record"]},
   {id:"motivate",label:"Motivate or persuade the team",fw:["AIDA"],sop:[]},
   {id:"talk",label:"Prepare a talk or speech",fw:["SCUBA"],sop:[]},
   {id:"story",label:"Tell a story or answer an interview question",fw:["STAR"],sop:[]},
-  {id:"review",label:"Review a project",fw:["PDCA"],sop:["review"]},
+  {id:"review",label:"Review a project",fw:["PDCA"],sop:["retro","review"]},
   {id:"summary",label:"Write a work or year-end summary",fw:["CAR"],sop:[]},
   {id:"ask",label:"Ask a good question",fw:[],sop:["ask"]},
   {id:"proposal",label:"Write a proposal",fw:["SCQA"],sop:["proposal"]},
-  {id:"tasks",label:"Organize many tasks",fw:["GTD"],sop:["priority"]}
+  {id:"tasks",label:"Organize many tasks",fw:["GTD"],sop:["priority"]},
+  {id:"crossteam",label:"Ask another team for help",fw:["SMART"],sop:["crossteam","trail"]},
+  {id:"bossdecide",label:"Get a decision from your boss",fw:["SCQA"],sop:["decision"]},
+  {id:"trail",label:"Get agreements in writing",fw:[],sop:["trail","record"]},
+  {id:"incident",label:"Handle an urgent problem",fw:["5W2H","PDCA"],sop:["incident"]}
 ];
 
 
@@ -486,17 +496,21 @@ const KW = {
   motivate:["motivat","inspire","morale","rally","persuade"],
   talk:["speech","talk","present","town hall"],
   story:["interview","story","example of"],
-  review:["review","retro","lesson","post-mortem"],
+  review:["review","retro","lesson","post-mortem","project review","missed its target","target vs actual"],
   summary:["summary","year-end","self-review","self review","appraisal"],
   ask:["question","ask my","not sure how"],
   proposal:["proposal","pitch","business case","plan for"],
   tasks:["to-do","todo","tasks","organize","gtd"],
   weekly:["next week","weekly plan","friday notes","monday","this week","weekly"],
-  manageup:["my own manager","my manager","managing up","my boss 1:1"]
+  manageup:["my own manager","my manager","managing up","my boss 1:1"],
+  crossteam:["ask another team","help from another team","another team","other team","cross-team","cross team","other department","design team","need help from","their team"],
+  bossdecide:["option a","option b","boss to approve","pick between","two options","approve","approval","sign off","get a decision","ask my boss","boss to decide","recommend"],
+  trail:["blame me","get blamed","blame","in writing","written record","paper trail","cover myself","follow-up email","what we agreed","who said"],
+  incident:["outage","broke","broken","went down","crisis","emergency","incident","urgent problem","something went wrong","customer complaint","system down"]
 };
 PLAYBOOKS.push({id:"oneonone",label:"Run a 1:1 conversation",fw:["DESC","SMART"],sop:["record"]},{id:"weekly",label:"Plan the team week",fw:["GTD","Eisenhower"],sop:["priority"]},{id:"manageup",label:"Prepare a 1:1 with your manager",fw:["CAR"],sop:["report"]});
 
-const EXAMPLES = ["Plan a 1:1 with a team member","Prep my 1:1 with my own manager","Build next week's plan from my Friday notes","Give feedback to a team member","Cut scope or add a contractor?","Tell my boss sales dropped 12% this month","Say no to an extra project","Write my year-end summary"];
+const EXAMPLES = ["Plan a 1:1 with a team member","Prep my 1:1 with my own manager","Build next week's plan from my Friday notes","Give feedback to a team member","Cut scope or add a contractor?","Tell my boss sales dropped 12% this month","Say no to an extra project","Write my year-end summary","Ask another team for help on a launch","Something broke. What do I do first?","Review a project that missed its targets"];
 
 const EXAMPLE = { ask: "", out: null };
 
@@ -537,7 +551,7 @@ function match(text){
 
 function knowledge(){
   const fw = Object.entries(FW).map(([k,v]) => `${k} – ${v.use}: ` + v.steps.map(s => `${s[0]} = ${s[1]}`).join("; ")).join("\n");
-  const sop = Object.values(SOP).map(s => `${s.name}: ${s.flow.join(" → ")}. Key point: ${s.key}${s.script ? " Script: " + s.script : ""}`).join("\n");
+  const sop = Object.values(SOP).map(s => `${s.name}: ${s.flow.join(" → ")}. Key point: ${s.key}${s.script ? " Script: " + s.script : ""}${s.example ? " Example: " + s.example : ""}${s.avoid ? " Avoid: " + s.avoid : ""}`).join("\n");
   const ai = AIUSE.map(a => `${a[0]}: ${a[1]}`).join("\n");
   const k = KIT;
   return `FRAMEWORKS\n${fw}\n\nWORKPLACE ROUTINES\n${sop}\n\nAI USE CASES\n${ai}\n\n=== AI MANAGEMENT TOOLKIT (Weiwei Hu) ===\n${k["operating-rules"]}\n\n${k["source-method"]}\n\n${k["manager-input-intake"]}\n\n${k["feedback-scripts"]}\n\n${k["meeting-templates"]}\n\n${k["decision-templates"]}\n\n${k["work-planning-templates"]}\n\n${k["performance-review-templates"]}\n\nPROMPT LIBRARY TITLES\n${PROMPTS.map(x => x.title).join("\n")}`;
