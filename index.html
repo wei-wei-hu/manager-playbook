@@ -244,7 +244,7 @@ html{overflow-x:hidden}
 .ownerr{color:var(--soft);margin:0}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
 @media print{body::before{display:none}body>*:not(#printArea){display:none!important}#printArea{display:block!important;color:#0F1222;font-size:12pt}#printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}#printArea .pfoot{margin-top:18pt;font-size:9pt;color:#666}}
-.fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
+.fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbmore .fbdone{margin:0 0 12px;color:var(--ink);font-weight:600}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
 #gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
@@ -576,24 +576,29 @@ html{overflow-x:hidden}
       .catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
       .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});
   }
-  // Thumbs up or down after the free answer, saved to the Feedback tab of the Google Sheet.
+  // Thumbs up or down after the free answer. Each choice saves on its own (no send button):
+  // it goes to the Feedback tab of the Google Sheet and is emailed to Underline AI.
   function feedback(body,answer){
-    var box=el('div','fb'),row=el('div','fbrow'),up=el('button',null,'\uD83D\uDC4D Helpful'),down=el('button',null,'\uD83D\uDC4E Not quite');
-    var more=el('div','fbmore'),parts=el('div','fbparts'),note=el('textarea'),send=el('button','btn big dark trygo','Send feedback'),rating='';
-    more.hidden=true;note.rows=2;note.maxLength=1000;send.type='button';
+    var box=el('div','fb'),row=el('div','fbrow'),up=el('button',null,'\uD83D\uDC4D I like it'),down=el('button',null,'\uD83D\uDC4E Not for me');
+    var more=el('div','fbmore'),parts=el('div','fbparts'),note=el('textarea'),status=el('p','fbdone'),rating='',timer=null,last='';
+    more.hidden=true;note.rows=2;note.maxLength=1000;
     box.append(el('h4',null,'Was this helpful?'),row,more);row.append(up,down);
     ['What I\u2019d do','What I\u2019d say','Do this next','Watch out','Underlined'].forEach(function(n){
       var b=el('button',null,n);b.type='button';b.setAttribute('aria-pressed','false');
-      b.addEventListener('click',function(){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));});parts.append(b);});
+      b.addEventListener('click',function(){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));later(800);});parts.append(b);});
+    function save(){clearTimeout(timer);
+      var chosen=[].slice.call(parts.querySelectorAll('[aria-pressed="true"]')).map(function(b){return b.textContent;}).join(', ');
+      var data={rating:rating,parts:rating==='down'?chosen:'',comment:note.value.trim(),title:answer.title||'',sit:body.sit};
+      var key=JSON.stringify(data);if(key===last)return;last=key;
+      codes('feedback',data).then(function(j){if(!j.ok)throw 0;status.textContent='Thank you! Your feedback was sent.';})
+        .catch(function(){last='';status.textContent='We couldn\u2019t send that just now. We\u2019ll try again when you make a change.';});}
+    function later(ms){clearTimeout(timer);timer=setTimeout(save,ms);}
+    note.addEventListener('input',function(){later(1500);});note.addEventListener('blur',save);
     function pick(which){rating=which;up.setAttribute('aria-pressed',String(which==='up'));down.setAttribute('aria-pressed',String(which==='down'));
-      more.replaceChildren();if(which==='down')more.append(el('p',null,'Which parts didn\u2019t work for you? Tap any that apply.'),parts);
-      note.placeholder=which==='down'?'What would make it better? (optional)':'Anything you\u2019d like to add? (optional)';more.append(note,send);more.hidden=false;}
+      more.replaceChildren(status);
+      if(which==='down')more.append(el('p',null,'Want to tell us more? Tap any part that didn\u2019t work for you. (optional)'),parts);
+      note.placeholder=which==='down'?'What would make it better? (optional)':'Anything you\u2019d like to add? (optional)';more.append(note);more.hidden=false;save();}
     [up,down].forEach(function(b){b.type='button';b.addEventListener('click',function(){pick(b===up?'up':'down');});});
-    send.addEventListener('click',function(){send.disabled=true;send.textContent='Sending\u2026';
-      var chosen=[].slice.call(parts.querySelectorAll('[aria-pressed="true"]')).map(function(b){return b.textContent;});
-      codes('feedback',{rating:rating,parts:chosen.join(', '),comment:note.value.trim(),title:answer.title||'',sit:body.sit})
-        .then(function(j){if(!j.ok)throw 0;box.replaceChildren(el('p','fbdone','Thank you for your feedback. It helps make Underline AI better.'));})
-        .catch(function(){send.disabled=false;send.textContent='Send feedback';});});
     return box;}
 })();
 </script>
