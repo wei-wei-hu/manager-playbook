@@ -1,6 +1,6 @@
 # Underline
 
-Bring one situation. Leave with what to do next. By Weiwei Hu.
+Bring one situation. Know your best next action. By Weiwei Hu.
 
 ### [See Underline →](https://wei-wei-hu.github.io/manager-playbook/)
 
