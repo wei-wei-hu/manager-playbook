@@ -284,12 +284,17 @@ html{overflow-x:hidden}
 .trybtn:hover{filter:brightness(1.08)}
 .hero .ctas .btn.big{min-width:0;flex:0 0 190px;width:190px!important;white-space:nowrap}
 .hero .ctas{flex-wrap:nowrap;gap:12px}
-/* Hero: three smaller buttons on one line, each with the arrow */
-.hero .ctas{gap:10px}
-.hero .ctas .btn.big{flex:0 0 auto;width:auto!important;padding:12px 18px 12px 20px!important;font-size:.92rem!important;gap:8px}
-.hero .ctas .btn svg{width:17px;height:17px}
-.btn.line{background:var(--card);color:var(--ink);border:1px solid var(--line)!important;box-shadow:0 1px 2px rgba(15,18,34,.04)}
-@media (max-width:520px){.hero .ctas{flex-direction:column}.hero .ctas .btn.big{width:100%!important;flex:0 0 auto}}
+/* Hero: three equal buttons on one line, each with the arrow, that lift and nudge on hover */
+.hero .ctas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:440px;max-width:calc(100vw - 32px)}
+.hero .ctas .btn.big{width:auto!important;flex:none;height:48px;padding:0 8px!important;font-size:.84rem!important;gap:6px;box-shadow:0 6px 18px rgba(79,70,160,.16);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.hero .ctas .btn svg{width:15px;height:15px;flex:none;transition:transform .15s ease}
+.hero .ctas .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(79,70,160,.26)}
+.hero .ctas .btn:hover svg{transform:translateX(3px)}
+.hero .ctas .btn:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.btn.line{color:var(--ink);border:2px solid transparent!important;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box}
+.btn.line:hover{background:linear-gradient(var(--tint),var(--tint)) padding-box,var(--grad) border-box}
+@media (prefers-reduced-motion:reduce){.hero .ctas .btn,.hero .ctas .btn svg{transition:none}.hero .ctas .btn:hover,.hero .ctas .btn:hover svg{transform:none}}
+@media (max-width:520px){.hero .ctas{grid-template-columns:1fr;width:100%}.hero .ctas .btn.big{width:100%!important;font-size:.95rem!important}}
 </style>
 
 <div class="wrap">
@@ -311,8 +316,8 @@ html{overflow-x:hidden}
       <h1>Practical advice for <span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
-        <a class="btn big trybtn" id="heroTry" href="#try">Try it <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn big line" href="#try">Examples <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big trybtn" id="heroTry" href="#try">Try it <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
