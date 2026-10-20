@@ -399,16 +399,14 @@ html{overflow-x:hidden}
     out.replaceChildren(head(x.title,'Sample answer'));
     out.append(sec("What I'd do",[el('p',null,x.do)]),sec('Why',[list('ul',x.why)]),sec('How to do it',[list('ol',x.how)]));
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));out.append(sec('What to say',[say]),sec('Underlined',[und(x.und)]));
-    out.append(cta('Get Your Next Action for your own situation, written for you.'));
   }
   function showPreview(text){
     var m=match(text);
     if(!m.length){out.replaceChildren(head('Tell us a bit more',null));out.append(el('p','tryempty','Add a few more details, like who is involved and what you want to happen.'));return;}
     out.replaceChildren(head('Your preview','Preview'));
     out.append(sec("What I'd do",[el('p',null,'A good place to start: '+m[0].l.charAt(0).toLowerCase()+m[0].l.slice(1))]));
-    out.append(locked('Why',3),locked('How to do it',3),locked('What to say',4));
     out.append(sec('Underlined',[und(m.map(function(x){return {n:x.n,l:'',s:x.s};}))]));
-    out.append(cta('The full version writes the rest for your situation: why it fits, the steps and the exact words to say.'));
+    out.append(locked('Why',3),locked('How to do it',3),locked('What to say',4));
   }
   function cta(msg){var c=el('div','lockcard');c.append(el('b',null,'Unlock the full answer'),el('p',null,msg));var a=el('a','btn big dark','Get full access');a.href='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';a.target='_blank';a.rel='noopener';c.append(a);return c;}
   var chips=$('#tryChips'), cur=null;
