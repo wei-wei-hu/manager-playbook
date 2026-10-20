@@ -314,32 +314,88 @@ html{overflow-x:hidden}
 @media (max-width:520px){.hero .ctas{grid-template-columns:1fr;width:100%}.hero .ctas .btn.big{width:100%!important;font-size:.95rem!important}}
 
 /* Members page */
-#member{padding-top:8px}
+.hero .ctas.two{grid-template-columns:repeat(2,1fr);width:320px}
+.closing .ctas .btn.big{width:auto!important;min-width:0;flex:none;padding:14px 26px!important}
+@media (max-width:520px){.hero .ctas.two{grid-template-columns:1fr;width:100%}}
 #inForm{display:flex;flex-direction:column}#inForm .fld{display:block}#inForm .fld small{font-weight:400;color:var(--faint)}
 #inForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem}
 #inForm input:focus{outline:2px solid var(--purple);outline-offset:1px}
 #inForm .trygo{width:100%!important;border:0;cursor:pointer;margin-top:4px}
-#inCodeBox[hidden],#askPanel[hidden],#signin[hidden],#inGo[hidden],#inSend[hidden],#navJoin[hidden]{display:none!important}
+#inCodeBox[hidden],#askPanel[hidden],#signin[hidden],#inGo[hidden],#inSend[hidden]{display:none!important}
 #inCodeBox .fld{margin-bottom:14px}
 .memberline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 16px!important}
 .memberline b{color:var(--ink);font-weight:600}
 .memberline button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}
-.mlead{margin:-6px 0 22px;color:var(--soft);max-width:640px}
 </style>
-
 <div class="wrap">
   <nav class="top" aria-label="Main">
     <a class="logo" href="../">Underline AI<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="../">Home</a>
-      <a class="btn dark" id="navJoin" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
+      <a href="#how">How it works</a>
+      <a href="#try">See examples</a>
+      <a class="btn dark" id="navAct" href="#member">Sign in</a>
     </div>
   </nav>
+
+  <header class="hero">
+    <div class="orb" style="width:104px;height:104px;left:44%;top:6px" aria-hidden="true"></div>
+    <div class="orb" style="width:26px;height:26px;left:-40px;top:6%" aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">Your full version</p>
+      <h1>Practical advice for <span class="grad">work and life.</span></h1>
+      <p class="lead">Welcome back. Bring any question, challenge, or decision, as often as you like, and get clear, personalized recommendations.</p>
+      <div class="ctas two">
+        <a class="btn big trybtn" href="#member"><span class="bt">My Next Action</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="blob" aria-hidden="true"></div><div class="wave" aria-hidden="true"></div>
+    <div class="preview" aria-label="Preview of Underline">
+      <ul class="cats">
+        <li class="on"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg></span>Career</li>
+        <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span>Communication</li>
+        <li><span class="ic c3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V9l4-3v14H4Zm6 0V5l4-2v17h-4Zm6 0V8l4 2v10h-4Z"/></svg></span>Leadership</li>
+        <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span>Productivity</li>
+        <li><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 22 12 12 22 2 12 12 2Zm0 6-4 4 4 4 4-4-4-4Z"/></svg></span>Decisions</li>
+        <li><span class="ic c6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Work-life balance</li>
+      </ul>
+      <div class="chat">
+        <div class="ans sit"><div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Your Situation</b></div><div class="ins"><span>Describe your situation…</span></div></div>
+        <div class="ans">
+          <div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><b>Your Next Action</b></div>
+          <ul class="outs"><li>What I'd do</li><li>What I'd say</li><li>Do this next</li><li>Watch out</li><li>Underlined</li></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="features" aria-label="What you get">
+    <div class="feat"><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><div><b>Personalized advice</b><span>Tailored to your situation</span></div></div>
+    <div class="feat"><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3V5Zm18 0h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7V5Z"/></svg></span><div><b>The ideas behind it</b><span>Underlined in every answer</span></div></div>
+    <div class="feat"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><div><b>Clear next steps</b><span>So you can take action</span></div></div>
+  </section>
+
+  <section class="block value" id="why">
+    <p class="kicker">Why Underline AI</p>
+    <h2>The best personalized advice for your situation.</h2>
+    <p class="vlead">Underline AI draws from a carefully curated library on communication, influence, negotiation, leadership, and getting work done. It brings together the most useful thinking for your situation and turns it into practical advice. You&rsquo;ll see what to do, what to say, and the ideas behind it.</p>
+  </section>
+
+  <section class="block" id="how">
+    <p class="kicker">How it works</p>
+    <h2>Bring one situation. Leave with a one-page actionable plan.</h2>
+    <ol class="steps">
+      <li><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span><b>Bring one situation</b><span>What's happening, what you want to happen, and anything else that matters.</span></li>
+      <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></span><b>Connect the ideas</b><span>Underline AI searches its curated library, brings together the ideas that fit your situation, and turns them into practical advice.</span></li>
+      <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span><b>Leave with Your Next Action</b><span>What to do, what to say, your next steps, and the ideas behind the advice.</span></li>
+    </ol>
+  </section>
 
   <section class="block" id="member">
     <p class="kicker">Full version</p>
     <h2>Your Next Action, whenever you need it.</h2>
-    <p class="mlead">For Underline AI members. Sign in with the email you subscribed with.</p>
     <div class="trygrid">
       <div class="panel" id="signin">
         <p class="plabel">Sign in</p>
@@ -368,6 +424,30 @@ html{overflow-x:hidden}
       <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
     </div>
   </section>
+  <section class="block" id="try">
+    <p class="kicker">Examples</p>
+    <h2>See Underline AI in action.</h2>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Pick an example</p>
+        <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
+        <form id="tryForm" autocomplete="off">
+          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" readonly placeholder="Pick an example above."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" readonly placeholder=""></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" readonly placeholder=""></textarea></label>
+          <button class="btn big dark trygo" type="submit">See the answer</button>
+        </form>
+      </div>
+      <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+
+  <section class="closing" id="access">
+    <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
+    <h2>Know your <span class="grad">next best action.</span></h2>
+    <div class="ctas"><a class="btn big dark" href="#member">Get my Next Action <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </section>
 
   <footer>
     <span>&copy; 2026 Weiwei Hu. All rights reserved.</span>
@@ -378,9 +458,20 @@ html{overflow-x:hidden}
     </nav>
   </footer>
 </div>
+<dialog id="gateDlg" aria-labelledby="gateT">
+  <div class="gcard">
+    <button class="gclose" type="button" aria-label="Close">&times;</button>
+    <div class="glock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+    <h3 id="gateT">Get full access to see your answer</h3>
+    <p>Get the best advice Underline AI can find in its curated library, applied to your situation: what I'd do, what I'd say, your next steps, one trap to watch out for and the ideas behind it.</p>
+    <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
+    <button class="glater" type="button">Maybe later</button>
+  </div>
+</dialog>
+<script type="application/json" id="tryData">{"samples": [{"label": "Career: Asking for a raise", "sit": "I had a strong year and want to ask for a raise. My review with my manager is next Friday.", "goal": "Get a raise of about 10%", "ctx": "I led two projects that finished on time and trained two new hires.", "title": "Ask for a raise at your review", "do": "In Friday's review, open with thanks, share your two biggest results with numbers, then name a range and stop talking.", "say_label": "Say this on Friday", "say": "Thanks for your support this year. I've loved leading the two projects, and both finished on time. I also trained our two new hires, who now work on their own. Based on that, I'd like to talk about a raise of 10 to 12%. What would it take to get there?", "next": ["Before Friday, write your two biggest results, each with a number.", "On Friday, open with thanks, make the ask in the middle and close on a warm note.", "From next week, note your wins every Friday, so next year's ask is easier."], "watch": {"text": "Don't fill the silence after you ask for the raise. Let it sit.", "t": "Own Your Career", "s": "Michela Allocca, Own Your Career"}, "und": [{"t": "Own Your Career", "q": "The negotiation sandwich is a framework that \"sandwiches\" your request between two positive statements.", "l": "Open with thanks, ask in the middle, close warmly.", "s": "Michela Allocca, Own Your Career"}, {"t": "CAR summary method", "q": "", "l": "Back your ask with results that have numbers.", "s": "CAR summary method (Weiwei Hu's 13 frameworks)"}, {"t": "Likeable Badass", "q": "When you present multiple choices, research shows that you're perceived as more trustworthy, flexible, cooperative, and sincere (all signals of Warmth), in comparison to making a single offer.", "l": "Name your number first, so it sets the starting point.", "s": "Alison Fragale, Likeable Badass"}]}, {"label": "Communication: Project delay", "sit": "I have five minutes at Monday's leadership meeting to update them on a project that is two weeks late.", "goal": "They trust the new date and keep confidence in my team", "ctx": "A vendor caused the delay. We have a fix and a new date.", "title": "Update leaders on a late project", "do": "Open with the new date and your fix in one sentence, give the cause in one line, then stop and take questions.", "say_label": "Open with", "say": "Quick update: [project] will launch on [new date], two weeks later than planned. A vendor delay caused it, and we've already fixed it by [fix]. I'm confident in the new date, and I'll send a short update every Friday until launch. Happy to take questions.", "next": ["Before Monday, write your first sentence with the new date and the fix.", "Add one line on the risk that's left and the evidence the fix works.", "Every Friday until launch, send leadership a short written update."], "watch": {"text": "Don't build up to the new date with the vendor story. Busy people stop listening before you get there.", "t": "The Pyramid Principle", "s": "Barbara Minto, The Pyramid Principle"}, "und": [{"t": "The Pyramid Principle", "q": "", "l": "Lead with the answer, then give the support.", "s": "Barbara Minto, The Pyramid Principle"}, {"t": "AI Management Toolkit", "q": "Next time, I want you to state the risk, the evidence, and one proposed fix.", "l": "Pair every risk with evidence and one fix.", "s": "Weiwei Hu, AI Management Toolkit (feedback scripts)"}, {"t": "Smart Brevity", "q": "Just say what you mean, sincerely and short.", "l": "Make the point, then stop talking.", "s": "Jim VandeHei, Mike Allen and Roy Schwartz, Smart Brevity"}]}, {"label": "Productivity: Too much work", "sit": "I have too many tasks, two deadlines this month, and my boss just gave me another project. I'm working late every night.", "goal": "Get back to normal hours without dropping anything important", "ctx": "No one else can take my deadlines.", "title": "Get back control of a full plate", "do": "Before you start the new project, show your boss your task list sorted by urgent and important, and ask what should move.", "say_label": "Say this to your boss", "say": "I want to do the new project well, so I need your help with priorities. Here's everything I'm on, sorted by what's urgent and what matters most. If I take this on now, something here slips. Which one should move?", "next": ["Today, sort every task into four boxes: do now, book time, hand off, drop.", "Tomorrow, show your boss the list and ask which item should move.", "Each morning, write your most important task on a note and finish it before email."], "watch": {"text": "Don't quietly say yes and work late to absorb the new project. If you hide the trade-off, it becomes your problem alone.", "t": "Workplace SOPs", "s": "Weiwei Hu, Workplace SOPs (Saying no, Setting priorities)"}, "und": [{"t": "Workplace SOPs", "q": "", "l": "Say no by showing what slips and letting them choose.", "s": "Weiwei Hu, Workplace SOPs (Saying no, Setting priorities)"}, {"t": "Eisenhower matrix", "q": "What is important is seldom urgent and what is urgent is seldom important.", "l": "Sort work by urgent and important before you take on more.", "s": "Eisenhower matrix"}, {"t": "Automate Your Busywork", "q": "Instead of living for the tiny dopamine hit that comes with making an inconsequential checkmark, write down your big priority for the day on a sticky note.", "l": "Finish your most important task before anything else.", "s": "Aytekin Tank, Automate Your Busywork"}]}, {"label": "Decisions: Two job offers", "sit": "I have two job offers. One pays 20% more. The other has a better manager and more room to learn.", "goal": "Pick the one that's better for the next three years", "ctx": "I need to answer both by Friday.", "title": "Choose between two job offers", "do": "Score both offers on what you'll learn, what they pay and how they fit what you value, then ask each hiring manager one question before Friday.", "say_label": "Ask each hiring manager", "say": "Thanks again for the offer. I'm excited about it. Before I decide, could I ask one thing? What would success look like in my first year, and how would you help me grow? I'll get back to you by Friday.", "next": ["Today, rank each offer on learning, pay and how it fits your values.", "By Wednesday, ask each hiring manager what success looks like in year one.", "Before you decide, write where you want to be in three years, and pick the job that gets you closer."], "watch": {"text": "Don't lower your three-year goal to match today's choice. Pick the job that closes more of the gap.", "t": "The Fifth Discipline", "s": "Peter Senge, The Fifth Discipline (personal mastery)"}, "und": [{"t": "Own Your Career", "q": "…every job or position you hold throughout your career should allow you to either learn or earn.", "l": "Judge a job by what it teaches and what it pays.", "s": "Michela Allocca, Own Your Career"}, {"t": "Own Your Career", "q": "You are interviewing them just as much as they are interviewing you.", "l": "Interview them as much as they interview you.", "s": "Michela Allocca, Own Your Career"}, {"t": "The Fifth Discipline", "q": "Creative tension", "l": "Hold your goal next to today's reality, then close the gap.", "s": "Peter Senge, The Fifth Discipline (personal mastery)"}]}, {"label": "Work-life balance: Evening messages", "sit": "I answer work messages at night and on weekends, and I'm tired all the time.", "goal": "Stop working evenings without letting my team down", "ctx": "My manager sometimes messages late but has never said I must reply.", "title": "Stop answering messages at night", "do": "Set your working hours, tell your manager and team when you're reachable, and agree what counts as urgent enough to call.", "say_label": "Say this to your manager", "say": "I want to be at my best during the day, so I'm going to stop checking messages after 7 pm and on weekends. If something is urgent, please call me and I'll pick up. Does that work for you? And what would you count as urgent?", "next": ["This week, decide your working hours and put one personal plan on each day's list.", "Tell your team when you check messages, and turn off alerts outside those hours.", "After you talk, send your manager a short note of your hours and what counts as urgent."], "watch": {"text": "Don't answer every message as it comes in, even at night. Constant checking eats your rest.", "t": "Automate Your Busywork", "s": "Aytekin Tank, Automate Your Busywork"}, "und": [{"t": "Own Your Career", "q": "The season you are in will have a profound influence on the types of jobs you search for and the aspects that are important to you.", "l": "Set your available hours and tell people.", "s": "Michela Allocca, Own Your Career"}, {"t": "Automate Your Busywork", "q": "…it can be helpful to announce that you check your messages once per hour, or three times per day, or whatever suits you.", "l": "Choose set times to check messages.", "s": "Aytekin Tank, Automate Your Busywork"}, {"t": "Workplace SOPs", "q": "Say it out loud, then put it in the chat, then send an email for anything important.", "l": "Agree out loud, then confirm it in writing.", "s": "Weiwei Hu, Workplace SOPs (Closing the loop in writing)"}]}]}</script>
 <script>
 (function(){
-  var CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec', OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  var D=JSON.parse(document.getElementById('tryData').textContent);
   var $=function(s){return document.querySelector(s);};
   function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
   function sec(h,kids){var s=el('div','sec');s.append(el('h4',null,h));kids.forEach(function(k){s.append(k);});return s;}
@@ -389,7 +480,7 @@ html{overflow-x:hidden}
       if(!x){x={t:u.t,s:u.s,l:[],quoted:true};g.push(x);}if(x.l.indexOf(line)<0)x.l.push(line);if(!u.q)x.quoted=false;});
     g.forEach(function(u){var i=el('p','idea');var s=el('span','by','\u2014 '+(u.quoted?'':'based on ')+u.t);s.title=u.s;i.append(document.createTextNode(u.l.join(' ')+' '),s);d.append(i);});return d;}
   function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
-  var out=null;
+  var out=$('#tryOut');
   // A plain-text copy of an answer, for Copy and Email it to me.
   function planText(x){var L=[x.title,'','WHAT I\u2019D DO',x.do,'','WHAT I\u2019D SAY',x.say_label+':','\u201c'+x.say+'\u201d','','DO THIS NEXT'];
     x.next.forEach(function(n,i){L.push((i+1)+'. '+(n.step||n));});
@@ -423,6 +514,26 @@ html{overflow-x:hidden}
     into.append(sec("What I'd do",[el('p',null,x.do)]),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
     into.append(actions(x,into,mail));
   }
+  var dlg=$('#gateDlg');
+  function closeGate(){if(dlg.open)dlg.close();}
+  dlg.querySelector('.gclose').onclick=closeGate;dlg.querySelector('.glater').onclick=closeGate;
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeGate();});
+  function showGate(){
+    out.hidden=true;out.replaceChildren();
+    if(dlg.showModal)dlg.showModal();else document.getElementById('access').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  var chips=$('#tryChips'), cur=null;
+  D.samples.forEach(function(x,i){var b=el('button',null,x.label);b.type='button';b.setAttribute('aria-pressed','false');
+    b.onclick=function(){cur=i;$('#tSit').value=x.sit;$('#tGoal').value=x.goal;$('#tCtx').value=x.ctx;
+      chips.querySelectorAll('button').forEach(function(c,j){c.setAttribute('aria-pressed',String(j===i));});};chips.append(b);});
+  chips.querySelector('button').click();
+  $('#tryForm').addEventListener('submit',function(e){e.preventDefault();
+    var sit=$('#tSit').value.trim();if(!sit){$('#tSit').focus();return;}
+    if(cur===null){showGate();return;}
+    showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
   function fromApi(a){return {title:a.title,do:a.do,say_label:a.say_label,say:a.say,next:a.next,
     watch:a.watch?{text:a.watch.text,t:a.watch.title,s:a.watch.source}:{text:'',t:'',s:''},
     und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
@@ -458,7 +569,6 @@ html{overflow-x:hidden}
       note.placeholder=which==='down'?'What would make it better? (optional)':'Anything you\u2019d like to add? (optional)';more.append(note);more.hidden=false;save();}
     [up,down].forEach(function(b){b.type='button';b.addEventListener('click',function(){pick(b===up?'up':'down');});});
     return box;}
-
   // Signed-in member: {email, login}, kept on this browser for 30 days.
   var me=null;
   try{me=JSON.parse(localStorage.getItem('ul.member')||'null');}catch(e){}
@@ -471,13 +581,15 @@ html{overflow-x:hidden}
   var BREAK='Underline AI is taking a short break. Please try again in a few minutes.';
 
   function showMember(){
-    $('#signin').hidden=true;$('#askPanel').hidden=false;$('#navJoin').hidden=true;
+    $('#signin').hidden=true;$('#askPanel').hidden=false;$('#navAct').textContent='Sign out';
     var line=$('#memberLine');line.replaceChildren();
     var who=el('span');who.append('Signed in as ',el('b',null,me.email));line.append(who);
     var outBtn=el('button',null,'Sign out');outBtn.type='button';outBtn.addEventListener('click',signOut);line.append(outBtn);}
-  function signOut(msg){remember(null);$('#askPanel').hidden=true;$('#signin').hidden=false;$('#navJoin').hidden=false;
+  function signOut(msg){remember(null);$('#askPanel').hidden=true;$('#signin').hidden=false;$('#navAct').textContent='Sign in';
     $('#inCodeBox').hidden=true;$('#inSend').hidden=false;oOut.hidden=true;if(typeof msg==='string')say(msg);}
   if(me&&me.email&&me.login)showMember();
+  // Top-right button: Sign in jumps to the sign-in box; Sign out signs out.
+  $('#navAct').addEventListener('click',function(e){if(me){e.preventDefault();signOut();}});
 
   // Sign in: email, then the 6-digit code.
   function sendCode(){
