@@ -36,7 +36,7 @@ Underline is your personal AI advisor. Bring a question, a challenge, or a decis
 
 ## Get full access
 
-[Get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
+[Try it free on the page](https://wei-wei-hu.github.io/underline/#try), then [get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
 
 ## What's in this repo
 
