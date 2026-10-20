@@ -319,8 +319,8 @@ html{overflow-x:hidden}
     <a class="logo" href="#">Underline AI<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="#how">How it works</a>
-      <a href="#try">See examples</a>
       <a href="#own" class="ownlink" hidden>Free trial</a>
+      <a href="#try">See examples</a>
       <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
   </nav>
@@ -381,24 +381,6 @@ html{overflow-x:hidden}
     </ol>
   </section>
 
-  <section class="block" id="try">
-    <p class="kicker">Examples</p>
-    <h2>See Underline AI in action.</h2>
-    <div class="trygrid">
-      <div class="panel">
-        <p class="plabel">Pick an example</p>
-        <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
-        <form id="tryForm" autocomplete="off">
-          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" readonly placeholder="Pick an example above."></textarea></label>
-          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" readonly placeholder=""></label>
-          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" readonly placeholder=""></textarea></label>
-          <button class="btn big dark trygo" type="submit">See the answer</button>
-        </form>
-      </div>
-      <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
-    </div>
-  </section>
-
   <section class="block" id="own" hidden>
     <p class="kicker">Free trial</p>
     <h2>Try it on your own situation.</h2>
@@ -424,6 +406,24 @@ html{overflow-x:hidden}
       <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
     </div>
   </section>
+  <section class="block" id="try">
+    <p class="kicker">Examples</p>
+    <h2>See Underline AI in action.</h2>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Pick an example</p>
+        <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
+        <form id="tryForm" autocomplete="off">
+          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" readonly placeholder="Pick an example above."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" readonly placeholder=""></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" readonly placeholder=""></textarea></label>
+          <button class="btn big dark trygo" type="submit">See the answer</button>
+        </form>
+      </div>
+      <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
 
   <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
