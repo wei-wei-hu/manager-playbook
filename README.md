@@ -34,11 +34,9 @@ Underline AI is your personal advisor. Bring a question, a challenge, or a decis
 
 [![Underline AI landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline-ai/)
 
-## Get Your Next Action
+## Get full access
 
-- **Free samples:** [try a sample on the page](https://wei-wei-hu.github.io/underline-ai/#try) to see a full answer.
-- **Free trial:** get one Next Action for your own situation, free.
-- **$9 a month:** [get Your Next Action](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00) for your own situations. Bring one situation. Leave with a one-page plan you can act on.
+[Try a sample on the page](https://wei-wei-hu.github.io/underline-ai/#try) to see a full answer. To get Your Next Action for your own situation, [get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
 
 ## What's in this repo
 

@@ -245,7 +245,6 @@ html{overflow-x:hidden}
 #gateDlg p{margin:0 0 22px;color:var(--soft);line-height:1.6}
 #gateDlg .btn{width:100%!important;justify-content:center}
 #gateDlg .gclose{position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:50%;background:var(--tint);color:var(--soft);font-size:20px;line-height:1;cursor:pointer}
-#gateDlg .gpay{display:block;margin-top:12px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 #gateDlg .glater{margin-top:12px;border:0;background:none;color:var(--faint);font:inherit;font-size:.9rem;cursor:pointer}
 
 @media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
@@ -259,7 +258,6 @@ html{overflow-x:hidden}
 #tryForm textarea:focus,#tryForm input:focus{outline:2px solid var(--purple);outline-offset:1px}
 .trygo,#tryForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
 .trynote{margin:10px 0 0;font-size:.82rem;color:var(--faint)}
-.trynote a{color:var(--ink);font-weight:600;text-underline-offset:3px}
 .tryempty{margin:0;color:var(--faint)}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--tint);color:#6366F1;margin-bottom:8px}
 .locked{position:relative;border-top:1px solid var(--line);padding:16px 0}
@@ -273,16 +271,8 @@ html{overflow-x:hidden}
 .lockcard .btn{margin:0 auto}
 .trybtn{background:var(--grad);color:#fff;border:0}
 .trybtn:hover{filter:brightness(1.08)}
-.hero .ctas .btn.big{min-width:0;flex:0 0 auto;width:auto!important;white-space:nowrap;padding-left:26px!important;padding-right:26px!important}
-.hero .ctas .btn.big.trybtn{min-width:160px}
-.ctasub{margin:14px 0 0;font-size:.95rem;color:var(--soft);text-wrap:balance}
-.short{display:none}
-nav .btn.dark{white-space:nowrap}
-@media (max-width:440px){.logo .by{display:none}}
-@media (max-width:600px){.long{display:none}.short{display:inline}}
-.closing .ctasub{margin:0 0 22px}
-@media (min-width:521px){.closing .ctas .btn.big{width:auto!important;padding-left:28px!important;padding-right:28px!important}}
-.hero .ctas{flex-wrap:wrap;gap:12px}
+.hero .ctas .btn.big{min-width:0;flex:0 0 190px;width:190px!important;white-space:nowrap}
+.hero .ctas{flex-wrap:nowrap;gap:12px}
 @media (max-width:520px){.hero .ctas{flex-direction:column}.hero .ctas .btn.big{width:100%!important;flex:0 0 auto}}
 </style>
 
@@ -292,7 +282,7 @@ nav .btn.dark{white-space:nowrap}
     <div class="links">
       <a href="#how">How it works</a>
       <a href="#try">Try it</a>
-      <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener"><span class="long">Get Your Next Action &mdash; $9/month</span><span class="short">Get yours &mdash; $9/mo</span></a>
+      <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
   </nav>
 
@@ -304,10 +294,9 @@ nav .btn.dark{white-space:nowrap}
       <h1>Practical advice for <span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
-        <a class="btn big trybtn" href="#try">Try it free</a>
-        <a class="btn big dark paybtn" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get Your Next Action &mdash; $9/month <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big trybtn" href="#try">Try it</a>
+        <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <p class="ctasub">Bring one situation. Leave with a one-page plan you can act on.</p>
     </div>
 
     <div class="blob" aria-hidden="true"></div><div class="wave" aria-hidden="true"></div>
@@ -364,7 +353,7 @@ nav .btn.dark{white-space:nowrap}
           <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" placeholder="Your goal"></label>
           <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" placeholder="People, deadlines, what you've tried"></textarea></label>
           <button class="btn big dark trygo" type="submit">Try Your Next Action</button>
-          <p class="trynote" id="tryNote">Samples are free. <a href="https://claude.ai/artifact/DcJaxNqgEn5uVotUo1J2zq" target="_blank" rel="noopener">Try your own situation once, free</a>, then $9 a month.</p>
+          <p class="trynote" id="tryNote">Samples are free.</p>
         </form>
       </div>
       <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
@@ -374,8 +363,7 @@ nav .btn.dark{white-space:nowrap}
   <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
     <h2>Know your <span class="grad">next best action.</span></h2>
-    <p class="ctasub">Bring one situation. Leave with a one-page plan you can act on.</p>
-    <div class="ctas"><a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get Your Next Action &mdash; $9/month <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="ctas"><a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </section>
 
   <footer>
@@ -391,10 +379,9 @@ nav .btn.dark{white-space:nowrap}
   <div class="gcard">
     <button class="gclose" type="button" aria-label="Close">&times;</button>
     <div class="glock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
-    <h3 id="gateT">Try your own situation free</h3>
-    <p>Get one free Next Action for your situation: what I'd do, what I'd say, what to do next, what to watch out for and the ideas behind it. After that, it&rsquo;s $9 a month.</p>
-    <a class="btn big trybtn" href="https://claude.ai/artifact/DcJaxNqgEn5uVotUo1J2zq" target="_blank" rel="noopener">Get one free Next Action</a>
-    <a class="gpay" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Or get Your Next Action &mdash; $9/month</a>
+    <h3 id="gateT">Get full access to see your answer</h3>
+    <p>Get the best advice Underline AI can find in its curated library, applied to your situation: what I'd do, what I'd say, your next steps, one trap to watch out for and the ideas behind it.</p>
+    <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     <button class="glater" type="button">Maybe later</button>
   </div>
 </dialog>
