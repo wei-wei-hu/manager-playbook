@@ -1,29 +1,23 @@
-# Manager Playbook
+# Underline
 
-Your AI assistant for everyday manager work, by Weiwei Hu. Tell it what you need and get a plan you can use in minutes.
+Bring one situation. Leave with what to do next. By Weiwei Hu.
 
-### [Try the free preview →](https://wei-wei-hu.github.io/manager-playbook/)
+### [See Underline →](https://wei-wei-hu.github.io/manager-playbook/)
 
-It opens in your browser on a phone or laptop. Nothing to install.
+Describe a work situation in a short form. Underline picks the ideas from its library that fit and gives you one page, Your Next Action:
 
-[![Manager Playbook home screen on a laptop](docs/preview-laptop.png)](https://wei-wei-hu.github.io/manager-playbook/)
+- **What I'd do:** one clear recommendation
+- **Why:** 2 to 3 reasons, each tied to an idea and its source
+- **How to do it:** 3 concrete steps
+- **What to say:** the exact words, when the situation involves talking to someone
 
-## What you get in the full version
+[![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/manager-playbook/)
 
-- **A practical framework** for your situation, plus others to try
-- **What to say** and questions to ask
-- **A checklist** for before and after
-- **A weekly report** from your notes
-- Routines for 1:1s, feedback, meetings, asking another team for help, getting a decision from your boss, handling an urgent problem and project reviews
+<img src="docs/underline-phone.png" alt="Underline landing page on a phone" width="30%">
 
-<p>
-  <img src="docs/preview-plan.png" alt="Plan screen with the request on the left and the plan on the right" width="64%">
-  <img src="docs/preview-phone.png" alt="Manager Playbook home screen on a phone" width="30%">
-</p>
+## Get Underline
 
-## Get the full playbook
-
-The full version is a monthly subscription: [subscribe here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll add your Claude account and email you the link. It runs on your own Claude account.
+$9 a month: [subscribe here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll add your Claude account and email you the link. Underline runs on your own Claude account.
 
 - Website: https://weiweihu.carrd.co
 - LinkedIn: https://www.linkedin.com/in/weiweihu/
