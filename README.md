@@ -54,4 +54,4 @@ Underline is your personal AI advisor. Bring a question, a challenge, or a decis
 
 ## License
 
-© 2026 Weiwei Hu. All rights reserved. See [LICENSE](LICENSE).
+© 2026 Weiwei Hu. All rights reserved. Proprietary: no copying, reuse, redistribution or AI training without written permission. See [LICENSE](LICENSE).
