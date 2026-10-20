@@ -14,8 +14,6 @@ Underline AI is your personalized AI advisor. Bring a question, a challenge, or 
 
 Underline AI draws from a carefully curated library on communication, influence, negotiation, leadership, and getting work done. It brings together the most useful thinking for your situation and turns it into practical advice. You'll see what to do, what to say, and the ideas behind it.
 
-[![Underline AI landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline-ai/)
-
 ## How it works
 
 1. **Share your situation.** What's happening, what you want to happen, and anything else that matters.
