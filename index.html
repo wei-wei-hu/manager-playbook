@@ -434,15 +434,15 @@ html{overflow-x:hidden}
     L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
     x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
     L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
-  // Save as PDF, Email it to me (own answers) and Copy, under every answer.
+  // Email it (own answers), Save as PDF and Copy, under every answer.
   function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
     function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
+    if(mail)btn('Email it',function(b){b.disabled=true;b.textContent='Sending\u2026';
+      mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent';msg.textContent='Your Next Action is on its way. Check your inbox, and your spam folder too.';bar.append(msg);})
+        .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn\u2019t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
     btn('Save as PDF',function(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
       pa.replaceChildren(into.cloneNode(true),el('p','pfoot','Underline AI by Weiwei Hu \u00b7 wei-wei-hu.github.io/underline-ai'));
       var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;});
-    if(mail)btn('Email it to me',function(b){b.disabled=true;b.textContent='Sending\u2026';
-      mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent to your email';msg.textContent='Check your inbox (and spam folder) for your Next Action.';bar.append(msg);})
-        .catch(function(){b.disabled=false;b.textContent='Email it to me';msg.textContent='We couldn\u2019t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
     btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
       function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
     return bar;}
@@ -563,7 +563,7 @@ html{overflow-x:hidden}
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
       .then(function(res){
         if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));done=true;var x=fromApi(res.j.answer);
-          showSample(x,oOut,'Your free answer',CODE_API?function(x){return codes('plan',{title:x.title,text:planText(x)});}:null);lock();
+          showSample(x,oOut,'Your free answer',CODE_API?function(x){return codes('plan',{plan:x,text:planText(x)});}:null);lock();
           if(CODE_API)oOut.append(feedback(body,res.j.answer));return;}
         var e=res.j&&res.j.error;
         if(e==='used')usedUp();
