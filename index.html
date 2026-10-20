@@ -255,7 +255,8 @@ html{overflow-x:hidden}
 @media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
 .trychips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .trychips button{border:0;cursor:pointer;font:inherit;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
-.trychips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}#tryForm,#ownForm{display:flex;flex-direction:column}#tryForm .fld,#ownForm .fld{display:block}#tryForm .fld small,#ownForm .fld small{font-weight:400;color:var(--faint)}#tryForm textarea,#tryForm input,#ownForm textarea,#ownForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}#tryForm textarea:focus,#tryForm input:focus,#ownForm textarea:focus,#ownForm input:focus{outline:2px solid var(--purple);outline-offset:1px}.trygo,#tryForm .trygo.btn.big,#ownForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
+.trychips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}#tryForm,#ownForm{display:flex;flex-direction:column}#tryForm .fld,#ownForm .fld{display:block}#tryForm .fld small,#ownForm .fld small{font-weight:400;color:var(--faint)}#tryForm textarea,#tryForm input,#ownForm textarea,#ownForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}#tryForm textarea[readonly],#tryForm input[readonly]{cursor:default;color:var(--soft)}
+#tryForm textarea:focus,#tryForm input:focus,#ownForm textarea:focus,#ownForm input:focus{outline:2px solid var(--purple);outline-offset:1px}.trygo,#tryForm .trygo.btn.big,#ownForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
 .trynote{margin:10px 0 0;font-size:.82rem;color:var(--faint)}
 .tryempty{margin:0;color:var(--faint)}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--tint);color:#6366F1;margin-bottom:8px}
@@ -280,8 +281,8 @@ html{overflow-x:hidden}
     <a class="logo" href="#">Underline AI<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="#how">How it works</a>
-      <a href="#try">Try it</a>
-      <a href="#own" class="ownlink" hidden>Try your own</a>
+      <a href="#try">Examples</a>
+      <a href="#own" class="ownlink" hidden>Try it</a>
       <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
   </nav>
@@ -294,7 +295,7 @@ html{overflow-x:hidden}
       <h1>Practical advice for <span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
-        <a class="btn big trybtn" href="#try">Try it</a>
+        <a class="btn big trybtn" id="heroTry" href="#try">Try it</a>
         <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -342,17 +343,17 @@ html{overflow-x:hidden}
   </section>
 
   <section class="block" id="try">
-    <p class="kicker">Try it</p>
+    <p class="kicker">Examples</p>
     <h2>See Underline AI in action.</h2>
     <div class="trygrid">
       <div class="panel">
-        <p class="plabel">Your situation</p>
+        <p class="plabel">Pick an example</p>
         <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
         <form id="tryForm" autocomplete="off">
-          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" placeholder="Describe your situation in a few sentences, or pick a sample above."></textarea></label>
-          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" placeholder="Your goal"></label>
-          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" placeholder="People, deadlines, what you've tried"></textarea></label>
-          <button class="btn big dark trygo" type="submit">Try Your Next Action</button>
+          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" readonly placeholder="Pick an example above."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" readonly placeholder=""></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" readonly placeholder=""></textarea></label>
+          <button class="btn big dark trygo" type="submit">See the answer</button>
           <p class="trynote" id="tryNote">Samples are free.</p>
         </form>
       </div>
@@ -361,7 +362,7 @@ html{overflow-x:hidden}
   </section>
 
   <section class="block" id="own" hidden>
-    <p class="kicker">Try your own</p>
+    <p class="kicker">Try it</p>
     <h2>Try it on your own situation.</h2>
     <div class="trygrid">
       <div class="panel">
@@ -436,22 +437,23 @@ html{overflow-x:hidden}
   D.samples.forEach(function(x,i){var b=el('button',null,x.label);b.type='button';b.setAttribute('aria-pressed','false');
     b.onclick=function(){cur=i;$('#tSit').value=x.sit;$('#tGoal').value=x.goal;$('#tCtx').value=x.ctx;
       chips.querySelectorAll('button').forEach(function(c,j){c.setAttribute('aria-pressed',String(j===i));});};chips.append(b);});
-  ['#tSit','#tGoal','#tCtx'].forEach(function(s){$(s).addEventListener('input',function(){if(cur!==null){cur=null;chips.querySelectorAll('button').forEach(function(c){c.setAttribute('aria-pressed','false');});}});});
+  chips.querySelector('button').click();
   $('#tryForm').addEventListener('submit',function(e){e.preventDefault();
     var sit=$('#tSit').value.trim();if(!sit){$('#tSit').focus();return;}
     if(cur===null){showGate();return;}
     showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
   });
 
-  // Try your own: one free Next Action from the Underline AI server, then full access.
+  // Try it (section #own): one free Next Action from the Underline AI server, then full access.
   var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
   if(!/^https:\/\//.test(OWN_API))return;
   $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
+  $('#heroTry').href='#own';
   var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
   function lock(){oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
   if(store('ul.own'))lock();
-  // A situation typed into the samples form goes to Try your own instead of the full-access pop-up.
+  // Kept for safety: if the Examples form is ever submitted without an example, send people to Try it.
   showGate=function(){out.hidden=true;out.replaceChildren();
     ['Sit','Goal','Ctx'].forEach(function(k){var v=$('#t'+k).value.trim();if(v&&!$('#o'+k).value.trim())$('#o'+k).value=v;});
     $('#own').scrollIntoView({behavior:'smooth',block:'start'});};
