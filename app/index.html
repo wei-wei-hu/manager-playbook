@@ -247,7 +247,8 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}
+.ownerr{color:var(--soft);margin:0}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
+
 /* Answer board, in the style of the Underline AI slides: a soft peach-pink-lavender gradient,
    floating glossy spheres, frosted white cards, light large title, pill tags and gradient accents. */
 .board{position:relative;overflow:hidden;border-radius:22px;padding:30px 30px 28px;margin-top:2px;
@@ -543,13 +544,16 @@ html{overflow-x:hidden}
       var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('wei-wei-hu.github.io/underline-ai · © 2026 Weiwei Hu'));
       pa.replaceChildren(brand,into.querySelector('.board').cloneNode(true),end);
       var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
-    btn('Save as PDF',printPlan);
+    btn('Save as PDF',function(b){b.disabled=true;b.textContent='Making PDF\u2026';
+      makePdf(x).catch(function(){msg.textContent='We couldn\u2019t make the PDF just now. Try Print instead.';bar.append(msg);})
+        .then(function(){b.disabled=false;b.textContent='Save as PDF';});});
     btn('PowerPoint',function(b){b.disabled=true;b.textContent='Making slide…';
       makeSlide(x).then(function(){b.textContent='PowerPoint';},function(){msg.textContent='We couldn’t make the PowerPoint just now. Try Save as PDF instead.';bar.append(msg);b.textContent='PowerPoint';})
         .then(function(){b.disabled=false;});});
     btn('Print',printPlan);
-    btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
-      function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
+    btn('Copy',function(b){var t=planText(x);
+      copyText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
+        function(){var box=el('textarea','copybox');box.value=t;box.readOnly=true;box.rows=8;msg.textContent='Your phone blocked copying. Press and hold the text below, then choose Select All and Copy.';bar.append(msg,box);box.focus();box.select();});});
     return bar;}
 
   // The answer board, in the style of the Underline AI slides. What I'd do takes one of five
@@ -630,9 +634,79 @@ html{overflow-x:hidden}
     var runs=[];groups(x.und).forEach(function(gr,i){var k=tone(x,2+i);if(i)runs.push({text:'\n',options:{fontSize:5}});
       runs.push({text:gr.l.join(' ')+'\n',options:{color:ink}});runs.push({text:(gr.quoted?'— ':'— based on ')+gr.t,options:{bold:true,color:hex(k[1])}});});
     var all=runs.map(function(r){return r.text;}).join('');
-    s.addText(runs,{x:9.4,y:5.08,w:3.15,h:1.8,fontFace:F,fontSize:fitSize(all,10,240,7),valign:'top',margin:0});
+    s.addText(runs,{x:9.4,y:5.08,w:3.15,h:1.8,fontFace:F,fontSize:fitSize(all,11,300,8),valign:'top',margin:0});
     s.addText('Underline AI by Weiwei Hu  ·  wei-wei-hu.github.io/underline-ai',{x:.6,y:7.1,w:12.1,h:.25,fontFace:F,fontSize:9,color:'8A8FA3',align:'right',margin:0});
-    return P.writeFile({fileName:'Your Next Action - '+x.title.replace(/[\\/:*?"<>|]/g,'')+'.pptx'});});}
+    return P.write({outputType:'blob'}).then(function(blob){return deliver(blob,fileName(x,'pptx'));});});}
+
+  // Getting a file to the person: phones open the share sheet (Save to Files, Mail, AirDrop),
+  // computers download it. If the share sheet isn't allowed, it falls back to a download.
+  function fileName(x,ext){return 'Your Next Action - '+x.title.replace(/[\\/:*?"<>|]/g,'')+'.'+ext;}
+  function download(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},10000);}
+  function deliver(blob,name){var file=null;try{file=new File([blob],name,{type:blob.type});}catch(e){}
+    var phone=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+    if(phone&&file&&navigator.canShare&&navigator.canShare({files:[file]}))
+      return navigator.share({files:[file],title:name}).catch(function(e){if(!e||e.name!=='AbortError')download(blob,name);});
+    download(blob,name);return Promise.resolve();}
+
+  // Copy: the clipboard where allowed, then the older select-and-copy way that phones still accept.
+  function copyText(t){
+    function legacy(){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
+      document.body.append(ta);ta.focus();ta.select();ta.setSelectionRange(0,t.length);var ok=false;try{ok=document.execCommand('copy');}catch(e){}ta.remove();
+      return ok?Promise.resolve():Promise.reject();}
+    return navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(t).catch(legacy):legacy();}
+
+  // Save as PDF: one landscape A4 page drawn like the PowerPoint slide, with real, selectable text.
+  var JSPDF_URL='https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
+  function loadScript(src,ready){return ready()?Promise.resolve():new Promise(function(ok,fail){var sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=fail;document.head.append(sc);});}
+  function rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function makePdf(x){return loadScript(JSPDF_URL,function(){return window.jspdf;}).then(function(){
+    var pdf=new window.jspdf.jsPDF({orientation:'landscape',unit:'pt',format:'a4'}),PW=pdf.internal.pageSize.getWidth(),M=28,u=(PW-2*M)/13.333,X0=M,Y0=64;
+    var X=function(v){return X0+v*u;},Y=function(v){return Y0+v*u;},ink=[29,32,51],grey=[122,127,149],soft=[138,143,163];
+    var col=function(c){pdf.setTextColor(c[0],c[1],c[2]);};
+    // text that wraps inside a box, made smaller until it fits
+    var block=function(t,x0,y0,w,h,size,min,style,c,lh){var lines;lh=lh||1.35;
+      do{pdf.setFont('helvetica',style||'normal');pdf.setFontSize(size);lines=pdf.splitTextToSize(String(t),w);if(lines.length*size*lh<=h||size<=min)break;size-=.5;}while(true);
+      col(c||ink);pdf.text(lines,x0,y0+size,{lineHeightFactor:lh});return lines.length*size*lh;};
+    var label=function(t,x0,y0,c){pdf.setFont('helvetica','bold');pdf.setFontSize(7.5);pdf.setCharSpace(1.2);col(c||grey);pdf.text(t.toUpperCase(),x0,y0+7.5);pdf.setCharSpace(0);};
+    var card=function(cx,cy,cw,ch){pdf.setGState(new pdf.GState({opacity:.88}));pdf.setFillColor(255,255,255);pdf.roundedRect(X(cx),Y(cy),cw*u,ch*u,9,9,'F');pdf.setGState(new pdf.GState({opacity:1}));};
+    // brand line, the board's gradient and spheres, the footer
+    pdf.setFont('helvetica','bold');pdf.setFontSize(15);col(ink);pdf.text('Underline AI',M+2,42);var bw=pdf.getTextWidth('Underline AI');pdf.setFont('helvetica','normal');pdf.setFontSize(10);col([94,100,117]);pdf.text('by Weiwei Hu',M+2+bw+7,42);
+    pdf.addImage(canvasPng(1600,900,function(g,w,h){roundPath(g,0,0,w,h,40);g.clip();var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,'#FDEBDD');f.addColorStop(.46,'#FBDDE6');f.addColorStop(1,'#E6E2FD');g.fillStyle=f;g.fillRect(0,0,w,h);
+      sphere(g,w*.925,h*.1,44,[[0,'#ffffff'],[.12,'#B9C6FF'],[.6,'#5B74FF'],[1,'#7A5CF0']]);sphere(g,w*.47,h*.05,11,[[0,'#ffffff'],[.4,'#FFC2A8'],[1,'#FF9C7A']]);sphere(g,w*.03,h*.95,17,[[0,'#ffffff'],[.4,'#FFB3C4'],[1,'#F57C9A']]);}),'PNG',X(0),Y(0),13.333*u,7.5*u,'board','FAST');
+    // title
+    pdf.setDrawColor(29,32,51);pdf.setLineWidth(.6);pdf.setFillColor(255,255,255);pdf.roundedRect(X(.6),Y(.42),1.75*u,.32*u,.16*u,.16*u,'FD');
+    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(ink);pdf.text('Your Next Action',X(.6)+1.75*u/2,Y(.42)+.32*u/2+3,{align:'center'});
+    block(x.title,X(.6),Y(.86),10.6*u,.8*u,22,15,'normal',ink,1.15);
+    // row 1: What I'd do, What I'd say, Watch out
+    var c=tone(x,0);
+    pdf.addImage(canvasPng(486,312,function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,c[0]);f.addColorStop(1,c[1]);g.fillStyle=f;roundPath(g,0,0,w,h,22);g.fill();}),'PNG',X(.6),Y(1.8),4.05*u,2.6*u,'hero','FAST');
+    label('What I’d do',X(.85),Y(2),[255,255,255]);block(x.do,X(.85),Y(2.3),3.55*u,1.95*u,14,9,'bold',[255,255,255]);
+    card(4.85,1.8,4.1,2.6);label('What I’d say',X(5.1),Y(2));
+    var used=x.say_label?block(x.say_label,X(5.1),Y(2.28),3.6*u,.3*u,8.5,8,'normal',soft):0;
+    block('“'+x.say+'”',X(5.1),Y(2.28)+used+4,3.6*u,1.95*u-used-4,10.5,7.5,'normal',ink,1.4);
+    card(9.15,1.8,3.6,2.6);label('Watch out',X(9.4),Y(2));
+    pdf.setFillColor(244,149,106);pdf.roundedRect(X(9.4),Y(2.32),.4*u,.4*u,5,5,'F');pdf.setFont('helvetica','bold');pdf.setFontSize(12);col([255,255,255]);pdf.text('!',X(9.6),Y(2.32)+.4*u/2+4,{align:'center'});
+    var wh=block(x.watch.text,X(9.95),Y(2.3),2.6*u,1.6*u,10.5,8,'bold',ink);
+    if(x.watch.t){pdf.setFont('helvetica','italic');pdf.setFontSize(8);col(soft);pdf.text(pdf.splitTextToSize('Based on '+x.watch.t,2.6*u),X(9.95),Y(2.3)+wh+10);}
+    // row 2: Do this next, Underlined
+    card(.6,4.6,8.35,2.4);label('Do this next',X(.85),Y(4.78));
+    var n=x.next.length||1,rowH=Math.min(.62,1.85/n);
+    x.next.forEach(function(st,i){var ry=Y(5.08+i*rowH),k=rgb(tone(x,1+i)[0]);pdf.setFillColor(k[0],k[1],k[2]);pdf.circle(X(1.01),ry+.16*u,.16*u,'F');
+      pdf.setFont('helvetica','bold');pdf.setFontSize(9);col([255,255,255]);pdf.text(String(i+1),X(1.01),ry+.16*u+3,{align:'center'});
+      block(String(st.step||st),X(1.3),ry+1,7.4*u,rowH*u,10.5,8,'normal',ink);});
+    card(9.15,4.6,3.6,2.4);label('Underlined',X(9.4),Y(4.78));
+    // Underlined: the largest size at which every idea and its source fit inside the card
+    var gs=groups(x.und),fs=9.5,yy=Y(5.08),need=function(f){pdf.setFontSize(f);return gs.reduce(function(a,g){pdf.setFont('helvetica','normal');var t=pdf.splitTextToSize(g.l.join(' '),3.1*u).length;
+      pdf.setFont('helvetica','bold');return a+(t+pdf.splitTextToSize((g.quoted?'\u2014 ':'\u2014 based on ')+g.t,3.1*u).length)*f*1.3+6;},0);};
+    while(fs>6.5&&need(fs)>1.9*u)fs-=.5;
+    gs.forEach(function(g,i){var k=rgb(tone(x,2+i)[1]);yy+=block(g.l.join(' '),X(9.4),yy,3.1*u,9*u,fs,fs,'normal',ink,1.3);
+      pdf.setFont('helvetica','bold');pdf.setFontSize(fs);col(k);var src=pdf.splitTextToSize((g.quoted?'— ':'— based on ')+g.t,3.1*u);pdf.text(src,X(9.4),yy+fs);yy+=src.length*fs*1.3+6;});
+    pdf.setFont('helvetica','bold');pdf.setFontSize(9);col(ink);var tag='Know your next best action.  ';var tw=pdf.getTextWidth(tag);
+    pdf.setFont('helvetica','normal');var rest='wei-wei-hu.github.io/underline-ai · © 2026 Weiwei Hu',rw=pdf.getTextWidth(rest),sx=(PW-tw-rw)/2,fy=Y(7.5)+24;
+    pdf.setFont('helvetica','bold');pdf.text(tag,sx,fy);pdf.setFont('helvetica','normal');col([138,143,160]);pdf.text(rest,sx+tw,fy);
+    pdf.setProperties({title:'Your Next Action: '+x.title,author:'Underline AI by Weiwei Hu'});
+    return deliver(pdf.output('blob'),fileName(x,'pdf'));});}
   var dlg=$('#gateDlg');
   function closeGate(){if(dlg.open)dlg.close();}
   dlg.querySelector('.gclose').onclick=closeGate;dlg.querySelector('.glater').onclick=closeGate;
