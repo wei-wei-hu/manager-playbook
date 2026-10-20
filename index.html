@@ -30,7 +30,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 a{color:inherit}
 :focus-visible{outline:2px solid var(--purple);outline-offset:3px}
 h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.08}
-.wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+.wrap{max-width:920px;margin:0 auto;padding:0 40px}
 @media (max-width:600px){.wrap{padding:0 16px}}
 .orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#C9D2FF 24%,#7E8CFF 60%,#B57BE8 100%);opacity:.9;filter:saturate(1.05)}
 
@@ -49,9 +49,9 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 @media (max-width:760px){.links a:not(.btn){display:none}}
 
 /* hero */
-.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center;padding:40px 0 30px}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:36px;align-items:center;padding:40px 0 30px}
 .eyebrow{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 18px}
-.hero h1{font-size:clamp(2.4rem,5.2vw,4.3rem);font-weight:800}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.7rem);font-weight:800}
 .hero h1 .grad{white-space:nowrap}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--soft);margin:24px 0 32px;max-width:30ch;line-height:1.5}
@@ -59,7 +59,7 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 @media (max-width:520px){.btn.big{width:100%}}
 
 /* app preview */
-.preview{position:relative;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--shadow);padding:16px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;backdrop-filter:blur(10px)}
+.preview{position:relative;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--shadow);padding:14px;display:grid;grid-template-columns:170px minmax(0,1fr);gap:14px;backdrop-filter:blur(10px)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .preview{background:rgba(22,25,39,.8);border-color:var(--line)}}
 .cats{list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--card);border-radius:18px}
 .cats li{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:12px;font-size:.93rem}
@@ -159,6 +159,16 @@ footer a svg{width:15px;height:15px}
 .cats li{padding:6px 10px!important}
 .cats .ic{width:30px;height:30px}
 .preview{align-items:start}
+
+.btn.big{width:180px!important;padding:14px 0!important;font-size:.95rem!important}
+.preview{grid-template-columns:auto minmax(0,1fr)!important}
+.cats li{white-space:nowrap;font-size:.85rem;gap:9px!important}
+.anshead b{white-space:nowrap;font-size:1.02rem!important}
+.feat b{font-size:1.05rem!important}
+.feat{gap:14px!important}
+.feat .ic{width:54px!important;height:54px!important}
+.block h2{font-size:clamp(1.6rem,3vw,2.15rem)!important}
+.wrap{max-width:960px!important}
 </style>
 
 </head>
@@ -196,7 +206,7 @@ footer a svg{width:15px;height:15px}
         <li><span class="ic c6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Work-life balance</li>
       </ul>
       <div class="chat">
-        <div class="ans sit"><div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Your Situation</b></div><div class="ins"><span>Tell us what's happening and what you want…</span></div></div>
+        <div class="ans sit"><div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Your Situation</b></div><div class="ins"><span>Describe your situation…</span></div></div>
         <div class="ans">
           <div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><b>Your Next Action</b></div>
           <ul class="outs"><li>What I'd do</li><li>Why</li><li>How to do it</li><li>What to say</li><li>Underlined</li></ul>
