@@ -284,24 +284,25 @@ html{overflow-x:hidden}
 .bitem{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(120,100,170,.08);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .bitem p{font-size:.88rem;line-height:1.55}
 .bsrc{display:inline-block;padding:4px 12px;border-radius:999px;color:#fff;font-size:.72rem;font-weight:600}
-.bsign{position:relative;display:flex;justify-content:flex-end;align-items:baseline;gap:6px;margin:16px 4px 0;font-size:.78rem;color:#7A7F95}
-.bsign b{position:relative;font-size:.95rem;font-weight:700;color:#1D2033;letter-spacing:-.01em;padding-bottom:3px}
-.bsign b::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6)}
 @media (prefers-reduced-motion:no-preference){.board .o1{animation:float1 9s ease-in-out infinite}.board .o2{animation:float2 7s ease-in-out infinite}.board .o3{animation:float3 11s ease-in-out infinite}}
 @media (max-width:620px){.board{padding:22px 16px 20px}.bhead{padding-right:56px}.board .o1{width:40px;height:40px;right:14px;top:16px}.btitle{font-size:1.5rem}.bgrid{grid-template-columns:1fr}.bhero p{font-size:1.1rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
-@media print{@page{size:landscape;margin:8mm}html{font-size:12px!important}html,body{background:#fff!important}body::before{display:none}body>*:not(#printArea){display:none!important}
-#printArea{display:block!important;color:#1D2033;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* Print: a fixed 1100px landscape layout, shrunk (zoom) to fit one page in either orientation.
+   The sizes come from measuring it just before printing (--zl landscape, --zp portrait). */
+#printArea.measuring{display:block!important;position:fixed;left:-20000px;top:0}
+#printArea{width:1100px;color:#1D2033;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important}
-#printArea .pbrand{margin:0 0 8px 4px;font-size:13pt;font-weight:800;letter-spacing:-.02em}#printArea .pbrand span{font-size:9pt;font-weight:500;color:#5E6475;margin-left:8px;letter-spacing:0}
-#printArea .board{padding:18px 20px 16px;border-radius:18px}
-#printArea .bhead{margin-bottom:12px}#printArea .btitle{font-size:1.7rem}
+#printArea .board{padding:20px 22px 18px;border-radius:18px}
+#printArea .bhead{margin-bottom:12px}#printArea .btitle{font-size:1.75rem}
 #printArea .bgrid{grid-template-columns:1fr 1fr 1fr;gap:10px}
 #printArea .bhero{grid-column:1;grid-row:1}#printArea .bsay{grid-column:2;grid-row:1}#printArea .bwatch{grid-column:3;grid-row:1}
 #printArea .bsteps{grid-column:1/3;grid-row:2}#printArea .bund{grid-column:3;grid-row:2}
-#printArea .bcard{padding:12px 14px;break-inside:avoid;box-shadow:none}#printArea .bhero p{font-size:1.05rem}
+#printArea .bcard{padding:12px 14px;box-shadow:none}#printArea .bhero p{font-size:1.05rem}
 #printArea .bitems{grid-template-columns:1fr;gap:6px}#printArea .bitem{padding:8px 10px;box-shadow:none}#printArea .bsteps li{padding:7px 10px;box-shadow:none}
-#printArea .pend{text-align:center;margin-top:8px;font-size:9pt;color:#8A8FA0}#printArea .pend b{color:#1D2033;margin-right:8px}}
+#printArea .pend{text-align:center;margin-top:10px;font-size:12px;color:#8A8FA0}#printArea .pend b{color:#1D2033;margin-right:8px}
+@media print{@page{size:landscape;margin:8mm}html,body{background:#fff!important;margin:0}body::before{display:none}body>*:not(#printArea){display:none!important}
+#printArea{display:block!important;zoom:var(--zl,.85);break-inside:avoid}#printArea *{break-inside:avoid}}
+@media print and (orientation:portrait){#printArea{zoom:var(--zp,.6)}}
 .fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbmore .fbdone{margin:0 0 12px;color:var(--ink);font-weight:600}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
@@ -527,9 +528,11 @@ html{overflow-x:hidden}
         .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn’t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
     // Save as PDF and Print: the answer board on one landscape page, with the brand line above it.
     function printPlan(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
-      var brand=el('div','pbrand','Underline AI');brand.append(el('span',null,'by Weiwei Hu'));
-      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('wei-wei-hu.github.io/underline-ai · © 2026 Weiwei Hu'));
-      pa.replaceChildren(brand,into.querySelector('.board').cloneNode(true),end);
+      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('\u00a9 2026 Weiwei Hu. All rights reserved.'));
+      pa.replaceChildren(into.querySelector('.board').cloneNode(true),end);
+      // Measure the one-page layout, then shrink it to fit a landscape or a portrait page.
+      pa.classList.add('measuring');var h=pa.offsetHeight;pa.classList.remove('measuring');
+      pa.style.setProperty('--zl',Math.min(.9,700/h).toFixed(3));pa.style.setProperty('--zp',Math.min(.64,960/h).toFixed(3));
       var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
     btn('Save as PDF',function(b){b.disabled=true;b.textContent='Making PDF\u2026';
       makePdf(x).catch(function(){msg.textContent='We couldn\u2019t make the PDF just now. Try Print instead.';bar.append(msg);})
@@ -556,7 +559,7 @@ html{overflow-x:hidden}
   function board(x,tag){
     if(x.color==null)x.color=lastColor=pick(BOARD_COLORS.length,lastColor);
     var b=el('div','board');['o1','o2','o3'].forEach(function(o){b.append(el('span','borb '+o));});
-    var hd=el('div','bhead'),pills=el('div','bpills');pills.append(el('span','bpill','Your Next Action'));if(tag)pills.append(el('span','bpill soft',tag));
+    var hd=el('div','bhead'),pills=el('div','bpills');pills.append(el('span','bpill','Your Next Action by Underline AI'));if(tag)pills.append(el('span','bpill soft',tag));
     hd.append(pills,el('h3','btitle',x.title));
     var hero=el('div','bcard bhero');hero.style.background=grad(tone(x,0));hero.append(el('span','blabel','★ What I’d do'),el('p',null,x.do));
     var say=el('div','bcard bsay');say.append(el('span','blabel','What I’d say'));if(x.say_label)say.append(el('p','bsub',x.say_label));say.append(el('p','bq','“'+x.say+'”'));
@@ -569,7 +572,7 @@ html{overflow-x:hidden}
     groups(x.und).forEach(function(gr,i){var it=el('div','bitem'),s=el('span','bsrc',(gr.quoted?'':'Based on ')+gr.t);s.title=gr.s||'';s.style.background=grad(tone(x,2+i));
       it.append(el('p',null,gr.l.join(' ')),s);items.append(it);});
     var g=el('div','bgrid');g.append(hero,say,steps,watch,u);
-    var sign=el('div','bsign');sign.append('Designed by',el('b',null,'Underline AI'));b.append(hd,g,sign);return b;}
+    b.append(hd,g);return b;}
   function showSample(x,into,tag,mail){
     into=into||out;
     into.replaceChildren(board(x,tag||'Sample answer'));
@@ -583,7 +586,12 @@ html{overflow-x:hidden}
   function canvasPng(w,h,draw){var c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);return c.toDataURL('image/png');}
   function sphere(g,cx,cy,r,stops){var f=g.createRadialGradient(cx-r*.35,cy-r*.4,r*.05,cx,cy,r);stops.forEach(function(s){f.addColorStop(s[0],s[1]);});g.fillStyle=f;g.beginPath();g.arc(cx,cy,r,0,7);g.fill();}
   function roundPath(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
-  function fitSize(text,base,cap,min){var n=String(text).length;return n<=cap?base:Math.max(min,Math.round(base*Math.sqrt(cap/n)*10)/10);}
+  // Height in inches of text wrapped to a width in inches, measured with Arial at 96 dots per inch.
+  var measure=document.createElement('canvas').getContext('2d');
+  function textH(t,pt,wIn,bold,lh){measure.font=(bold?'bold ':'')+(pt*96/72)+'px Arial';var max=wIn*96,lines=0;
+    String(t).split('\n').forEach(function(par){var line='';lines++;par.split(/\s+/).forEach(function(w){var tryLine=line?line+' '+w:w;
+      if(line&&measure.measureText(tryLine).width>max){lines++;line=w;}else line=tryLine;});});
+    return lines*pt*lh/72;}
   function makeSlide(x){return loadPptx().then(function(){
     var P=new window.PptxGenJS();P.layout='LAYOUT_WIDE';P.title='Your Next Action: '+x.title;P.author='Underline AI by Weiwei Hu';
     var s=P.addSlide(),hex=function(c){return c.replace('#','');},F='Calibri',ink='1D2033',grey='7A7F95',dpi=120;
@@ -594,37 +602,46 @@ html{overflow-x:hidden}
     var card=function(cx,cy,cw,ch){s.addShape(P.ShapeType.roundRect,{x:cx,y:cy,w:cw,h:ch,rectRadius:.16,fill:{color:'FFFFFF',transparency:12},line:{color:'FFFFFF',transparency:100},
       shadow:{type:'outer',color:'9B8FC7',opacity:.25,blur:8,offset:2,angle:90}});};
     var label=function(t,lx,ly,lw,col){s.addText(t.toUpperCase(),{x:lx,y:ly,w:lw,h:.28,fontFace:F,fontSize:9,bold:true,color:col||grey,charSpacing:2,margin:0});};
+    // Every text box is measured (with Arial, which runs a little wider than Calibri) and made
+    // smaller until it fits inside its card.
+    var LH=1.25,fit=function(t,w,h,start,min,bold){var pt=start;while(pt>min&&textH(t,pt,w,bold,LH)>h)pt-=.5;return pt;};
+    var text=function(t,o){s.addText(t,Object.assign({fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1},o));};
     // Title
-    s.addShape(P.ShapeType.roundRect,{x:.6,y:.42,w:1.75,h:.32,rectRadius:.16,fill:{color:'FFFFFF',transparency:45},line:{color:ink,width:.75,transparency:40}});
-    s.addText('Your Next Action',{x:.6,y:.42,w:1.75,h:.32,fontFace:F,fontSize:10,color:ink,align:'center',valign:'middle',margin:0});
-    s.addText(x.title,{x:.6,y:.84,w:10.6,h:.8,fontFace:'Calibri Light',fontSize:fitSize(x.title,32,48,22),color:ink,valign:'middle',margin:0});
+    s.addShape(P.ShapeType.roundRect,{x:.6,y:.42,w:2.75,h:.32,rectRadius:.16,fill:{color:'FFFFFF',transparency:45},line:{color:ink,width:.75,transparency:40}});
+    text('Your Next Action by Underline AI',{x:.6,y:.42,w:2.75,h:.32,fontSize:10,color:ink,align:'center',valign:'middle'});
+    text(x.title,{x:.6,y:.84,w:10.6,h:.8,fontFace:'Calibri Light',fontSize:fit(x.title,10.6,.8,32,18),color:ink,valign:'middle'});
     // Row 1: What I'd do (gradient), What I'd say, Watch out
     var c=tone(x,0),hw=4.05,hh=2.6;
     s.addImage({data:canvasPng(Math.round(hw*dpi),Math.round(hh*dpi),function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,c[0]);f.addColorStop(1,c[1]);g.fillStyle=f;roundPath(g,0,0,w,h,20);g.fill();}),x:.6,y:1.8,w:hw,h:hh});
     label('★ What I’d do',.85,1.98,3.6,'FFFFFF');
-    s.addText(x.do,{x:.85,y:2.32,w:3.6,h:1.9,fontFace:F,fontSize:fitSize(x.do,17,150,12),bold:true,color:'FFFFFF',valign:'top',margin:0,lineSpacingMultiple:1.1});
+    text(x.do,{x:.85,y:2.32,w:3.55,h:1.9,fontSize:fit(x.do,3.55,1.9,17,9,true),bold:true,color:'FFFFFF'});
     card(4.85,1.8,4.1,2.6);label('What I’d say',5.1,1.98,3.6);
-    s.addText([{text:(x.say_label||'')+'\n',options:{fontSize:10,color:'8A8FA3'}},{text:'“'+x.say+'”',options:{fontSize:fitSize(x.say,12,260,9),color:ink}}],
-      {x:5.1,y:2.3,w:3.6,h:1.95,fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1.1});
+    var sy=2.3;if(x.say_label){var lp=fit(x.say_label,3.6,.45,10,8);text(x.say_label,{x:5.1,y:sy,w:3.6,h:.45,fontSize:lp,color:'8A8FA3'});sy+=textH(x.say_label,lp,3.6,false,LH)+.06;}
+    var q='“'+x.say+'”';text(q,{x:5.1,y:sy,w:3.6,h:4.25-sy,fontSize:fit(q,3.6,4.25-sy,12,7.5),color:ink});
     card(9.15,1.8,3.6,2.6);label('Watch out',9.4,1.98,3.1);
     s.addShape(P.ShapeType.roundRect,{x:9.4,y:2.32,w:.4,h:.4,rectRadius:.08,fill:{color:'F4956A'},line:{color:'F4956A'}});
-    s.addText('!',{x:9.4,y:2.32,w:.4,h:.4,fontFace:F,fontSize:14,bold:true,color:'FFFFFF',align:'center',valign:'middle',margin:0});
-    s.addText([{text:x.watch.text,options:{bold:true,fontSize:fitSize(x.watch.text,12,150,9),color:ink}},{text:x.watch.t?'\nBased on '+x.watch.t:'',options:{italic:true,fontSize:9,color:'8A8FA3'}}],
-      {x:9.95,y:2.3,w:2.6,h:1.95,fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1.1});
-    // Row 2: Do this next, Underlined
+    text('!',{x:9.4,y:2.32,w:.4,h:.4,fontSize:14,bold:true,color:'FFFFFF',align:'center',valign:'middle'});
+    var wp=fit(x.watch.text,2.6,1.55,12,8,true);text(x.watch.text,{x:9.95,y:2.3,w:2.6,h:1.6,fontSize:wp,bold:true,color:ink});
+    if(x.watch.t)text('Based on '+x.watch.t,{x:9.95,y:2.3+textH(x.watch.text,wp,2.6,true,LH)+.06,w:2.6,h:.4,fontSize:9,italic:true,color:'8A8FA3'});
+    // Row 2: Do this next. One text size for every step, each row as tall as its text.
     card(.6,4.6,8.35,2.4);label('Do this next',.85,4.76,4);
-    var n=x.next.length||1,rowH=Math.min(.62,1.85/n);
-    x.next.forEach(function(st,i){var ry=5.08+i*rowH,t=String(st.step||st),k=tone(x,1+i);
-      s.addShape(P.ShapeType.ellipse,{x:.85,y:ry,w:.32,h:.32,fill:{color:hex(k[0])},line:{color:hex(k[0])}});
-      s.addText(String(i+1),{x:.85,y:ry,w:.32,h:.32,fontFace:F,fontSize:10,bold:true,color:'FFFFFF',align:'center',valign:'middle',margin:0});
-      s.addText(t,{x:1.3,y:ry-.04,w:7.4,h:rowH,fontFace:F,fontSize:fitSize(t,11.5,120,9),color:ink,valign:'top',margin:0});});
+    var steps=x.next.map(function(st){return String(st.step||st);}),many=steps.length>4,dot=many?.26:.32,gap=many?.05:.08,avail=6.92-5.08,sp=11.5;
+    var rows=function(pt){return steps.map(function(t){return Math.max(dot,textH(t,pt,7.4,false,LH));});};
+    while(sp>7&&rows(sp).reduce(function(a,b){return a+b;},0)+gap*(steps.length-1)>avail)sp-=.5;
+    var hs=rows(sp),ry=5.08;
+    steps.forEach(function(t,i){var k=tone(x,1+i),d=dot;
+      s.addShape(P.ShapeType.ellipse,{x:.85,y:ry,w:d,h:d,fill:{color:hex(k[0])},line:{color:hex(k[0])}});
+      text(String(i+1),{x:.85,y:ry,w:d,h:d,fontSize:d<.3?8.5:10,bold:true,color:'FFFFFF',align:'center',valign:'middle'});
+      text(t,{x:1.3,y:ry+Math.max(0,(dot-textH(t,sp,7.4,false,LH))/2),w:7.4,h:hs[i],fontSize:sp,color:ink});ry+=hs[i]+gap;});
+    // Underlined: one text size for all ideas and sources, small enough that they all fit.
     card(9.15,4.6,3.6,2.4);label('Underlined',9.4,4.76,3.1);
-    var runs=[];groups(x.und).forEach(function(gr,i){var k=tone(x,2+i);if(i)runs.push({text:'\n',options:{fontSize:5}});
-      runs.push({text:gr.l.join(' ')+'\n',options:{color:ink}});runs.push({text:(gr.quoted?'— ':'— based on ')+gr.t,options:{bold:true,color:hex(k[1])}});});
-    var all=runs.map(function(r){return r.text;}).join('');
-    s.addText(runs,{x:9.4,y:5.08,w:3.15,h:1.8,fontFace:F,fontSize:fitSize(all,11,300,8),valign:'top',margin:0});
-    s.addText([{text:'Designed by  ',options:{fontSize:9,color:'7A7F95'}},{text:'Underline AI',options:{fontSize:11,bold:true,color:ink}}],{x:8.75,y:7.06,w:4,h:.26,fontFace:F,align:'right',valign:'bottom',margin:0});
-    s.addImage({data:canvasPng(240,8,function(g,w,h){var f=g.createLinearGradient(0,0,w,0);f.addColorStop(0,'#4F6BFF');f.addColorStop(.55,'#C060D8');f.addColorStop(1,'#8B5CF6');g.fillStyle=f;roundPath(g,0,0,w,h,4);g.fill();}),x:11.73,y:7.34,w:1.02,h:.035});
+    var gs=groups(x.und).map(function(gr){return {t:gr.l.join(' '),src:(gr.quoted?'— ':'— based on ')+gr.t};}),up=10.5;
+    var uH=function(pt){return gs.reduce(function(a,g){return a+textH(g.t,pt,3.15,false,LH)+textH(g.src,pt,3.15,true,LH)+.06;},0);};
+    while(up>6.5&&uH(up)>6.9-5.08)up-=.5;
+    var uy=5.08;gs.forEach(function(g,i){var k=tone(x,2+i),th=textH(g.t,up,3.15,false,LH),sh=textH(g.src,up,3.15,true,LH);
+      text(g.t,{x:9.4,y:uy,w:3.15,h:th,fontSize:up,color:ink});text(g.src,{x:9.4,y:uy+th,w:3.15,h:sh,fontSize:up,bold:true,color:hex(k[1])});uy+=th+sh+.06;});
+    // Footer
+    text([{text:'Know your next best action.   ',options:{bold:true,color:ink}},{text:'© 2026 Weiwei Hu. All rights reserved.',options:{color:'8A8FA3'}}],{x:.6,y:7.1,w:12.13,h:.28,fontSize:9.5,align:'center',valign:'middle'});
     return P.write({outputType:'blob'}).then(function(blob){return deliver(blob,fileName(x,'pptx'));});});}
 
   // Getting a file to the person: phones open the share sheet (Save to Files, Mail, AirDrop),
@@ -650,7 +667,7 @@ html{overflow-x:hidden}
   function loadScript(src,ready){return ready()?Promise.resolve():new Promise(function(ok,fail){var sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=fail;document.head.append(sc);});}
   function rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
   function makePdf(x){return loadScript(JSPDF_URL,function(){return window.jspdf;}).then(function(){
-    var pdf=new window.jspdf.jsPDF({orientation:'landscape',unit:'pt',format:'a4'}),PW=pdf.internal.pageSize.getWidth(),M=28,u=(PW-2*M)/13.333,X0=M,Y0=64;
+    var pdf=new window.jspdf.jsPDF({orientation:'landscape',unit:'pt',format:'a4'}),PW=pdf.internal.pageSize.getWidth(),M=28,u=(PW-2*M)/13.333,X0=M,Y0=46;
     var X=function(v){return X0+v*u;},Y=function(v){return Y0+v*u;},ink=[29,32,51],grey=[122,127,149],soft=[138,143,163];
     var col=function(c){pdf.setTextColor(c[0],c[1],c[2]);};
     // text that wraps inside a box, made smaller until it fits
@@ -660,12 +677,11 @@ html{overflow-x:hidden}
     var label=function(t,x0,y0,c){pdf.setFont('helvetica','bold');pdf.setFontSize(7.5);pdf.setCharSpace(1.2);col(c||grey);pdf.text(t.toUpperCase(),x0,y0+7.5);pdf.setCharSpace(0);};
     var card=function(cx,cy,cw,ch){pdf.setGState(new pdf.GState({opacity:.88}));pdf.setFillColor(255,255,255);pdf.roundedRect(X(cx),Y(cy),cw*u,ch*u,9,9,'F');pdf.setGState(new pdf.GState({opacity:1}));};
     // brand line, the board's gradient and spheres, the footer
-    pdf.setFont('helvetica','bold');pdf.setFontSize(15);col(ink);pdf.text('Underline AI',M+2,42);var bw=pdf.getTextWidth('Underline AI');pdf.setFont('helvetica','normal');pdf.setFontSize(10);col([94,100,117]);pdf.text('by Weiwei Hu',M+2+bw+7,42);
     pdf.addImage(canvasPng(1600,900,function(g,w,h){roundPath(g,0,0,w,h,40);g.clip();var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,'#FDEBDD');f.addColorStop(.46,'#FBDDE6');f.addColorStop(1,'#E6E2FD');g.fillStyle=f;g.fillRect(0,0,w,h);
       sphere(g,w*.925,h*.1,44,[[0,'#ffffff'],[.12,'#B9C6FF'],[.6,'#5B74FF'],[1,'#7A5CF0']]);sphere(g,w*.47,h*.05,11,[[0,'#ffffff'],[.4,'#FFC2A8'],[1,'#FF9C7A']]);sphere(g,w*.03,h*.95,17,[[0,'#ffffff'],[.4,'#FFB3C4'],[1,'#F57C9A']]);}),'PNG',X(0),Y(0),13.333*u,7.5*u,'board','FAST');
     // title
-    pdf.setDrawColor(29,32,51);pdf.setLineWidth(.6);pdf.setFillColor(255,255,255);pdf.roundedRect(X(.6),Y(.42),1.75*u,.32*u,.16*u,.16*u,'FD');
-    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(ink);pdf.text('Your Next Action',X(.6)+1.75*u/2,Y(.42)+.32*u/2+3,{align:'center'});
+    pdf.setDrawColor(29,32,51);pdf.setLineWidth(.6);pdf.setFillColor(255,255,255);pdf.roundedRect(X(.6),Y(.42),2.75*u,.32*u,.16*u,.16*u,'FD');
+    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(ink);pdf.text('Your Next Action by Underline AI',X(.6)+2.75*u/2,Y(.42)+.32*u/2+3,{align:'center'});
     block(x.title,X(.6),Y(.86),10.6*u,.8*u,22,15,'normal',ink,1.15);
     // row 1: What I'd do, What I'd say, Watch out
     var c=tone(x,0);
@@ -680,10 +696,14 @@ html{overflow-x:hidden}
     if(x.watch.t){pdf.setFont('helvetica','italic');pdf.setFontSize(8);col(soft);pdf.text(pdf.splitTextToSize('Based on '+x.watch.t,2.6*u),X(9.95),Y(2.3)+wh+10);}
     // row 2: Do this next, Underlined
     card(.6,4.6,8.35,2.4);label('Do this next',X(.85),Y(4.78));
-    var n=x.next.length||1,rowH=Math.min(.62,1.85/n);
-    x.next.forEach(function(st,i){var ry=Y(5.08+i*rowH),k=rgb(tone(x,1+i)[0]);pdf.setFillColor(k[0],k[1],k[2]);pdf.circle(X(1.01),ry+.16*u,.16*u,'F');
-      pdf.setFont('helvetica','bold');pdf.setFontSize(9);col([255,255,255]);pdf.text(String(i+1),X(1.01),ry+.16*u+3,{align:'center'});
-      block(String(st.step||st),X(1.3),ry+1,7.4*u,rowH*u,10.5,8,'normal',ink);});
+    // One text size for every step, each row as tall as its text
+    var steps=x.next.map(function(st){return String(st.step||st);}),r=(steps.length>4?.13:.16)*u,gap=(steps.length>4?.05:.08)*u,sp=10.5;
+    var rowsH=function(f){pdf.setFont('helvetica','normal');pdf.setFontSize(f);return steps.map(function(t){return Math.max(2*r,pdf.splitTextToSize(t,7.4*u).length*f*1.35);});};
+    while(sp>7&&rowsH(sp).reduce(function(a,b){return a+b;},0)+gap*(steps.length-1)>1.84*u)sp-=.5;
+    var hs=rowsH(sp),ry=Y(5.08);
+    steps.forEach(function(t,i){var k=rgb(tone(x,1+i)[0]);pdf.setFillColor(k[0],k[1],k[2]);pdf.circle(X(.85)+r,ry+r,r,'F');
+      pdf.setFont('helvetica','bold');pdf.setFontSize(r>.14*u?9:8);col([255,255,255]);pdf.text(String(i+1),X(.85)+r,ry+r+3,{align:'center'});
+      block(t,X(1.3),ry+Math.max(0,(2*r-sp*1.35)/2)-1,7.4*u,hs[i]+2,sp,sp,'normal',ink);ry+=hs[i]+gap;});
     card(9.15,4.6,3.6,2.4);label('Underlined',X(9.4),Y(4.78));
     // Underlined: the largest size at which every idea and its source fit inside the card
     var gs=groups(x.und),fs=9.5,yy=Y(5.08),need=function(f){pdf.setFontSize(f);return gs.reduce(function(a,g){pdf.setFont('helvetica','normal');var t=pdf.splitTextToSize(g.l.join(' '),3.1*u).length;
@@ -691,9 +711,8 @@ html{overflow-x:hidden}
     while(fs>6.5&&need(fs)>1.9*u)fs-=.5;
     gs.forEach(function(g,i){var k=rgb(tone(x,2+i)[1]);yy+=block(g.l.join(' '),X(9.4),yy,3.1*u,9*u,fs,fs,'normal',ink,1.3);
       pdf.setFont('helvetica','bold');pdf.setFontSize(fs);col(k);var src=pdf.splitTextToSize((g.quoted?'— ':'— based on ')+g.t,3.1*u);pdf.text(src,X(9.4),yy+fs);yy+=src.length*fs*1.3+6;});
-    pdf.setFont('helvetica','bold');pdf.setFontSize(11);var nw=pdf.getTextWidth('Underline AI'),ex=X(12.75),ey=Y(7.27);col(ink);pdf.text('Underline AI',ex-nw,ey);
-    pdf.addImage(canvasPng(240,8,function(g,w,h){var f=g.createLinearGradient(0,0,w,0);f.addColorStop(0,'#4F6BFF');f.addColorStop(.55,'#C060D8');f.addColorStop(1,'#8B5CF6');g.fillStyle=f;roundPath(g,0,0,w,h,4);g.fill();}),'PNG',ex-nw,ey+3,nw,2.2,'sign','FAST');
-    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(grey);pdf.text('Designed by',ex-nw-6,ey,{align:'right'});
+    pdf.setFont('helvetica','bold');pdf.setFontSize(9.5);col(ink);var tag='Know your next best action.   ',tw=pdf.getTextWidth(tag);pdf.setFont('helvetica','normal');
+    var rest='\u00a9 2026 Weiwei Hu. All rights reserved.',rw=pdf.getTextWidth(rest),sx=(PW-tw-rw)/2,fy=Y(7.5)+22;pdf.setFont('helvetica','bold');pdf.text(tag,sx,fy);pdf.setFont('helvetica','normal');col([138,143,160]);pdf.text(rest,sx+tw,fy);
     pdf.setProperties({title:'Your Next Action: '+x.title,author:'Underline AI by Weiwei Hu'});
     return deliver(pdf.output('blob'),fileName(x,'pdf'));});}
   var dlg=$('#gateDlg');
