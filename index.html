@@ -7,7 +7,7 @@
 <meta name="description" content="Underline by Weiwei Hu. Practical advice for work and life. Bring a question, challenge, or decision and get clear, personalized recommendations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap">
 <style>
 /* Layout: nav, two-column hero (headline + app preview), three feature tiles, how it works, a worked example (inputs, then the answer), a closing call to action and a footer. */
 :root{
@@ -247,7 +247,13 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
+.ownerr{color:var(--soft);margin:0}
+/* What I'd do: the key line, on a calm paper-textured card in a new color each time */
+.keycard{position:relative;margin:16px 0 4px;border-radius:18px;padding:44px 36px 48px;min-height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.keycard::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.keycard .kin{position:relative;max-width:36ch;width:100%}.keycard .klabel{position:relative;margin:0 0 14px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.keycard .kline{position:relative;margin:0;font-family:"Patrick Hand","Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive;font-size:1.65rem;line-height:1.38;letter-spacing:.02em}
+@media (max-width:520px){.keycard{padding:32px 24px 36px;min-height:160px}.keycard .kline{font-size:1.4rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
 @media print{@page{margin:12mm}html{font-size:13px!important}html,body{background:#fff!important}#printArea .sec h4::before{-webkit-mask:none!important;mask:none!important;background:none!important;content:"\2605"!important;color:#C060D8;width:auto!important;height:auto!important;font-size:1.05em;line-height:1}#printArea .sec{padding:11px 0!important}#printArea .pend{break-before:avoid;page-break-before:avoid}body::before{display:none}body>*:not(#printArea){display:none!important}
 #printArea{display:block!important;max-width:158mm;margin:0 auto;color:#0F1222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -498,13 +504,20 @@ html{overflow-x:hidden}
     btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
       function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
     return bar;}
+  // Calm card colors (background, text), like soft paper. A new one each time an answer shows.
+  var CARD_COLORS=[['#F4A04F','#1F1A14'],['#6F7B4E','#FFFFFF'],['#A9B89A','#1F2419'],['#7A9CB8','#FFFFFF'],['#C8694A','#FFFFFF'],
+    ['#E3B448','#1F1A10'],['#E8A9A0','#2A1A18'],['#A07A8C','#FFFFFF'],['#4F7C7A','#FFFFFF'],['#D9C7A7','#2A241A']];
+  var lastColor=-1;
+  function keycard(text){var i;do{i=Math.floor(Math.random()*CARD_COLORS.length);}while(i===lastColor&&CARD_COLORS.length>1);lastColor=i;
+    var c=el('div','keycard');c.style.background=CARD_COLORS[i][0];c.style.color=CARD_COLORS[i][1];
+    var inner=el('div','kin');inner.append(el('p','klabel','\u2605 What I\u2019d do'),el('p','kline',text));c.append(inner);return c;}
   function showSample(x,into,tag,mail){
     into=into||out;
     into.replaceChildren(head(x.title,tag||'Sample answer'));
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));
     var ss=sec("What I'd say",[say]);ss.classList.add('star');
     var w=el('div','watch');w.append(el('p',null,x.watch.text));var fr=el('p','from','Based on '+x.watch.t);fr.title=x.watch.s;w.append(fr);
-    into.append(sec("What I'd do",[el('p',null,x.do)]),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
+    into.append(keycard(x.do),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
     into.append(actions(x,into,mail));
   }
   var dlg=$('#gateDlg');
