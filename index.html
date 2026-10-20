@@ -120,6 +120,9 @@ footer a{color:var(--soft)}
 .buy .small{font-size:.85rem;color:var(--soft);margin:0}
 .badge.pv::before{content:none}
 a.btn{text-decoration:none;color:var(--ink)}
+.cta.locked{border:0;gap:8px;cursor:not-allowed;opacity:.55;box-shadow:none;font-family:inherit}
+.cta.locked:hover{filter:none}
+.price a{color:var(--brand);font-weight:600}
 .underlined{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .underlined b{display:inline;font-family:var(--d);font-weight:600;background:linear-gradient(transparent 60%,var(--mark) 60%,var(--mark) 90%,transparent 90%)}
 .underlined span{display:block;font-size:.9rem;color:var(--soft);margin-top:2px}
@@ -137,7 +140,7 @@ a.btn{text-decoration:none;color:var(--ink)}
     <h1>Bring one situation. Know your <span class="hl">next best action</span>.</h1>
     <p class="lead">Tell us what's happening. Get Your Next Action.</p>
     <p>A personalized recommendation informed by some of the best ideas on communication, influence, careers, leadership, and getting things done.</p>
-    <div class="ctarow"><a class="cta" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a></div>
+    <div class="ctarow"><button class="cta locked" type="button" disabled aria-disabled="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your Next Action</button><span class="price">Available in the full version. <a href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a></span></div>
   </section>
 
   <section>
