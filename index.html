@@ -444,7 +444,7 @@ html{overflow-x:hidden}
   });
 
   // Try your own: one free Next Action from the Underline AI server, then full access.
-  var OWN_API='__OWN_API__', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
   if(!/^https:\/\//.test(OWN_API))return;
   $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
   var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
