@@ -4,7 +4,7 @@ Bring one situation. Know your next best action. By Weiwei Hu.
 
 ### [See Underline →](https://wei-wei-hu.github.io/manager-playbook/)
 
-Describe a work situation in a short form. Underline picks the ideas from its library that fit and gives you one page, Your Next Action:
+Describe a work situation in a short form. Underline picks the ideas from its library that fit and gives you a one-page plan, Your Next Action:
 
 - **What I'd do:** one clear recommendation
 - **Why:** 2 to 3 reasons that fit your situation
