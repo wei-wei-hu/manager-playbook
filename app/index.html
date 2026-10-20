@@ -787,8 +787,8 @@ html{overflow-x:hidden}
   // An email that isn't on the members list: a pop-up that leads to the payment page.
   function notMember(email){
     say('This email doesn\u2019t have member access yet. If you\u2019ve just subscribed, your access will be ready within 24 hours.');
-    $('#gateT').textContent='Join Underline AI to get full access';
-    dlg.querySelector('.gcard p').textContent='Full access is just for Underline AI members. Subscribe on the next page, and we\u2019ll set up your access within 24 hours of your payment. Then sign in here with '+(email||'the email you subscribed with')+' and bring any situation, any time.';
+    $('#gateT').textContent='Unlock full access';
+    dlg.querySelector('.gcard p').textContent='Full access is just for Underline AI members. We\u2019ll grant your access within 24 hours of your paid membership.';
     if(dlg.showModal&&!dlg.open)dlg.showModal();}
 
   // Sign in: email, then the 6-digit code.
