@@ -7,7 +7,7 @@
 <meta name="description" content="Underline by Weiwei Hu. Practical advice for work and life. Bring a question, challenge, or decision and get clear, personalized recommendations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Kalam&family=Gochi+Hand&family=Indie+Flower&family=Caveat:wght@500&display=swap">
 <style>
 /* Layout: nav, two-column hero (headline + app preview), three feature tiles, how it works, a worked example (inputs, then the answer), a closing call to action and a footer. */
 :root{
@@ -252,7 +252,7 @@ html{overflow-x:hidden}
 .keycard{position:relative;margin:16px 0 4px;border-radius:18px;padding:44px 36px 48px;min-height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .keycard::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .keycard .kin{position:relative;max-width:36ch;width:100%}.keycard .klabel{position:relative;margin:0 0 14px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
-.keycard .kline{position:relative;margin:0;font-family:"Patrick Hand","Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive;font-size:1.65rem;line-height:1.38;letter-spacing:.02em}
+.keycard .kline{position:relative;margin:0;font-family:"Patrick Hand","Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive;font-size:1.6rem;font-size-adjust:.5;line-height:1.4;letter-spacing:.01em}
 @media (max-width:520px){.keycard{padding:32px 24px 36px;min-height:160px}.keycard .kline{font-size:1.4rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
 @media print{@page{margin:12mm}html{font-size:13px!important}html,body{background:#fff!important}#printArea .sec h4::before{-webkit-mask:none!important;mask:none!important;background:none!important;content:"\2605"!important;color:#C060D8;width:auto!important;height:auto!important;font-size:1.05em;line-height:1}#printArea .sec{padding:11px 0!important}#printArea .pend{break-before:avoid;page-break-before:avoid}#printArea .sec{padding:9px 0!important}#printArea .pend{margin-top:10px!important}#printArea .pend b{display:inline!important;margin:0 8px 0 0!important;font-size:11pt!important}#printArea .pend span{display:inline!important}#printArea .keycard{min-height:0;padding:20px 26px 22px;margin:10px 0 2px;break-inside:avoid}#printArea .keycard .kline{font-size:1.25rem}#printArea .keycard .klabel{margin-bottom:8px}body::before{display:none}body>*:not(#printArea){display:none!important}
@@ -507,10 +507,14 @@ html{overflow-x:hidden}
   // Calm card colors (background, text), like soft paper. A new one each time an answer shows.
   var CARD_COLORS=[['#F4A04F','#1F1A14'],['#6F7B4E','#FFFFFF'],['#A9B89A','#1F2419'],['#7A9CB8','#FFFFFF'],['#C8694A','#FFFFFF'],
     ['#E3B448','#1F1A10'],['#E8A9A0','#2A1A18'],['#A07A8C','#FFFFFF'],['#4F7C7A','#FFFFFF'],['#D9C7A7','#2A241A']];
-  var lastColor=-1;
-  function keycard(text){var i;do{i=Math.floor(Math.random()*CARD_COLORS.length);}while(i===lastColor&&CARD_COLORS.length>1);lastColor=i;
+  // Handwritten fonts; font-size-adjust gives them the same letter height, so each looks the same size.
+  var CARD_FONTS=['"Patrick Hand"','"Kalam"','"Gochi Hand"','"Indie Flower"','"Caveat"'];
+  var lastColor=-1,lastFont=-1;
+  function pick(n,last){var i;do{i=Math.floor(Math.random()*n);}while(i===last&&n>1);return i;}
+  function keycard(text){var i=lastColor=pick(CARD_COLORS.length,lastColor),f=lastFont=pick(CARD_FONTS.length,lastFont);
     var c=el('div','keycard');c.style.background=CARD_COLORS[i][0];c.style.color=CARD_COLORS[i][1];
-    var inner=el('div','kin');inner.append(el('p','klabel','\u2605 What I\u2019d do'),el('p','kline',text));c.append(inner);return c;}
+    var line=el('p','kline',text);line.style.fontFamily=CARD_FONTS[f]+',"Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive';
+    var inner=el('div','kin');inner.append(el('p','klabel','\u2605 What I\u2019d do'),line);c.append(inner);return c;}
   function showSample(x,into,tag,mail){
     into=into||out;
     into.replaceChildren(head(x.title,tag||'Sample answer'));
