@@ -98,7 +98,7 @@ nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;p
 .chip{font-size:.78rem;padding:3px 10px;border-radius:999px;background:var(--card);color:#6366F1}
 .chip:nth-child(2){color:#D9467F}
 @media (max-width:980px){.hero{grid-template-columns:1fr}.lead{max-width:40ch}}
-@media (max-width:620px){.preview{grid-template-columns:1fr}.cats{display:none}.orb{display:none}}
+@media (max-width:620px){.preview{grid-template-columns:1fr}.cats{display:none}.hero .orb:first-of-type{width:58px!important;height:58px!important;left:auto!important;right:10px;top:-4px!important}.hero .orb:nth-of-type(2){left:-6px!important}.closing .orb{width:56px!important;height:56px!important}#own>.orb,#member>.orb{left:auto!important;right:6px;top:4px!important}}
 
 /* features */
 .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:40px 0 20px}
@@ -179,11 +179,17 @@ footer a svg{width:15px;height:15px}
 @media (max-width:520px){.logo{font-size:1.4rem}.logo .by{font-size:.8rem!important;margin-left:6px!important}.links .btn.dark{padding:10px 16px;font-size:.9rem}.btn.big{width:100%!important}}
 .logo .by{font-size:.9rem;font-weight:500;color:var(--soft);letter-spacing:0;margin-left:10px}
 
+/* small bubbles further down the page */
+.block{position:relative}
+.block>.orb{z-index:0;opacity:.75}
 /* gentle motion: floating spheres and a slowly drifting background glow */
 @media (prefers-reduced-motion:no-preference){
   .orb{animation:float1 9s ease-in-out infinite}
   .hero .orb:nth-of-type(2){animation:float2 7s ease-in-out infinite}
   .closing .orb{animation:float3 11s ease-in-out infinite}
+  #how>.orb{animation:float2 8s ease-in-out infinite}
+  #own>.orb,#member>.orb{animation:float1 10s ease-in-out -3s infinite}
+  #try>.orb{animation:float3 12s ease-in-out -5s infinite}
   body::before{animation:glow 22s ease-in-out infinite alternate}
 }
 @keyframes float1{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-26px)}75%{transform:translate(-12px,-8px)}}
@@ -373,6 +379,7 @@ html{overflow-x:hidden}
   </section>
 
   <section class="block" id="how">
+    <div class="orb" style="width:34px;height:34px;right:4%;top:6px" aria-hidden="true"></div>
     <p class="kicker">How it works</p>
     <h2>Bring one situation. Leave with a one-page actionable plan.</h2>
     <ol class="steps">
@@ -383,6 +390,7 @@ html{overflow-x:hidden}
   </section>
 
   <section class="block" id="own" hidden>
+    <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
     <p class="kicker">Free trial</p>
     <h2>Try it on your own situation.</h2>
     <div class="trygrid">
@@ -408,6 +416,7 @@ html{overflow-x:hidden}
     </div>
   </section>
   <section class="block" id="try">
+    <div class="orb" style="width:46px;height:46px;right:2%;top:-6px" aria-hidden="true"></div>
     <p class="kicker">Examples</p>
     <h2>See Underline AI in action.</h2>
     <div class="trygrid">
