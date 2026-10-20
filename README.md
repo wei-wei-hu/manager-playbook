@@ -32,8 +32,6 @@ Underline AI is your personal advisor. Bring a question, a challenge, or a decis
 
 [![Underline AI landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline-ai/)
 
-<img src="docs/underline-phone.png" alt="Underline AI landing page on a phone" width="30%">
-
 ## Get full access
 
 [Try a sample on the page](https://wei-wei-hu.github.io/underline-ai/#try) to see a full answer. To get Your Next Action for your own situation, [get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
