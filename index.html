@@ -241,7 +241,7 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}
+.ownerr{color:var(--soft);margin:0}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
 #gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
@@ -462,6 +462,9 @@ html{overflow-x:hidden}
     watch:a.watch?{text:a.watch.text,t:a.watch.title,s:a.watch.source}:{text:'',t:'',s:''},
     und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
   function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
+  // When free tries hit their limit (daily cap or the monthly spend limit), say so kindly and offer full access.
+  function full(){var p=el('p','ownerr','Free tries have reached their limit for now. Please come back in a few days and try again. Want your answer today? ');
+    var a=el('a',null,'Get full access');a.href=PAY;a.target='_blank';a.rel='noopener';p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
     if(store('ul.own')){window.open(PAY,'_blank','noopener');return;}
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim(),email:$('#oEmail').value.trim()};
@@ -476,12 +479,12 @@ html{overflow-x:hidden}
         var e=res.j&&res.j.error;
         if(e==='used'){store('ul.own',String(Date.now()));lock();say('This email has already used its free Next Action. Get full access for your next situation.');}
         else if(e==='email'){$('#oEmail').focus();say('Please enter a valid email address.');}
-        else if(e==='busy')say('Underline AI is busy right now. Please try again in a little while.');
+        else if(e==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
         else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
         else if(e==='too_long')say('That\u2019s a bit long. Please shorten it and try again.');
-        else say('Something went wrong'+(res.j&&res.j.detail?': '+res.j.detail:'. Please try again.'));
+        else say('Underline AI is taking a short break. Please try again in a few minutes.');
       })
-      .catch(function(){say('Couldn\u2019t reach the Underline AI server. Please try again in a moment.');})
+      .catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
       .then(function(){oGo.disabled=false;});
   });
 })();
