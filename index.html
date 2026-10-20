@@ -459,7 +459,7 @@ html{overflow-x:hidden}
   $('#heroTry').href='#own';
   var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
   // Free-try codes: a Google Apps Script emails each visitor a code and allows one free try per email.
-  var CODE_API='https://script.google.com/macros/s/AKfycbzLOBUjiXMCPxNf0FFV-ydMHkWJwdHoDBLV1WsfEij01ornCMc803LYDbdAXp0ZNJpc/exec', oSend=$('#ownSend'), verified='';
+  var CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec', oSend=$('#ownSend'), verified='';
   var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
   function codes(action,extra){var b={action:action,email:$('#oEmail').value.trim()};for(var k in extra)b[k]=extra[k];
     return fetch(CODE_API,{method:'POST',body:JSON.stringify(b)}).then(function(r){return r.json();});}
