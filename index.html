@@ -133,9 +133,7 @@ section.block{padding:56px 0 0}
 .full h3{font-size:1.35rem;margin-bottom:6px}
 .sec{border-top:1px solid var(--line);padding:16px 0}
 .sec:last-child{padding-bottom:0}
-.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}
-#tryOut .sec h4{display:flex;align-items:center;gap:6px}
-#tryOut .sec h4::before{content:"";width:13px;height:13px;background:linear-gradient(135deg,#4F6BFF,#C060D8);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}#tryOut .sec h4,#ownOut .sec h4{display:flex;align-items:center;gap:6px}#tryOut .sec h4::before,#ownOut .sec h4::before{content:"";width:13px;height:13px;background:linear-gradient(135deg,#4F6BFF,#C060D8);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat}
 .sec.star .say{border-left:3px solid #8B5CF6}
 .watch{background:rgba(245,158,11,.10);border-radius:14px;padding:12px 16px}
 .watch p{margin:0;font-weight:600}
@@ -237,6 +235,13 @@ html{overflow-x:hidden}
 /* try-it demo */
 .trygrid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
 #tryOut[hidden]{display:none}
+#own[hidden],#ownOut[hidden],.ownlink[hidden]{display:none}
+#ownOut{display:block}
+.thinking{display:flex;align-items:center;gap:12px;color:var(--soft);padding:8px 0}
+.thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
+.ownerr{color:var(--soft);margin:0}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
 #gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
@@ -250,13 +255,7 @@ html{overflow-x:hidden}
 @media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
 .trychips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .trychips button{border:0;cursor:pointer;font:inherit;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
-.trychips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-#tryForm{display:flex;flex-direction:column}
-#tryForm .fld{display:block}
-#tryForm .fld small{font-weight:400;color:var(--faint)}
-#tryForm textarea,#tryForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}
-#tryForm textarea:focus,#tryForm input:focus{outline:2px solid var(--purple);outline-offset:1px}
-.trygo,#tryForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
+.trychips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}#tryForm,#ownForm{display:flex;flex-direction:column}#tryForm .fld,#ownForm .fld{display:block}#tryForm .fld small,#ownForm .fld small{font-weight:400;color:var(--faint)}#tryForm textarea,#tryForm input,#ownForm textarea,#ownForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}#tryForm textarea:focus,#tryForm input:focus,#ownForm textarea:focus,#ownForm input:focus{outline:2px solid var(--purple);outline-offset:1px}.trygo,#tryForm .trygo.btn.big,#ownForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
 .trynote{margin:10px 0 0;font-size:.82rem;color:var(--faint)}
 .tryempty{margin:0;color:var(--faint)}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--tint);color:#6366F1;margin-bottom:8px}
@@ -282,6 +281,7 @@ html{overflow-x:hidden}
     <div class="links">
       <a href="#how">How it works</a>
       <a href="#try">Try it</a>
+      <a href="#own" class="ownlink" hidden>Try your own</a>
       <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
   </nav>
@@ -360,6 +360,24 @@ html{overflow-x:hidden}
     </div>
   </section>
 
+  <section class="block" id="own" hidden>
+    <p class="kicker">Try your own</p>
+    <h2>Try it on your own situation.</h2>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Your situation</p>
+        <form id="ownForm" autocomplete="off">
+          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
+          <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
+          <p class="trynote" id="ownNote">One free Next Action. It can take up to a minute.</p>
+        </form>
+      </div>
+      <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
   <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
     <h2>Know your <span class="grad">next best action.</span></h2>
@@ -398,12 +416,13 @@ html{overflow-x:hidden}
     g.forEach(function(u){var i=el('p','idea');var s=el('span','by','\u2014 '+(u.quoted?'':'based on ')+u.t);s.title=u.s;i.append(document.createTextNode(u.l.join(' ')+' '),s);d.append(i);});return d;}
   function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
   var out=$('#tryOut');
-  function showSample(x){
-    out.replaceChildren(head(x.title,'Sample answer'));
+  function showSample(x,into,tag){
+    into=into||out;
+    into.replaceChildren(head(x.title,tag||'Sample answer'));
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));
     var ss=sec("What I'd say",[say]);ss.classList.add('star');
     var w=el('div','watch');w.append(el('p',null,x.watch.text));var fr=el('p','from','Based on '+x.watch.t);fr.title=x.watch.s;w.append(fr);
-    out.append(sec("What I'd do",[el('p',null,x.do)]),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
+    into.append(sec("What I'd do",[el('p',null,x.do)]),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
   }
   var dlg=$('#gateDlg');
   function closeGate(){if(dlg.open)dlg.close();}
@@ -422,6 +441,43 @@ html{overflow-x:hidden}
     var sit=$('#tSit').value.trim();if(!sit){$('#tSit').focus();return;}
     if(cur===null){showGate();return;}
     showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  // Try your own: one free Next Action from the Underline AI server, then full access.
+  var OWN_API='__OWN_API__', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  if(!/^https:\/\//.test(OWN_API))return;
+  $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
+  var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+  function lock(){oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
+  if(store('ul.own'))lock();
+  // A situation typed into the samples form goes to Try your own instead of the full-access pop-up.
+  showGate=function(){out.hidden=true;out.replaceChildren();
+    ['Sit','Goal','Ctx'].forEach(function(k){var v=$('#t'+k).value.trim();if(v&&!$('#o'+k).value.trim())$('#o'+k).value=v;});
+    $('#own').scrollIntoView({behavior:'smooth',block:'start'});};
+  function fromApi(a){return {title:a.title,do:a.do,say_label:a.say_label,say:a.say,next:a.next,
+    watch:a.watch?{text:a.watch.text,t:a.watch.title,s:a.watch.source}:{text:'',t:'',s:''},
+    und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
+  function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
+  $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
+    if(store('ul.own')){window.open(PAY,'_blank','noopener');return;}
+    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
+    if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what\u2019s happening.';return;}
+    oGo.disabled=true;var t=el('div','thinking');t.append(el('i'),el('span',null,'Finding the ideas that fit your situation. This can take up to a minute.'));
+    oOut.replaceChildren(head('Working on it',null),t);oOut.hidden=false;oOut.scrollIntoView({behavior:'smooth',block:'start'});
+    fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(res){
+        if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));showSample(fromApi(res.j.answer),oOut,'Your free answer');lock();return;}
+        var e=res.j&&res.j.error;
+        if(e==='used'){store('ul.own',String(Date.now()));lock();say('You\u2019ve used your free Next Action. Get full access for your next situation.');}
+        else if(e==='busy')say('Underline AI is busy right now. Please try again in a little while.');
+        else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
+        else if(e==='too_long')say('That\u2019s a bit long. Please shorten it and try again.');
+        else say('Something went wrong. Please try again.');
+      })
+      .catch(function(){say('Something went wrong. Please check your connection and try again.');})
+      .then(function(){oGo.disabled=false;});
   });
 })();
 </script>
