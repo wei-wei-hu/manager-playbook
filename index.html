@@ -227,7 +227,9 @@ html{overflow-x:hidden}
 @media (max-width:620px){.preview{grid-template-columns:minmax(0,1fr)!important}.chat{width:100%}.outs{flex-direction:row!important;flex-wrap:wrap!important}.ins span{width:100%}}
 
 /* try-it demo */
-.trygrid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.trygrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+#tryOut{display:flex;flex-direction:column;align-self:stretch}
+#tryOut>.tryempty{margin:auto;max-width:300px;text-align:center;line-height:1.6;padding:24px 0}
 @media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
 .trychips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .trychips button{border:0;cursor:pointer;font:inherit;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
@@ -246,7 +248,10 @@ html{overflow-x:hidden}
 .locked .blur i{display:block;height:11px;border-radius:6px;background:var(--line);margin:8px 0}
 .locked h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}
 .locked h4::after{content:" \1F512";letter-spacing:0}
-.gate p{margin:0 0 16px;color:var(--soft)}
+#tryOut>.gate{margin:auto;max-width:340px;text-align:center;padding:24px 0}
+.gate h3{margin:0 0 8px}
+.gate p{margin:0 0 18px;color:var(--soft);line-height:1.6}
+.gate .btn{margin:0 auto}
 .lockcard{position:relative;margin-top:6px;border-radius:16px;background:var(--tint);padding:18px;text-align:center}
 .lockcard b{display:block;margin-bottom:4px}
 .lockcard p{margin:0 0 12px;color:var(--soft);font-size:.92rem}
@@ -371,8 +376,8 @@ html{overflow-x:hidden}
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));out.append(sec('What to say',[say]),sec('Underlined',[und(x.und)]));
   }
   function showGate(){
-    out.replaceChildren(head('Get full access to see your answer',null));
-    var c=el('div','gate');c.append(el('p',null,"The full version gives you what to do, why, how to do it, what to say and the ideas behind it, for your situation."));
+    out.replaceChildren(el('p','plabel','2. Your Next Action'));
+    var c=el('div','gate');c.append(el('h3',null,'Get full access to see your answer'),el('p',null,"The full version gives you what to do, why, how to do it, what to say and the ideas behind it, for your situation."));
     var a=el('a','btn big dark','Get full access');a.href='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';a.target='_blank';a.rel='noopener';c.append(a);out.append(c);
   }
   var chips=$('#tryChips'), cur=null;
