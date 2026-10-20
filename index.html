@@ -146,7 +146,7 @@ section.block{padding:56px 0 0}
 .say{background:var(--tint);border-radius:14px;padding:14px 16px}
 .saylab{font-size:.85rem;color:var(--faint);margin:0 0 8px!important}
 .idea{margin:0;line-height:1.55}
-.idea b{font-weight:700}
+.idea .by{font-weight:600;color:#6366F1;white-space:nowrap}
 .idea + .idea{margin-top:8px}
 
 /* closing */
@@ -328,7 +328,7 @@ html{overflow-x:hidden}
   <section class="block value" id="why">
     <p class="kicker">Why Underline AI</p>
     <h2>The best advice Underline AI can find, applied to your situation.</h2>
-    <p class="vlead">Underline AI works from a carefully curated library of proven ideas on communication, influence, negotiation, leadership and getting work done. For each situation, it finds the ideas that fit, connects them and applies them to your facts. Then it shows you which ideas shaped the answer, so you can see why the advice works.</p>
+    <p class="vlead">Underline AI draws from a carefully curated library on communication, influence, negotiation, leadership, and getting work done. It brings together the most useful thinking for your situation and turns it into practical advice. You&rsquo;ll see what to do, what to say, and the ideas behind it.</p>
   </section>
 
   <section class="block" id="how">
@@ -393,7 +393,8 @@ html{overflow-x:hidden}
   function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
   function sec(h,kids){var s=el('div','sec');s.append(el('h4',null,h));kids.forEach(function(k){s.append(k);});return s;}
   function list(tag,items){var l=el(tag);items.forEach(function(x){l.append(el('li',null,x));});return l;}
-  function und(items){var d=el('div');items.forEach(function(u){var i=el('p','idea');var b=el('b',null,u.t+': ');b.title=u.s;i.append(b,document.createTextNode(u.l));d.append(i);});return d;}
+  function und(items){var d=el('div'),g=[];items.forEach(function(u){var x=g.filter(function(y){return y.t===u.t;})[0];if(x)x.l.push(u.l);else g.push({t:u.t,s:u.s,l:[u.l]});});
+    g.forEach(function(u){var i=el('p','idea');var s=el('span','by','\u2014 '+u.t);s.title=u.s;i.append(document.createTextNode(u.l.join(' ')+' '),s);d.append(i);});return d;}
   function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
   var out=$('#tryOut');
   function showSample(x){
