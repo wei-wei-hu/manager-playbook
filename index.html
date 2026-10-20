@@ -520,12 +520,12 @@ html{overflow-x:hidden}
     L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
     x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
     L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
-  // Email it (own answers), Save as PDF, PowerPoint, Print and Copy, under every answer.
+  // Email (own answers), PDF, PowerPoint, Copy and Print, in that order under every answer.
   function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
     function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
-    if(mail)btn('Email it',function(b){b.disabled=true;b.textContent='Sending…';
+    if(mail)btn('Email',function(b){b.disabled=true;b.textContent='Sending…';
       mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent';msg.textContent='Your Next Action is on its way. Check your inbox, and your spam folder too.';bar.append(msg);})
-        .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn’t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
+        .catch(function(){b.disabled=false;b.textContent='Email';msg.textContent='We couldn’t send it just now. Try PDF or Copy instead.';bar.append(msg);});});
     // Save as PDF and Print: the answer board on one landscape page, with the brand line above it.
     function printPlan(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
       var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('\u00a9 2026 Weiwei Hu. All rights reserved.'));
@@ -534,16 +534,16 @@ html{overflow-x:hidden}
       pa.classList.add('measuring');var h=pa.offsetHeight;pa.classList.remove('measuring');
       pa.style.setProperty('--zl',Math.min(.9,700/h).toFixed(3));pa.style.setProperty('--zp',Math.min(.64,960/h).toFixed(3));
       var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
-    btn('Save as PDF',function(b){b.disabled=true;b.textContent='Making PDF\u2026';
+    btn('PDF',function(b){b.disabled=true;b.textContent='Making PDF\u2026';
       makePdf(x).catch(function(){msg.textContent='We couldn\u2019t make the PDF just now. Try Print instead.';bar.append(msg);})
-        .then(function(){b.disabled=false;b.textContent='Save as PDF';});});
+        .then(function(){b.disabled=false;b.textContent='PDF';});});
     btn('PowerPoint',function(b){b.disabled=true;b.textContent='Making slide…';
-      makeSlide(x).then(function(){b.textContent='PowerPoint';},function(){msg.textContent='We couldn’t make the PowerPoint just now. Try Save as PDF instead.';bar.append(msg);b.textContent='PowerPoint';})
+      makeSlide(x).then(function(){b.textContent='PowerPoint';},function(){msg.textContent='We couldn’t make the PowerPoint just now. Try PDF instead.';bar.append(msg);b.textContent='PowerPoint';})
         .then(function(){b.disabled=false;});});
-    btn('Print',printPlan);
     btn('Copy',function(b){var t=planText(x);
       copyText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
         function(){var box=el('textarea','copybox');box.value=t;box.readOnly=true;box.rows=8;msg.textContent='Your phone blocked copying. Press and hold the text below, then choose Select All and Copy.';bar.append(msg,box);box.focus();box.select();});});
+    btn('Print',printPlan);
     return bar;}
 
   // The answer board, in the style of the Underline AI slides. What I'd do takes one of five
