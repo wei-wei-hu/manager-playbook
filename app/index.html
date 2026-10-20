@@ -325,7 +325,6 @@ html{overflow-x:hidden}
 .memberline b{color:var(--ink);font-weight:600}
 .memberline button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}
 .mlead{margin:-6px 0 22px;color:var(--soft);max-width:640px}
-.welcome{margin:0 0 16px;padding:12px 16px;border-radius:14px;background:var(--tint);border-left:3px solid #8B5CF6;color:var(--ink)}.welcome[hidden]{display:none}
 </style>
 
 <div class="wrap">
@@ -344,7 +343,6 @@ html{overflow-x:hidden}
     <div class="trygrid">
       <div class="panel" id="signin">
         <p class="plabel">Sign in</p>
-        <p class="welcome" id="welcome" hidden><b>Welcome to Underline AI!</b> Thank you for joining. Sign in with the email you used to pay.</p>
         <form id="inForm" autocomplete="on">
           <label class="fld"><span>Your email <small>(the one you subscribed with)</small></span><input id="mEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
           <button class="btn big dark trygo" type="button" id="inSend">Email me a code</button>
@@ -450,7 +448,7 @@ html{overflow-x:hidden}
       var chosen=[].slice.call(parts.querySelectorAll('[aria-pressed="true"]')).map(function(b){return b.textContent;}).join(', ');
       var data={rating:rating,parts:rating==='down'?chosen:'',comment:note.value.trim(),title:answer.title||'',sit:body.sit};
       var key=JSON.stringify(data);if(key===last)return;last=key;
-      codes('feedback',data).then(function(j){if(!j.ok)throw 0;status.textContent='Thank you! Your feedback was sent.';})
+      codes('mfeedback',data).then(function(j){if(!j.ok)throw 0;status.textContent='Thank you! Your feedback was sent.';})
         .catch(function(){last='';status.textContent='We couldn\u2019t send that just now. We\u2019ll try again when you make a change.';});}
     function later(ms){clearTimeout(timer);timer=setTimeout(save,ms);}
     note.addEventListener('input',function(){later(1500);});note.addEventListener('blur',save);
@@ -472,18 +470,14 @@ html{overflow-x:hidden}
     oOut.replaceChildren(p);oOut.hidden=false;}
   var BREAK='Underline AI is taking a short break. Please try again in a few minutes.';
 
-  function showMember(left){
+  function showMember(){
     $('#signin').hidden=true;$('#askPanel').hidden=false;$('#navJoin').hidden=true;
     var line=$('#memberLine');line.replaceChildren();
     var who=el('span');who.append('Signed in as ',el('b',null,me.email));line.append(who);
-    if(left!=null)line.append(el('span',null,left+' answers left this month'));
     var outBtn=el('button',null,'Sign out');outBtn.type='button';outBtn.addEventListener('click',signOut);line.append(outBtn);}
   function signOut(msg){remember(null);$('#askPanel').hidden=true;$('#signin').hidden=false;$('#navJoin').hidden=false;
     $('#inCodeBox').hidden=true;$('#inSend').hidden=false;oOut.hidden=true;if(typeof msg==='string')say(msg);}
-  if(me&&me.email&&me.login)showMember(null);
-  // Arriving from Stripe after paying (the payment link redirects to ?welcome).
-  var fresh=/[?&]welcome(=|&|$)/.test(location.search);
-  if(fresh&&!me)$('#welcome').hidden=false;
+  if(me&&me.email&&me.login)showMember();
 
   // Sign in: email, then the 6-digit code.
   function sendCode(){
@@ -495,8 +489,7 @@ html{overflow-x:hidden}
         var m=$('#inSent');m.replaceChildren('We sent a 6-digit code to '+email+'. Check your inbox, and your spam folder too. ');
         var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);$('#mCode').focus();
         if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
-      if(j.error==='not_subscriber'&&fresh)return say('Your membership is still being set up. Please wait a minute and click \u201cEmail me a code\u201d again, using the email you paid with.');
-      if(j.error==='not_subscriber')return say('We couldn\u2019t find a membership for this email. Please use the email you subscribed with, or','get full access');
+      if(j.error==='not_subscriber')return say('This email doesn\u2019t have member access yet. Please use the email you subscribed with. If you\u2019ve just subscribed, your access starts when you get your welcome email from Weiwei. Not a member yet?','Get full access');
       if(j.error==='email')return say('Please enter a valid email address.');
       say(BREAK);
     }).catch(function(){say(BREAK);}).then(function(){b.disabled=false;b.textContent='Email me a code';});}
@@ -507,10 +500,10 @@ html{overflow-x:hidden}
     var code=$('#mCode').value.replace(/\D/g,'');if(code.length!==6){$('#mCode').focus();return say('Please enter the 6-digit code from your email.');}
     var g=$('#inGo');g.disabled=true;g.textContent='Signing in\u2026';
     codes('mverify',{code:code}).then(function(j){
-      if(j.ok){remember({email:$('#mEmail').value.trim(),login:j.login});oOut.hidden=true;showMember(j.left);$('#oSit').focus();return;}
+      if(j.ok){remember({email:$('#mEmail').value.trim(),login:j.login});oOut.hidden=true;showMember();$('#oSit').focus();return;}
       if(j.error==='bad_code')return say('That code doesn\u2019t match. Please check the email and try again.');
       if(j.error==='expired')return say('That code has expired. Click \u201cSend a new code\u201d to get a fresh one.');
-      if(j.error==='not_subscriber')return say('We couldn\u2019t find a membership for this email.','Get full access');
+      if(j.error==='not_subscriber')return say('This email doesn\u2019t have member access. Not a member yet?','Get full access');
       say(BREAK);
     }).catch(function(){say(BREAK);}).then(function(){g.disabled=false;g.textContent='Sign in';});});
 
@@ -523,14 +516,13 @@ html{overflow-x:hidden}
     working('We\u2019re creating the best personalized advice for your situation.','This may take up to a minute.',[[35000,'Almost there. Thank you for waiting.']]);
     oOut.scrollIntoView({behavior:'smooth',block:'start'});
     codes('ticket',{login:me.login}).then(function(j){
-      if(j.error==='login')throw {signout:'Please sign in again to continue.'};
-      if(j.error==='limit')throw {msg:'You\u2019ve used this month\u2019s answers. They start again on the 1st of next month.'};
+      if(j.error==='login')throw {signout:'Please sign in again to continue. If your membership has ended, you can get full access again any time.'};
       if(!j.ok)throw {msg:BREAK};
-      showMember(j.left);body.ticket=j.ticket;
+      body.ticket=j.ticket;
       return fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(k){return {ok:r.ok,j:k};});});
     }).then(function(res){
       if(res.ok&&res.j.answer){var x=fromApi(res.j.answer);
-        showSample(x,oOut,'Full version',function(x){return codes('plan',{plan:x,text:planText(x)});});
+        showSample(x,oOut,'Full version',function(x){return codes('mplan',{plan:x,text:planText(x)});});
         oOut.append(feedback(body,res.j.answer));return;}
       var er=res.j&&res.j.error;
       if(er==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
