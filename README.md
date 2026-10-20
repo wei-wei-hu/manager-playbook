@@ -7,7 +7,7 @@ Bring one situation. Leave with what to do next. By Weiwei Hu.
 Describe a work situation in a short form. Underline picks the ideas from its library that fit and gives you one page, Your Next Action:
 
 - **What I'd do:** one clear recommendation
-- **Why:** 2 to 3 reasons, each tied to an idea and its source
+- **Why:** 2 to 3 reasons that fit your situation
 - **How to do it:** 3 concrete steps
 - **What to say:** the exact words, when the situation involves talking to someone
 
