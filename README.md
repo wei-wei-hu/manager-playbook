@@ -6,7 +6,7 @@ Bring one situation. Know your next best action.
 
 <img src="docs/underline-cover.png" alt="Underline: practical advice for work and life" width="420">
 
-### [See Underline →](https://wei-wei-hu.github.io/underline/)
+### [See Underline →](https://wei-wei-hu.github.io/underline-ai/)
 
 ## What it is
 
@@ -30,13 +30,13 @@ Underline is your personal AI advisor. Bring a question, a challenge, or a decis
 
 ## See the page
 
-[![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline/)
+[![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline-ai/)
 
 <img src="docs/underline-phone.png" alt="Underline landing page on a phone" width="30%">
 
 ## Get full access
 
-[Try a sample on the page](https://wei-wei-hu.github.io/underline/#try) to see a full answer. To get Your Next Action for your own situation, [get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
+[Try a sample on the page](https://wei-wei-hu.github.io/underline-ai/#try) to see a full answer. To get Your Next Action for your own situation, [get full access here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
 
 ## What's in this repo
 
@@ -49,7 +49,7 @@ Underline is your personal AI advisor. Bring a question, a challenge, or a decis
 ## Contact
 
 - Website: https://weiweihu.carrd.co
-- GitHub: https://github.com/wei-wei-hu/underline
+- GitHub: https://github.com/wei-wei-hu/underline-ai
 - LinkedIn: https://www.linkedin.com/in/weiweihu/
 
 ## License
