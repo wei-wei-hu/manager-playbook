@@ -284,6 +284,9 @@ html{overflow-x:hidden}
 .bitem{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(120,100,170,.08);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .bitem p{font-size:.88rem;line-height:1.55}
 .bsrc{display:inline-block;padding:4px 12px;border-radius:999px;color:#fff;font-size:.72rem;font-weight:600}
+.bsign{position:relative;display:flex;justify-content:flex-end;align-items:baseline;gap:6px;margin:16px 4px 0;font-size:.78rem;color:#7A7F95}
+.bsign b{position:relative;font-size:.95rem;font-weight:700;color:#1D2033;letter-spacing:-.01em;padding-bottom:3px}
+.bsign b::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6)}
 @media (prefers-reduced-motion:no-preference){.board .o1{animation:float1 9s ease-in-out infinite}.board .o2{animation:float2 7s ease-in-out infinite}.board .o3{animation:float3 11s ease-in-out infinite}}
 @media (max-width:620px){.board{padding:22px 16px 20px}.bhead{padding-right:56px}.board .o1{width:40px;height:40px;right:14px;top:16px}.btitle{font-size:1.5rem}.bgrid{grid-template-columns:1fr}.bhero p{font-size:1.1rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
@@ -565,7 +568,8 @@ html{overflow-x:hidden}
     var u=el('div','bcard bund'),items=el('div','bitems');u.append(el('span','blabel','Underlined'),items);
     groups(x.und).forEach(function(gr,i){var it=el('div','bitem'),s=el('span','bsrc',(gr.quoted?'':'Based on ')+gr.t);s.title=gr.s||'';s.style.background=grad(tone(x,2+i));
       it.append(el('p',null,gr.l.join(' ')),s);items.append(it);});
-    var g=el('div','bgrid');g.append(hero,say,steps,watch,u);b.append(hd,g);return b;}
+    var g=el('div','bgrid');g.append(hero,say,steps,watch,u);
+    var sign=el('div','bsign');sign.append('Designed by',el('b',null,'Underline AI'));b.append(hd,g,sign);return b;}
   function showSample(x,into,tag,mail){
     into=into||out;
     into.replaceChildren(board(x,tag||'Sample answer'));
@@ -619,7 +623,8 @@ html{overflow-x:hidden}
       runs.push({text:gr.l.join(' ')+'\n',options:{color:ink}});runs.push({text:(gr.quoted?'— ':'— based on ')+gr.t,options:{bold:true,color:hex(k[1])}});});
     var all=runs.map(function(r){return r.text;}).join('');
     s.addText(runs,{x:9.4,y:5.08,w:3.15,h:1.8,fontFace:F,fontSize:fitSize(all,11,300,8),valign:'top',margin:0});
-    s.addText('Underline AI by Weiwei Hu  ·  wei-wei-hu.github.io/underline-ai',{x:.6,y:7.1,w:12.1,h:.25,fontFace:F,fontSize:9,color:'8A8FA3',align:'right',margin:0});
+    s.addText([{text:'Designed by  ',options:{fontSize:9,color:'7A7F95'}},{text:'Underline AI',options:{fontSize:11,bold:true,color:ink}}],{x:8.75,y:7.06,w:4,h:.26,fontFace:F,align:'right',valign:'bottom',margin:0});
+    s.addImage({data:canvasPng(240,8,function(g,w,h){var f=g.createLinearGradient(0,0,w,0);f.addColorStop(0,'#4F6BFF');f.addColorStop(.55,'#C060D8');f.addColorStop(1,'#8B5CF6');g.fillStyle=f;roundPath(g,0,0,w,h,4);g.fill();}),x:11.73,y:7.34,w:1.02,h:.035});
     return P.write({outputType:'blob'}).then(function(blob){return deliver(blob,fileName(x,'pptx'));});});}
 
   // Getting a file to the person: phones open the share sheet (Save to Files, Mail, AirDrop),
@@ -686,9 +691,9 @@ html{overflow-x:hidden}
     while(fs>6.5&&need(fs)>1.9*u)fs-=.5;
     gs.forEach(function(g,i){var k=rgb(tone(x,2+i)[1]);yy+=block(g.l.join(' '),X(9.4),yy,3.1*u,9*u,fs,fs,'normal',ink,1.3);
       pdf.setFont('helvetica','bold');pdf.setFontSize(fs);col(k);var src=pdf.splitTextToSize((g.quoted?'— ':'— based on ')+g.t,3.1*u);pdf.text(src,X(9.4),yy+fs);yy+=src.length*fs*1.3+6;});
-    pdf.setFont('helvetica','bold');pdf.setFontSize(9);col(ink);var tag='Know your next best action.  ';var tw=pdf.getTextWidth(tag);
-    pdf.setFont('helvetica','normal');var rest='wei-wei-hu.github.io/underline-ai · © 2026 Weiwei Hu',rw=pdf.getTextWidth(rest),sx=(PW-tw-rw)/2,fy=Y(7.5)+24;
-    pdf.setFont('helvetica','bold');pdf.text(tag,sx,fy);pdf.setFont('helvetica','normal');col([138,143,160]);pdf.text(rest,sx+tw,fy);
+    pdf.setFont('helvetica','bold');pdf.setFontSize(11);var nw=pdf.getTextWidth('Underline AI'),ex=X(12.75),ey=Y(7.27);col(ink);pdf.text('Underline AI',ex-nw,ey);
+    pdf.addImage(canvasPng(240,8,function(g,w,h){var f=g.createLinearGradient(0,0,w,0);f.addColorStop(0,'#4F6BFF');f.addColorStop(.55,'#C060D8');f.addColorStop(1,'#8B5CF6');g.fillStyle=f;roundPath(g,0,0,w,h,4);g.fill();}),'PNG',ex-nw,ey+3,nw,2.2,'sign','FAST');
+    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(grey);pdf.text('Designed by',ex-nw-6,ey,{align:'right'});
     pdf.setProperties({title:'Your Next Action: '+x.title,author:'Underline AI by Weiwei Hu'});
     return deliver(pdf.output('blob'),fileName(x,'pdf'));});}
   var dlg=$('#gateDlg');
