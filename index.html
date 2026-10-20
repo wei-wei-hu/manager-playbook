@@ -476,9 +476,9 @@ html{overflow-x:hidden}
         else if(e==='busy')say('Underline AI is busy right now. Please try again in a little while.');
         else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
         else if(e==='too_long')say('That\u2019s a bit long. Please shorten it and try again.');
-        else say('Something went wrong. Please try again.');
+        else say('Something went wrong'+(res.j&&res.j.detail?': '+res.j.detail:'. Please try again.'));
       })
-      .catch(function(){say('Something went wrong. Please check your connection and try again.');})
+      .catch(function(){say('Couldn\u2019t reach the Underline AI server. Please try again in a moment.');})
       .then(function(){oGo.disabled=false;});
   });
 })();
