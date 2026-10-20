@@ -7,248 +7,241 @@
 <meta name="description" content="Underline by Weiwei Hu. Practical advice for work and life. Bring a question, challenge, or decision and get clear, personalized recommendations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: a stack of slide-like panels on a light grey page (hero, what you get, how it works, example, closing). Each panel has a small label top-left, outline pill tags top-right and a number bottom-right. */
+/* Layout: nav, two-column hero (headline + app preview), three feature tiles, how it works, a worked example (inputs, then the answer), a closing call to action and a footer. */
 :root{
-  --page:#ECECEF; --ink:#0B0B0F; --soft:#55565F; --faint:#8C8D96; --line:rgba(11,11,15,.12); --card:#FFFFFF;
-  --lav:#C9C2E6; --pink:#F2D6E2;
-  --s1:linear-gradient(135deg,#FFFFFF 0%,#F6F4FB 45%,#DDD7F0 100%);
-  --s2:linear-gradient(135deg,#FBEFF4 0%,#FFFFFF 50%,#F4E3EC 100%);
-  --s3:linear-gradient(160deg,#FFFFFF 0%,#F3F1F8 60%,#E7E2F4 100%);
-  --lavcard:linear-gradient(165deg,#C8C0E4 0%,#E6E1F3 55%,#F6EEF5 100%);
-  --grad:linear-gradient(90deg,#5B6CF0 0%,#B567D6 60%,#8B6CF0 100%);
-  --shadow:0 1px 2px rgba(11,11,15,.04),0 10px 30px rgba(60,50,110,.08);
-  --f:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --bg:#FBFAFF; --card:#FFFFFF; --ink:#0F1222; --soft:#5E6475; --faint:#8A8FA0; --line:#ECEAF4; --tint:#F5F3FF;
+  --blue:#4F6BFF; --pink:#E25BA6; --purple:#8B5CF6;
+  --grad:linear-gradient(90deg,#4F6BFF 0%,#C060D8 55%,#8B5CF6 100%);
+  --shadow:0 1px 2px rgba(15,18,34,.04),0 18px 50px rgba(79,70,160,.10);
+  --r:22px; --f:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#0E0E12;--ink:#F2F2F5;--soft:#B3B4BD;--faint:#8A8B95;--line:rgba(255,255,255,.14);--card:#1A1A21;
-  --s1:linear-gradient(135deg,#17171D,#1E1C29 60%,#2A2540);--s2:linear-gradient(135deg,#251B22,#17171D 55%,#2A1F2A);--s3:linear-gradient(160deg,#17171D,#1E1C29 60%,#262238);--lavcard:linear-gradient(165deg,#3B3460,#2A2640 60%,#2A2230);color-scheme:dark}}
-:root[data-theme="dark"]{--page:#0E0E12;--ink:#F2F2F5;--soft:#B3B4BD;--faint:#8A8B95;--line:rgba(255,255,255,.14);--card:#1A1A21;
-  --s1:linear-gradient(135deg,#17171D,#1E1C29 60%,#2A2540);--s2:linear-gradient(135deg,#251B22,#17171D 55%,#2A1F2A);--s3:linear-gradient(160deg,#17171D,#1E1C29 60%,#262238);--lavcard:linear-gradient(165deg,#3B3460,#2A2640 60%,#2A2230);color-scheme:dark}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0D0F1A;--card:#161927;--ink:#F1F2F7;--soft:#A7ACBD;--faint:#7D8295;--line:#262A3B;--tint:#1E2133;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0D0F1A;--card:#161927;--ink:#F1F2F7;--soft:#A7ACBD;--faint:#7D8295;--line:#262A3B;--tint:#1E2133;color-scheme:dark}
 *{box-sizing:border-box}
 html{font-size:15px;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--page);color:var(--ink);font-family:var(--f);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:
+  radial-gradient(40% 45% at 12% 18%,rgba(255,214,230,.55),transparent 70%),
+  radial-gradient(45% 50% at 78% 30%,rgba(196,190,255,.45),transparent 70%),
+  radial-gradient(40% 40% at 60% 95%,rgba(214,226,255,.5),transparent 70%)}
 a{color:inherit}
-:focus-visible{outline:2px solid #7C6CF0;outline-offset:3px}
-h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.035em;line-height:1.02}
-.wrap{max-width:1000px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;gap:18px}
+:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.08}
+.wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+.orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#C9D2FF 24%,#7E8CFF 60%,#B57BE8 100%);opacity:.9;filter:saturate(1.05)}
 
-/* slide panel */
-.slide{position:relative;overflow:hidden;border-radius:14px;box-shadow:var(--shadow);padding:28px 36px 44px;background:var(--s1)}
-.slide.pink{background:var(--s2)}
-.slide.soft{background:var(--s3)}
-.bar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:38px}
-.small{font-size:.8rem;line-height:1.45;font-weight:400;display:flex;gap:42px}
-.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.pill{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:3px 16px;font-size:.76rem;text-decoration:none;white-space:nowrap}
-a.pill:hover{background:var(--ink);color:var(--page)}
-.pill.dark{background:var(--ink);color:var(--page)}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
-.num{position:absolute;right:40px;bottom:20px;font-size:.82rem}
-.orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#B9C4FF 26%,#5F6FF0 66%,#4A55D8 100%);box-shadow:0 14px 30px rgba(74,85,216,.28)}
-.orb.p{background:radial-gradient(circle at 32% 28%,#fff 0 8%,#FFCDBB 32%,#F08AA8 85%);box-shadow:0 8px 18px rgba(240,138,168,.3)}
-@media (max-width:700px){.wrap{padding:16px 14px 32px}.small span+span{display:none}.pills .pill:not(.dark):not(span){display:none}.slide{padding:22px 20px 44px}.num{right:20px}.bar{margin-bottom:26px}.small{gap:18px}.orb{display:none}}
+/* nav */
+nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.logo{font-weight:700;font-size:1.7rem;letter-spacing:-.03em;text-decoration:none}
+.links{display:flex;align-items:center;gap:28px}
+.links a{color:var(--soft);text-decoration:none;font-weight:500}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font-weight:600;text-decoration:none;white-space:nowrap;border:0;font-family:inherit;font-size:1rem}
+.btn.dark{background:var(--ink);color:var(--bg);padding:12px 24px}
+.btn.dark:hover{background:#252a45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.dark:hover{background:#d9dbe6}}
+.btn.lock{background:var(--card);color:var(--faint);border:1px solid var(--line);cursor:not-allowed}
+.btn.big{padding:15px 0;width:210px;font-size:1rem}
+@media (max-width:760px){.links a:not(.btn){display:none}}
 
 /* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
-.eyebrow{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);margin:0 0 20px}
-.hero h1{font-size:clamp(2.3rem,4.6vw,3.5rem)}
-.hero h1 b{font-weight:600;white-space:nowrap}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center;padding:40px 0 30px}
+.eyebrow{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 18px}
+.hero h1{font-size:clamp(2.4rem,5.2vw,4.3rem);font-weight:800}
+.hero h1 .grad{white-space:nowrap}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--soft);margin:24px 0 30px;max-width:34ch}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font:500 1rem/1 var(--f);text-decoration:none;white-space:nowrap;padding:15px 18px;width:200px;border:1px solid var(--ink)}
-.btn.dark{background:var(--ink);color:var(--page)}
-.btn.lock{background:transparent;color:var(--faint);border-color:var(--line);cursor:not-allowed}
-@media (max-width:520px){.btn{width:100%}}
-@media (max-width:960px){.hero{grid-template-columns:1fr}}
+.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--soft);margin:24px 0 32px;max-width:30ch;line-height:1.5}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:520px){.btn.big{width:100%}}
 
-/* preview */
-.preview{display:flex;flex-direction:column;gap:10px}
-.cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
-.cats span{border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-size:.8rem;background:rgba(255,255,255,.6)}
-.cats span.on{border-color:var(--ink);background:var(--card)}
-.qcard,.acard{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:18px 22px}
-.qcard{display:flex;gap:14px;align-items:flex-start;font-size:.95rem}
-.qcard i{flex:none;font-style:normal;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);padding-top:3px}
-.acard .tag{display:inline-block;background:#fff;border-radius:999px;padding:5px 16px;font-size:.85rem;box-shadow:0 1px 2px rgba(0,0,0,.05)}
-.acard.lav{background:var(--lavcard)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .acard .tag{background:#2a2640}}
-.acard h3{font-size:1.4rem;margin:14px 0 14px}
-.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.list li{display:grid;grid-template-columns:34px minmax(0,1fr);font-size:.92rem;line-height:1.45}
-.list li span:first-child{font-size:.78rem;padding-top:2px}
-.list li b{font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.chips span{border:1px solid var(--ink);border-radius:999px;padding:2px 12px;font-size:.78rem}
+/* app preview */
+.preview{position:relative;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--shadow);padding:16px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;backdrop-filter:blur(10px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .preview{background:rgba(22,25,39,.8);border-color:var(--line)}}
+.cats{list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--card);border-radius:18px}
+.cats li{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:12px;font-size:.93rem}
+.cats li.on{background:var(--tint)}
+.ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.ic svg{width:18px;height:18px}
+.c1{background:#EFEAFF;color:#7C5CFA}.c2{background:#E6EEFF;color:#3B6EF6}.c3{background:#FFF0E2;color:#F08A24}.c4{background:#E2F6EE;color:#13A877}.c5{background:#FFE6EE;color:#E8457A}.c6{background:#ECEBFF;color:#6366F1}
+.chat{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ask{display:flex;align-items:flex-start;gap:12px}
+.avatar{flex:none;width:40px;height:40px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:#6366F1}
+.avatar svg{width:20px;height:20px}
+.bubble{background:var(--tint);border-radius:14px;padding:10px 14px;font-size:.93rem;line-height:1.45}
+.ans{background:var(--card);border-radius:18px;padding:18px}
+.anshead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.spark{width:32px;height:32px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:#6366F1}
+.anshead b{font-size:1.15rem;letter-spacing:-.01em}
+.ans h4{margin:12px 0 2px;font-size:.92rem}
+.ans p,.ans ol{margin:0;color:var(--soft);font-size:.9rem;line-height:1.5}
+.ans ol{padding-left:1.2em}
+.und{margin-top:14px;background:var(--tint);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:flex-start}
+.und .ic{background:#FFE6EE;color:#E8457A}
+.und b{display:block;font-size:.92rem;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.78rem;padding:3px 10px;border-radius:999px;background:var(--card);color:#6366F1}
+.chip:nth-child(2){color:#D9467F}
+@media (max-width:980px){.hero{grid-template-columns:1fr}.lead{max-width:40ch}}
+@media (max-width:620px){.preview{grid-template-columns:1fr}.cats{display:none}.orb{display:none}}
 
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.stat{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:26px 28px}
-.stat small{display:block;font-size:.82rem;color:var(--soft);margin-bottom:6px}
-.stat b{display:block;font-weight:300;font-size:clamp(2.6rem,5vw,3.6rem);letter-spacing:-.04em;line-height:1}
-.stat p{margin:14px 0 0;font-size:.95rem}
-@media (max-width:820px){.stats{grid-template-columns:1fr}}
+/* features */
+.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:40px 0 20px}
+.feat{display:flex;gap:18px;align-items:center}
+.feat .ic{width:64px;height:64px;border-radius:18px}
+.feat .ic svg{width:28px;height:28px}
+.feat b{display:block;font-size:1.2rem;letter-spacing:-.01em}
+.feat span{color:var(--soft)}
+@media (max-width:820px){.features{grid-template-columns:1fr}}
 
-/* how it works */
-.how{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:start}
-.how h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
-.how h2 b{font-weight:600;display:block}
-.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
-.steps li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:4px}
-.steps li > span{font-size:.82rem;padding-top:4px}
-.steps b{display:block;font-weight:500;font-size:1.25rem;letter-spacing:-.01em}
-.steps p{margin:4px 0 0;color:var(--soft)}
-@media (max-width:820px){.how{grid-template-columns:1fr}}
+/* sections */
+section.block{padding:56px 0 0}
+.kicker{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 10px}
+.block h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:24px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.steps li{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
+.steps .ic{width:44px;height:44px;border-radius:13px;margin-bottom:14px}
+.steps b{display:block;font-size:1.08rem;margin-bottom:4px}
+.steps span{color:var(--soft);font-size:.95rem}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
 
-/* example */
-.ex{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:12px;align-items:start}
-.panel{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:26px 28px}
-.plabel{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin:0 0 18px}
-.fld{margin-bottom:16px}
+.example{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+@media (max-width:900px){.example{grid-template-columns:1fr}}
+.panel{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
+.plabel{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:0 0 14px}
+.fld{margin-bottom:14px}
 .fld:last-child{margin-bottom:0}
-.fld span{display:block;font-weight:500;font-size:.9rem;margin-bottom:6px}
-.fld p{margin:0;border:1px solid var(--line);border-radius:8px;padding:11px 14px;font-size:.95rem}
-.panel h3{font-size:1.6rem;margin-bottom:10px}
-.sec{border-top:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px}
+.fld span{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+.fld p{margin:0;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:.95rem;background:var(--bg)}
+.full h3{font-size:1.35rem;margin-bottom:6px}
+.sec{border-top:1px solid var(--line);padding:16px 0}
 .sec:last-child{padding-bottom:0}
-.sec h4{margin:0;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding-top:3px}
+.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}
 .sec p{margin:0}
-.sec ol,.sec ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px}
-.say{background:var(--lavcard);border-radius:10px;padding:14px 16px}
+.sec ol{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px}
+.sec ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.say{background:var(--tint);border-radius:14px;padding:14px 16px}
 .saylab{font-size:.85rem;color:var(--faint);margin:0 0 8px!important}
-.idea + .idea{margin-top:10px}
-.idea b{display:block;font-weight:600}
+.idea b{display:block}
 .idea span{display:block;color:var(--soft);font-size:.92rem}
-@media (max-width:900px){.ex{grid-template-columns:1fr}}
-@media (max-width:560px){.sec{grid-template-columns:1fr;gap:6px}}
+.idea + .idea{margin-top:10px}
 
 /* closing */
-.closing{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:30px;align-items:end;min-height:320px}
-.closing h2{font-size:clamp(2.3rem,6vw,4.8rem);text-transform:uppercase;font-weight:400;letter-spacing:-.04em;line-height:.95}
-.closing .side{font-size:.85rem;line-height:1.5;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
-.contact{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:46px;font-size:.84rem;align-items:center}
-.contact a{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
-.contact a:hover{text-decoration:underline}
-.contact svg{width:18px;height:18px}
-.contact .copy{color:var(--soft)}
-@media (max-width:820px){.closing{grid-template-columns:1fr;min-height:0}}
+.closing{margin:64px 0 0;border-radius:28px;padding:44px 28px;text-align:center;background:linear-gradient(135deg,rgba(255,224,236,.8),rgba(226,222,255,.85));position:relative;overflow:hidden}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .closing{background:linear-gradient(135deg,#2a1f33,#1f2140)}}
+.closing h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:22px}
+.closing .ctas{justify-content:center}
+
+footer{margin:28px 0 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-radius:20px;background:var(--ink);color:var(--bg);font-size:.9rem}
+footer nav{display:flex;flex-wrap:wrap;gap:8px}
+footer a{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:999px;background:var(--bg);color:var(--ink);font-weight:600;text-decoration:none}
+footer a svg{width:15px;height:15px}
+@media (max-width:640px){footer{justify-content:center;text-align:center}footer nav{justify-content:center}}
 </style>
 
 </head>
 <body>
 <div class="wrap">
-
-  <!-- 01 hero -->
-  <section class="slide">
-    <div class="bar">
-      <div class="small"><span>Underline<br>by Weiwei Hu</span><span>Your personalized<br>AI advisor</span></div>
-      <div class="pills"><a class="pill" href="#how">How it works</a><a class="pill" href="#example">Example</a><a class="pill dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a></div>
+  <nav class="top" aria-label="Main">
+    <a class="logo" href="#">Underline</a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#example">Example</a>
+      <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
-    <div class="hero">
-      <div>
-        <p class="eyebrow">Your personalized AI advisor</p>
-        <h1>Practical advice<br>for <b class="grad">work and life.</b></h1>
-        <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
-        <div class="ctas"><button class="btn lock" type="button" disabled aria-disabled="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your Next Action</button>
-        <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a></div>
+  </nav>
+
+  <header class="hero">
+    <div class="orb" style="width:104px;height:104px;left:44%;top:6px" aria-hidden="true"></div>
+    <div class="orb" style="width:26px;height:26px;left:-40px;top:6%" aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">Your personalized AI advisor</p>
+      <h1>Practical advice for <span class="grad">work and life.</span></h1>
+      <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
+      <div class="ctas">
+        <button class="btn big lock" type="button" disabled aria-disabled="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your Next Action</button>
+        <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div class="preview" aria-label="Preview of an answer">
-        <div class="cats" aria-label="Topics"><span class="on">Career</span><span>Communication</span><span>Leadership</span><span>Productivity</span><span>Decisions</span><span>Work-life balance</span></div>
-        <div class="qcard"><i>You</i><span>My manager asked me to take on a new project, but my plate is already full.</span></div>
-        <div class="acard lav">
-          <span class="tag">Your Next Action</span>
-          <h3>Say yes, and ask which current task should move.</h3>
-          <ul class="list">
-            <li><span>01</span><span><b>Why.</b> Your manager may not see how full your week is. Showing your list lets them choose.</span></li>
-            <li><span>02</span><span><b>How.</b> List your tasks and due dates, mark what could wait, ask which one moves.</span></li>
-          </ul>
+    </div>
+
+    <div class="preview" aria-label="Preview of Underline">
+      <ul class="cats">
+        <li class="on"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg></span>Career</li>
+        <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span>Communication</li>
+        <li><span class="ic c3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V9l4-3v14H4Zm6 0V5l4-2v17h-4Zm6 0V8l4 2v10h-4Z"/></svg></span>Leadership</li>
+        <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span>Productivity</li>
+        <li><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 22 12 12 22 2 12 12 2Zm0 6-4 4 4 4 4-4-4-4Z"/></svg></span>Decisions</li>
+        <li><span class="ic c6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Work-life balance</li>
+      </ul>
+      <div class="chat">
+        <div class="ask"><span class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><p class="bubble">My manager asked me to take on a new project, but my plate is already full.</p></div>
+        <div class="ans">
+          <div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><b>Your Next Action</b></div>
+          <h4>What I'd do</h4>
+          <p>Say yes, and ask which current task should move.</p>
+          <h4>Why</h4>
+          <p>Your manager may not see how full your week is. Showing your list lets them choose.</p>
+          <h4>How to do it</h4>
+          <ol><li>List your tasks and due dates.</li><li>Mark what could wait.</li><li>Ask which one should move.</li></ol>
         </div>
       </div>
     </div>
-    <span class="num">01</span>
+  </header>
+
+  <section class="features" aria-label="What you get">
+    <div class="feat"><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><div><b>Personalized advice</b><span>Tailored to your situation</span></div></div>
+    <div class="feat"><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3V5Zm18 0h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7V5Z"/></svg></span><div><b>The ideas behind it</b><span>Underlined in every answer</span></div></div>
+    <div class="feat"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><div><b>Clear next steps</b><span>So you can take action</span></div></div>
   </section>
 
-  <!-- 02 what you get -->
-  <section class="slide pink" aria-label="What you get">
-    <div class="bar">
-      <div class="small"><span>What you get</span><span>Every answer,<br>every time</span></div>
-      <div class="pills"><span class="pill">Underline</span><span class="pill">Your Next Action</span></div>
-    </div>
-    <div class="stats">
-      <div class="stat"><small>Personalized advice</small><b>1 page</b><p>One clear recommendation, tailored to your situation.</p></div>
-      <div class="stat"><small>Clear next steps</small><b>3 steps</b><p>Concrete things to do, plus the exact words to use.</p></div>
-      <div class="stat"><small>The ideas behind it</small><b>2–3</b><p>Ideas underlined in every answer, so you know why it works.</p></div>
-    </div>
-    <span class="num">02</span>
+  <section class="block" id="how">
+    <p class="kicker">How it works</p>
+    <h2>Bring one situation. Leave with a one-page plan.</h2>
+    <ol class="steps">
+      <li><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span><b>Bring one situation</b><span>What's happening, what you want to happen, and anything else that matters.</span></li>
+      <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></span><b>Underline finds the ideas that fit</b><span>It picks the two or three ideas from its library that fit your situation.</span></li>
+      <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span><b>Leave with a one-page plan</b><span>What to do, why, three steps, the exact words to use, and the ideas behind it.</span></li>
+    </ol>
   </section>
 
-  <!-- 03 how it works -->
-  <section class="slide soft" id="how">
-    <div class="orb" style="width:58px;height:58px;left:36%;bottom:40px" aria-hidden="true"></div>
-    <div class="bar">
-      <div class="small"><span>How it works</span></div>
-      <div class="pills"><span class="pill">Underline</span><span class="pill">One page</span></div>
-    </div>
-    <div class="how">
-      <h2>Bring one situation. <b>Leave with a one&#8209;page plan.</b></h2>
-      <ol class="steps">
-        <li><span>01</span><div><b>Bring one situation</b><p>What's happening, what you want to happen, and anything else that matters.</p></div></li>
-        <li><span>02</span><div><b>Underline finds the ideas that fit</b><p>It picks the two or three ideas from its library that fit your situation.</p></div></li>
-        <li><span>03</span><div><b>Leave with a one-page plan</b><p>What to do, why, three steps, the exact words to use, and the ideas behind it.</p></div></li>
-      </ol>
-    </div>
-    <span class="num">03</span>
-  </section>
-
-  <!-- 04 example -->
-  <section class="slide" id="example">
-    <div class="bar">
-      <div class="small"><span>Example</span><span>One situation,<br>one plan</span></div>
-      <div class="pills"><span class="pill">Underline</span><span class="pill">See it in action</span></div>
-    </div>
-    <div class="ex">
+  <section class="block" id="example">
+    <p class="kicker">Example</p>
+    <h2>See it in action.</h2>
+    <div class="example">
       <div class="panel">
-        <p class="plabel">01 &nbsp; You tell Underline</p>
+        <p class="plabel">1. You tell Underline</p>
         <div class="fld"><span>What's happening?</span><p>My manager asked me to take on a new project, but my plate is already full.</p></div>
         <div class="fld"><span>What do you want to happen?</span><p>Do the new project well without working late.</p></div>
         <div class="fld"><span>Anything else that matters?</span><p>I have a report due Friday and two other tasks this week.</p></div>
       </div>
-      <div class="panel">
-        <p class="plabel">02 &nbsp; You get Your Next Action</p>
+      <div class="panel full">
+        <p class="plabel">2. You get Your Next Action</p>
         <h3>Take on a new project when your plate is full</h3>
         <div class="sec"><h4>What I'd do</h4><p>Say yes to the project, and ask your manager which current task should move to make room.</p></div>
         <div class="sec"><h4>Why</h4><ul><li>Your manager may not know how full your week is. Showing your list lets them choose what moves, so you don't end up working late.</li><li>Sorting your tasks first shows which ones can wait or go to someone else, so the talk with your manager is short.</li></ul></div>
         <div class="sec"><h4>How to do it</h4><ol><li>Today, list what you're working on and when each task is due.</li><li>Mark one or two tasks that could wait or be handed off.</li><li>Tomorrow, show your manager the list and ask which one should move.</li></ol></div>
-        <div class="sec"><h4>What to say</h4><div><p class="saylab">Say this to your manager</p><p class="say">I'm happy to take on the new project. Right now I have the Friday report and two other tasks. To do the new project well, one of these needs to move. Which one would you like me to push back?</p></div></div>
-        <div class="sec"><h4>Underlined</h4><div><div class="idea"><b>Say no by showing the trade-off</b><span>List what you're working on, show what slips if you take the new thing, and ask which one should move.</span></div><div class="idea"><b>Sort by urgent and important</b><span>Do what's urgent and important now, book time for what's important, hand off the rest.</span></div></div></div>
+        <div class="sec"><h4>What to say</h4><p class="saylab">Say this to your manager</p><p class="say">I'm happy to take on the new project. Right now I have the Friday report and two other tasks. To do the new project well, one of these needs to move. Which one would you like me to push back?</p></div>
+        <div class="sec"><h4>Underlined</h4><div class="idea"><b>Say no by showing the trade-off</b><span>List what you're working on, show what slips if you take the new thing, and ask which one should move.</span></div><div class="idea"><b>Sort by urgent and important</b><span>Do what's urgent and important now, book time for what's important, hand off the rest.</span></div></div>
       </div>
     </div>
-    <span class="num">04</span>
   </section>
 
-  <!-- 05 closing -->
-  <section class="slide pink">
-    <div class="orb" style="width:70px;height:70px;right:30%;top:70px" aria-hidden="true"></div>
-    <div class="bar">
-      <div class="small"><span>Underline<br>by Weiwei Hu</span><span>Practical advice for<br>work and life.</span></div>
-      <div class="pills"><span class="pill">Underline</span><span class="pill">One page</span></div>
-    </div>
-    <div class="closing">
-      <h2>Know your next best action.</h2>
-      <div class="side">
-        <span>Bring one situation.<br>Leave with a one-page plan.</span>
-      </div>
-    </div>
-    <div class="contact">
-      <a href="https://weiweihu.carrd.co" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Website</a>
-      <a href="https://github.com/wei-wei-hu/underline" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.4 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
-      <a href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
-      <span class="copy">&copy; 2026 Weiwei Hu. All rights reserved.</span>
-    </div>
-    <span class="num">05</span>
+  <section class="closing">
+    <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
+    <h2>Know your <span class="grad">next best action.</span></h2>
   </section>
 
+  <footer>
+    <span>&copy; 2026 Weiwei Hu. All rights reserved.</span>
+    <nav aria-label="Weiwei Hu online">
+      <a href="https://weiweihu.carrd.co" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Website</a>
+      <a href="https://github.com/wei-wei-hu/underline" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-1 1.83-1.8 3.76-1.8 4 0 4.88 2.4 4.88 5.6v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.14h-4v-11Z"/></svg>LinkedIn</a>
+    </nav>
+  </footer>
 </div>
 
 </body>
