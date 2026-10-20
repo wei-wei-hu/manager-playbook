@@ -812,7 +812,7 @@ html{overflow-x:hidden}
 
   // An email that isn't on the members list: a pop-up that leads to the payment page.
   function notMember(email){
-    say('This email doesn\u2019t have member access yet. If you\u2019ve just subscribed, your access will be ready within 12 to 24 hours.');
+    say('This email doesn\u2019t have member access yet. If you\u2019ve just subscribed, your access will be ready within 12-24 hours.');
     $('#gateT').textContent='Join Underline AI';
     dlg.querySelector('.gcard p').textContent='Full access is for Underline AI members. We will grant your access within 12 to 24 hours of your membership.';
     if(dlg.showModal&&!dlg.open)dlg.showModal();}
