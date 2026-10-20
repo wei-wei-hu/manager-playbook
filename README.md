@@ -10,6 +10,7 @@ Describe a work situation in a short form. Underline picks the ideas from its li
 - **Why:** 2 to 3 reasons that fit your situation
 - **How to do it:** 3 concrete steps
 - **What to say:** the exact words, when the situation involves talking to someone
+- **Underlined:** the 2 to 3 ideas behind the recommendation
 
 [![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/manager-playbook/)
 
