@@ -38,7 +38,7 @@ Underline AI is your personal advisor. Bring a question, a challenge, or a decis
 
 - **Free samples:** [try a sample on the page](https://wei-wei-hu.github.io/underline-ai/#try) to see a full answer.
 - **Free trial:** get one Next Action for your own situation, free.
-- **$9:** [get Your Next Action](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00) for your own situation. Bring one situation. Leave with a one-page plan you can act on.
+- **$9 a month:** [get Your Next Action](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00) for your own situations. Bring one situation. Leave with a one-page plan you can act on.
 
 ## What's in this repo
 
