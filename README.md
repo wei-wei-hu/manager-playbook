@@ -20,10 +20,11 @@ Underline AI is your personal advisor. Bring a question, a challenge, or a decis
 
 **You get Your Next Action:**
 
-- **What to do:** one recommendation, synthesized from the most relevant ideas across the Underline AI library
-- **What to say:** the exact words to use, built on the library's communication, influence, negotiation and leadership principles
-- **Do this next:** up to three actions, adapted from practical techniques in the library
-- **Underlined:** the two or three ideas that most influenced the answer, with their source
+- **What I'd do:** the one most valuable, decisive recommendation for your situation
+- **What I'd say:** the actual words to use, in a warm, human tone
+- **Do this next:** three to five actions, pulled and adapted from the library
+- **Watch out:** one trap the relevant sources warn you to avoid
+- **Underlined:** the three to five ideas behind the advice, with their sources
 
 **Why it's worth it:** you get the best advice Underline AI can find across a carefully curated library, applied to your situation. Behind each answer, it finds the ideas that fit, compares and connects them, and applies them to your facts.
 
