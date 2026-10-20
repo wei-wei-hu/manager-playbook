@@ -325,6 +325,7 @@ html{overflow-x:hidden}
 .memberline b{color:var(--ink);font-weight:600}
 .memberline button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}
 .mlead{margin:-6px 0 22px;color:var(--soft);max-width:640px}
+.welcome{margin:0 0 16px;padding:12px 16px;border-radius:14px;background:var(--tint);border-left:3px solid #8B5CF6;color:var(--ink)}.welcome[hidden]{display:none}
 </style>
 
 <div class="wrap">
@@ -343,6 +344,7 @@ html{overflow-x:hidden}
     <div class="trygrid">
       <div class="panel" id="signin">
         <p class="plabel">Sign in</p>
+        <p class="welcome" id="welcome" hidden><b>Welcome to Underline AI!</b> Thank you for joining. Sign in with the email you used to pay.</p>
         <form id="inForm" autocomplete="on">
           <label class="fld"><span>Your email <small>(the one you subscribed with)</small></span><input id="mEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
           <button class="btn big dark trygo" type="button" id="inSend">Email me a code</button>
@@ -479,6 +481,9 @@ html{overflow-x:hidden}
   function signOut(msg){remember(null);$('#askPanel').hidden=true;$('#signin').hidden=false;$('#navJoin').hidden=false;
     $('#inCodeBox').hidden=true;$('#inSend').hidden=false;oOut.hidden=true;if(typeof msg==='string')say(msg);}
   if(me&&me.email&&me.login)showMember(null);
+  // Arriving from Stripe after paying (the payment link redirects to ?welcome).
+  var fresh=/[?&]welcome(=|&|$)/.test(location.search);
+  if(fresh&&!me)$('#welcome').hidden=false;
 
   // Sign in: email, then the 6-digit code.
   function sendCode(){
@@ -490,6 +495,7 @@ html{overflow-x:hidden}
         var m=$('#inSent');m.replaceChildren('We sent a 6-digit code to '+email+'. Check your inbox, and your spam folder too. ');
         var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);$('#mCode').focus();
         if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
+      if(j.error==='not_subscriber'&&fresh)return say('Your membership is still being set up. Please wait a minute and click \u201cEmail me a code\u201d again, using the email you paid with.');
       if(j.error==='not_subscriber')return say('We couldn\u2019t find a membership for this email. Please use the email you subscribed with, or','get full access');
       if(j.error==='email')return say('Please enter a valid email address.');
       say(BREAK);
