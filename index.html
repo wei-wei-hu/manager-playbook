@@ -486,6 +486,8 @@ html{overflow-x:hidden}
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
   function usedUp(){store('ul.own',String(Date.now()));lock();say('This email has already used its free Next Action. Get full access for your next situation.');}
   function lock(){oSend.textContent='Get full access';oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
+  // ?reset makes this browser forget its free try (handy for testing). Each email still gets only one.
+  if(/[?&]reset\b/.test(location.search)){try{localStorage.removeItem('ul.own');}catch(e){}}
   if(store('ul.own'))lock();
   // Kept for safety: if the Examples form is ever submitted without an example, send people to Try it.
   showGate=function(){out.hidden=true;out.replaceChildren();
