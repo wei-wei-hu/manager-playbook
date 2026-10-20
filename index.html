@@ -369,7 +369,7 @@ html{overflow-x:hidden}
       <a href="#own" class="ownlink" hidden>Free trial</a>
       <a href="#try">See examples</a>
       <a href="app/" class="signlink">Sign in</a>
-      <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
+      <a class="btn dark" href="app/">Get full access</a>
     </div>
   </nav>
 
@@ -383,7 +383,7 @@ html{overflow-x:hidden}
       <div class="ctas">
         <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn big trybtn" id="heroTry" href="#try"><span class="bt">Free trial</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big dark" href="app/">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
 
@@ -479,7 +479,7 @@ html{overflow-x:hidden}
   <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
     <h2>Know your <span class="grad">next best action.</span></h2>
-    <div class="ctas"><a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="ctas"><a class="btn big dark" href="app/">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     <p class="member">Already a member? <a href="app/">Sign in</a></p>
   </section>
 
@@ -498,7 +498,7 @@ html{overflow-x:hidden}
     <div class="glock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
     <h3 id="gateT">Get full access to see your answer</h3>
     <p>Get the best advice Underline AI can find in its curated library, applied to your situation: what I'd do, what I'd say, your next steps, one trap to watch out for and the ideas behind it.</p>
-    <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
+    <a class="btn big dark" href="app/">Get full access</a>
     <button class="glater" type="button">Maybe later</button>
   </div>
 </dialog>
@@ -711,7 +711,7 @@ html{overflow-x:hidden}
   });
 
   // Try it (section #own): one free Next Action from the Underline AI server, then full access.
-  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='app/';
   if(!/^https:\/\//.test(OWN_API))return;
   $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
   $('#heroTry').href='#own';
@@ -762,9 +762,9 @@ html{overflow-x:hidden}
   function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
   // When free tries hit their limit (daily cap or the monthly spend limit), say so kindly and offer full access.
   function full(){var p=el('p','ownerr','Free tries have reached their limit for now. Please come back in a few days and try again. Want your answer today? ');
-    var a=el('a',null,'Get full access');a.href=PAY;a.target='_blank';a.rel='noopener';p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
+    var a=el('a',null,'Get full access');a.href=PAY;p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
-    if(done){window.open(PAY,'_blank','noopener');return;}
+    if(done){location.href=PAY;return;}
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim(),email:$('#oEmail').value.trim()};
     if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(body.email)){$('#oEmail').focus();oNote.textContent='Please enter your email. Each email gets one free Next Action.';return;}
     if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what\u2019s happening.';return;}

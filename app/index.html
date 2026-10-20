@@ -784,6 +784,13 @@ html{overflow-x:hidden}
   // Top-right button: Sign in jumps to the sign-in box; Sign out signs out.
   $('#navAct').addEventListener('click',function(e){if(me){e.preventDefault();signOut();}});
 
+  // An email that isn't on the members list: a pop-up that leads to the payment page.
+  function notMember(email){
+    say('This email isn\u2019t a member yet. If you\u2019ve just subscribed, you can sign in as soon as Weiwei confirms your membership by email.');
+    $('#gateT').textContent='Sorry, this email isn\u2019t a member yet';
+    dlg.querySelector('.gcard p').textContent='Full access is for Underline AI members. Subscribe on the next page, and once Weiwei confirms your membership, sign in here with '+(email||'your email')+'.';
+    if(dlg.showModal&&!dlg.open)dlg.showModal();}
+
   // Sign in: email, then the 6-digit code.
   function sendCode(){
     var email=$('#mEmail').value.trim();
@@ -794,7 +801,7 @@ html{overflow-x:hidden}
         var m=$('#inSent');m.replaceChildren('We sent a 6-digit code to '+email+'. Check your inbox, and your spam folder too. ');
         var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);$('#mCode').focus();
         if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
-      if(j.error==='not_subscriber')return say('This email doesn\u2019t have member access yet. Please use the email you subscribed with. If you\u2019ve just subscribed, your access starts when you get your welcome email from Weiwei. Not a member yet?','Get full access');
+      if(j.error==='not_subscriber')return notMember(email);
       if(j.error==='email')return say('Please enter a valid email address.');
       say(BREAK);
     }).catch(function(){say(BREAK);}).then(function(){b.disabled=false;b.textContent='Email me a code';});}
@@ -808,7 +815,7 @@ html{overflow-x:hidden}
       if(j.ok){remember({email:$('#mEmail').value.trim(),login:j.login});oOut.hidden=true;showMember();$('#oSit').focus();return;}
       if(j.error==='bad_code')return say('That code doesn\u2019t match. Please check the email and try again.');
       if(j.error==='expired')return say('That code has expired. Click \u201cSend a new code\u201d to get a fresh one.');
-      if(j.error==='not_subscriber')return say('This email doesn\u2019t have member access. Not a member yet?','Get full access');
+      if(j.error==='not_subscriber')return notMember($('#mEmail').value.trim());
       say(BREAK);
     }).catch(function(){say(BREAK);}).then(function(){g.disabled=false;g.textContent='Sign in';});});
 
