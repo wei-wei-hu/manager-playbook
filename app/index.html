@@ -7,7 +7,7 @@
 <meta name="description" content="Underline AI full version for members: sign in and get Your Next Action for any situation."><meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&family=Kalam&family=Gochi+Hand&family=Indie+Flower&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap">
 <style>
 /* Layout: nav, two-column hero (headline + app preview), three feature tiles, how it works, a worked example (inputs, then the answer), a closing call to action and a footer. */
 :root{
@@ -248,22 +248,56 @@ html{overflow-x:hidden}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
 .ownerr{color:var(--soft);margin:0}
-/* What I'd do: the key line, on a calm paper-textured card in a new color each time */
-.keycard{position:relative;margin:16px 0 4px;border-radius:18px;padding:44px 36px 48px;min-height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.keycard::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.keycard .kin{position:relative;max-width:36ch;width:100%}.keycard .klabel{position:relative;margin:0 0 14px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
-.keycard .kline{position:relative;margin:0;font-family:"Patrick Hand","Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive;font-size:1.6rem;font-size-adjust:.5;line-height:1.4;letter-spacing:.01em}
-@media (max-width:520px){.keycard{padding:32px 24px 36px;min-height:160px}.keycard .kline{font-size:1.4rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
+/* Answer board, in the style of the Underline AI slides: a soft peach-pink-lavender gradient,
+   floating glossy spheres, frosted white cards, light large title, pill tags and gradient accents. */
+.board{position:relative;overflow:hidden;border-radius:22px;padding:30px 30px 28px;margin-top:2px;
+  background:linear-gradient(125deg,#FDEBDD 0%,#FBDDE6 46%,#E6E2FD 100%);color:#1D2033;
+  font-family:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.board .borb{position:absolute;border-radius:50%;pointer-events:none}
+.board .o1{width:58px;height:58px;right:26px;top:22px;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#B9C6FF 26%,#5B74FF 64%,#7A5CF0 100%);box-shadow:0 10px 24px rgba(79,107,255,.32)}
+.board .o2{width:16px;height:16px;left:46%;top:16px;background:radial-gradient(circle at 35% 30%,#fff,#FFC2A8 45%,#FF9C7A)}
+.board .o3{width:28px;height:28px;left:14px;bottom:14px;background:radial-gradient(circle at 35% 30%,#fff,#FFB3C4 45%,#F57C9A)}
+.bhead{position:relative;margin:0 0 18px;padding-right:84px}
+.bpills{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.bpill{display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid rgba(29,32,51,.4);font-size:.7rem;font-weight:500;letter-spacing:.02em;background:rgba(255,255,255,.55)}
+.bpill.soft{border-color:transparent;background:rgba(255,255,255,.75);color:#6B5CE7}
+.btitle{margin:0;font-weight:300;font-size:2.05rem;line-height:1.15;letter-spacing:-.015em;color:#1D2033}
+.bgrid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bcard{position:relative;background:rgba(255,255,255,.84);border-radius:18px;padding:18px 20px;box-shadow:0 10px 28px rgba(120,100,170,.12);border:1px solid rgba(255,255,255,.95);min-width:0}
+.bcard .blabel{display:block;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7A7F95;margin:0 0 10px}
+.bcard p{margin:0}
+.bhero{color:#fff;border:0;box-shadow:0 14px 30px rgba(91,108,242,.25)}
+.bhero .blabel{color:rgba(255,255,255,.9)}
+.bhero p{font-size:1.22rem;font-weight:500;line-height:1.45}
+.bsay .bsub{font-size:.8rem;color:#8A8FA3;margin:0 0 8px}
+.bsay .bq{font-size:.95rem;line-height:1.65}
+.bsteps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.bsteps li{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:12px;padding:10px 12px;font-size:.9rem;line-height:1.5;box-shadow:0 2px 8px rgba(120,100,170,.08)}
+.bnum{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;font-size:.8rem}
+.bwi{display:flex;gap:12px;align-items:flex-start}
+.bicon{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;background:linear-gradient(135deg,#FBC08D,#F4956A)}
+.bwatch{align-self:start}.bwatch p{font-weight:500;font-size:.95rem;line-height:1.5}
+.bwatch .bfrom{margin-top:6px;font-size:.78rem;font-weight:400;color:#8A8FA3;font-style:italic}
+.bund{grid-column:1/-1}
+.bitems{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.bitem{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(120,100,170,.08);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.bitem p{font-size:.88rem;line-height:1.55}
+.bsrc{display:inline-block;padding:4px 12px;border-radius:999px;color:#fff;font-size:.72rem;font-weight:600}
+@media (prefers-reduced-motion:no-preference){.board .o1{animation:float1 9s ease-in-out infinite}.board .o2{animation:float2 7s ease-in-out infinite}.board .o3{animation:float3 11s ease-in-out infinite}}
+@media (max-width:620px){.board{padding:22px 16px 20px}.bhead{padding-right:56px}.board .o1{width:40px;height:40px;right:14px;top:16px}.btitle{font-size:1.5rem}.bgrid{grid-template-columns:1fr}.bhero p{font-size:1.1rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
-@media print{@page{margin:12mm}html{font-size:13px!important}html,body{background:#fff!important}#printArea .sec h4::before{-webkit-mask:none!important;mask:none!important;background:none!important;content:"\2605"!important;color:#C060D8;width:auto!important;height:auto!important;font-size:1.05em;line-height:1}#printArea .sec{padding:11px 0!important}#printArea .pend{break-before:avoid;page-break-before:avoid}#printArea .sec{padding:9px 0!important}#printArea .pend{margin-top:10px!important}#printArea .pend b{display:inline!important;margin:0 8px 0 0!important;font-size:11pt!important}#printArea .pend span{display:inline!important}#printArea .keycard{min-height:0;padding:20px 26px 22px;margin:10px 0 2px;break-inside:avoid}#printArea .keycard .kline{font-size:1.25rem}#printArea .keycard .klabel{margin-bottom:8px}body::before{display:none}body>*:not(#printArea){display:none!important}
-#printArea{display:block!important;max-width:158mm;margin:0 auto;color:#0F1222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-#printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-#printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}
-#printArea .pbrand{margin:0 0 12px 4px;font-size:15pt;font-weight:800;letter-spacing:-.02em}#printArea .pbrand span{font-size:9.5pt;font-weight:500;color:#5E6475;margin-left:8px;letter-spacing:0}
-#printArea .pcard{background:#fff;border:1px solid #ECEAF4;border-radius:20px;overflow:hidden}
-#printArea .pbar{height:6px;background:linear-gradient(90deg,#4F6BFF 0%,#C060D8 55%,#8B5CF6 100%)}
-#printArea .pbody{padding:20px 26px 6px}#printArea .pbody>.panel{box-shadow:none;padding:0;background:#fff;border-radius:0}
-#printArea .pend{text-align:center;margin-top:16px}#printArea .pend b{display:block;font-size:12pt;margin-bottom:4px}#printArea .pend span{display:block;font-size:9pt;color:#8A8FA0}}
+@media print{@page{size:landscape;margin:8mm}html{font-size:12px!important}html,body{background:#fff!important}body::before{display:none}body>*:not(#printArea){display:none!important}
+#printArea{display:block!important;color:#1D2033;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important}
+#printArea .pbrand{margin:0 0 8px 4px;font-size:13pt;font-weight:800;letter-spacing:-.02em}#printArea .pbrand span{font-size:9pt;font-weight:500;color:#5E6475;margin-left:8px;letter-spacing:0}
+#printArea .board{padding:18px 20px 16px;border-radius:18px}
+#printArea .bhead{margin-bottom:12px}#printArea .btitle{font-size:1.7rem}
+#printArea .bgrid{grid-template-columns:1fr 1fr 1fr;gap:10px}
+#printArea .bhero{grid-column:1;grid-row:1}#printArea .bsay{grid-column:2;grid-row:1}#printArea .bwatch{grid-column:3;grid-row:1}
+#printArea .bsteps{grid-column:1/3;grid-row:2}#printArea .bund{grid-column:3;grid-row:2}
+#printArea .bcard{padding:12px 14px;break-inside:avoid;box-shadow:none}#printArea .bhero p{font-size:1.05rem}
+#printArea .bitems{grid-template-columns:1fr;gap:6px}#printArea .bitem{padding:8px 10px;box-shadow:none}#printArea .bsteps li{padding:7px 10px;box-shadow:none}
+#printArea .pend{text-align:center;margin-top:8px;font-size:9pt;color:#8A8FA0}#printArea .pend b{color:#1D2033;margin-right:8px}}
 .fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbmore .fbdone{margin:0 0 12px;color:var(--ink);font-weight:600}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
@@ -489,11 +523,6 @@ html{overflow-x:hidden}
   var D=JSON.parse(document.getElementById('tryData').textContent);
   var $=function(s){return document.querySelector(s);};
   function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
-  function sec(h,kids){var s=el('div','sec');s.append(el('h4',null,h));kids.forEach(function(k){s.append(k);});return s;}
-  function list(tag,items){var l=el(tag);items.forEach(function(x){l.append(el('li',null,x));});return l;}
-  function und(items){var d=el('div'),g=[];items.forEach(function(u){var line=u.q?'\u201c'+u.q+'\u201d':u.l;var x=g.filter(function(y){return y.t===u.t;})[0];
-      if(!x){x={t:u.t,s:u.s,l:[],quoted:true};g.push(x);}if(x.l.indexOf(line)<0)x.l.push(line);if(!u.q)x.quoted=false;});
-    g.forEach(function(u){var i=el('p','idea');var s=el('span','by','\u2014 '+(u.quoted?'':'based on ')+u.t);s.title=u.s;i.append(document.createTextNode(u.l.join(' ')+' '),s);d.append(i);});return d;}
   function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
   var out=$('#tryOut');
   // A plain-text copy of an answer, for Copy and Email it to me.
@@ -502,44 +531,108 @@ html{overflow-x:hidden}
     L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
     x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
     L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
-  // Email it (own answers), Save as PDF, Print and Copy, under every answer.
+  // Email it (own answers), Save as PDF, PowerPoint, Print and Copy, under every answer.
   function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
     function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
-    if(mail)btn('Email it',function(b){b.disabled=true;b.textContent='Sending\u2026';
+    if(mail)btn('Email it',function(b){b.disabled=true;b.textContent='Sending…';
       mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent';msg.textContent='Your Next Action is on its way. Check your inbox, and your spam folder too.';bar.append(msg);})
-        .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn\u2019t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
-    // Save as PDF and Print use the same designed one-pager: brand line, card with the gradient strip, closing line.
+        .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn’t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
+    // Save as PDF and Print: the answer board on one landscape page, with the brand line above it.
     function printPlan(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
-      var copy=into.cloneNode(true);copy.removeAttribute('id');copy.hidden=false;
       var brand=el('div','pbrand','Underline AI');brand.append(el('span',null,'by Weiwei Hu'));
-      var card=el('div','pcard'),bodyEl=el('div','pbody');bodyEl.append(copy);card.append(el('div','pbar'),bodyEl);
-      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),el('span',null,'wei-wei-hu.github.io/underline-ai \u00b7 \u00a9 2026 Weiwei Hu'));
-      pa.replaceChildren(brand,card,end);
+      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('wei-wei-hu.github.io/underline-ai · © 2026 Weiwei Hu'));
+      pa.replaceChildren(brand,into.querySelector('.board').cloneNode(true),end);
       var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
-    btn('Save as PDF',printPlan);btn('Print',printPlan);
+    btn('Save as PDF',printPlan);
+    btn('PowerPoint',function(b){b.disabled=true;b.textContent='Making slide…';
+      makeSlide(x).then(function(){b.textContent='PowerPoint';},function(){msg.textContent='We couldn’t make the PowerPoint just now. Try Save as PDF instead.';bar.append(msg);b.textContent='PowerPoint';})
+        .then(function(){b.disabled=false;});});
+    btn('Print',printPlan);
     btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
       function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
     return bar;}
-  // Calm card colors (background, text), like soft paper. A new one each time an answer shows.
-  var CARD_COLORS=[['#F4A04F','#1F1A14'],['#6F7B4E','#FFFFFF'],['#A9B89A','#1F2419'],['#7A9CB8','#FFFFFF'],['#C8694A','#FFFFFF'],
-    ['#E3B448','#1F1A10'],['#E8A9A0','#2A1A18'],['#A07A8C','#FFFFFF'],['#4F7C7A','#FFFFFF'],['#D9C7A7','#2A241A']];
-  // Handwritten fonts; font-size-adjust gives them the same letter height, so each looks the same size.
-  var CARD_FONTS=['"Patrick Hand"','"Kalam"','"Gochi Hand"','"Indie Flower"','"Caveat"'];
-  var lastColor=-1,lastFont=-1;
+
+  // The answer board, in the style of the Underline AI slides. What I'd do takes one of five
+  // gradients, a new one each time; the step numbers and source pills follow on from it.
+  var BOARD_COLORS=[['#7B93FF','#5B6CF2'],['#F9A9BA','#F27D99'],['#FBC08D','#F4956A'],['#7FD8A9','#45B884'],['#B3A6FF','#8B78F2']];
+  var lastColor=-1;
   function pick(n,last){var i;do{i=Math.floor(Math.random()*n);}while(i===last&&n>1);return i;}
-  function keycard(text){var i=lastColor=pick(CARD_COLORS.length,lastColor),f=lastFont=pick(CARD_FONTS.length,lastFont);
-    var c=el('div','keycard');c.style.background=CARD_COLORS[i][0];c.style.color=CARD_COLORS[i][1];
-    var line=el('p','kline',text);line.style.fontFamily=CARD_FONTS[f]+',"Chalkboard SE","Bradley Hand","Segoe Print","Comic Sans MS",cursive';
-    var inner=el('div','kin');inner.append(el('p','klabel','\u2605 What I\u2019d do'),line);c.append(inner);return c;}
+  function grad(c){return 'linear-gradient(135deg,'+c[0]+','+c[1]+')';}
+  function tone(x,k){return BOARD_COLORS[(x.color+k)%BOARD_COLORS.length];}
+  // Underlined ideas grouped by source: the author's words in quotes, or "based on" when there's no quote.
+  function groups(items){var g=[];items.forEach(function(u){var line=u.q?'“'+u.q+'”':u.l;var x=g.filter(function(y){return y.t===u.t;})[0];
+      if(!x){x={t:u.t,s:u.s,l:[],quoted:true};g.push(x);}if(x.l.indexOf(line)<0)x.l.push(line);if(!u.q)x.quoted=false;});return g;}
+  function board(x,tag){
+    if(x.color==null)x.color=lastColor=pick(BOARD_COLORS.length,lastColor);
+    var b=el('div','board');['o1','o2','o3'].forEach(function(o){b.append(el('span','borb '+o));});
+    var hd=el('div','bhead'),pills=el('div','bpills');pills.append(el('span','bpill','Your Next Action'));if(tag)pills.append(el('span','bpill soft',tag));
+    hd.append(pills,el('h3','btitle',x.title));
+    var hero=el('div','bcard bhero');hero.style.background=grad(tone(x,0));hero.append(el('span','blabel','★ What I’d do'),el('p',null,x.do));
+    var say=el('div','bcard bsay');say.append(el('span','blabel','What I’d say'));if(x.say_label)say.append(el('p','bsub',x.say_label));say.append(el('p','bq','“'+x.say+'”'));
+    var steps=el('div','bcard bsteps'),ol=el('ol');steps.append(el('span','blabel','Do this next'),ol);
+    x.next.forEach(function(n,i){var li=el('li'),num=el('span','bnum',String(i+1));num.style.background=grad(tone(x,1+i));li.append(num,el('span',null,n.step||n));ol.append(li);});
+    var watch=el('div','bcard bwatch'),wi=el('div','bwi'),wt=el('div');wt.append(el('p',null,x.watch.text));
+    if(x.watch.t){var fr=el('p','bfrom','Based on '+x.watch.t);fr.title=x.watch.s||'';wt.append(fr);}
+    wi.append(el('span','bicon','!'),wt);watch.append(el('span','blabel','Watch out'),wi);
+    var u=el('div','bcard bund'),items=el('div','bitems');u.append(el('span','blabel','Underlined'),items);
+    groups(x.und).forEach(function(gr,i){var it=el('div','bitem'),s=el('span','bsrc',(gr.quoted?'':'Based on ')+gr.t);s.title=gr.s||'';s.style.background=grad(tone(x,2+i));
+      it.append(el('p',null,gr.l.join(' ')),s);items.append(it);});
+    var g=el('div','bgrid');g.append(hero,say,steps,watch,u);b.append(hd,g);return b;}
   function showSample(x,into,tag,mail){
     into=into||out;
-    into.replaceChildren(head(x.title,tag||'Sample answer'));
-    var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));
-    var ss=sec("What I'd say",[say]);ss.classList.add('star');
-    var w=el('div','watch');w.append(el('p',null,x.watch.text));var fr=el('p','from','Based on '+x.watch.t);fr.title=x.watch.s;w.append(fr);
-    into.append(keycard(x.do),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
+    into.replaceChildren(board(x,tag||'Sample answer'));
     into.append(actions(x,into,mail));
   }
+
+  // PowerPoint: one 16:9 slide in the same design. The gradient background, spheres and the
+  // What I'd do gradient are drawn as pictures; all the words stay editable text.
+  var PPTX_URL='https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js';
+  function loadPptx(){return window.PptxGenJS?Promise.resolve():new Promise(function(ok,fail){var sc=document.createElement('script');sc.src=PPTX_URL;sc.onload=ok;sc.onerror=fail;document.head.append(sc);});}
+  function canvasPng(w,h,draw){var c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);return c.toDataURL('image/png');}
+  function sphere(g,cx,cy,r,stops){var f=g.createRadialGradient(cx-r*.35,cy-r*.4,r*.05,cx,cy,r);stops.forEach(function(s){f.addColorStop(s[0],s[1]);});g.fillStyle=f;g.beginPath();g.arc(cx,cy,r,0,7);g.fill();}
+  function roundPath(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+  function fitSize(text,base,cap,min){var n=String(text).length;return n<=cap?base:Math.max(min,Math.round(base*Math.sqrt(cap/n)*10)/10);}
+  function makeSlide(x){return loadPptx().then(function(){
+    var P=new window.PptxGenJS();P.layout='LAYOUT_WIDE';P.title='Your Next Action: '+x.title;P.author='Underline AI by Weiwei Hu';
+    var s=P.addSlide(),hex=function(c){return c.replace('#','');},F='Calibri',ink='1D2033',grey='7A7F95',dpi=120;
+    s.background={data:canvasPng(1600,900,function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,'#FDEBDD');f.addColorStop(.46,'#FBDDE6');f.addColorStop(1,'#E6E2FD');g.fillStyle=f;g.fillRect(0,0,w,h);
+      sphere(g,w*.925,h*.1,44,[[0,'#ffffff'],[.12,'#B9C6FF'],[.6,'#5B74FF'],[1,'#7A5CF0']]);
+      sphere(g,w*.47,h*.05,11,[[0,'#ffffff'],[.4,'#FFC2A8'],[1,'#FF9C7A']]);
+      sphere(g,w*.03,h*.95,17,[[0,'#ffffff'],[.4,'#FFB3C4'],[1,'#F57C9A']]);})};
+    var card=function(cx,cy,cw,ch){s.addShape(P.ShapeType.roundRect,{x:cx,y:cy,w:cw,h:ch,rectRadius:.16,fill:{color:'FFFFFF',transparency:12},line:{color:'FFFFFF',transparency:100},
+      shadow:{type:'outer',color:'9B8FC7',opacity:.25,blur:8,offset:2,angle:90}});};
+    var label=function(t,lx,ly,lw,col){s.addText(t.toUpperCase(),{x:lx,y:ly,w:lw,h:.28,fontFace:F,fontSize:9,bold:true,color:col||grey,charSpacing:2,margin:0});};
+    // Title
+    s.addShape(P.ShapeType.roundRect,{x:.6,y:.42,w:1.75,h:.32,rectRadius:.16,fill:{color:'FFFFFF',transparency:45},line:{color:ink,width:.75,transparency:40}});
+    s.addText('Your Next Action',{x:.6,y:.42,w:1.75,h:.32,fontFace:F,fontSize:10,color:ink,align:'center',valign:'middle',margin:0});
+    s.addText(x.title,{x:.6,y:.84,w:10.6,h:.8,fontFace:'Calibri Light',fontSize:fitSize(x.title,32,48,22),color:ink,valign:'middle',margin:0});
+    // Row 1: What I'd do (gradient), What I'd say, Watch out
+    var c=tone(x,0),hw=4.05,hh=2.6;
+    s.addImage({data:canvasPng(Math.round(hw*dpi),Math.round(hh*dpi),function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,c[0]);f.addColorStop(1,c[1]);g.fillStyle=f;roundPath(g,0,0,w,h,20);g.fill();}),x:.6,y:1.8,w:hw,h:hh});
+    label('★ What I’d do',.85,1.98,3.6,'FFFFFF');
+    s.addText(x.do,{x:.85,y:2.32,w:3.6,h:1.9,fontFace:F,fontSize:fitSize(x.do,17,150,12),bold:true,color:'FFFFFF',valign:'top',margin:0,lineSpacingMultiple:1.1});
+    card(4.85,1.8,4.1,2.6);label('What I’d say',5.1,1.98,3.6);
+    s.addText([{text:(x.say_label||'')+'\n',options:{fontSize:10,color:'8A8FA3'}},{text:'“'+x.say+'”',options:{fontSize:fitSize(x.say,12,260,9),color:ink}}],
+      {x:5.1,y:2.3,w:3.6,h:1.95,fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1.1});
+    card(9.15,1.8,3.6,2.6);label('Watch out',9.4,1.98,3.1);
+    s.addShape(P.ShapeType.roundRect,{x:9.4,y:2.32,w:.4,h:.4,rectRadius:.08,fill:{color:'F4956A'},line:{color:'F4956A'}});
+    s.addText('!',{x:9.4,y:2.32,w:.4,h:.4,fontFace:F,fontSize:14,bold:true,color:'FFFFFF',align:'center',valign:'middle',margin:0});
+    s.addText([{text:x.watch.text,options:{bold:true,fontSize:fitSize(x.watch.text,12,150,9),color:ink}},{text:x.watch.t?'\nBased on '+x.watch.t:'',options:{italic:true,fontSize:9,color:'8A8FA3'}}],
+      {x:9.95,y:2.3,w:2.6,h:1.95,fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1.1});
+    // Row 2: Do this next, Underlined
+    card(.6,4.6,8.35,2.4);label('Do this next',.85,4.76,4);
+    var n=x.next.length||1,rowH=Math.min(.62,1.85/n);
+    x.next.forEach(function(st,i){var ry=5.08+i*rowH,t=String(st.step||st),k=tone(x,1+i);
+      s.addShape(P.ShapeType.ellipse,{x:.85,y:ry,w:.32,h:.32,fill:{color:hex(k[0])},line:{color:hex(k[0])}});
+      s.addText(String(i+1),{x:.85,y:ry,w:.32,h:.32,fontFace:F,fontSize:10,bold:true,color:'FFFFFF',align:'center',valign:'middle',margin:0});
+      s.addText(t,{x:1.3,y:ry-.04,w:7.4,h:rowH,fontFace:F,fontSize:fitSize(t,11.5,120,9),color:ink,valign:'top',margin:0});});
+    card(9.15,4.6,3.6,2.4);label('Underlined',9.4,4.76,3.1);
+    var runs=[];groups(x.und).forEach(function(gr,i){var k=tone(x,2+i);if(i)runs.push({text:'\n',options:{fontSize:5}});
+      runs.push({text:gr.l.join(' ')+'\n',options:{color:ink}});runs.push({text:(gr.quoted?'— ':'— based on ')+gr.t,options:{bold:true,color:hex(k[1])}});});
+    var all=runs.map(function(r){return r.text;}).join('');
+    s.addText(runs,{x:9.4,y:5.08,w:3.15,h:1.8,fontFace:F,fontSize:fitSize(all,10,240,7),valign:'top',margin:0});
+    s.addText('Underline AI by Weiwei Hu  ·  wei-wei-hu.github.io/underline-ai',{x:.6,y:7.1,w:12.1,h:.25,fontFace:F,fontSize:9,color:'8A8FA3',align:'right',margin:0});
+    return P.writeFile({fileName:'Your Next Action - '+x.title.replace(/[\\/:*?"<>|]/g,'')+'.pptx'});});}
   var dlg=$('#gateDlg');
   function closeGate(){if(dlg.open)dlg.close();}
   dlg.querySelector('.gclose').onclick=closeGate;dlg.querySelector('.glater').onclick=closeGate;
