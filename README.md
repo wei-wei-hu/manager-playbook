@@ -4,7 +4,7 @@
 
 By Weiwei Hu.
 
-### [See Underline →](https://wei-wei-hu.github.io/manager-playbook/)
+### [See Underline →](https://wei-wei-hu.github.io/underline/)
 
 ## What it is
 
@@ -18,7 +18,7 @@ Underline turns one work situation into a one-page plan. You describe what's hap
 
 It's built for everyday work situations: pitching an idea, a difficult colleague, a heavy workload, executive presentations, a new manager role, negotiating pay, meetings, career choices, getting credit and getting buy-in.
 
-[![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/manager-playbook/)
+[![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline/)
 
 <img src="docs/underline-phone.png" alt="Underline landing page on a phone" width="30%">
 
