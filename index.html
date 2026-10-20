@@ -241,7 +241,10 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
+.ownerr{color:var(--soft);margin:0}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
+#printArea{display:none}
+@media print{body::before{display:none}body>*:not(#printArea){display:none!important}#printArea{display:block!important;color:#0F1222;font-size:12pt}#printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}#printArea .pfoot{margin-top:18pt;font-size:9pt;color:#666}}
+.fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
 #gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
@@ -425,13 +428,32 @@ html{overflow-x:hidden}
     g.forEach(function(u){var i=el('p','idea');var s=el('span','by','\u2014 '+(u.quoted?'':'based on ')+u.t);s.title=u.s;i.append(document.createTextNode(u.l.join(' ')+' '),s);d.append(i);});return d;}
   function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
   var out=$('#tryOut');
-  function showSample(x,into,tag){
+  // A plain-text copy of an answer, for Copy and Email it to me.
+  function planText(x){var L=[x.title,'','WHAT I\u2019D DO',x.do,'','WHAT I\u2019D SAY',x.say_label+':','\u201c'+x.say+'\u201d','','DO THIS NEXT'];
+    x.next.forEach(function(n,i){L.push((i+1)+'. '+(n.step||n));});
+    L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
+    x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
+    L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
+  // Save as PDF, Email it to me (own answers) and Copy, under every answer.
+  function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
+    function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
+    btn('Save as PDF',function(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
+      pa.replaceChildren(into.cloneNode(true),el('p','pfoot','Underline AI by Weiwei Hu \u00b7 wei-wei-hu.github.io/underline-ai'));
+      var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;});
+    if(mail)btn('Email it to me',function(b){b.disabled=true;b.textContent='Sending\u2026';
+      mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent to your email';msg.textContent='Check your inbox (and spam folder) for your Next Action.';bar.append(msg);})
+        .catch(function(){b.disabled=false;b.textContent='Email it to me';msg.textContent='We couldn\u2019t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
+    btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
+      function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
+    return bar;}
+  function showSample(x,into,tag,mail){
     into=into||out;
     into.replaceChildren(head(x.title,tag||'Sample answer'));
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));
     var ss=sec("What I'd say",[say]);ss.classList.add('star');
     var w=el('div','watch');w.append(el('p',null,x.watch.text));var fr=el('p','from','Based on '+x.watch.t);fr.title=x.watch.s;w.append(fr);
     into.append(sec("What I'd do",[el('p',null,x.do)]),ss,sec('Do this next',[list('ol',x.next)]),sec('Watch out',[w]),sec('Underlined',[und(x.und)]));
+    into.append(actions(x,into,mail));
   }
   var dlg=$('#gateDlg');
   function closeGate(){if(dlg.open)dlg.close();}
@@ -508,10 +530,10 @@ html{overflow-x:hidden}
     if(CODE_API&&verified!==body.email){
       var code=$('#oCode').value.replace(/\D/g,'');
       if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
-      oGo.disabled=true;oGo.textContent='Checking your code\u2026';
+      oGo.disabled=true;oGo.textContent='Checking your code\u2026';working('Checking your code','Just a moment\u2026',[]);
       codes('verify',{code:code}).then(function(j){
         oGo.disabled=false;oGo.textContent='Get my free Next Action';
-        if(j.ok){verified=body.email;return ask(body);}
+        if(j.ok){verified=body.email;return ask(body,true);}
         if(j.error==='used')return usedUp();
         if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn\u2019t match. Please check the email and try again.');}
         if(j.error==='expired')return say('That code has expired. Click \u201cSend a new code\u201d to get a fresh one.');
@@ -521,13 +543,23 @@ html{overflow-x:hidden}
     }
     ask(body);
   });
-  function ask(body){
-    oGo.disabled=true;var t=el('div','thinking');t.append(el('i'),el('span',null,'Finding the ideas that fit your situation. This can take up to a minute.'));
-    oOut.replaceChildren(head('Working on it',null),t);oOut.hidden=false;oOut.scrollIntoView({behavior:'smooth',block:'start'});
+  // A spinner with messages that change while the answer is being written.
+  var timers=[];
+  function working(title,first,later){timers.forEach(clearTimeout);timers=[];
+    var msg=el('span',null,first),t=el('div','thinking');t.append(el('i'),msg);
+    oOut.replaceChildren(head(title,null),t);oOut.hidden=false;
+    later.forEach(function(m){timers.push(setTimeout(function(){msg.textContent=m[1];},m[0]));});}
+  function ask(body,confirmed){
+    oGo.disabled=true;
+    working('We\u2019re creating the best personalized advice for your situation.',(confirmed?'Code confirmed. ':'')+'This may take up to a minute.',
+      [[35000,'Almost there. Thank you for waiting.']]);
+    oOut.scrollIntoView({behavior:'smooth',block:'start'});
     fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
       .then(function(res){
-        if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));showSample(fromApi(res.j.answer),oOut,'Your free answer');lock();return;}
+        if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));var x=fromApi(res.j.answer);
+          showSample(x,oOut,'Your free answer',CODE_API?function(x){return codes('plan',{title:x.title,text:planText(x)});}:null);lock();
+          if(CODE_API)oOut.append(feedback(body,res.j.answer));return;}
         var e=res.j&&res.j.error;
         if(e==='used')usedUp();
         else if(e==='email'){$('#oEmail').focus();say('Please enter a valid email address.');}
@@ -537,7 +569,26 @@ html{overflow-x:hidden}
         else say('Underline AI is taking a short break. Please try again in a few minutes.');
       })
       .catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
-      .then(function(){oGo.disabled=false;});
+      .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});
   }
+  // Thumbs up or down after the free answer, saved to the Feedback tab of the Google Sheet.
+  function feedback(body,answer){
+    var box=el('div','fb'),row=el('div','fbrow'),up=el('button',null,'\uD83D\uDC4D Helpful'),down=el('button',null,'\uD83D\uDC4E Not quite');
+    var more=el('div','fbmore'),parts=el('div','fbparts'),note=el('textarea'),send=el('button','btn big dark trygo','Send feedback'),rating='';
+    more.hidden=true;note.rows=2;note.maxLength=1000;send.type='button';
+    box.append(el('h4',null,'Was this helpful?'),row,more);row.append(up,down);
+    ['What I\u2019d do','What I\u2019d say','Do this next','Watch out','Underlined'].forEach(function(n){
+      var b=el('button',null,n);b.type='button';b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));});parts.append(b);});
+    function pick(which){rating=which;up.setAttribute('aria-pressed',String(which==='up'));down.setAttribute('aria-pressed',String(which==='down'));
+      more.replaceChildren();if(which==='down')more.append(el('p',null,'Which parts didn\u2019t work for you? Tap any that apply.'),parts);
+      note.placeholder=which==='down'?'What would make it better? (optional)':'Anything you\u2019d like to add? (optional)';more.append(note,send);more.hidden=false;}
+    [up,down].forEach(function(b){b.type='button';b.addEventListener('click',function(){pick(b===up?'up':'down');});});
+    send.addEventListener('click',function(){send.disabled=true;send.textContent='Sending\u2026';
+      var chosen=[].slice.call(parts.querySelectorAll('[aria-pressed="true"]')).map(function(b){return b.textContent;});
+      codes('feedback',{rating:rating,parts:chosen.join(', '),comment:note.value.trim(),title:answer.title||'',sit:body.sit})
+        .then(function(j){if(!j.ok)throw 0;box.replaceChildren(el('p','fbdone','Thank you for your feedback. It helps make Underline AI better.'));})
+        .catch(function(){send.disabled=false;send.textContent='Send feedback';});});
+    return box;}
 })();
 </script>
