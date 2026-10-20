@@ -1,22 +1,34 @@
 # Underline
 
-**Bring one situation. Know your next best action.**
+**Practical advice for work and life.** By Weiwei Hu.
 
-By Weiwei Hu.
+Bring one situation. Know your next best action.
+
+<img src="docs/underline-cover.png" alt="Underline: practical advice for work and life" width="420">
 
 ### [See Underline →](https://wei-wei-hu.github.io/underline/)
 
 ## What it is
 
-Underline turns one work situation into a one-page plan. You describe what's happening, what you want to happen, and anything else that matters. Underline picks the ideas from its library that fit and gives you Your Next Action:
+Underline is your personalized AI advisor. Bring a question, challenge, or decision and get clear, personalized recommendations on a single page.
+
+**You share Your Situation:**
+
+- What's happening?
+- What do you want to happen?
+- Anything else that matters? (optional)
+
+**You get Your Next Action:**
 
 - **What I'd do:** one clear recommendation
 - **Why:** 2 to 3 reasons that fit your situation
 - **How to do it:** 3 concrete steps
-- **What to say:** the exact words, when the situation involves talking to someone
-- **Underlined:** the 2 to 3 ideas behind the recommendation
+- **What to say:** the exact words to use
+- **Underlined:** the ideas behind it
 
-It's built for everyday work situations: pitching an idea, a difficult colleague, a heavy workload, executive presentations, a new manager role, negotiating pay, meetings, career choices, getting credit and getting buy-in.
+**Topics:** Career, Communication, Leadership, Productivity, Decisions, Work-life balance.
+
+## See the page
 
 [![Underline landing page on a laptop](docs/underline-laptop.png)](https://wei-wei-hu.github.io/underline/)
 
@@ -31,12 +43,13 @@ It's built for everyday work situations: pitching an idea, a difficult colleague
 | File | What it is |
 |---|---|
 | `index.html` | The Underline landing page, published with GitHub Pages |
-| `docs/` | Screenshots used in this README |
+| `docs/` | Cover image and screenshots used in this README |
 | `LICENSE` | Terms of use |
 
 ## Contact
 
 - Website: https://weiweihu.carrd.co
+- GitHub: https://github.com/wei-wei-hu/underline
 - LinkedIn: https://www.linkedin.com/in/weiweihu/
 
 ## License
