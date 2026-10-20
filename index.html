@@ -244,7 +244,7 @@ html{overflow-x:hidden}
 .ownerr{color:var(--soft);margin:0}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
 @media print{@page{margin:12mm}html{font-size:13px!important}html,body{background:#fff!important}#printArea .sec h4::before{-webkit-mask:none!important;mask:none!important;background:none!important;content:"\2605"!important;color:#C060D8;width:auto!important;height:auto!important;font-size:1.05em;line-height:1}#printArea .sec{padding:11px 0!important}#printArea .pend{break-before:avoid;page-break-before:avoid}body::before{display:none}body>*:not(#printArea){display:none!important}
-#printArea{display:block!important;color:#0F1222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#printArea{display:block!important;max-width:158mm;margin:0 auto;color:#0F1222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}
 #printArea .pbrand{margin:0 0 12px 4px;font-size:15pt;font-weight:800;letter-spacing:-.02em}#printArea .pbrand span{font-size:9.5pt;font-weight:500;color:#5E6475;margin-left:8px;letter-spacing:0}
@@ -302,8 +302,8 @@ html{overflow-x:hidden}
     <a class="logo" href="#">Underline AI<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="#how">How it works</a>
-      <a href="#try">Examples</a>
-      <a href="#own" class="ownlink" hidden>Try it</a>
+      <a href="#try">See examples</a>
+      <a href="#own" class="ownlink" hidden>Try it free</a>
       <a class="btn dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access</a>
     </div>
   </nav>
@@ -316,8 +316,8 @@ html{overflow-x:hidden}
       <h1>Practical advice for <span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
-        <a class="btn big line" href="#try">Examples <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn big trybtn" id="heroTry" href="#try">Try it <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big line" href="#try">See examples <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big trybtn" id="heroTry" href="#try">Try it free <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -383,7 +383,7 @@ html{overflow-x:hidden}
   </section>
 
   <section class="block" id="own" hidden>
-    <p class="kicker">Try it</p>
+    <p class="kicker">Try it free</p>
     <h2>Try it on your own situation.</h2>
     <div class="trygrid">
       <div class="panel">
