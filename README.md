@@ -10,9 +10,9 @@ Bring one situation. Know your next best action.
 
 ## What it is
 
-Underline is your personalized AI advisor. Bring a question, challenge, or decision and get clear, personalized recommendations on a single page.
+Underline is your personal AI advisor. Bring a question, a challenge, or a decision you're stuck on, and get advice that fits your situation, all on one page.
 
-**You share Your Situation:**
+**You tell it your situation:**
 
 - What's happening?
 - What do you want to happen?
@@ -20,11 +20,11 @@ Underline is your personalized AI advisor. Bring a question, challenge, or decis
 
 **You get Your Next Action:**
 
-- **What I'd do:** one clear recommendation
-- **Why:** 2 to 3 reasons that fit your situation
-- **How to do it:** 3 concrete steps
-- **What to say:** the exact words to use
-- **Underlined:** the ideas behind it
+- **What I'd do:** one clear thing to do
+- **Why:** the key reasons it fits your situation
+- **How to do it:** concrete steps you can take
+- **What to say:** the words to use
+- **Underlined:** the ideas behind the advice
 
 **Topics:** Career, Communication, Leadership, Productivity, Decisions, Work-life balance.
 
