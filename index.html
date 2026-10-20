@@ -227,9 +227,8 @@ html{overflow-x:hidden}
 @media (max-width:620px){.preview{grid-template-columns:minmax(0,1fr)!important}.chat{width:100%}.outs{flex-direction:row!important;flex-wrap:wrap!important}.ins span{width:100%}}
 
 /* try-it demo */
-.trygrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
-#tryOut{display:flex;flex-direction:column;align-self:stretch}
-#tryOut>.tryempty{margin:auto;max-width:300px;text-align:center;line-height:1.6;padding:24px 0}
+.trygrid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+#tryOut[hidden]{display:none}
 @media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
 .trychips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .trychips button{border:0;cursor:pointer;font:inherit;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
@@ -248,10 +247,6 @@ html{overflow-x:hidden}
 .locked .blur i{display:block;height:11px;border-radius:6px;background:var(--line);margin:8px 0}
 .locked h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}
 .locked h4::after{content:" \1F512";letter-spacing:0}
-#tryOut>.gate{margin:auto;max-width:340px;text-align:center;padding:24px 0}
-.gate h3{margin:0 0 8px}
-.gate p{margin:0 0 18px;color:var(--soft);line-height:1.6}
-.gate .btn{margin:0 auto}
 .lockcard{position:relative;margin-top:6px;border-radius:16px;background:var(--tint);padding:18px;text-align:center}
 .lockcard b{display:block;margin-bottom:4px}
 .lockcard p{margin:0 0 12px;color:var(--soft);font-size:.92rem}
@@ -327,7 +322,7 @@ html{overflow-x:hidden}
     <h2>See what you'd get.</h2>
     <div class="trygrid">
       <div class="panel">
-        <p class="plabel">1. Your situation</p>
+        <p class="plabel">Your situation</p>
         <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
         <form id="tryForm" autocomplete="off">
           <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" placeholder="Describe your situation in a few sentences, or pick a sample above."></textarea></label>
@@ -337,14 +332,11 @@ html{overflow-x:hidden}
           <p class="trynote" id="tryNote">Samples show a full answer. Your own situation needs full access.</p>
         </form>
       </div>
-      <div class="panel full" id="tryOut" aria-live="polite">
-        <p class="plabel">2. Your Next Action</p>
-        <p class="tryempty">Pick a sample or describe your situation to see what you'd get.</p>
-      </div>
+      <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
     </div>
   </section>
 
-  <section class="closing">
+  <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
     <h2>Know your <span class="grad">next best action.</span></h2>
     <div class="ctas"><a class="btn big dark" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
@@ -368,7 +360,7 @@ html{overflow-x:hidden}
   function sec(h,kids){var s=el('div','sec');s.append(el('h4',null,h));kids.forEach(function(k){s.append(k);});return s;}
   function list(tag,items){var l=el(tag);items.forEach(function(x){l.append(el('li',null,x));});return l;}
   function und(items){var d=el('div');items.forEach(function(u){var i=el('div','idea');i.append(el('b',null,u.n));if(u.l)i.append(el('span',null,u.l));if(u.s)i.append(el('em','src',u.s));d.append(i);});return d;}
-  function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','2. Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
+  function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
   var out=$('#tryOut');
   function showSample(x){
     out.replaceChildren(head(x.title,'Sample answer'));
@@ -376,9 +368,8 @@ html{overflow-x:hidden}
     var say=el('div');say.append(el('p','saylab',x.say_label),el('p','say',x.say));out.append(sec('What to say',[say]),sec('Underlined',[und(x.und)]));
   }
   function showGate(){
-    out.replaceChildren(el('p','plabel','2. Your Next Action'));
-    var c=el('div','gate');c.append(el('h3',null,'Get full access to see your answer'),el('p',null,"The full version gives you what to do, why, how to do it, what to say and the ideas behind it, for your situation."));
-    var a=el('a','btn big dark','Get full access');a.href='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';a.target='_blank';a.rel='noopener';c.append(a);out.append(c);
+    out.hidden=true;out.replaceChildren();
+    document.getElementById('access').scrollIntoView({behavior:'smooth',block:'center'});
   }
   var chips=$('#tryChips'), cur=null;
   D.samples.forEach(function(x,i){var b=el('button',null,x.label);b.type='button';b.setAttribute('aria-pressed','false');
@@ -387,8 +378,8 @@ html{overflow-x:hidden}
   ['#tSit','#tGoal','#tCtx'].forEach(function(s){$(s).addEventListener('input',function(){if(cur!==null){cur=null;chips.querySelectorAll('button').forEach(function(c){c.setAttribute('aria-pressed','false');});}});});
   $('#tryForm').addEventListener('submit',function(e){e.preventDefault();
     var sit=$('#tSit').value.trim();if(!sit){$('#tSit').focus();return;}
-    if(cur!==null)showSample(D.samples[cur]);else showGate();
-    if(window.innerWidth<900)out.scrollIntoView({behavior:'smooth',block:'start'});
+    if(cur===null){showGate();return;}
+    showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
   });
 })();
 </script>
