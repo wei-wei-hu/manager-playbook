@@ -20,11 +20,10 @@ Underline AI is your personal advisor. Bring a question, a challenge, or a decis
 
 **You get Your Next Action:**
 
-- **What I'd do:** one clear thing to do
-- **Why:** the key reasons it fits your situation
-- **How to do it:** concrete steps you can take
-- **What to say:** the words to use
-- **Underlined:** the ideas behind the advice
+- **What I'd do:** one decisive recommendation for your situation
+- **What I'd say:** the actual words to use
+- **Do this next:** up to three actions, adapted from practical techniques in the Underline AI library
+- **Underlined:** the two or three ideas that explain why the advice works, with the source of each
 
 **Topics:** Career, Communication, Leadership, Productivity, Decisions, Work-life balance.
 
