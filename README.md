@@ -17,7 +17,7 @@ Describe a work situation in a short form. Underline picks the ideas from its li
 
 ## Get Underline
 
-$9 a month: [subscribe here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll add your Claude account and email you the link. Underline runs on your own Claude account.
+$9 a month: [subscribe here](https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00). After you subscribe, I'll email you a link to get access.
 
 - Website: https://weiweihu.carrd.co
 - LinkedIn: https://www.linkedin.com/in/weiweihu/
