@@ -368,11 +368,12 @@ html{overflow-x:hidden}
       <div class="panel">
         <p class="plabel">Your situation</p>
         <form id="ownForm" autocomplete="off">
+          <label class="fld"><span>Start with your email <small>(one free Next Action per email)</small></span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
           <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
           <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
           <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
           <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
-          <p class="trynote" id="ownNote">One free Next Action. It can take up to a minute.</p>
+          <p class="trynote" id="ownNote">It can take up to a minute. We only use your email to keep track of your free try.</p>
         </form>
       </div>
       <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
@@ -463,7 +464,8 @@ html{overflow-x:hidden}
   function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
     if(store('ul.own')){window.open(PAY,'_blank','noopener');return;}
-    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
+    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim(),email:$('#oEmail').value.trim()};
+    if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(body.email)){$('#oEmail').focus();oNote.textContent='Please enter your email. Each email gets one free Next Action.';return;}
     if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what\u2019s happening.';return;}
     oGo.disabled=true;var t=el('div','thinking');t.append(el('i'),el('span',null,'Finding the ideas that fit your situation. This can take up to a minute.'));
     oOut.replaceChildren(head('Working on it',null),t);oOut.hidden=false;oOut.scrollIntoView({behavior:'smooth',block:'start'});
@@ -472,7 +474,8 @@ html{overflow-x:hidden}
       .then(function(res){
         if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));showSample(fromApi(res.j.answer),oOut,'Your free answer');lock();return;}
         var e=res.j&&res.j.error;
-        if(e==='used'){store('ul.own',String(Date.now()));lock();say('You\u2019ve used your free Next Action. Get full access for your next situation.');}
+        if(e==='used'){store('ul.own',String(Date.now()));lock();say('This email has already used its free Next Action. Get full access for your next situation.');}
+        else if(e==='email'){$('#oEmail').focus();say('Please enter a valid email address.');}
         else if(e==='busy')say('Underline AI is busy right now. Please try again in a little while.');
         else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
         else if(e==='too_long')say('That\u2019s a bit long. Please shorten it and try again.');
