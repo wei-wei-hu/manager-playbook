@@ -169,13 +169,16 @@ footer a svg{width:15px;height:15px}
 .feat .ic{width:54px!important;height:54px!important}
 .block h2{font-size:clamp(1.6rem,3vw,2.15rem)!important}
 .wrap{max-width:960px!important}
+.logo{white-space:nowrap}
+@media (max-width:520px){.logo{font-size:1.4rem}.logo .by{font-size:.8rem!important;margin-left:6px!important}.links .btn.dark{padding:10px 16px;font-size:.9rem}.btn.big{width:100%!important}}
+.logo .by{font-size:.9rem;font-weight:500;color:var(--soft);letter-spacing:0;margin-left:10px}
 </style>
 
 </head>
 <body>
 <div class="wrap">
   <nav class="top" aria-label="Main">
-    <a class="logo" href="#">Underline</a>
+    <a class="logo" href="#">Underline<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="#how">How it works</a>
       <a href="#example">Example</a>
