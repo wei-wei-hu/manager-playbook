@@ -241,7 +241,7 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}.ownerr a{color:var(--ink);font-weight:600}
+.ownerr{color:var(--soft);margin:0}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
 #gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
@@ -369,11 +369,18 @@ html{overflow-x:hidden}
         <p class="plabel">Your situation</p>
         <form id="ownForm" autocomplete="off">
           <label class="fld"><span>Start with your email <small>(one free Next Action per email)</small></span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
+          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
+          <div id="ownStep2" class="ownstep">
+          <div id="ownCodeBox" hidden>
+          <p class="trynote ownsent" id="ownSent"></p>
+          <label class="fld"><span>Your 6-digit code</span><input id="oCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></label>
+          </div>
           <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
           <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
           <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
           <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
           <p class="trynote" id="ownNote">It can take up to a minute. We only use your email to keep track of your free try.</p>
+          </div>
         </form>
       </div>
       <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
@@ -451,8 +458,34 @@ html{overflow-x:hidden}
   $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
   $('#heroTry').href='#own';
   var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
+  // Free-try codes: a Google Apps Script emails each visitor a code and allows one free try per email.
+  var CODE_API='', oSend=$('#ownSend'), verified='';
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+  function codes(action,extra){var b={action:action,email:$('#oEmail').value.trim()};for(var k in extra)b[k]=extra[k];
+    return fetch(CODE_API,{method:'POST',body:JSON.stringify(b)}).then(function(r){return r.json();});}
+  if(CODE_API){$('#ownStep2').hidden=true;oSend.hidden=false;}
+  function step2(){$('#ownStep2').hidden=false;$('#ownCodeBox').hidden=false;oSend.hidden=true;
+    var m=$('#ownSent');m.replaceChildren('We sent a 6-digit code to '+$('#oEmail').value.trim()+'. Check your inbox, and your spam folder too. ');
+    var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);$('#oCode').focus();}
+  function sendCode(){
+    if(store('ul.own')){window.open(PAY,'_blank','noopener');return;}
+    if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email. Each email gets one free Next Action.');return;}
+    oSend.disabled=true;oSend.textContent='Sending your code\u2026';
+    codes('send').then(function(j){
+      if(j.ok){oOut.hidden=true;step2();return;}
+      if(j.error==='used')return usedUp();
+      if(j.error==='wait'){step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
+      if(j.error==='busy')return full();
+      if(j.error==='email')return say('Please enter a valid email address.');
+      say('Underline AI is taking a short break. Please try again in a few minutes.');
+    }).catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
+      .then(function(){oSend.disabled=false;if(!store('ul.own'))oSend.textContent='Email me a code';});}
+  oSend.addEventListener('click',sendCode);
+  $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&CODE_API&&!oSend.hidden){e.preventDefault();sendCode();}});
+  $('#oEmail').addEventListener('input',function(){if(CODE_API&&!verified){$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
-  function lock(){oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
+  function usedUp(){store('ul.own',String(Date.now()));lock();say('This email has already used its free Next Action. Get full access for your next situation.');}
+  function lock(){oSend.textContent='Get full access';oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
   if(store('ul.own'))lock();
   // Kept for safety: if the Examples form is ever submitted without an example, send people to Try it.
   showGate=function(){out.hidden=true;out.replaceChildren();
@@ -470,6 +503,23 @@ html{overflow-x:hidden}
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim(),email:$('#oEmail').value.trim()};
     if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(body.email)){$('#oEmail').focus();oNote.textContent='Please enter your email. Each email gets one free Next Action.';return;}
     if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what\u2019s happening.';return;}
+    if(CODE_API&&verified!==body.email){
+      var code=$('#oCode').value.replace(/\D/g,'');
+      if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
+      oGo.disabled=true;oGo.textContent='Checking your code\u2026';
+      codes('verify',{code:code}).then(function(j){
+        oGo.disabled=false;oGo.textContent='Get my free Next Action';
+        if(j.ok){verified=body.email;return ask(body);}
+        if(j.error==='used')return usedUp();
+        if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn\u2019t match. Please check the email and try again.');}
+        if(j.error==='expired')return say('That code has expired. Click \u201cSend a new code\u201d to get a fresh one.');
+        say('Underline AI is taking a short break. Please try again in a few minutes.');
+      }).catch(function(){oGo.disabled=false;oGo.textContent='Get my free Next Action';say('Underline AI is taking a short break. Please try again in a few minutes.');});
+      return;
+    }
+    ask(body);
+  });
+  function ask(body){
     oGo.disabled=true;var t=el('div','thinking');t.append(el('i'),el('span',null,'Finding the ideas that fit your situation. This can take up to a minute.'));
     oOut.replaceChildren(head('Working on it',null),t);oOut.hidden=false;oOut.scrollIntoView({behavior:'smooth',block:'start'});
     fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
@@ -477,7 +527,7 @@ html{overflow-x:hidden}
       .then(function(res){
         if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));showSample(fromApi(res.j.answer),oOut,'Your free answer');lock();return;}
         var e=res.j&&res.j.error;
-        if(e==='used'){store('ul.own',String(Date.now()));lock();say('This email has already used its free Next Action. Get full access for your next situation.');}
+        if(e==='used')usedUp();
         else if(e==='email'){$('#oEmail').focus();say('Please enter a valid email address.');}
         else if(e==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
         else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
@@ -486,6 +536,6 @@ html{overflow-x:hidden}
       })
       .catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
       .then(function(){oGo.disabled=false;});
-  });
+  }
 })();
 </script>
