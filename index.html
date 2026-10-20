@@ -133,7 +133,7 @@ section.block{padding:56px 0 0}
 .full h3{font-size:1.35rem;margin-bottom:6px}
 .sec{border-top:1px solid var(--line);padding:16px 0}
 .sec:last-child{padding-bottom:0}
-.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}#tryOut .sec h4,#ownOut .sec h4{display:flex;align-items:center;gap:6px}#tryOut .sec h4::before,#ownOut .sec h4::before{content:"";width:13px;height:13px;background:linear-gradient(135deg,#4F6BFF,#C060D8);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}#tryOut .sec h4,#ownOut .sec h4,#printArea .sec h4{display:flex;align-items:center;gap:6px}#tryOut .sec h4::before,#ownOut .sec h4::before,#printArea .sec h4::before{content:"";width:13px;height:13px;background:linear-gradient(135deg,#4F6BFF,#C060D8);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat}
 .sec.star .say{border-left:3px solid #8B5CF6}
 .watch{background:rgba(245,158,11,.10);border-radius:14px;padding:12px 16px}
 .watch p{margin:0;font-weight:600}
@@ -243,7 +243,15 @@ html{overflow-x:hidden}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
 .ownerr{color:var(--soft);margin:0}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
 #printArea{display:none}
-@media print{body::before{display:none}body>*:not(#printArea){display:none!important}#printArea{display:block!important;color:#0F1222;font-size:12pt}#printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}#printArea .pfoot{margin-top:18pt;font-size:9pt;color:#666}}
+@media print{@page{margin:12mm}html{font-size:13px!important}html,body{background:#fff!important}#printArea .sec h4::before{-webkit-mask:none!important;mask:none!important;background:none!important;content:"\2605"!important;color:#C060D8;width:auto!important;height:auto!important;font-size:1.05em;line-height:1}#printArea .sec{padding:11px 0!important}#printArea .pend{break-before:avoid;page-break-before:avoid}body::before{display:none}body>*:not(#printArea){display:none!important}
+#printArea{display:block!important;color:#0F1222;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#printArea .acts,#printArea .fb,#printArea .tag{display:none!important}#printArea .sec{break-inside:avoid}
+#printArea .pbrand{margin:0 0 12px 4px;font-size:15pt;font-weight:800;letter-spacing:-.02em}#printArea .pbrand span{font-size:9.5pt;font-weight:500;color:#5E6475;margin-left:8px;letter-spacing:0}
+#printArea .pcard{background:#fff;border:1px solid #ECEAF4;border-radius:20px;overflow:hidden}
+#printArea .pbar{height:6px;background:linear-gradient(90deg,#4F6BFF 0%,#C060D8 55%,#8B5CF6 100%)}
+#printArea .pbody{padding:20px 26px 6px}#printArea .pbody>.panel{box-shadow:none;padding:0;background:#fff;border-radius:0}
+#printArea .pend{text-align:center;margin-top:16px}#printArea .pend b{display:block;font-size:12pt;margin-bottom:4px}#printArea .pend span{display:block;font-size:9pt;color:#8A8FA0}}
 .fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbmore .fbdone{margin:0 0 12px;color:var(--ink);font-weight:600}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
 #gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
 #gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
@@ -434,15 +442,21 @@ html{overflow-x:hidden}
     L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
     x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
     L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
-  // Email it (own answers), Save as PDF and Copy, under every answer.
+  // Email it (own answers), Save as PDF, Print and Copy, under every answer.
   function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
     function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
     if(mail)btn('Email it',function(b){b.disabled=true;b.textContent='Sending\u2026';
       mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent';msg.textContent='Your Next Action is on its way. Check your inbox, and your spam folder too.';bar.append(msg);})
         .catch(function(){b.disabled=false;b.textContent='Email it';msg.textContent='We couldn\u2019t send it just now. Try Save as PDF or Copy instead.';bar.append(msg);});});
-    btn('Save as PDF',function(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
-      pa.replaceChildren(into.cloneNode(true),el('p','pfoot','Underline AI by Weiwei Hu \u00b7 wei-wei-hu.github.io/underline-ai'));
-      var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;});
+    // Save as PDF and Print use the same designed one-pager: brand line, card with the gradient strip, closing line.
+    function printPlan(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
+      var copy=into.cloneNode(true);copy.removeAttribute('id');copy.hidden=false;
+      var brand=el('div','pbrand','Underline AI');brand.append(el('span',null,'by Weiwei Hu'));
+      var card=el('div','pcard'),bodyEl=el('div','pbody');bodyEl.append(copy);card.append(el('div','pbar'),bodyEl);
+      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),el('span',null,'wei-wei-hu.github.io/underline-ai \u00b7 \u00a9 2026 Weiwei Hu'));
+      pa.replaceChildren(brand,card,end);
+      var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
+    btn('Save as PDF',printPlan);btn('Print',printPlan);
     btn('Copy',function(b){var t=planText(x);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
       function(){msg.textContent='Select the text above to copy it.';bar.append(msg);});});
     return bar;}
