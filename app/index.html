@@ -365,15 +365,15 @@ html{overflow-x:hidden}
 .hero .ctas .btn.line .bt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .ctas .btn.line svg{color:#A855F7}
 .hero .ctas .btn.line:hover{background:linear-gradient(var(--tint),var(--tint)) padding-box,var(--grad) border-box;box-shadow:0 12px 28px rgba(139,92,246,.30)}
-.hero .ctas .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF);background-size:300% 100%;animation:ulflow 6s ease-in-out infinite;
+.hero .ctas .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF);background-size:300% 100%;animation:ulflow 12s ease-in-out infinite;
   box-shadow:0 8px 22px rgba(192,96,216,.42),0 2px 6px rgba(79,107,255,.25)}
 .hero .ctas .btn.trybtn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;transform:skewX(-20deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 3.6s ease-in-out infinite;pointer-events:none}
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 9s ease-in-out infinite;pointer-events:none}
 .hero .ctas .btn.trybtn:hover{box-shadow:0 14px 32px rgba(192,96,216,.55),0 2px 8px rgba(79,107,255,.3);filter:saturate(1.1)}
 .hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(15,18,34,.28)}
 .hero .ctas .btn.dark:hover{box-shadow:0 0 0 2px #C060D8,0 14px 30px rgba(139,92,246,.35)}
 @keyframes ulflow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes ulsweep{0%,55%{left:-60%}85%,100%{left:130%}}
+@keyframes ulsweep{0%,84%{left:-60%}97%,100%{left:130%}}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(0,0,0,.4)}}
 @media (prefers-reduced-motion:reduce){.hero .ctas .btn,.hero .ctas .btn svg{transition:none}.hero .ctas .btn:hover,.hero .ctas .btn:hover svg,.hero .ctas .btn:active{transform:none}
   .hero .ctas .btn.trybtn{animation:none}.hero .ctas .btn.trybtn::after{display:none}}
@@ -399,6 +399,8 @@ h2{font-weight:500!important;letter-spacing:-.02em}
   background:color-mix(in srgb,var(--card) 60%,transparent);color:var(--ink);font-size:.78rem;font-weight:500;letter-spacing:.02em;text-transform:none;margin:0 0 14px}
 /* each section is a soft gradient "slide" */
 #why,#how,#own,#try,#member{background:var(--panel);border-radius:28px;padding:40px 36px 36px!important;margin-top:40px;overflow:hidden}
+/* Decorations past the edge are clipped, and the section never scrolls inside itself (which cut off its top). */
+#why,#how,#own,#try,#member,.closing{overflow:clip}
 #why h2,#how h2,#own h2,#try h2,#member h2{margin-top:0}
 #why .whycard,#how .steps li,#own .panel,#try .panel,#member .panel{background:var(--frost)!important;border:1px solid var(--frostline)!important;box-shadow:0 10px 28px rgba(120,100,170,.12)!important}
 @media (max-width:620px){#why,#how,#own,#try,#member{padding:28px 18px 22px!important;border-radius:22px;margin-top:28px}}
@@ -423,10 +425,10 @@ h2 .grad{font-weight:700}
 /* Key buttons everywhere share the hero's treatment: a moving gradient, a glow, a light sweep,
    a lift on hover and a press on click. Dark buttons get a gradient ring on hover. */
 .navbtns .btn.trybtn,.closing .ctas .btn.trybtn,#own .btn.trygo.trygo,#try .btn.trygo.trygo,#member .btn.trygo.trygo,#gateDlg .gcard>a.btn{position:relative;overflow:hidden;color:#fff!important;border:0;
-  background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF)!important;background-size:300% 100%!important;animation:ulflow 6s ease-in-out infinite;
+  background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF)!important;background-size:300% 100%!important;animation:ulflow 12s ease-in-out infinite;
   box-shadow:0 8px 22px rgba(192,96,216,.42),0 2px 6px rgba(79,107,255,.25)!important;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
 .navbtns .btn.trybtn::after,.closing .ctas .btn.trybtn::after,#own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#member .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;
-  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 3.6s ease-in-out infinite;pointer-events:none}
+  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 9s ease-in-out infinite;pointer-events:none}
 .navbtns .btn.trybtn:hover,.closing .ctas .btn.trybtn:hover,#own .btn.trygo.trygo:hover,#try .btn.trygo.trygo:hover,#member .btn.trygo.trygo:hover,#gateDlg .gcard>a.btn:hover{transform:translateY(-3px);
   box-shadow:0 14px 32px rgba(192,96,216,.55),0 2px 8px rgba(79,107,255,.3)!important;filter:saturate(1.1)}
 .navbtns .btn.trybtn:active,.closing .ctas .btn.trybtn:active,#own .btn.trygo.trygo:active,#try .btn.trygo.trygo:active,#member .btn.trygo.trygo:active,#gateDlg .gcard>a.btn:active{transform:translateY(-1px) scale(.98)}
@@ -475,8 +477,8 @@ h2 .grad{font-weight:700}
 #own>*:not(.orb):not(.owave){position:relative;z-index:1}
 #own .owave{position:absolute;z-index:0;left:-60px;right:-60px;bottom:-230px;height:330px;border-radius:50%;border-top:1.5px solid rgba(245,124,154,.32);pointer-events:none}
 #own .owave.w2{bottom:-260px;border-top-color:rgba(255,156,122,.3)}
-#own>.orb{opacity:.95}
-#own .b1{width:120px;height:120px;right:-30px;top:-34px}
+#own>.orb{opacity:.7}
+#own .b1{width:84px;height:84px;right:-22px;top:-26px}
 #own .b2{width:34px;height:34px;right:150px;top:22px}
 #own .b3{width:56px;height:56px;left:-18px;bottom:40px}
 #own .b4{width:22px;height:22px;right:40%;bottom:14px}
@@ -540,8 +542,7 @@ h2 .grad{font-weight:700}
   </section>
 
   <section class="block" id="own" hidden>
-    <div class="orb b1 peach" aria-hidden="true"></div><div class="orb b2 pink" aria-hidden="true"></div><div class="orb b3 pink" aria-hidden="true"></div>
-    <div class="orb b4 lav" aria-hidden="true"></div><div class="orb b5 orange" aria-hidden="true"></div>
+    <div class="orb b1 peach" aria-hidden="true"></div><div class="orb b3 pink" aria-hidden="true"></div>
     <div class="owave" aria-hidden="true"></div><div class="owave w2" aria-hidden="true"></div>
     <p class="kickrow"><span class="kicker">Free trial and full access</span><a class="kicker kicklink" href="#try">See examples →</a></p>
     <h2>Get Your <span class="grad">Next Action</span></h2>
