@@ -457,7 +457,8 @@ h2 .grad{font-weight:700}
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#access{display:none!important}
 #own{margin-top:8px!important}
-#own .ownintro{max-width:none;font-style:italic;font-size:1.08rem;font-weight:500;color:var(--ink)}
+#own .ownintro{max-width:none;font-style:italic;font-size:1.08rem;font-weight:400;color:color-mix(in srgb,var(--ink) 82%,transparent)}
+#ownSend{white-space:normal!important;line-height:1.3;height:auto!important;min-height:48px;padding:12px 18px!important}
 /* The two sections look different: free trial and full access is vivid, with floating bubbles;
    the examples are calm and light. */
 #own{background:linear-gradient(135deg,#FFE7D6 0%,#FFDCE6 45%,#FBE3F0 70%,#EEE6FF 100%) padding-box,linear-gradient(120deg,#FFB38A,#F57C9A,#E58BC9,#B3A6FF) border-box!important;box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)!important}
@@ -540,7 +541,7 @@ h2 .grad{font-weight:700}
         <p class="plabel">Your situation</p>
         <form id="ownForm" autocomplete="off">
           <label class="fld"><span>Your email</span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
-          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
+          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Check your email for your sign-in code</button>
           <p class="trynote memberline" id="ownWho" hidden></p>
           <div id="ownStep2" class="ownstep">
           <div id="ownCodeBox" hidden>
@@ -904,7 +905,7 @@ h2 .grad{font-weight:700}
     oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
   if(me&&me.email&&me.login)showMember();
 
-  // Email me a code: everyone starts with the free trial. An email that already used it is checked
+  // Check your email for your sign-in code: everyone starts with the free trial. An email that already used it is checked
   // against the members sheet: members get a sign-in code, everyone else the Join pop-up.
   function sendCode(){
     if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email.');return;}
@@ -916,7 +917,7 @@ h2 .grad{font-weight:700}
       if(t.error==='busy')return full();
       if(t.error!=='used')return say(BREAK);
       return memberCode();
-    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Email me a code';});}
+    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Check your email for your sign-in code';});}
   // After the free try: a member gets a sign-in code for full access, everyone else the Join pop-up.
   function memberCode(){
     return codes('msend').then(function(j){
