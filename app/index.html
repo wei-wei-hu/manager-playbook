@@ -453,6 +453,7 @@ h2 .grad{font-weight:700}
 .trychips button:nth-child(4)::before{background:var(--gorange)}
 .trychips button:nth-child(5)::before{background:var(--glav)}
 .trychips button[aria-pressed="true"]::before{box-shadow:0 0 0 2px rgba(255,255,255,.9)}
+#gateDlg .gmember{margin:14px 0 0;color:var(--soft);font-size:.92rem}#gateDlg .gmember button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}
 
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#access{display:none!important}
@@ -893,6 +894,10 @@ h2 .grad{font-weight:700}
   function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
   function join(){$('#gateT').textContent='Join Underline AI';
     dlg.querySelector('.gcard p').textContent='Full access is for Underline AI members. We will grant your access within 12 to 24 hours of your membership.';
+    // Members who used their free try sign in from here.
+    if(!dlg.querySelector('.gmember')){var gm=el('p','gmember','Already a member? ');var b=el('button',null,'Sign in');b.type='button';
+      b.addEventListener('click',function(){closeGate();if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();return say('Please enter your email.');}memberCode();});
+      gm.append(b);dlg.querySelector('.glater').before(gm);}
     if(dlg.showModal&&!dlg.open)dlg.showModal();}
   // Every Get full access on the page opens the pop-up; its own button goes to the payment page.
   dlg.querySelector('a.btn').href=PAY;dlg.querySelector('a.btn').target='_blank';dlg.querySelector('a.btn').rel='noopener';
@@ -947,7 +952,7 @@ h2 .grad{font-weight:700}
     und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
 
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
-    if(trialUsed&&mode!=='member')return memberCode();
+    if(trialUsed&&mode!=='member')return join();
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
     var sitErr=$('#oSitErr');if(sitErr)sitErr.remove();
     if(body.sit.length<15){var m=el('p','fielderr','Please write at least 15 characters about what’s happening.');m.id='oSitErr';
