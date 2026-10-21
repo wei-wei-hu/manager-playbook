@@ -1,8 +1,950 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Underline AI</title><meta name="robots" content="noindex">
-<!-- Members now sign in on the home page, in the same box as the free trial. -->
-<meta http-equiv="refresh" content="0; url=../#own"><link rel="canonical" href="../#own">
-<script>location.replace('../#own');</script>
-<style>body{margin:0;font-family:system-ui,sans-serif;background:#FBFAFF;color:#0F1222;display:grid;place-items:center;min-height:100vh}a{color:#5B6CF2}</style>
-</head><body><p>Taking you to <a href="../#own">Underline AI</a>&hellip;</p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Underline AI Members</title>
+<meta name="description" content="Underline by Weiwei Hu. Practical advice for work and life. Bring a question, challenge, or decision and get clear, personalized recommendations.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: nav, two-column hero (headline + app preview), three feature tiles, how it works, a worked example (inputs, then the answer), a closing call to action and a footer. */
+:root{
+  --bg:#FBFAFF; --card:#FFFFFF; --ink:#0F1222; --soft:#5E6475; --faint:#8A8FA0; --line:#ECEAF4; --tint:#F5F3FF;
+  --blue:#4F6BFF; --pink:#E25BA6; --purple:#8B5CF6;
+  --grad:linear-gradient(90deg,#4F6BFF 0%,#C060D8 55%,#8B5CF6 100%);
+  --shadow:0 1px 2px rgba(15,18,34,.04),0 18px 50px rgba(79,70,160,.10);
+  --r:22px; --f:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0D0F1A;--card:#161927;--ink:#F1F2F7;--soft:#A7ACBD;--faint:#7D8295;--line:#262A3B;--tint:#1E2133;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0D0F1A;--card:#161927;--ink:#F1F2F7;--soft:#A7ACBD;--faint:#7D8295;--line:#262A3B;--tint:#1E2133;color-scheme:dark}
+*{box-sizing:border-box}
+html{font-size:15px;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:
+  radial-gradient(40% 45% at 12% 18%,rgba(255,214,230,.55),transparent 70%),
+  radial-gradient(45% 50% at 78% 30%,rgba(196,190,255,.45),transparent 70%),
+  radial-gradient(40% 40% at 60% 95%,rgba(214,226,255,.5),transparent 70%)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.08}
+.wrap{max-width:920px;margin:0 auto;padding:0 40px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+.orb{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#C9D2FF 24%,#7E8CFF 60%,#B57BE8 100%);opacity:.9;filter:saturate(1.05)}
+
+/* nav */
+nav.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.logo{font-weight:700;font-size:1.7rem;letter-spacing:-.03em;text-decoration:none}
+.links{display:flex;align-items:center;gap:16px}
+.links a{color:var(--soft);text-decoration:none;font-weight:500}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font-weight:600;text-decoration:none;white-space:nowrap;border:0;font-family:inherit;font-size:1rem}
+.btn.dark{background:var(--ink);color:var(--bg);padding:12px 24px}
+.btn.dark:hover{background:#252a45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.dark:hover{background:#d9dbe6}}
+.btn.lock{background:var(--card);color:var(--faint);border:1px solid var(--line);cursor:not-allowed}
+.btn.big{padding:15px 0;width:210px;font-size:1rem}
+@media (max-width:980px){.links a:not(.btn){display:none}}.links a{white-space:nowrap}
+/* Top bar: Try it free (gradient) next to Get full access (dark), same size. */
+.navbtns{display:flex;gap:10px}.links .navbtns .btn{width:140px}.ownintro{margin:-6px 0 22px;color:var(--soft);max-width:640px}.navbtns .btn{white-space:nowrap}.navbtns .ownlink[hidden]{display:none}
+.links .navbtns .btn{padding:12px 20px}.links .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6);box-shadow:0 6px 16px rgba(192,96,216,.32)}
+@media (max-width:400px){.logo{font-size:1.2rem!important}.links .navbtns .btn{width:94px!important;font-size:.74rem!important}}
+@media (max-width:520px){.navbtns{gap:6px}.links .navbtns .btn{width:104px;padding:9px 0!important;font-size:.78rem!important}.logo .by{display:block;margin:2px 0 0!important;line-height:1}}
+
+/* hero */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:36px;align-items:center;padding:40px 0 30px}
+.eyebrow{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 18px}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.7rem);font-weight:800}
+.hero h1 .grad{white-space:nowrap}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--soft);margin:24px 0 32px;max-width:30ch;line-height:1.5}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:520px){.btn.big{width:100%}}
+
+/* app preview */
+.preview{position:relative;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--shadow);padding:14px;display:grid;grid-template-columns:170px minmax(0,1fr);gap:14px;backdrop-filter:blur(10px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .preview{background:rgba(22,25,39,.8);border-color:var(--line)}}
+.cats{list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--card);border-radius:18px}
+.cats li{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:12px;font-size:.93rem}
+.cats li.on{background:var(--tint)}
+.ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.ic svg{width:18px;height:18px}
+.c1{background:#EFEAFF;color:#7C5CFA}.c2{background:#E6EEFF;color:#3B6EF6}.c3{background:#FFF0E2;color:#F08A24}.c4{background:#E2F6EE;color:#13A877}.c5{background:#FFE6EE;color:#E8457A}.c6{background:#ECEBFF;color:#6366F1}
+.chat{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ask{display:flex;align-items:flex-start;gap:12px}
+.avatar{flex:none;width:40px;height:40px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:#6366F1}
+.avatar svg{width:20px;height:20px}
+.sit .spark svg{width:16px;height:16px}
+.sit .anshead{margin-bottom:8px}
+.ins{display:flex;flex-direction:column;gap:8px}
+.ins span{display:block;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.88rem;color:var(--faint);background:var(--bg)}
+.ins i{font-style:normal;font-size:.8rem}
+.outs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.outs li{padding:9px 0;border-top:1px solid var(--line)}
+.outs li:first-child{border-top:0;padding-top:2px}
+.outs b{display:block;font-size:.92rem}
+.outs span{display:block;color:var(--soft);font-size:.86rem}
+.src{display:inline-block;margin-top:6px;font-style:normal;font-size:.8rem;color:#6366F1;background:var(--tint);border-radius:999px;padding:2px 10px}
+.src cite{font-style:italic}
+.bubble{background:var(--tint);border-radius:14px;padding:10px 14px;font-size:.93rem;line-height:1.45}
+.ans{background:var(--card);border-radius:18px;padding:18px}
+.anshead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.spark{width:32px;height:32px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:#6366F1}
+.anshead b{font-size:1.15rem;letter-spacing:-.01em}
+.ans h4{margin:12px 0 2px;font-size:.92rem}
+.ans p,.ans ol{margin:0;color:var(--soft);font-size:.9rem;line-height:1.5}
+.ans ol{padding-left:1.2em}
+.und{margin-top:14px;background:var(--tint);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:flex-start}
+.und .ic{background:#FFE6EE;color:#E8457A}
+.und b{display:block;font-size:.92rem;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.78rem;padding:3px 10px;border-radius:999px;background:var(--card);color:#6366F1}
+.chip:nth-child(2){color:#D9467F}
+@media (max-width:980px){.hero{grid-template-columns:1fr}.lead{max-width:40ch}}
+@media (max-width:620px){.preview{grid-template-columns:1fr}.cats{display:none}.hero .orb:first-of-type{width:58px!important;height:58px!important;left:auto!important;right:10px;top:-4px!important}.hero .orb:nth-of-type(2){left:-6px!important}.closing .orb{width:56px!important;height:56px!important}#own>.orb,#member>.orb{left:auto!important;right:6px;top:4px!important}}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:40px 0 20px}
+.feat{display:flex;gap:18px;align-items:center}
+.feat .ic{width:64px;height:64px;border-radius:18px}
+.feat .ic svg{width:28px;height:28px}
+.feat b{display:block;font-size:1.2rem;letter-spacing:-.01em}
+.feat span{color:var(--soft)}
+@media (max-width:820px){.features{grid-template-columns:1fr}}
+
+/* sections */
+section.block{padding:56px 0 0}
+.kicker{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 10px}
+.block h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:24px}
+.vlead{margin:0;font-size:1.08rem;color:var(--soft);line-height:1.7}
+.value h2{margin-bottom:22px!important}
+.whygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.whycard{background:var(--card);border-radius:20px;padding:22px 22px 20px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.whycard h3{margin:12px 0 6px;font-size:1.05rem;letter-spacing:-.01em}
+.whycard p{margin:0;color:var(--soft);font-size:.95rem;line-height:1.6}
+.whycard>.whynum+p{margin-top:12px}.whynum{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:700;font-size:.9rem;background:var(--grad)}
+.whyparts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.whyparts span{font-size:.8rem;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--tint);color:var(--ink);border:1px solid var(--line);white-space:nowrap}
+.whynote{margin-top:12px!important;font-weight:600;color:var(--ink)!important}.whyend{margin-top:20px!important;font-weight:600;color:var(--ink)!important}
+@media (max-width:820px){.whygrid{grid-template-columns:1fr}}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.steps li{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
+.steps .ic{width:44px;height:44px;border-radius:13px;margin-bottom:14px}
+.steps b{display:block;font-size:1.08rem;margin-bottom:4px}
+.steps span{color:var(--soft);font-size:.95rem}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+
+.example{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:start}
+@media (max-width:900px){.example{grid-template-columns:1fr}}
+.panel{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
+.plabel{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:0 0 14px}
+.fld{margin-bottom:14px}
+.fld:last-child{margin-bottom:0}
+.fld span{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+.fld p{margin:0;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:.95rem;background:var(--bg)}
+.full h3{font-size:1.35rem;margin-bottom:6px}
+.sec{border-top:1px solid var(--line);padding:16px 0}
+.sec:last-child{padding-bottom:0}
+.sec h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}#tryOut .sec h4,#ownOut .sec h4,#printArea .sec h4{display:flex;align-items:center;gap:6px}#tryOut .sec h4::before,#ownOut .sec h4::before,#printArea .sec h4::before{content:"";width:13px;height:13px;background:linear-gradient(135deg,#4F6BFF,#C060D8);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z'/%3E%3C/svg%3E") center/contain no-repeat}
+.sec.star .say{border-left:3px solid #8B5CF6}
+.watch{background:rgba(245,158,11,.10);border-radius:14px;padding:12px 16px}
+.watch p{margin:0;font-weight:600}
+.watch .from{margin-top:6px;font-weight:400;font-style:italic;font-size:.82rem;color:var(--faint)}
+.sec p{margin:0}
+.sec ol{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px}
+.sec ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.say{background:var(--tint);border-radius:14px;padding:14px 16px}
+.saylab{font-size:.85rem;color:var(--faint);margin:0 0 8px!important}
+.idea{margin:0;line-height:1.55}
+.idea .by{font-weight:600;font-style:italic;color:#6366F1;white-space:nowrap}
+.idea + .idea{margin-top:8px}
+
+/* closing */
+.closing{margin:64px 0 0;border-radius:28px;padding:44px 28px;text-align:center;background:linear-gradient(135deg,rgba(255,224,236,.8),rgba(226,222,255,.85));position:relative;overflow:hidden}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .closing{background:linear-gradient(135deg,#2a1f33,#1f2140)}}
+.closing h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:22px}
+.closing .ctas{justify-content:center}
+
+footer{margin:28px 0 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-radius:20px;background:var(--ink);color:var(--bg);font-size:.9rem}
+footer nav{display:flex;flex-wrap:wrap;gap:8px}
+footer a{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:999px;background:var(--bg);color:var(--ink);font-weight:600;text-decoration:none}
+footer a svg{width:15px;height:15px}
+@media (max-width:640px){footer{justify-content:center;text-align:center}footer nav{justify-content:center}}
+
+.outs{flex-direction:row!important;flex-wrap:wrap;gap:6px}
+.outs li{border:0!important;padding:4px 11px!important;border-radius:999px;background:var(--tint);font-size:.8rem;font-weight:600}
+.cats{gap:2px!important}
+.cats li{padding:6px 10px!important}
+.cats .ic{width:30px;height:30px}
+.preview{align-items:start}
+
+.btn.big{width:180px!important;padding:14px 0!important;font-size:.95rem!important}
+.preview{grid-template-columns:auto minmax(0,1fr)!important}
+.cats li{white-space:nowrap;font-size:.85rem;gap:9px!important}
+.anshead b{white-space:nowrap;font-size:1.02rem!important}
+.feat b{font-size:1.05rem!important}
+.feat{gap:14px!important}
+.feat .ic{width:54px!important;height:54px!important}
+.block h2{font-size:clamp(1.5rem,2.6vw,1.85rem)!important;text-wrap:balance}
+.wrap{max-width:960px!important}
+.logo{white-space:nowrap}
+@media (max-width:520px){.logo{font-size:1.4rem}.logo .by{font-size:.8rem!important;margin-left:6px!important}.links .btn.dark{padding:10px 16px;font-size:.9rem}.btn.big{width:100%!important}}
+.logo .by{font-size:.9rem;font-weight:500;color:var(--soft);letter-spacing:0;margin-left:10px}
+
+/* small bubbles further down the page */
+.block{position:relative}
+.block>.orb{z-index:0;opacity:.75}
+/* gentle motion: floating spheres and a slowly drifting background glow */
+@media (prefers-reduced-motion:no-preference){
+  .orb{animation:float1 9s ease-in-out infinite}
+  .hero .orb:nth-of-type(2){animation:float2 7s ease-in-out infinite}
+  .closing .orb{animation:float3 11s ease-in-out infinite}
+  #how>.orb{animation:float2 8s ease-in-out infinite}
+  #own>.orb,#member>.orb{animation:float1 10s ease-in-out -3s infinite}
+  #try>.orb{animation:float3 12s ease-in-out -5s infinite}
+  body::before{animation:glow 22s ease-in-out infinite alternate}
+}
+@keyframes float1{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-16px)}50%{transform:translate(-6px,-26px)}75%{transform:translate(-12px,-8px)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(14px,18px) scale(1.12)}}
+@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,14px)}}
+@keyframes glow{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-3%,2%) scale(1.06)}100%{transform:translate(3%,-2%) scale(1.03)}}
+
+.hero .blob{position:absolute;z-index:-1;pointer-events:none;width:560px;height:520px;right:-130px;top:-10px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(205,198,255,.55),rgba(225,214,255,.28) 55%,transparent 72%)}
+.hero .wave{position:absolute;z-index:-1;pointer-events:none;left:-30%;right:-30%;bottom:-120px;height:260px;border-radius:50%;background:radial-gradient(60% 100% at 50% 0%,rgba(255,255,255,.75),transparent 70%)}
+@media (prefers-reduced-motion:no-preference){.hero .blob{animation:float3 16s ease-in-out infinite}}
+@media (max-width:980px){.hero .blob{width:420px;height:420px;right:-120px;top:auto;bottom:0}}
+
+html{overflow-x:hidden}
+.hero .wave{left:0;right:0}
+.outs{flex-direction:column!important;flex-wrap:nowrap!important;gap:6px!important;align-items:flex-start}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) body::before{background:radial-gradient(40% 45% at 12% 18%,rgba(226,91,166,.16),transparent 70%),radial-gradient(45% 50% at 78% 30%,rgba(139,92,246,.20),transparent 70%),radial-gradient(40% 40% at 60% 95%,rgba(79,107,255,.14),transparent 70%)}
+  :root:not([data-theme="light"]) .hero .wave{display:none}
+  :root:not([data-theme="light"]) .hero .blob{background:radial-gradient(circle at 40% 40%,rgba(139,92,246,.22),rgba(79,107,255,.10) 55%,transparent 72%)}
+  :root:not([data-theme="light"]) .c1{background:#2A2346;color:#B9A5FF}
+  :root:not([data-theme="light"]) .c2{background:#1E2A48;color:#8FB1FF}
+  :root:not([data-theme="light"]) .c3{background:#3A2A1C;color:#FFB36B}
+  :root:not([data-theme="light"]) .c4{background:#173329;color:#5FD8A8}
+  :root:not([data-theme="light"]) .c5{background:#3A1E2A;color:#FF7FA8}
+  :root:not([data-theme="light"]) .c6{background:#26264A;color:#A5A8FF}
+  :root:not([data-theme="light"]) .und .ic{background:#3A1E2A;color:#FF7FA8}
+  :root:not([data-theme="light"]) footer{background:var(--card);color:var(--soft);border:1px solid var(--line)}
+  :root:not([data-theme="light"]) footer a{background:var(--tint);color:var(--ink)}
+  :root:not([data-theme="light"]) .closing{background:linear-gradient(135deg,#2A1D33,#1E2142)}
+  :root:not([data-theme="light"]) .src{background:#26264A;color:#B9BCFF}
+}
+:root[data-theme="dark"] body::before{background:radial-gradient(40% 45% at 12% 18%,rgba(226,91,166,.16),transparent 70%),radial-gradient(45% 50% at 78% 30%,rgba(139,92,246,.20),transparent 70%),radial-gradient(40% 40% at 60% 95%,rgba(79,107,255,.14),transparent 70%)}
+:root[data-theme="dark"] .hero .wave{display:none}
+:root[data-theme="dark"] .hero .blob{background:radial-gradient(circle at 40% 40%,rgba(139,92,246,.22),rgba(79,107,255,.10) 55%,transparent 72%)}
+:root[data-theme="dark"] .c1{background:#2A2346;color:#B9A5FF}
+:root[data-theme="dark"] .c2{background:#1E2A48;color:#8FB1FF}
+:root[data-theme="dark"] .c3{background:#3A2A1C;color:#FFB36B}
+:root[data-theme="dark"] .c4{background:#173329;color:#5FD8A8}
+:root[data-theme="dark"] .c5{background:#3A1E2A;color:#FF7FA8}
+:root[data-theme="dark"] .c6{background:#26264A;color:#A5A8FF}
+:root[data-theme="dark"] .und .ic{background:#3A1E2A;color:#FF7FA8}
+:root[data-theme="dark"] footer{background:var(--card);color:var(--soft);border:1px solid var(--line)}
+:root[data-theme="dark"] footer a{background:var(--tint);color:var(--ink)}
+:root[data-theme="dark"] .closing{background:linear-gradient(135deg,#2A1D33,#1E2142)}
+:root[data-theme="dark"] .src{background:#26264A;color:#B9BCFF}
+@media (max-width:620px){.preview{grid-template-columns:minmax(0,1fr)!important}.chat{width:100%}.outs{flex-direction:row!important;flex-wrap:wrap!important}.ins span{width:100%}}
+
+/* try-it demo */
+.trygrid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+#tryOut[hidden]{display:none}
+#own[hidden],#ownOut[hidden],.ownlink[hidden]{display:none}
+#ownOut{display:block}
+.thinking{display:flex;align-items:center;gap:12px;color:var(--soft);padding:8px 0}
+.thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
+.ownerr{color:var(--soft);margin:0}#ownWho{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 14px}#ownWho[hidden]{display:none}#ownForm .fld[hidden]{display:none!important}#ownWho b{color:var(--ink)}#ownWho button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
+
+/* Answer board, in the style of the Underline AI slides: a soft peach-pink-lavender gradient,
+   floating glossy spheres, frosted white cards, light large title, pill tags and gradient accents. */
+.board{position:relative;overflow:hidden;border-radius:22px;padding:30px 30px 28px;margin-top:2px;
+  background:linear-gradient(125deg,#FDEBDD 0%,#FBDDE6 46%,#E6E2FD 100%);color:#1D2033;
+  font-family:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.board .borb{position:absolute;border-radius:50%;pointer-events:none}
+.board .o1{width:58px;height:58px;right:26px;top:22px;background:radial-gradient(circle at 32% 28%,#fff 0 6%,#B9C6FF 26%,#5B74FF 64%,#7A5CF0 100%);box-shadow:0 10px 24px rgba(79,107,255,.32)}
+.board .o2{width:16px;height:16px;left:46%;top:16px;background:radial-gradient(circle at 35% 30%,#fff,#FFC2A8 45%,#FF9C7A)}
+.board .o3{width:28px;height:28px;left:14px;bottom:14px;background:radial-gradient(circle at 35% 30%,#fff,#FFB3C4 45%,#F57C9A)}
+.bhead{position:relative;margin:0 0 18px;padding-right:84px}
+.bpills{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.bpill{display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid rgba(29,32,51,.4);font-size:.7rem;font-weight:500;letter-spacing:.02em;background:rgba(255,255,255,.55)}
+.bpill.soft{border-color:transparent;background:rgba(255,255,255,.75);color:#6B5CE7}
+.btitle{margin:0;font-weight:300;font-size:2.05rem;line-height:1.15;letter-spacing:-.015em;color:#1D2033}
+.bgrid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bcard{position:relative;background:rgba(255,255,255,.84);border-radius:18px;padding:18px 20px;box-shadow:0 10px 28px rgba(120,100,170,.12);border:1px solid rgba(255,255,255,.95);min-width:0}
+.bcard .blabel{display:block;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7A7F95;margin:0 0 10px}
+.bcard p{margin:0}
+.bhero{color:#fff;border:0;box-shadow:0 14px 30px rgba(91,108,242,.25)}
+.bhero .blabel{color:rgba(255,255,255,.9)}
+.bhero p{font-size:1.22rem;font-weight:500;line-height:1.45}
+.bsay .bsub{font-size:.8rem;color:#8A8FA3;margin:0 0 8px}
+.bsay .bq{font-size:.95rem;line-height:1.65}
+.bsteps ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.bsteps li{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:12px;padding:10px 12px;font-size:.9rem;line-height:1.5;box-shadow:0 2px 8px rgba(120,100,170,.08)}
+.bnum{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;font-size:.8rem}
+.bwi{display:flex;gap:12px;align-items:flex-start}
+.bicon{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;background:linear-gradient(135deg,#FBC08D,#F4956A)}
+.bwatch{align-self:start}.bwatch p{font-weight:500;font-size:.95rem;line-height:1.5}
+.bwatch .bfrom{margin-top:6px;font-size:.78rem;font-weight:400;color:#8A8FA3;font-style:italic}
+.bund{grid-column:1/-1}
+.bitems{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.bitem{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(120,100,170,.08);display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.bitem p{font-size:.88rem;line-height:1.55}
+.bsrc{display:inline-block;padding:4px 12px;border-radius:999px;color:#fff;font-size:.72rem;font-weight:600}
+@media (prefers-reduced-motion:no-preference){.board .o1{animation:float1 9s ease-in-out infinite}.board .o2{animation:float2 7s ease-in-out infinite}.board .o3{animation:float3 11s ease-in-out infinite}}
+@media (max-width:620px){.board{padding:22px 16px 20px}.bhead{padding-right:56px}.board .o1{width:40px;height:40px;right:14px;top:16px}.btitle{font-size:1.5rem}.bgrid{grid-template-columns:1fr}.bhero p{font-size:1.1rem}}@media (max-width:900px){.links .signlink{display:none}}.closing .member{position:relative;margin:16px 0 0;font-size:.92rem;color:var(--soft)}.closing .member a{color:var(--ink);font-weight:600}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.acts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}.acts button:disabled{color:var(--faint);cursor:default}.actmsg{flex-basis:100%;margin:2px 0 0;font-size:.88rem;color:var(--soft)}
+#printArea{display:none}
+/* Print: a fixed 1100px landscape layout, shrunk (zoom) to fit one page in either orientation.
+   The sizes come from measuring it just before printing (--zl landscape, --zp portrait). */
+#printArea.measuring{display:block!important;position:fixed;left:-20000px;top:0}
+#printArea{width:1100px;color:#1D2033;font-size:14px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#printArea *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important}
+#printArea .board{padding:20px 22px 18px;border-radius:18px}
+#printArea .bhead{margin-bottom:12px}#printArea .btitle{font-size:1.75rem}
+#printArea .bgrid{grid-template-columns:1fr 1fr 1fr;gap:10px}
+#printArea .bhero{grid-column:1;grid-row:1}#printArea .bsay{grid-column:2;grid-row:1}#printArea .bwatch{grid-column:3;grid-row:1}
+#printArea .bsteps{grid-column:1/3;grid-row:2}#printArea .bund{grid-column:3;grid-row:2}
+#printArea .bcard{padding:12px 14px;box-shadow:none}#printArea .bhero p{font-size:1.05rem}
+#printArea .bitems{grid-template-columns:1fr;gap:6px}#printArea .bitem{padding:8px 10px;box-shadow:none}#printArea .bsteps li{padding:7px 10px;box-shadow:none}
+#printArea .pend{text-align:center;margin-top:10px;font-size:12px;color:#8A8FA0}#printArea .pend b{color:#1D2033;margin-right:8px}
+@media print{@page{size:landscape;margin:8mm}html,body{background:#fff!important;margin:0}body::before{display:none}body>*:not(#printArea){display:none!important}
+#printArea{display:block!important;zoom:var(--zl,.85);break-inside:avoid}#printArea *{break-inside:avoid}}
+@media print and (orientation:portrait){#printArea{zoom:var(--zp,.6)}}
+.fb{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.fb[hidden],.fbmore[hidden]{display:none}.fb h4{margin:0 0 10px;font-size:.95rem}.fbrow{display:flex;gap:10px;flex-wrap:wrap}.fbrow button,.fbparts button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:.9rem;cursor:pointer}.fbrow button[aria-pressed="true"],.fbparts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fbmore{margin-top:14px}.fbmore p{margin:0 0 8px;font-size:.9rem;color:var(--soft)}.fbmore .fbdone{margin:0 0 12px;color:var(--ink);font-weight:600}.fbparts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.fbmore textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;resize:vertical}.fbmore .btn{margin-top:10px}.fbdone{margin:12px 0 0;color:var(--soft);font-size:.92rem}.ownstep{display:flex;flex-direction:column}.ownstep[hidden],#ownCodeBox[hidden],#ownSend[hidden]{display:none}#ownCodeBox .fld{margin-bottom:14px}#ownSent{margin:0 0 12px}.ownsent button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.ownerr a{color:var(--ink);font-weight:600}
+#gateDlg{border:0;padding:0;background:transparent;max-width:calc(100vw - 32px);width:420px;color:var(--ink)}
+#gateDlg::backdrop{background:rgba(15,18,34,.45);backdrop-filter:blur(4px)}
+#gateDlg .gcard{position:relative;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 28px 28px;text-align:center}
+#gateDlg .glock{width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center}
+#gateDlg h3{font-size:1.35rem;margin:0 0 8px}
+#gateDlg p{margin:0 0 22px;color:var(--soft);line-height:1.6}
+#gateDlg .btn{width:100%!important;justify-content:center}
+#gateDlg .gclose{position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:50%;background:var(--tint);color:var(--soft);font-size:20px;line-height:1;cursor:pointer}
+#gateDlg .glater{margin-top:12px;border:0;background:none;color:var(--faint);font:inherit;font-size:.9rem;cursor:pointer}
+
+@media (max-width:900px){.trygrid{grid-template-columns:minmax(0,1fr)}}
+.trychips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.trychips button{border:0;cursor:pointer;font:inherit;font-size:.82rem;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
+.trychips button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}#tryForm,#ownForm{display:flex;flex-direction:column}#tryForm .fld,#ownForm .fld{display:block}#tryForm .fld small,#ownForm .fld small{font-weight:400;color:var(--faint)}#tryForm textarea,#tryForm input,#ownForm textarea,#ownForm input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}#tryForm textarea[readonly],#tryForm input[readonly]{cursor:default;color:var(--soft)}
+#tryForm textarea:focus,#tryForm input:focus,#ownForm textarea:focus,#ownForm input:focus{outline:2px solid var(--purple);outline-offset:1px}.trygo,#tryForm .trygo.btn.big,#ownForm .trygo.btn.big{width:100%!important;border:0;cursor:pointer;margin-top:4px}
+.trynote{margin:10px 0 0;font-size:.82rem;color:var(--faint)}
+.tryempty{margin:0;color:var(--faint)}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--tint);color:#6366F1;margin-bottom:8px}
+.locked{position:relative;border-top:1px solid var(--line);padding:16px 0}
+.locked .blur{filter:blur(5px);user-select:none;pointer-events:none;color:var(--soft)}
+.locked .blur i{display:block;height:11px;border-radius:6px;background:var(--line);margin:8px 0}
+.locked h4{margin:0 0 6px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#6366F1}
+.locked h4::after{content:" \1F512";letter-spacing:0}
+.lockcard{position:relative;margin-top:6px;border-radius:16px;background:var(--tint);padding:18px;text-align:center}
+.lockcard b{display:block;margin-bottom:4px}
+.lockcard p{margin:0 0 12px;color:var(--soft);font-size:.92rem}
+.lockcard .btn{margin:0 auto}
+.trybtn{background:var(--grad);color:#fff;border:0}
+.trybtn:hover{filter:brightness(1.08)}
+.hero .ctas .btn.big{min-width:0;flex:0 0 190px;width:190px!important;white-space:nowrap}
+.hero .ctas{flex-wrap:nowrap;gap:12px}
+/* Hero: two equal buttons on one line, each with the arrow.
+   See examples: gradient outline and gradient text. Try it free: moving gradient, glow and a light sweep.
+   All lift, press and nudge their arrow. */
+.hero .ctas{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:340px;max-width:calc(100vw - 32px)}
+.hero .ctas .btn.big{position:relative;overflow:hidden;width:auto!important;flex:none;height:50px;padding:0 8px!important;font-size:.86rem!important;font-weight:700;gap:6px;
+  transition:transform .18s ease,box-shadow .18s ease,background-position .6s ease}
+.hero .ctas .btn svg{width:15px;height:15px;flex:none;transition:transform .18s ease}
+.hero .ctas .btn:hover{transform:translateY(-3px)}
+.hero .ctas .btn:active{transform:translateY(-1px) scale(.98)}
+.hero .ctas .btn:hover svg{transform:translateX(4px)}
+.hero .ctas .btn:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+.hero .ctas .btn.line{border:2px solid transparent!important;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;box-shadow:0 6px 18px rgba(139,92,246,.18)}
+.hero .ctas .btn.line .bt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .ctas .btn.line svg{color:#A855F7}
+.hero .ctas .btn.line:hover{background:linear-gradient(var(--tint),var(--tint)) padding-box,var(--grad) border-box;box-shadow:0 12px 28px rgba(139,92,246,.30)}
+.hero .ctas .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF);background-size:300% 100%;animation:ulflow 6s ease-in-out infinite;
+  box-shadow:0 8px 22px rgba(192,96,216,.42),0 2px 6px rgba(79,107,255,.25)}
+.hero .ctas .btn.trybtn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 3.6s ease-in-out infinite;pointer-events:none}
+.hero .ctas .btn.trybtn:hover{box-shadow:0 14px 32px rgba(192,96,216,.55),0 2px 8px rgba(79,107,255,.3);filter:saturate(1.1)}
+.hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(15,18,34,.28)}
+.hero .ctas .btn.dark:hover{box-shadow:0 0 0 2px #C060D8,0 14px 30px rgba(139,92,246,.35)}
+@keyframes ulflow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes ulsweep{0%,55%{left:-60%}85%,100%{left:130%}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(0,0,0,.4)}}
+@media (prefers-reduced-motion:reduce){.hero .ctas .btn,.hero .ctas .btn svg{transition:none}.hero .ctas .btn:hover,.hero .ctas .btn:hover svg,.hero .ctas .btn:active{transform:none}
+  .hero .ctas .btn.trybtn{animation:none}.hero .ctas .btn.trybtn::after{display:none}}
+@media (max-width:520px){.hero .ctas{grid-template-columns:1fr;width:100%}.hero .ctas .btn.big{width:100%!important;font-size:.95rem!important}}
+
+/* ===== Template design: the look of the Underline AI slides, applied across the page =====
+   Soft peach-pink-lavender "slide" panels, frosted white cards, outlined pill labels, light titles with a
+   bold gradient accent, gradient icon tiles and buttons, glossy spheres. */
+:root{--f:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --panel:linear-gradient(125deg,#FDEBDD 0%,#FBDDE6 46%,#E6E2FD 100%);--frost:rgba(255,255,255,.84);--frostline:rgba(255,255,255,.95);
+  --gblue:linear-gradient(135deg,#7B93FF,#5B6CF2);--gpink:linear-gradient(135deg,#F9A9BA,#F27D99);--gorange:linear-gradient(135deg,#FBC08D,#F4956A);
+  --ggreen:linear-gradient(135deg,#7FD8A9,#45B884);--glav:linear-gradient(135deg,#B3A6FF,#8B78F2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--panel:linear-gradient(125deg,#2A2030 0%,#2B1E2C 46%,#1F2142 100%);--frost:rgba(30,33,51,.86);--frostline:rgba(255,255,255,.06)}}
+:root[data-theme="dark"]{--panel:linear-gradient(125deg,#2A2030 0%,#2B1E2C 46%,#1F2142 100%);--frost:rgba(30,33,51,.86);--frostline:rgba(255,255,255,.06)}
+body,button,input,textarea{font-family:var(--f)}
+/* titles: light, large, with the gradient words bold */
+.hero h1{font-weight:500!important;letter-spacing:-.03em}
+.hero h1 .grad{font-weight:700}
+h2{font-weight:500!important;letter-spacing:-.02em}
+.closing h2{font-weight:500!important}.closing h2 .grad{font-weight:700}
+/* section labels become outlined pills */
+.kicker,.hero .eyebrow{display:inline-block;padding:5px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ink) 35%,transparent);
+  background:color-mix(in srgb,var(--card) 60%,transparent);color:var(--ink);font-size:.78rem;font-weight:500;letter-spacing:.02em;text-transform:none;margin:0 0 14px}
+/* each section is a soft gradient "slide" */
+#why,#how,#own,#try,#member{background:var(--panel);border-radius:28px;padding:40px 36px 36px!important;margin-top:40px;overflow:hidden}
+#why h2,#how h2,#own h2,#try h2,#member h2{margin-top:0}
+#why .whycard,#how .steps li,#own .panel,#try .panel,#member .panel{background:var(--frost)!important;border:1px solid var(--frostline)!important;box-shadow:0 10px 28px rgba(120,100,170,.12)!important}
+@media (max-width:620px){#why,#how,#own,#try,#member{padding:28px 18px 22px!important;border-radius:22px;margin-top:28px}}
+/* gradient icon tiles with white icons, like the template's colored tiles */
+.ic{color:#fff!important}.ic svg{color:#fff}
+.ic.c1{background:var(--gblue)!important}.ic.c2{background:var(--gpink)!important}.ic.c3{background:var(--gorange)!important}
+.ic.c4{background:var(--ggreen)!important}.ic.c5{background:var(--gorange)!important}
+.ic{box-shadow:0 8px 18px rgba(91,108,242,.18)}
+/* How it works: the middle step is the highlighted gradient card */
+#how .steps li:nth-child(2){background:var(--gblue)!important;border-color:transparent!important;box-shadow:0 14px 30px rgba(91,108,242,.28)!important}
+#how .steps li:nth-child(2) b,#how .steps li:nth-child(2) span:not(.ic){color:#fff!important}
+#how .steps li:nth-child(2) .ic{background:rgba(255,255,255,.22)!important;box-shadow:none}
+/* Why: each number its own gradient */
+.whycard:nth-child(1) .whynum{background:var(--gblue)}.whycard:nth-child(2) .whynum{background:var(--gpink)}.whycard:nth-child(3) .whynum{background:var(--gorange)}
+/* main buttons in the forms use the template's blue gradient */
+#own .trygo.btn.dark,#try .trygo.btn.dark,#member .trygo.btn.dark{background:var(--gblue)!important;color:#fff!important;box-shadow:0 10px 22px rgba(91,108,242,.3)}
+#own .trygo.btn.dark:hover,#try .trygo.btn.dark:hover,#member .trygo.btn.dark:hover{filter:brightness(1.06)}
+/* the chosen example: a gradient pill */
+.trychips button[aria-pressed="true"]{background:var(--gblue)!important;color:#fff!important;border-color:transparent!important}
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a class="logo" href="../">Underline AI<span class="by">by Weiwei Hu</span></a>
+    <div class="links">
+      <a href="../">Home</a>
+      <a href="#how">How it works</a>
+      <a href="#try">See examples</a>
+      <span class="navbtns"><a class="btn trybtn" href="#own">Sign in</a><a class="btn dark" href="#join">Get full access</a></span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="orb" style="width:104px;height:104px;left:44%;top:6px" aria-hidden="true"></div>
+    <div class="orb" style="width:26px;height:26px;left:-40px;top:6%" aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">Your full version</p>
+      <h1>Practical<br>advice for<br><span class="grad">work and life.</span></h1>
+      <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
+      <div class="ctas">
+        <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big trybtn" id="heroTry" href="#own"><span class="bt">My Next Action</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="blob" aria-hidden="true"></div><div class="wave" aria-hidden="true"></div>
+    <div class="preview" aria-label="Preview of Underline">
+      <ul class="cats">
+        <li class="on"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 4h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2V6a2 2 0 0 1 2-2Zm0 3h6V6H9v1Z"/></svg></span>Career</li>
+        <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span>Communication</li>
+        <li><span class="ic c3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V9l4-3v14H4Zm6 0V5l4-2v17h-4Zm6 0V8l4 2v10h-4Z"/></svg></span>Leadership</li>
+        <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span>Productivity</li>
+        <li><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 22 12 12 22 2 12 12 2Zm0 6-4 4 4 4 4-4-4-4Z"/></svg></span>Decisions</li>
+        <li><span class="ic c6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Work-life balance</li>
+      </ul>
+      <div class="chat">
+        <div class="ans sit"><div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Your Situation</b></div><div class="ins"><span>Describe your situation…</span></div></div>
+        <div class="ans">
+          <div class="anshead"><span class="spark"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><b>Your Next Action</b></div>
+          <ul class="outs"><li>What I'd do</li><li>What I'd say</li><li>Do this next</li><li>Watch out</li><li>Underlined</li></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="features" aria-label="What you get">
+    <div class="feat"><span class="ic c5"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/></svg></span><div><b>Personalized advice</b><span>Tailored to your situation</span></div></div>
+    <div class="feat"><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3V5Zm18 0h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7V5Z"/></svg></span><div><b>The ideas behind it</b><span>Underlined in every answer</span></div></div>
+    <div class="feat"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><div><b>Clear next steps</b><span>So you can take action</span></div></div>
+  </section>
+
+  <section class="block value" id="why">
+    <h2>Why Underline AI?</h2>
+    <div class="whygrid">
+      <div class="whycard"><span class="whynum">1</span>
+        <p>We constantly face situations where we don&rsquo;t know the best way to respond.</p>
+        <div class="whyparts"><span>How do I handle this?</span><span>How do I get buy-in?</span><span>What do I tell my manager?</span><span>How do I deal with them?</span></div>
+      </div>
+      <div class="whycard"><span class="whynum">2</span>
+        <p>Underline isn&rsquo;t trying to know everything. AI helps connect the thinking and apply it to your specific situation.</p>
+        <div class="whyparts"><span>Communication</span><span>Influence</span><span>Negotiation</span><span>Leadership</span><span>Decisions</span></div>
+      </div>
+      <div class="whycard"><span class="whynum">3</span>
+        <p>Underline helps you find a better way to handle this than you would have thought of yourself. It recommends your next best action:</p>
+        <div class="whyparts"><span>What I&rsquo;d do</span><span>What I&rsquo;d say</span><span>Do this next</span><span>Watch out</span><span>Underlined</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="orb" style="width:34px;height:34px;right:4%;top:6px" aria-hidden="true"></div>
+    <p class="kicker">How it works</p>
+    <h2>Bring one situation. Leave with a one-page actionable plan.</h2>
+    <ol class="steps">
+      <li><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5 0 9 3.6 9 8s-4 8-9 8c-1 0-2-.1-2.9-.4L4 20l1.3-3.6C3.9 15 3 13.1 3 11c0-4.4 4-8 9-8Z"/></svg></span><b>Bring one situation</b><span>What's happening, what you want to happen, and anything else that matters.</span></li>
+      <li><span class="ic c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></span><b>Connect the ideas</b><span>Underline AI searches its curated library, brings together the ideas that fit your situation, and turns them into practical advice.</span></li>
+      <li><span class="ic c4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span><b>Leave with Your Next Action</b><span>What to do, what to say, your next steps, and the ideas behind the advice.</span></li>
+    </ol>
+  </section>
+
+  <section class="block" id="own" hidden>
+    <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
+    <p class="kicker">Free trial and full access</p>
+    <h2>Try it on your own situation.</h2>
+    <p class="ownintro">New here? Your first Next Action is free. Members, sign in here with your email for full access.</p>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Your situation</p>
+        <form id="ownForm" autocomplete="off">
+          <label class="fld"><span>Your email</span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
+          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
+          <p class="trynote memberline" id="ownWho" hidden></p>
+          <div id="ownStep2" class="ownstep">
+          <div id="ownCodeBox" hidden>
+          <p class="trynote ownsent" id="ownSent"></p>
+          <label class="fld"><span>Your 6-digit code</span><input id="oCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></label>
+          </div>
+          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
+          <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
+          <p class="trynote" id="ownNote">It can take up to a minute.</p>
+          </div>
+        </form>
+      </div>
+      <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
+  <section class="block" id="try">
+    <div class="orb" style="width:46px;height:46px;right:2%;top:-6px" aria-hidden="true"></div>
+    <p class="kicker">Examples</p>
+    <h2>See Underline AI in action.</h2>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Pick an example</p>
+        <div class="trychips" id="tryChips" aria-label="Sample situations"></div>
+        <form id="tryForm" autocomplete="off">
+          <label class="fld"><span>What's happening?</span><textarea id="tSit" rows="4" readonly placeholder="Pick an example above."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="tGoal" type="text" readonly placeholder=""></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="tCtx" rows="2" readonly placeholder=""></textarea></label>
+          <button class="btn big dark trygo" type="submit">See the answer</button>
+        </form>
+      </div>
+      <div class="panel full" id="tryOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+
+  <section class="closing" id="access">
+    <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
+    <h2>Know your <span class="grad">next best action.</span></h2>
+    <div class="ctas"><a class="btn big trybtn" href="#own">My Next Action <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Weiwei Hu. All rights reserved.</span>
+    <nav aria-label="Weiwei Hu online">
+      <a href="https://weiweihu.carrd.co" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>Website</a>
+      <a href="https://github.com/wei-wei-hu/underline-ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/weiweihu/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-1 1.83-1.8 3.76-1.8 4 0 4.88 2.4 4.88 5.6v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.14h-4v-11Z"/></svg>LinkedIn</a>
+      <a href="mailto:underlineai@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+    </nav>
+  </footer>
+</div>
+<dialog id="gateDlg" aria-labelledby="gateT">
+  <div class="gcard">
+    <button class="gclose" type="button" aria-label="Close">&times;</button>
+    <div class="glock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+    <h3 id="gateT">Get full access to see your answer</h3>
+    <p>Get the best advice Underline AI can find in its curated library, applied to your situation: what I'd do, what I'd say, your next steps, one trap to watch out for and the ideas behind it.</p>
+    <a class="btn big dark" href="#join">Get full access</a>
+    <button class="glater" type="button">Maybe later</button>
+  </div>
+</dialog>
+<script type="application/json" id="tryData">{"samples": [{"label": "Career: Asking for a raise", "sit": "I had a strong year and want to ask for a raise. My review with my manager is next Friday.", "goal": "Get a raise of about 10%", "ctx": "I led two projects that finished on time and trained two new hires.", "title": "Ask for a raise at your review", "do": "In Friday's review, open with thanks, share your two biggest results with numbers, then name a range and stop talking.", "say_label": "Say this on Friday", "say": "Thanks for your support this year. I've loved leading the two projects, and both finished on time. I also trained our two new hires, who now work on their own. Based on that, I'd like to talk about a raise of 10 to 12%. What would it take to get there?", "next": ["Before Friday, write your two biggest results, each with a number.", "On Friday, open with thanks, make the ask in the middle and close on a warm note.", "From next week, note your wins every Friday, so next year's ask is easier."], "watch": {"text": "Don't fill the silence after you ask for the raise. Let it sit.", "t": "Own Your Career", "s": "Michela Allocca, Own Your Career"}, "und": [{"t": "Own Your Career", "q": "The negotiation sandwich is a framework that \"sandwiches\" your request between two positive statements.", "l": "Open with thanks, ask in the middle, close warmly.", "s": "Michela Allocca, Own Your Career"}, {"t": "CAR summary method", "q": "", "l": "Back your ask with results that have numbers.", "s": "CAR summary method (Weiwei Hu's 13 frameworks)"}, {"t": "Likeable Badass", "q": "When you present multiple choices, research shows that you're perceived as more trustworthy, flexible, cooperative, and sincere (all signals of Warmth), in comparison to making a single offer.", "l": "Name your number first, so it sets the starting point.", "s": "Alison Fragale, Likeable Badass"}]}, {"label": "Communication: Project delay", "sit": "I have five minutes at Monday's leadership meeting to update them on a project that is two weeks late.", "goal": "They trust the new date and keep confidence in my team", "ctx": "A vendor caused the delay. We have a fix and a new date.", "title": "Update leaders on a late project", "do": "Open with the new date and your fix in one sentence, give the cause in one line, then stop and take questions.", "say_label": "Open with", "say": "Quick update: [project] will launch on [new date], two weeks later than planned. A vendor delay caused it, and we've already fixed it by [fix]. I'm confident in the new date, and I'll send a short update every Friday until launch. Happy to take questions.", "next": ["Before Monday, write your first sentence with the new date and the fix.", "Add one line on the risk that's left and the evidence the fix works.", "Every Friday until launch, send leadership a short written update."], "watch": {"text": "Don't build up to the new date with the vendor story. Busy people stop listening before you get there.", "t": "The Pyramid Principle", "s": "Barbara Minto, The Pyramid Principle"}, "und": [{"t": "The Pyramid Principle", "q": "", "l": "Lead with the answer, then give the support.", "s": "Barbara Minto, The Pyramid Principle"}, {"t": "Read the Room", "q": "Close with your recommendation. Even if the room may choose something else, give people a starting point.", "l": "Brief leaders with SCQA and end on your recommendation.", "s": "Weiwei Hu, Read the Room"}, {"t": "Smart Brevity", "q": "Just say what you mean, sincerely and short.", "l": "Make the point, then stop talking.", "s": "Jim VandeHei, Mike Allen and Roy Schwartz, Smart Brevity"}, {"t": "Amplify You", "q": "By leading with your strongest point, backing it up with evidence, and closing with conviction, you ensure your message is clear and compelling, no matter how much or how little time you have to present.", "l": "Open with your headline, back it with up to three points, then close strong.", "s": "Gina London, Amplify You"}]}, {"label": "Productivity: Too much work", "sit": "I have too many tasks, two deadlines this month, and my boss just gave me another project. I'm working late every night.", "goal": "Get back to normal hours without dropping anything important", "ctx": "No one else can take my deadlines.", "title": "Get back control of a full plate", "do": "Before you start the new project, show your boss your task list sorted by urgent and important, and ask what should move.", "say_label": "Say this to your boss", "say": "I want to do the new project well, so I need your help with priorities. Here's everything I'm on, sorted by what's urgent and what matters most. If I take this on now, something here slips. Which one should move?", "next": ["Today, sort every task into four boxes: do now, book time, hand off, drop.", "Tomorrow, show your boss the list and ask which item should move.", "Each morning, write your most important task on a note and finish it before email."], "watch": {"text": "Don't quietly say yes and work late to absorb the new project. If you hide the trade-off, it becomes your problem alone.", "t": "Workplace SOPs", "s": "Weiwei Hu, Workplace SOPs (Saying no, Setting priorities)"}, "und": [{"t": "Workplace SOPs", "q": "", "l": "Say no by showing what slips and letting them choose.", "s": "Weiwei Hu, Workplace SOPs (Saying no, Setting priorities)"}, {"t": "Eisenhower matrix", "q": "What is important is seldom urgent and what is urgent is seldom important.", "l": "Sort work by urgent and important before you take on more.", "s": "Eisenhower matrix"}, {"t": "Automate Your Busywork", "q": "Instead of living for the tiny dopamine hit that comes with making an inconsequential checkmark, write down your big priority for the day on a sticky note.", "l": "Finish your most important task before anything else.", "s": "Aytekin Tank, Automate Your Busywork"}, {"t": "Read the Room", "q": "Ownership should be easy to see.", "l": "Settle owner, deadline and first steps before the task starts.", "s": "Weiwei Hu, Read the Room"}]}, {"label": "Decisions: Two job offers", "sit": "I have two job offers. One pays 20% more. The other has a better manager and more room to learn.", "goal": "Pick the one that's better for the next three years", "ctx": "I need to answer both by Friday.", "title": "Choose between two job offers", "do": "Score both offers on what you'll learn, what they pay and how they fit what you value, then ask each hiring manager one question before Friday.", "say_label": "Ask each hiring manager", "say": "Thanks again for the offer. I'm excited about it. Before I decide, could I ask one thing? What would success look like in my first year, and how would you help me grow? I'll get back to you by Friday.", "next": ["Today, rank each offer on learning, pay and how it fits your values.", "By Wednesday, ask each hiring manager what success looks like in year one.", "Before you decide, write where you want to be in three years, and pick the job that gets you closer."], "watch": {"text": "Don't lower your three-year goal to match today's choice. Pick the job that closes more of the gap.", "t": "The Fifth Discipline", "s": "Peter Senge, The Fifth Discipline (personal mastery)"}, "und": [{"t": "Own Your Career", "q": "…every job or position you hold throughout your career should allow you to either learn or earn.", "l": "Judge a job by what it teaches and what it pays.", "s": "Michela Allocca, Own Your Career"}, {"t": "Read the Room", "q": "A good decision note does not pretend there is no tradeoff.", "l": "Agree the criteria before you compare options.", "s": "Weiwei Hu, Read the Room"}, {"t": "The Fifth Discipline", "q": "Creative tension", "l": "Hold your goal next to today's reality, then close the gap.", "s": "Peter Senge, The Fifth Discipline (personal mastery)"}]}, {"label": "Work-life balance: Evening messages", "sit": "I answer work messages at night and on weekends, and I'm tired all the time.", "goal": "Stop working evenings without letting my team down", "ctx": "My manager sometimes messages late but has never said I must reply.", "title": "Stop answering messages at night", "do": "Set your working hours, tell your manager and team when you're reachable, and agree what counts as urgent enough to call.", "say_label": "Say this to your manager", "say": "I want to be at my best during the day, so I'm going to stop checking messages after 7 pm and on weekends. If something is urgent, please call me and I'll pick up. Does that work for you? And what would you count as urgent?", "next": ["This week, decide your working hours and put one personal plan on each day's list.", "Tell your team when you check messages, and turn off alerts outside those hours.", "After you talk, send your manager a short note of your hours and what counts as urgent."], "watch": {"text": "Don't answer every message as it comes in, even at night. Constant checking eats your rest.", "t": "Automate Your Busywork", "s": "Aytekin Tank, Automate Your Busywork"}, "und": [{"t": "Own Your Career", "q": "The season you are in will have a profound influence on the types of jobs you search for and the aspects that are important to you.", "l": "Set your available hours and tell people.", "s": "Michela Allocca, Own Your Career"}, {"t": "Automate Your Busywork", "q": "…it can be helpful to announce that you check your messages once per hour, or three times per day, or whatever suits you.", "l": "Choose set times to check messages.", "s": "Aytekin Tank, Automate Your Busywork"}, {"t": "Workplace SOPs", "q": "Say it out loud, then put it in the chat, then send an email for anything important.", "l": "Agree out loud, then confirm it in writing.", "s": "Weiwei Hu, Workplace SOPs (Closing the loop in writing)"}]}]}</script>
+<script>
+(function(){
+  var D=JSON.parse(document.getElementById('tryData').textContent);
+  var $=function(s){return document.querySelector(s);};
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+  function head(title,tag){var f=document.createDocumentFragment();f.append(el('p','plabel','Your Next Action'));if(tag)f.append(el('span','tag',tag));f.append(el('h3',null,title));return f;}
+  var out=$('#tryOut');
+  // A plain-text copy of an answer, for Copy and Email it to me.
+  function planText(x){var L=[x.title,'','WHAT I\u2019D DO',x.do,'','WHAT I\u2019D SAY',x.say_label+':','\u201c'+x.say+'\u201d','','DO THIS NEXT'];
+    x.next.forEach(function(n,i){L.push((i+1)+'. '+(n.step||n));});
+    L.push('','WATCH OUT',x.watch.text+(x.watch.t?' (Based on '+x.watch.t+')':''),'','UNDERLINED');
+    x.und.forEach(function(u){L.push('\u2022 '+(u.q?'\u201c'+u.q+'\u201d \u2014 '+u.t:u.l+' \u2014 based on '+u.t));});
+    L.push('','Underline AI by Weiwei Hu','https://wei-wei-hu.github.io/underline-ai/');return L.join('\n');}
+  // Email, PDF, PowerPoint, Copy and Print, in that order under every answer.
+  function actions(x,into,mail){var bar=el('div','acts'),msg=el('p','actmsg');
+    function btn(t,f){var b=el('button',null,t);b.type='button';b.addEventListener('click',function(){f(b);});bar.append(b);return b;}
+    // Examples have no verified email, so Email opens the visitor's own email app with the answer written in.
+    if(!mail)btn('Email',function(){location.href='mailto:?subject='+encodeURIComponent('Your Next Action: '+x.title)+'&body='+encodeURIComponent(planText(x));});
+    else btn('Email',function(b){b.disabled=true;b.textContent='Sending…';
+      mail(x).then(function(j){if(!j.ok)throw 0;b.textContent='Sent';msg.textContent='Your Next Action is on its way. Check your inbox, and your spam folder too.';bar.append(msg);})
+        .catch(function(){b.disabled=false;b.textContent='Email';msg.textContent='We couldn’t send it just now. Try PDF or Copy instead.';bar.append(msg);});});
+    // Save as PDF and Print: the answer board on one landscape page, with the brand line above it.
+    function printPlan(){var pa=$('#printArea');if(!pa){pa=el('div');pa.id='printArea';document.body.append(pa);}
+      var end=el('div','pend');end.append(el('b',null,'Know your next best action.'),document.createTextNode('\u00a9 2026 Weiwei Hu. All rights reserved.'));
+      pa.replaceChildren(into.querySelector('.board').cloneNode(true),end);
+      // Measure the one-page layout, then shrink it to fit a landscape or a portrait page.
+      pa.classList.add('measuring');var h=pa.offsetHeight;pa.classList.remove('measuring');
+      pa.style.setProperty('--zl',Math.min(.9,700/h).toFixed(3));pa.style.setProperty('--zp',Math.min(.64,960/h).toFixed(3));
+      var old=document.title;document.title='Your Next Action - '+x.title;window.print();document.title=old;}
+    btn('PDF',function(b){b.disabled=true;b.textContent='Making PDF\u2026';
+      makePdf(x).catch(function(){msg.textContent='We couldn\u2019t make the PDF just now. Try Print instead.';bar.append(msg);})
+        .then(function(){b.disabled=false;b.textContent='PDF';});});
+    btn('PowerPoint',function(b){b.disabled=true;b.textContent='Making slide…';
+      makeSlide(x).then(function(){b.textContent='PowerPoint';},function(){msg.textContent='We couldn’t make the PowerPoint just now. Try PDF instead.';bar.append(msg);b.textContent='PowerPoint';})
+        .then(function(){b.disabled=false;});});
+    btn('Copy',function(b){var t=planText(x);
+      copyText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},2000);},
+        function(){var box=el('textarea','copybox');box.value=t;box.readOnly=true;box.rows=8;msg.textContent='Your phone blocked copying. Press and hold the text below, then choose Select All and Copy.';bar.append(msg,box);box.focus();box.select();});});
+    btn('Print',printPlan);
+    return bar;}
+
+  // The answer board, in the style of the Underline AI slides. What I'd do takes one of five
+  // gradients, a new one each time; the step numbers and source pills follow on from it.
+  var BOARD_COLORS=[['#7B93FF','#5B6CF2'],['#F9A9BA','#F27D99'],['#FBC08D','#F4956A'],['#7FD8A9','#45B884'],['#B3A6FF','#8B78F2']];
+  var lastColor=-1;
+  function pick(n,last){var i;do{i=Math.floor(Math.random()*n);}while(i===last&&n>1);return i;}
+  function grad(c){return 'linear-gradient(135deg,'+c[0]+','+c[1]+')';}
+  function tone(x,k){return BOARD_COLORS[(x.color+k)%BOARD_COLORS.length];}
+  // Underlined ideas grouped by source: the author's words in quotes, or "based on" when there's no quote.
+  function groups(items){var g=[];items.forEach(function(u){var line=u.q?'“'+u.q+'”':u.l;var x=g.filter(function(y){return y.t===u.t;})[0];
+      if(!x){x={t:u.t,s:u.s,l:[],quoted:true};g.push(x);}if(x.l.indexOf(line)<0)x.l.push(line);if(!u.q)x.quoted=false;});return g;}
+  function board(x,tag){
+    if(x.color==null)x.color=lastColor=pick(BOARD_COLORS.length,lastColor);
+    var b=el('div','board');['o1','o2','o3'].forEach(function(o){b.append(el('span','borb '+o));});
+    var hd=el('div','bhead'),pills=el('div','bpills');pills.append(el('span','bpill','Your Next Action by Underline AI'));if(tag)pills.append(el('span','bpill soft',tag));
+    hd.append(pills,el('h3','btitle',x.title));
+    var hero=el('div','bcard bhero');hero.style.background=grad(tone(x,0));hero.append(el('span','blabel','★ What I’d do'),el('p',null,x.do));
+    var say=el('div','bcard bsay');say.append(el('span','blabel','What I’d say'));if(x.say_label)say.append(el('p','bsub',x.say_label));say.append(el('p','bq','“'+x.say+'”'));
+    var steps=el('div','bcard bsteps'),ol=el('ol');steps.append(el('span','blabel','Do this next'),ol);
+    x.next.forEach(function(n,i){var li=el('li'),num=el('span','bnum',String(i+1));num.style.background=grad(tone(x,1+i));li.append(num,el('span',null,n.step||n));ol.append(li);});
+    var watch=el('div','bcard bwatch'),wi=el('div','bwi'),wt=el('div');wt.append(el('p',null,x.watch.text));
+    if(x.watch.t){var fr=el('p','bfrom','Based on '+x.watch.t);fr.title=x.watch.s||'';wt.append(fr);}
+    wi.append(el('span','bicon','!'),wt);watch.append(el('span','blabel','Watch out'),wi);
+    var u=el('div','bcard bund'),items=el('div','bitems');u.append(el('span','blabel','Underlined'),items);
+    groups(x.und).forEach(function(gr,i){var it=el('div','bitem'),s=el('span','bsrc',(gr.quoted?'':'Based on ')+gr.t);s.title=gr.s||'';s.style.background=grad(tone(x,2+i));
+      it.append(el('p',null,gr.l.join(' ')),s);items.append(it);});
+    var g=el('div','bgrid');g.append(hero,say,steps,watch,u);
+    b.append(hd,g);return b;}
+  function showSample(x,into,tag,mail){
+    into=into||out;
+    into.replaceChildren(board(x,tag||'Sample answer'));
+    into.append(actions(x,into,mail));
+  }
+
+  // PowerPoint: one 16:9 slide in the same design. The gradient background, spheres and the
+  // What I'd do gradient are drawn as pictures; all the words stay editable text.
+  var PPTX_URL='https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js';
+  function loadPptx(){return window.PptxGenJS?Promise.resolve():new Promise(function(ok,fail){var sc=document.createElement('script');sc.src=PPTX_URL;sc.onload=ok;sc.onerror=fail;document.head.append(sc);});}
+  function canvasPng(w,h,draw){var c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);return c.toDataURL('image/png');}
+  function sphere(g,cx,cy,r,stops){var f=g.createRadialGradient(cx-r*.35,cy-r*.4,r*.05,cx,cy,r);stops.forEach(function(s){f.addColorStop(s[0],s[1]);});g.fillStyle=f;g.beginPath();g.arc(cx,cy,r,0,7);g.fill();}
+  function roundPath(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+  // Height in inches of text wrapped to a width in inches, measured with Arial at 96 dots per inch.
+  var measure=document.createElement('canvas').getContext('2d');
+  function textH(t,pt,wIn,bold,lh){measure.font=(bold?'bold ':'')+(pt*96/72)+'px Arial';var max=wIn*96,lines=0;
+    String(t).split('\n').forEach(function(par){var line='';lines++;par.split(/\s+/).forEach(function(w){var tryLine=line?line+' '+w:w;
+      if(line&&measure.measureText(tryLine).width>max){lines++;line=w;}else line=tryLine;});});
+    return lines*pt*lh/72;}
+  function makeSlide(x){return loadPptx().then(function(){
+    var P=new window.PptxGenJS();P.layout='LAYOUT_WIDE';P.title='Your Next Action: '+x.title;P.author='Underline AI by Weiwei Hu';
+    var s=P.addSlide(),hex=function(c){return c.replace('#','');},F='Calibri',ink='1D2033',grey='7A7F95',dpi=120;
+    s.background={data:canvasPng(1600,900,function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,'#FDEBDD');f.addColorStop(.46,'#FBDDE6');f.addColorStop(1,'#E6E2FD');g.fillStyle=f;g.fillRect(0,0,w,h);
+      sphere(g,w*.925,h*.1,44,[[0,'#ffffff'],[.12,'#B9C6FF'],[.6,'#5B74FF'],[1,'#7A5CF0']]);
+      sphere(g,w*.47,h*.05,11,[[0,'#ffffff'],[.4,'#FFC2A8'],[1,'#FF9C7A']]);
+      sphere(g,w*.03,h*.95,17,[[0,'#ffffff'],[.4,'#FFB3C4'],[1,'#F57C9A']]);})};
+    var card=function(cx,cy,cw,ch){s.addShape(P.ShapeType.roundRect,{x:cx,y:cy,w:cw,h:ch,rectRadius:.16,fill:{color:'FFFFFF',transparency:12},line:{color:'FFFFFF',transparency:100},
+      shadow:{type:'outer',color:'9B8FC7',opacity:.25,blur:8,offset:2,angle:90}});};
+    var label=function(t,lx,ly,lw,col){s.addText(t.toUpperCase(),{x:lx,y:ly,w:lw,h:.28,fontFace:F,fontSize:9,bold:true,color:col||grey,charSpacing:2,margin:0});};
+    // Every text box is measured (with Arial, which runs a little wider than Calibri) and made
+    // smaller until it fits inside its card.
+    var LH=1.25,fit=function(t,w,h,start,min,bold){var pt=start;while(pt>min&&textH(t,pt,w,bold,LH)>h)pt-=.5;return pt;};
+    var text=function(t,o){s.addText(t,Object.assign({fontFace:F,valign:'top',margin:0,lineSpacingMultiple:1},o));};
+    // Title
+    s.addShape(P.ShapeType.roundRect,{x:.6,y:.42,w:2.75,h:.32,rectRadius:.16,fill:{color:'FFFFFF',transparency:45},line:{color:ink,width:.75,transparency:40}});
+    text('Your Next Action by Underline AI',{x:.6,y:.42,w:2.75,h:.32,fontSize:10,color:ink,align:'center',valign:'middle'});
+    text(x.title,{x:.6,y:.84,w:10.6,h:.8,fontFace:'Calibri Light',fontSize:fit(x.title,10.6,.8,32,18),color:ink,valign:'middle'});
+    // Row 1: What I'd do (gradient), What I'd say, Watch out
+    var c=tone(x,0),hw=4.05,hh=2.6;
+    s.addImage({data:canvasPng(Math.round(hw*dpi),Math.round(hh*dpi),function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,c[0]);f.addColorStop(1,c[1]);g.fillStyle=f;roundPath(g,0,0,w,h,20);g.fill();}),x:.6,y:1.8,w:hw,h:hh});
+    label('★ What I’d do',.85,1.98,3.6,'FFFFFF');
+    text(x.do,{x:.85,y:2.32,w:3.55,h:1.9,fontSize:fit(x.do,3.55,1.9,17,9,true),bold:true,color:'FFFFFF'});
+    card(4.85,1.8,4.1,2.6);label('What I’d say',5.1,1.98,3.6);
+    var sy=2.3;if(x.say_label){var lp=fit(x.say_label,3.6,.45,10,8);text(x.say_label,{x:5.1,y:sy,w:3.6,h:.45,fontSize:lp,color:'8A8FA3'});sy+=textH(x.say_label,lp,3.6,false,LH)+.06;}
+    var q='“'+x.say+'”';text(q,{x:5.1,y:sy,w:3.6,h:4.25-sy,fontSize:fit(q,3.6,4.25-sy,12,7.5),color:ink});
+    card(9.15,1.8,3.6,2.6);label('Watch out',9.4,1.98,3.1);
+    s.addShape(P.ShapeType.roundRect,{x:9.4,y:2.32,w:.4,h:.4,rectRadius:.08,fill:{color:'F4956A'},line:{color:'F4956A'}});
+    text('!',{x:9.4,y:2.32,w:.4,h:.4,fontSize:14,bold:true,color:'FFFFFF',align:'center',valign:'middle'});
+    var wp=fit(x.watch.text,2.6,1.55,12,8,true);text(x.watch.text,{x:9.95,y:2.3,w:2.6,h:1.6,fontSize:wp,bold:true,color:ink});
+    if(x.watch.t)text('Based on '+x.watch.t,{x:9.95,y:2.3+textH(x.watch.text,wp,2.6,true,LH)+.06,w:2.6,h:.4,fontSize:9,italic:true,color:'8A8FA3'});
+    // Row 2: Do this next. One text size for every step, each row as tall as its text.
+    card(.6,4.6,8.35,2.4);label('Do this next',.85,4.76,4);
+    var steps=x.next.map(function(st){return String(st.step||st);}),many=steps.length>4,dot=many?.26:.32,gap=many?.05:.08,avail=6.92-5.08,sp=11.5;
+    var rows=function(pt){return steps.map(function(t){return Math.max(dot,textH(t,pt,7.4,false,LH));});};
+    while(sp>7&&rows(sp).reduce(function(a,b){return a+b;},0)+gap*(steps.length-1)>avail)sp-=.5;
+    var hs=rows(sp),ry=5.08;
+    steps.forEach(function(t,i){var k=tone(x,1+i),d=dot;
+      s.addShape(P.ShapeType.ellipse,{x:.85,y:ry,w:d,h:d,fill:{color:hex(k[0])},line:{color:hex(k[0])}});
+      text(String(i+1),{x:.85,y:ry,w:d,h:d,fontSize:d<.3?8.5:10,bold:true,color:'FFFFFF',align:'center',valign:'middle'});
+      text(t,{x:1.3,y:ry+Math.max(0,(dot-textH(t,sp,7.4,false,LH))/2),w:7.4,h:hs[i],fontSize:sp,color:ink});ry+=hs[i]+gap;});
+    // Underlined: one text size for all ideas and sources, small enough that they all fit.
+    card(9.15,4.6,3.6,2.4);label('Underlined',9.4,4.76,3.1);
+    var gs=groups(x.und).map(function(gr){return {t:gr.l.join(' '),src:(gr.quoted?'— ':'— based on ')+gr.t};}),up=10.5;
+    var uH=function(pt){return gs.reduce(function(a,g){return a+textH(g.t,pt,3.15,false,LH)+textH(g.src,pt,3.15,true,LH)+.06;},0);};
+    while(up>6.5&&uH(up)>6.9-5.08)up-=.5;
+    var uy=5.08;gs.forEach(function(g,i){var k=tone(x,2+i),th=textH(g.t,up,3.15,false,LH),sh=textH(g.src,up,3.15,true,LH);
+      text(g.t,{x:9.4,y:uy,w:3.15,h:th,fontSize:up,color:ink});text(g.src,{x:9.4,y:uy+th,w:3.15,h:sh,fontSize:up,bold:true,color:hex(k[1])});uy+=th+sh+.06;});
+    // Footer
+    text([{text:'Know your next best action.   ',options:{bold:true,color:ink}},{text:'© 2026 Weiwei Hu. All rights reserved.',options:{color:'8A8FA3'}}],{x:.6,y:7.1,w:12.13,h:.28,fontSize:9.5,align:'center',valign:'middle'});
+    return P.write({outputType:'blob'}).then(function(blob){return deliver(blob,fileName(x,'pptx'));});});}
+
+  // Getting a file to the person: phones open the share sheet (Save to Files, Mail, AirDrop),
+  // computers download it. If the share sheet isn't allowed, it falls back to a download.
+  function fileName(x,ext){return 'Your Next Action - '+x.title.replace(/[\\/:*?"<>|]/g,'')+'.'+ext;}
+  function download(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},10000);}
+  function deliver(blob,name){var file=null;try{file=new File([blob],name,{type:blob.type});}catch(e){}
+    var phone=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+    if(phone&&file&&navigator.canShare&&navigator.canShare({files:[file]}))
+      return navigator.share({files:[file],title:name}).catch(function(e){if(!e||e.name!=='AbortError')download(blob,name);});
+    download(blob,name);return Promise.resolve();}
+
+  // Copy: the clipboard where allowed, then the older select-and-copy way that phones still accept.
+  function copyText(t){
+    function legacy(){var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
+      document.body.append(ta);ta.focus();ta.select();ta.setSelectionRange(0,t.length);var ok=false;try{ok=document.execCommand('copy');}catch(e){}ta.remove();
+      return ok?Promise.resolve():Promise.reject();}
+    return navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(t).catch(legacy):legacy();}
+
+  // Save as PDF: one landscape A4 page drawn like the PowerPoint slide, with real, selectable text.
+  var JSPDF_URL='https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
+  function loadScript(src,ready){return ready()?Promise.resolve():new Promise(function(ok,fail){var sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=fail;document.head.append(sc);});}
+  function rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function makePdf(x){return loadScript(JSPDF_URL,function(){return window.jspdf;}).then(function(){
+    var pdf=new window.jspdf.jsPDF({orientation:'landscape',unit:'pt',format:'a4'}),PW=pdf.internal.pageSize.getWidth(),M=28,u=(PW-2*M)/13.333,X0=M,Y0=46;
+    var X=function(v){return X0+v*u;},Y=function(v){return Y0+v*u;},ink=[29,32,51],grey=[122,127,149],soft=[138,143,163];
+    var col=function(c){pdf.setTextColor(c[0],c[1],c[2]);};
+    // text that wraps inside a box, made smaller until it fits
+    var block=function(t,x0,y0,w,h,size,min,style,c,lh){var lines;lh=lh||1.35;
+      do{pdf.setFont('helvetica',style||'normal');pdf.setFontSize(size);lines=pdf.splitTextToSize(String(t),w);if(lines.length*size*lh<=h||size<=min)break;size-=.5;}while(true);
+      col(c||ink);pdf.text(lines,x0,y0+size,{lineHeightFactor:lh});return lines.length*size*lh;};
+    var label=function(t,x0,y0,c){pdf.setFont('helvetica','bold');pdf.setFontSize(7.5);pdf.setCharSpace(1.2);col(c||grey);pdf.text(t.toUpperCase(),x0,y0+7.5);pdf.setCharSpace(0);};
+    var card=function(cx,cy,cw,ch){pdf.setGState(new pdf.GState({opacity:.88}));pdf.setFillColor(255,255,255);pdf.roundedRect(X(cx),Y(cy),cw*u,ch*u,9,9,'F');pdf.setGState(new pdf.GState({opacity:1}));};
+    // brand line, the board's gradient and spheres, the footer
+    pdf.addImage(canvasPng(1600,900,function(g,w,h){roundPath(g,0,0,w,h,40);g.clip();var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,'#FDEBDD');f.addColorStop(.46,'#FBDDE6');f.addColorStop(1,'#E6E2FD');g.fillStyle=f;g.fillRect(0,0,w,h);
+      sphere(g,w*.925,h*.1,44,[[0,'#ffffff'],[.12,'#B9C6FF'],[.6,'#5B74FF'],[1,'#7A5CF0']]);sphere(g,w*.47,h*.05,11,[[0,'#ffffff'],[.4,'#FFC2A8'],[1,'#FF9C7A']]);sphere(g,w*.03,h*.95,17,[[0,'#ffffff'],[.4,'#FFB3C4'],[1,'#F57C9A']]);}),'PNG',X(0),Y(0),13.333*u,7.5*u,'board','FAST');
+    // title
+    pdf.setDrawColor(29,32,51);pdf.setLineWidth(.6);pdf.setFillColor(255,255,255);pdf.roundedRect(X(.6),Y(.42),2.75*u,.32*u,.16*u,.16*u,'FD');
+    pdf.setFont('helvetica','normal');pdf.setFontSize(8.5);col(ink);pdf.text('Your Next Action by Underline AI',X(.6)+2.75*u/2,Y(.42)+.32*u/2+3,{align:'center'});
+    block(x.title,X(.6),Y(.86),10.6*u,.8*u,22,15,'normal',ink,1.15);
+    // row 1: What I'd do, What I'd say, Watch out
+    var c=tone(x,0);
+    pdf.addImage(canvasPng(486,312,function(g,w,h){var f=g.createLinearGradient(0,0,w,h);f.addColorStop(0,c[0]);f.addColorStop(1,c[1]);g.fillStyle=f;roundPath(g,0,0,w,h,22);g.fill();}),'PNG',X(.6),Y(1.8),4.05*u,2.6*u,'hero','FAST');
+    label('What I’d do',X(.85),Y(2),[255,255,255]);block(x.do,X(.85),Y(2.3),3.55*u,1.95*u,14,9,'bold',[255,255,255]);
+    card(4.85,1.8,4.1,2.6);label('What I’d say',X(5.1),Y(2));
+    var used=x.say_label?block(x.say_label,X(5.1),Y(2.28),3.6*u,.3*u,8.5,8,'normal',soft):0;
+    block('“'+x.say+'”',X(5.1),Y(2.28)+used+4,3.6*u,1.95*u-used-4,10.5,7.5,'normal',ink,1.4);
+    card(9.15,1.8,3.6,2.6);label('Watch out',X(9.4),Y(2));
+    pdf.setFillColor(244,149,106);pdf.roundedRect(X(9.4),Y(2.32),.4*u,.4*u,5,5,'F');pdf.setFont('helvetica','bold');pdf.setFontSize(12);col([255,255,255]);pdf.text('!',X(9.6),Y(2.32)+.4*u/2+4,{align:'center'});
+    var wh=block(x.watch.text,X(9.95),Y(2.3),2.6*u,1.6*u,10.5,8,'bold',ink);
+    if(x.watch.t){pdf.setFont('helvetica','italic');pdf.setFontSize(8);col(soft);pdf.text(pdf.splitTextToSize('Based on '+x.watch.t,2.6*u),X(9.95),Y(2.3)+wh+10);}
+    // row 2: Do this next, Underlined
+    card(.6,4.6,8.35,2.4);label('Do this next',X(.85),Y(4.78));
+    // One text size for every step, each row as tall as its text
+    var steps=x.next.map(function(st){return String(st.step||st);}),r=(steps.length>4?.13:.16)*u,gap=(steps.length>4?.05:.08)*u,sp=10.5;
+    var rowsH=function(f){pdf.setFont('helvetica','normal');pdf.setFontSize(f);return steps.map(function(t){return Math.max(2*r,pdf.splitTextToSize(t,7.4*u).length*f*1.35);});};
+    while(sp>7&&rowsH(sp).reduce(function(a,b){return a+b;},0)+gap*(steps.length-1)>1.84*u)sp-=.5;
+    var hs=rowsH(sp),ry=Y(5.08);
+    steps.forEach(function(t,i){var k=rgb(tone(x,1+i)[0]);pdf.setFillColor(k[0],k[1],k[2]);pdf.circle(X(.85)+r,ry+r,r,'F');
+      pdf.setFont('helvetica','bold');pdf.setFontSize(r>.14*u?9:8);col([255,255,255]);pdf.text(String(i+1),X(.85)+r,ry+r+3,{align:'center'});
+      block(t,X(1.3),ry+Math.max(0,(2*r-sp*1.35)/2)-1,7.4*u,hs[i]+2,sp,sp,'normal',ink);ry+=hs[i]+gap;});
+    card(9.15,4.6,3.6,2.4);label('Underlined',X(9.4),Y(4.78));
+    // Underlined: the largest size at which every idea and its source fit inside the card
+    var gs=groups(x.und),fs=9.5,yy=Y(5.08),need=function(f){pdf.setFontSize(f);return gs.reduce(function(a,g){pdf.setFont('helvetica','normal');var t=pdf.splitTextToSize(g.l.join(' '),3.1*u).length;
+      pdf.setFont('helvetica','bold');return a+(t+pdf.splitTextToSize((g.quoted?'\u2014 ':'\u2014 based on ')+g.t,3.1*u).length)*f*1.3+6;},0);};
+    while(fs>6.5&&need(fs)>1.9*u)fs-=.5;
+    gs.forEach(function(g,i){var k=rgb(tone(x,2+i)[1]);yy+=block(g.l.join(' '),X(9.4),yy,3.1*u,9*u,fs,fs,'normal',ink,1.3);
+      pdf.setFont('helvetica','bold');pdf.setFontSize(fs);col(k);var src=pdf.splitTextToSize((g.quoted?'— ':'— based on ')+g.t,3.1*u);pdf.text(src,X(9.4),yy+fs);yy+=src.length*fs*1.3+6;});
+    pdf.setFont('helvetica','bold');pdf.setFontSize(9.5);col(ink);var tag='Know your next best action.   ',tw=pdf.getTextWidth(tag);pdf.setFont('helvetica','normal');
+    var rest='\u00a9 2026 Weiwei Hu. All rights reserved.',rw=pdf.getTextWidth(rest),sx=(PW-tw-rw)/2,fy=Y(7.5)+22;pdf.setFont('helvetica','bold');pdf.text(tag,sx,fy);pdf.setFont('helvetica','normal');col([138,143,160]);pdf.text(rest,sx+tw,fy);
+    pdf.setProperties({title:'Your Next Action: '+x.title,author:'Underline AI by Weiwei Hu'});
+    return deliver(pdf.output('blob'),fileName(x,'pdf'));});}
+  var dlg=$('#gateDlg');
+  function closeGate(){if(dlg.open)dlg.close();}
+  dlg.querySelector('.gclose').onclick=closeGate;dlg.querySelector('.glater').onclick=closeGate;
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeGate();});
+  function showGate(){
+    out.hidden=true;out.replaceChildren();
+    if(dlg.showModal)dlg.showModal();else document.getElementById('access').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  var chips=$('#tryChips'), cur=null;
+  D.samples.forEach(function(x,i){var b=el('button',null,x.label);b.type='button';b.setAttribute('aria-pressed','false');
+    b.onclick=function(){cur=i;$('#tSit').value=x.sit;$('#tGoal').value=x.goal;$('#tCtx').value=x.ctx;
+      chips.querySelectorAll('button').forEach(function(c,j){c.setAttribute('aria-pressed',String(j===i));});};chips.append(b);});
+  chips.querySelector('button').click();
+  $('#tryForm').addEventListener('submit',function(e){e.preventDefault();
+    var sit=$('#tSit').value.trim();if(!sit){$('#tSit').focus();return;}
+    if(cur===null){showGate();return;}
+    showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  // Free trial and full access, one flow (section #own). Every visitor enters an email and gets a code.
+  // Members (in the Underline AI members sheet) unlock full access; everyone else gets one free Next Action.
+  // After the free one, or for an email that already used it, the Join Underline AI pop-up offers membership.
+  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  var CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec';
+  $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
+  $('#heroTry').href='#own';
+  var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote'), oSend=$('#ownSend'), emailField=$('#oEmail').closest('.fld');
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/, BREAK='Underline AI is taking a short break. Please try again in a few minutes.';
+  var mode='', trialUsed=false, verified='';   // mode: '' until the email is checked, then 'trial' or 'member'
+  var me=null;try{me=JSON.parse(localStorage.getItem('ul.member')||'null');}catch(e){}
+  function remember(v){me=v;try{if(v)localStorage.setItem('ul.member',JSON.stringify(v));else localStorage.removeItem('ul.member');}catch(e){}}
+  function email(){return me?me.email:$('#oEmail').value.trim();}
+  // Members' feedback and emailed answers go to the members sheet.
+  function codes(action,extra){if(mode==='member')action={feedback:'mfeedback',plan:'mplan'}[action]||action;
+    var b={action:action,email:email()};for(var k in extra)b[k]=extra[k];
+    return fetch(CODE_API,{method:'POST',body:JSON.stringify(b)}).then(function(r){return r.json();});}
+  function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
+  function join(){$('#gateT').textContent='Join Underline AI';
+    dlg.querySelector('.gcard p').textContent='Full access is for Underline AI members. We will grant your access within 12 to 24 hours of your membership.';
+    if(dlg.showModal&&!dlg.open)dlg.showModal();}
+  // Every Get full access on the page opens the pop-up; its own button goes to the payment page.
+  dlg.querySelector('a.btn').href=PAY;dlg.querySelector('a.btn').target='_blank';dlg.querySelector('a.btn').rel='noopener';
+  document.querySelectorAll('a[href="#join"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();join();});});
+  function full(){var p=el('p','ownerr','Free tries have reached their limit for now. Please come back in a few days and try again. Want your answer today? ');
+    var a=el('a',null,'Get full access');a.href='#join';a.addEventListener('click',function(e){e.preventDefault();join();});p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
+
+  // Before the code: only the email and the button. After it: the code box and the situation.
+  $('#ownStep2').hidden=true;oSend.hidden=false;
+  function step2(){$('#ownStep2').hidden=false;$('#ownCodeBox').hidden=false;oSend.hidden=true;
+    var m=$('#ownSent');m.replaceChildren('We sent a 6-digit code to '+$('#oEmail').value.trim()+'. Check your inbox, and your spam folder too. ');
+    var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);
+    oGo.textContent=mode==='member'?'Sign in and get my Next Action':'Get my free Next Action';$('#oCode').focus();}
+  function showMember(){mode='member';emailField.hidden=true;oSend.hidden=true;$('#ownCodeBox').hidden=true;$('#ownStep2').hidden=false;
+    var w=$('#ownWho');w.replaceChildren();var who=el('span');who.append('Signed in as ',el('b',null,me.email),' · Full access');
+    var out=el('button',null,'Sign out');out.type='button';out.addEventListener('click',function(){signOut();});w.append(who,out);w.hidden=false;
+    oGo.textContent='Get my Next Action';oNote.textContent='It can take up to a minute.';}
+  function signOut(msg){remember(null);mode='';verified='';emailField.hidden=false;$('#ownWho').hidden=true;$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;
+    oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
+  if(me&&me.email&&me.login)showMember();
+
+  // Email me a code: a member gets a sign-in code, a new visitor a free-trial code, a used email the pop-up.
+  function sendCode(){
+    if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email.');return;}
+    oSend.disabled=true;oSend.textContent='Sending your code…';
+    codes('msend').then(function(j){
+      if(j.ok||j.error==='wait'){mode='member';oOut.hidden=true;step2();if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
+      if(j.error==='email')return say('Please enter a valid email address.');
+      if(j.error!=='not_subscriber')return say(BREAK);
+      return codes('send').then(function(t){
+        if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
+        if(t.error==='used')return join();
+        if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
+        if(t.error==='busy')return full();
+        say(BREAK);});
+    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Email me a code';});}
+  oSend.addEventListener('click',sendCode);
+  $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&!oSend.hidden){e.preventDefault();sendCode();}});
+  $('#oEmail').addEventListener('input',function(){if(!me&&!verified){mode='';$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
+  // ?reset is kept for old test links; it no longer changes anything, since the email decides.
+  // Kept for safety: if the Examples form is ever submitted without an example, send people to the free trial.
+  showGate=function(){out.hidden=true;out.replaceChildren();
+    ['Sit','Goal','Ctx'].forEach(function(k){var v=$('#t'+k).value.trim();if(v&&!$('#o'+k).value.trim())$('#o'+k).value=v;});
+    $('#own').scrollIntoView({behavior:'smooth',block:'start'});};
+  function fromApi(a){return {title:a.title,do:a.do,say_label:a.say_label,say:a.say,next:a.next,
+    watch:a.watch?{text:a.watch.text,t:a.watch.title,s:a.watch.source}:{text:'',t:'',s:''},
+    und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
+
+  $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
+    if(trialUsed&&mode!=='member')return join();
+    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
+    if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what’s happening.';return;}
+    oNote.textContent='It can take up to a minute.';
+    if(mode==='member'&&me)return askMember(body);
+    var code=$('#oCode').value.replace(/\D/g,'');
+    if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
+    oGo.disabled=true;working('Checking your code','Just a moment…',[]);
+    var bad=function(j){oGo.disabled=false;
+      if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn’t match. Please check the email and try again.');}
+      if(j.error==='expired')return say('That code has expired. Click “Send a new code” to get a fresh one.');
+      if(j.error==='used'||j.error==='not_subscriber')return join();
+      say(BREAK);};
+    if(mode==='member')codes('mverify',{code:code}).then(function(j){
+        if(!j.ok)return bad(j);remember({email:$('#oEmail').value.trim(),login:j.login});showMember();askMember(body,true);}).catch(function(){bad({});});
+    else codes('verify',{code:code}).then(function(j){
+        if(!j.ok)return bad(j);verified=$('#oEmail').value.trim();body.email=verified;askTrial(body);}).catch(function(){bad({});});
+  });
+  function waitMsg(first){oGo.disabled=true;working('We’re creating the best personalized advice for your situation.',first,[[35000,'Almost there. Thank you for waiting.']]);
+    oOut.scrollIntoView({behavior:'smooth',block:'start'});}
+  function answerOrError(res,tag){
+    if(res.ok&&res.j.answer){var x=fromApi(res.j.answer);
+      showSample(x,oOut,tag,function(x){return codes('plan',{plan:x,text:planText(x)});});oOut.append(feedback(res.body,res.j.answer));return true;}
+    var er=res.j&&res.j.error;
+    if(er==='used'){join();return false;}
+    if(er==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
+    else if(er==='declined')say('Underline AI can’t answer this one. Try describing it differently.');
+    else if(er==='too_long')say('That’s a bit long. Please shorten it and try again.');
+    else say(BREAK);
+    return false;}
+  function post(body){return fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j,body:body};});});}
+  function askTrial(body){waitMsg('Code confirmed. This may take up to a minute.');
+    post(body).then(function(res){if(answerOrError(res,'Your free answer')){trialUsed=true;oGo.textContent='Get full access';
+        oNote.textContent='You’ve used your free Next Action. Join Underline AI for your next situation.';}})
+      .catch(function(){say(BREAK);}).then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});}
+  function askMember(body,fresh){waitMsg((fresh?'Signed in. ':'')+'This may take up to a minute.');
+    codes('ticket',{login:me.login}).then(function(j){
+      if(j.error==='login')throw {signout:'Please sign in again to continue. If your membership has ended, you can join again any time.'};
+      if(!j.ok)throw {msg:BREAK};
+      body.ticket=j.ticket;return post(body);
+    }).then(function(res){answerOrError(res,'Full access');})
+      .catch(function(x){if(x&&x.signout)signOut(x.signout);else say(x&&x.msg||BREAK);})
+      .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});}
+  // A spinner with messages that change while the answer is being written.
+  var timers=[];
+  function working(title,first,later){timers.forEach(clearTimeout);timers=[];
+    var msg=el('span',null,first),t=el('div','thinking');t.append(el('i'),msg);
+    oOut.replaceChildren(head(title,null),t);oOut.hidden=false;
+    later.forEach(function(m){timers.push(setTimeout(function(){msg.textContent=m[1];},m[0]));});}
+  // Thumbs up or down after the free answer. Each choice saves on its own (no send button):
+  // it goes to the Feedback tab of the Google Sheet and is emailed to Underline AI.
+  function feedback(body,answer){
+    var box=el('div','fb'),row=el('div','fbrow'),up=el('button',null,'\uD83D\uDC4D I like it'),down=el('button',null,'\uD83D\uDC4E Not for me');
+    var more=el('div','fbmore'),parts=el('div','fbparts'),note=el('textarea'),status=el('p','fbdone'),rating='',timer=null,last='';
+    more.hidden=true;note.rows=2;note.maxLength=1000;
+    box.append(el('h4',null,'Was this helpful?'),row,more);row.append(up,down);
+    ['What I\u2019d do','What I\u2019d say','Do this next','Watch out','Underlined'].forEach(function(n){
+      var b=el('button',null,n);b.type='button';b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'));later(800);});parts.append(b);});
+    function save(){clearTimeout(timer);
+      var chosen=[].slice.call(parts.querySelectorAll('[aria-pressed="true"]')).map(function(b){return b.textContent;}).join(', ');
+      var data={rating:rating,parts:rating==='down'?chosen:'',comment:note.value.trim(),title:answer.title||'',sit:body.sit};
+      var key=JSON.stringify(data);if(key===last)return;last=key;
+      codes('feedback',data).then(function(j){if(!j.ok)throw 0;status.textContent='Thank you! Your feedback was sent.';})
+        .catch(function(){last='';status.textContent='We couldn\u2019t send that just now. We\u2019ll try again when you make a change.';});}
+    function later(ms){clearTimeout(timer);timer=setTimeout(save,ms);}
+    note.addEventListener('input',function(){later(1500);});note.addEventListener('blur',save);
+    function pick(which){rating=which;up.setAttribute('aria-pressed',String(which==='up'));down.setAttribute('aria-pressed',String(which==='down'));
+      more.replaceChildren(status);
+      if(which==='down')more.append(el('p',null,'Want to tell us more? Tap any part that didn\u2019t work for you. (optional)'),parts);
+      note.placeholder=which==='down'?'What would make it better? (optional)':'Anything you\u2019d like to add? (optional)';more.append(note);more.hidden=false;save();}
+    [up,down].forEach(function(b){b.type='button';b.addEventListener('click',function(){pick(b===up?'up':'down');});});
+    return box;}
+})();
+</script>
