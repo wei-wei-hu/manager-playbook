@@ -615,7 +615,7 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
           <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
           <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
           <button class="btn big dark trygo" type="submit" id="ownGo">Get My Next Action</button>
-          <p class="trynote" id="ownNote">Give Underline a moment to think…</p>
+          <p class="trynote" id="ownNote">Give Underline a moment to think....</p>
           </div>
         </form>
       </div>
@@ -969,7 +969,7 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
   function showMember(){mode='member';visitorPills(false);emailField.hidden=true;oSend.hidden=true;$('#ownCodeBox').hidden=true;$('#ownStep2').hidden=false;
     var w=$('#ownWho');w.replaceChildren();var who=el('span');who.append('Signed in as ',el('b',null,me.email),' · Full access');
     var out=el('button',null,'Sign out');out.type='button';out.addEventListener('click',function(){signOut();});w.append(who,out);w.hidden=false;
-    oGo.textContent='Get My Next Action';oNote.textContent='Give Underline a moment to think…';}
+    oGo.textContent='Get My Next Action';oNote.textContent='Give Underline a moment to think....';}
   function signOut(msg){remember(null);visitorPills(true);mode='';verified='';emailField.hidden=false;$('#ownWho').hidden=true;$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;
     oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
   if(me&&me.email&&me.login)showMember();
@@ -1016,7 +1016,7 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
     var sitErr=$('#oSitErr');if(sitErr)sitErr.remove();
     if(body.sit.length<15){var m=el('p','fielderr','Please write at least 15 characters about what’s happening.');m.id='oSitErr';
       $('#oSit').after(m);$('#oSit').focus();$('#oSit').addEventListener('input',function(){m.remove();},{once:true});return;}
-    oNote.textContent='Give Underline a moment to think…';
+    oNote.textContent='Give Underline a moment to think....';
     if(mode==='member'&&me)return askMember(body);
     var code=$('#oCode').value.replace(/\D/g,'');
     if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
