@@ -6,7 +6,7 @@ Bring one situation. Leave with a one-page actionable plan.
 
 <img src="docs/underline-cover.png" alt="Underline AI: practical advice for work and life" width="420">
 
-### [See Underline AI →](https://wei-wei-hu.github.io/underline-ai/) &nbsp;·&nbsp; [Get full access →](https://wei-wei-hu.github.io/underline-ai/app/)
+### [See Underline AI →](https://wei-wei-hu.github.io/underline-ai/) &nbsp;·&nbsp; [Get full access →](https://wei-wei-hu.github.io/underline-ai/app/?v=2)
 
 ## Why Underline AI?
 

@@ -440,7 +440,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
         <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn big trybtn" id="heroTry" href="#own"><span class="bt">My Next Action</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big trybtn" id="heroTry" href="#own"><span class="bt">Try it free</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
 
@@ -470,6 +470,34 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     <div class="feat"><span class="ic c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><div><b>Clear next steps</b><span>So you can take action</span></div></div>
   </section>
 
+  <section class="block" id="own" hidden>
+    <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
+    <p class="kicker">Free trial and full access</p>
+    <h2>Start with a free Next Action.</h2>
+    <p class="ownintro">Enter your email to get your first Next Action free. Members, use the same email for full access.</p>
+    <div class="trygrid">
+      <div class="panel">
+        <p class="plabel">Your situation</p>
+        <form id="ownForm" autocomplete="off">
+          <label class="fld"><span>Your email</span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
+          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
+          <p class="trynote memberline" id="ownWho" hidden></p>
+          <div id="ownStep2" class="ownstep">
+          <div id="ownCodeBox" hidden>
+          <p class="trynote ownsent" id="ownSent"></p>
+          <label class="fld"><span>Your 6-digit code</span><input id="oCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></label>
+          </div>
+          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
+          <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
+          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
+          <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
+          <p class="trynote" id="ownNote">It can take up to a minute.</p>
+          </div>
+        </form>
+      </div>
+      <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
+    </div>
+  </section>
   <section class="block value" id="why">
     <h2>Why Underline AI?</h2>
     <div class="whygrid">
@@ -499,34 +527,6 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     </ol>
   </section>
 
-  <section class="block" id="own" hidden>
-    <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
-    <p class="kicker">Free trial and full access</p>
-    <h2>Try it on your own situation.</h2>
-    <p class="ownintro">New here? Your first Next Action is free. Members, sign in here with your email for full access.</p>
-    <div class="trygrid">
-      <div class="panel">
-        <p class="plabel">Your situation</p>
-        <form id="ownForm" autocomplete="off">
-          <label class="fld"><span>Your email</span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
-          <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
-          <p class="trynote memberline" id="ownWho" hidden></p>
-          <div id="ownStep2" class="ownstep">
-          <div id="ownCodeBox" hidden>
-          <p class="trynote ownsent" id="ownSent"></p>
-          <label class="fld"><span>Your 6-digit code</span><input id="oCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></label>
-          </div>
-          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
-          <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
-          <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
-          <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
-          <p class="trynote" id="ownNote">It can take up to a minute.</p>
-          </div>
-        </form>
-      </div>
-      <div class="panel full" id="ownOut" aria-live="polite" hidden></div>
-    </div>
-  </section>
   <section class="block" id="try">
     <div class="orb" style="width:46px;height:46px;right:2%;top:-6px" aria-hidden="true"></div>
     <p class="kicker">Examples</p>
