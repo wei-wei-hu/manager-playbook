@@ -461,6 +461,22 @@ h2 .grad{font-weight:700}
   box-shadow:0 10px 24px rgba(29,32,51,.28),0 2px 6px rgba(58,46,92,.25)!important}
 .hero .ctas .btn.trybtn:hover,.navbtns .btn.trybtn:hover,.closing .ctas .btn.trybtn:hover,#own .btn.trygo.trygo:hover,#try .btn.trygo.trygo:hover,#member .btn.trygo.trygo:hover,#gateDlg .gcard>a.btn:hover{box-shadow:0 0 0 2px #C060D8,0 14px 32px rgba(58,46,92,.38)!important;filter:none}
 .hero .ctas .btn.trybtn svg{color:#fff}
+
+/* One rule on both pages: main actions are deep ink; See examples is white with an ink outline.
+   Every button and pill lifts the same way on hover, with a pink-purple ring. */
+.btnwhite,.hero .ctas .btn.line,#own .kickrow .kicklink{background:#fff!important;color:var(--ink)!important;border:1.5px solid color-mix(in srgb,var(--ink) 28%,transparent)!important;box-shadow:0 6px 16px rgba(29,32,51,.10)!important}
+.hero .ctas .btn.line .bt{background:none!important;color:var(--ink)!important;-webkit-text-fill-color:currentColor}
+.hero .ctas .btn.line svg{color:var(--ink)!important}
+.btnwhite{padding:12px 20px}
+.navbtns .btn,.hero .ctas .btn,.closing .ctas .btn,.trygo.btn,.kickrow .kicker,#gateDlg .gcard>a.btn{transition:transform .2s ease,box-shadow .2s ease!important}
+.navbtns .btn:hover,.hero .ctas .btn:hover,.closing .ctas .btn:hover,.trygo.btn:hover,.kickrow .kicker:hover,#gateDlg .gcard>a.btn:hover{transform:translateY(-3px) scale(1.03)!important;box-shadow:0 0 0 2px #C060D8,0 14px 30px rgba(139,92,246,.30)!important}
+.navbtns .btn:active,.hero .ctas .btn:active,.closing .ctas .btn:active,.trygo.btn:active,.kickrow .kicker:active{transform:translateY(-1px) scale(.98)!important}
+.trygo.btn:disabled{transform:none!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btnwhite,:root:not([data-theme="light"]) .hero .ctas .btn.line,:root:not([data-theme="light"]) #own .kickrow .kicklink{background:var(--card)!important;color:var(--ink)!important}}
+
+/* The examples section looks the same on both pages: calm and light on white. */
+#try{background:var(--card)!important;border:1px solid var(--line);box-shadow:0 10px 30px rgba(120,100,170,.10)}
+#try .panel{background:var(--bg)!important;box-shadow:none!important;border:1px solid var(--line)!important}
 </style>
 
 <div class="wrap">
