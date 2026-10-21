@@ -372,6 +372,46 @@ html{overflow-x:hidden}
 @media (prefers-reduced-motion:reduce){.hero .ctas .btn,.hero .ctas .btn svg{transition:none}.hero .ctas .btn:hover,.hero .ctas .btn:hover svg,.hero .ctas .btn:active{transform:none}
   .hero .ctas .btn.trybtn{animation:none}.hero .ctas .btn.trybtn::after{display:none}}
 @media (max-width:520px){.hero .ctas{grid-template-columns:1fr;width:100%}.hero .ctas .btn.big{width:100%!important;font-size:.95rem!important}}
+
+/* ===== Template design: the look of the Underline AI slides, applied across the page =====
+   Soft peach-pink-lavender "slide" panels, frosted white cards, outlined pill labels, light titles with a
+   bold gradient accent, gradient icon tiles and buttons, glossy spheres. */
+:root{--f:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --panel:linear-gradient(125deg,#FDEBDD 0%,#FBDDE6 46%,#E6E2FD 100%);--frost:rgba(255,255,255,.84);--frostline:rgba(255,255,255,.95);
+  --gblue:linear-gradient(135deg,#7B93FF,#5B6CF2);--gpink:linear-gradient(135deg,#F9A9BA,#F27D99);--gorange:linear-gradient(135deg,#FBC08D,#F4956A);
+  --ggreen:linear-gradient(135deg,#7FD8A9,#45B884);--glav:linear-gradient(135deg,#B3A6FF,#8B78F2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--panel:linear-gradient(125deg,#2A2030 0%,#2B1E2C 46%,#1F2142 100%);--frost:rgba(30,33,51,.86);--frostline:rgba(255,255,255,.06)}}
+:root[data-theme="dark"]{--panel:linear-gradient(125deg,#2A2030 0%,#2B1E2C 46%,#1F2142 100%);--frost:rgba(30,33,51,.86);--frostline:rgba(255,255,255,.06)}
+body,button,input,textarea{font-family:var(--f)}
+/* titles: light, large, with the gradient words bold */
+.hero h1{font-weight:500!important;letter-spacing:-.03em}
+.hero h1 .grad{font-weight:700}
+h2{font-weight:500!important;letter-spacing:-.02em}
+.closing h2{font-weight:500!important}.closing h2 .grad{font-weight:700}
+/* section labels become outlined pills */
+.kicker,.hero .eyebrow{display:inline-block;padding:5px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ink) 35%,transparent);
+  background:color-mix(in srgb,var(--card) 60%,transparent);color:var(--ink);font-size:.78rem;font-weight:500;letter-spacing:.02em;text-transform:none;margin:0 0 14px}
+/* each section is a soft gradient "slide" */
+#why,#how,#own,#try,#member{background:var(--panel);border-radius:28px;padding:40px 36px 36px!important;margin-top:40px;overflow:hidden}
+#why h2,#how h2,#own h2,#try h2,#member h2{margin-top:0}
+#why .whycard,#how .steps li,#own .panel,#try .panel,#member .panel{background:var(--frost)!important;border:1px solid var(--frostline)!important;box-shadow:0 10px 28px rgba(120,100,170,.12)!important}
+@media (max-width:620px){#why,#how,#own,#try,#member{padding:28px 18px 22px!important;border-radius:22px;margin-top:28px}}
+/* gradient icon tiles with white icons, like the template's colored tiles */
+.ic{color:#fff!important}.ic svg{color:#fff}
+.ic.c1{background:var(--gblue)!important}.ic.c2{background:var(--gpink)!important}.ic.c3{background:var(--gorange)!important}
+.ic.c4{background:var(--ggreen)!important}.ic.c5{background:var(--gorange)!important}
+.ic{box-shadow:0 8px 18px rgba(91,108,242,.18)}
+/* How it works: the middle step is the highlighted gradient card */
+#how .steps li:nth-child(2){background:var(--gblue)!important;border-color:transparent!important;box-shadow:0 14px 30px rgba(91,108,242,.28)!important}
+#how .steps li:nth-child(2) b,#how .steps li:nth-child(2) span:not(.ic){color:#fff!important}
+#how .steps li:nth-child(2) .ic{background:rgba(255,255,255,.22)!important;box-shadow:none}
+/* Why: each number its own gradient */
+.whycard:nth-child(1) .whynum{background:var(--gblue)}.whycard:nth-child(2) .whynum{background:var(--gpink)}.whycard:nth-child(3) .whynum{background:var(--gorange)}
+/* main buttons in the forms use the template's blue gradient */
+#own .trygo.btn.dark,#try .trygo.btn.dark,#member .trygo.btn.dark{background:var(--gblue)!important;color:#fff!important;box-shadow:0 10px 22px rgba(91,108,242,.3)}
+#own .trygo.btn.dark:hover,#try .trygo.btn.dark:hover,#member .trygo.btn.dark:hover{filter:brightness(1.06)}
+/* the chosen example: a gradient pill */
+.trychips button[aria-pressed="true"]{background:var(--gblue)!important;color:#fff!important;border-color:transparent!important}
 </style>
 
 <div class="wrap">
@@ -391,7 +431,7 @@ html{overflow-x:hidden}
     <div class="orb" style="width:26px;height:26px;left:-40px;top:6%" aria-hidden="true"></div>
     <div>
       <p class="eyebrow">Your personalized AI advisor</p>
-      <h1>Practical advice for <span class="grad">work and life.</span></h1>
+      <h1>Practical<br>advice for<br><span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
       <div class="ctas">
         <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
