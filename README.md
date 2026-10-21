@@ -10,7 +10,7 @@ Bring one situation. Leave with a one-page actionable plan.
 
 ## Why Underline AI?
 
-**1.** We constantly face situations where we don't know the best way to respond.
+**1.** Sometimes, we face situations where we don't know the best way to respond.
 
 `How do I handle this?` `How do I get buy-in?` `What do I tell my manager?` `How do I deal with them?`
 
