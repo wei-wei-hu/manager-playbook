@@ -443,7 +443,7 @@ h2 .grad{font-weight:700}
 #own{position:relative;border:2px solid transparent!important;
   background:linear-gradient(135deg,#FFF4EC,#FDEAF1 45%,#EFEAFE) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important;
   box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)}
-#own .kickrow .kicker:first-child{background:#FBE8E1;color:var(--ink);border-color:#F3D3C7;box-shadow:none}
+#own .kickrow .kicker:first-child{background:#FFD6C4;color:#5A2414;border:1.5px solid #EE9F82!important;font-weight:600;box-shadow:0 4px 12px rgba(238,159,130,.28)}
 #own .panel{background:rgba(255,255,255,.92)!important;box-shadow:0 18px 40px rgba(120,100,170,.18)!important}
 
 /* Example pills carry the template's gradient icon tiles, in the same colours as the categories above. */
@@ -506,6 +506,9 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #why,:root:not([data-theme="light"]) #how,:root:not([data-theme="light"]) .closing{background:var(--panel)!important;border-color:transparent}}
 :root[data-theme="dark"] #why,:root[data-theme="dark"] #how,:root[data-theme="dark"] .closing{background:var(--panel)!important;border-color:transparent}
 .kickrow [hidden]{display:none!important}
+
+/* Calm hover everywhere: a small lift and a soft shadow, no coloured ring. */
+#own .btn.trygo.trygo:hover,#try .btn.trygo.trygo:hover,#member .btn.trygo.trygo:hover,.hero .ctas .btn.trybtn:hover,.navbtns .btn.trybtn:hover,.closing .ctas .btn.trybtn:hover,.navbtns .btn.dark:hover,#own .kickrow .kicker:hover,#gateDlg .gcard>a.btn:hover{box-shadow:0 12px 26px rgba(29,32,51,.24)!important;transform:translateY(-2px)!important}
 </style>
 
 <div class="wrap">
