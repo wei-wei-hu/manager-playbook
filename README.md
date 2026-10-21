@@ -16,7 +16,7 @@ Bring one situation. Leave with a one-page actionable plan.
 
 **2.** Underline isn't trying to know everything. AI helps connect the thinking and apply it to your specific situation.
 
-`Communication` `Influence` `Negotiation` `Leadership` `Decisions`
+`Communication` `Influence` `Career` `Leadership` `Decisions` `Productivity` `Relationships` `Life` `+ more`
 
 **3.** Underline helps you find a better way to handle this than you would have thought of yourself. It recommends your next best action:
 
