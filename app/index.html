@@ -466,7 +466,7 @@ h2 .grad{font-weight:700}
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#access{display:none!important}
 #own{margin-top:8px!important}
-.kickrow .kickpay{background:var(--ink);color:var(--bg);border-color:var(--ink);text-decoration:none;box-shadow:0 6px 16px rgba(15,18,34,.22);transition:transform .18s ease,box-shadow .18s ease}.kickrow .kickpay:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C060D8,0 10px 22px rgba(139,92,246,.3)}
+.kickrow .kickpay{background:var(--ink);color:var(--bg);border-color:var(--ink);text-decoration:none;box-shadow:0 6px 16px rgba(15,18,34,.22);transition:transform .18s ease,box-shadow .18s ease}
 /* The five parts of a Next Action, as the template's frosted pills with gradient tiles */
 #own .parts{list-style:none;padding:0;margin:4px 0 22px;display:flex;flex-wrap:wrap;gap:6px}
 #own .parts li{display:inline-flex;align-items:center;gap:6px;padding:6px 11px 6px 7px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.95);
@@ -500,7 +500,10 @@ h2 .grad{font-weight:700}
 #try .panel{background:var(--bg)!important;box-shadow:none!important;border:1px solid var(--line)!important}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #own{background:linear-gradient(135deg,#232A55 0%,#33255A 40%,#4A2440 75%,#4A2E28 100%) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important}}
 :root[data-theme="dark"] #own{background:linear-gradient(135deg,#232A55 0%,#33255A 40%,#4A2440 75%,#4A2E28 100%) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important}
-.kickrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.kickrow .kicker{margin:0}.kicklink{text-decoration:none;color:var(--ink)}.kicklink:hover{background:var(--tint)}
+.kickrow{display:grid;grid-template-columns:repeat(3,152px);gap:8px;margin:0 0 16px}
+.kickrow .kicker{display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+.kickrow .kicker:hover{transform:translateY(-2px);box-shadow:0 0 0 2px #C060D8,0 10px 22px rgba(139,92,246,.25)}
+@media (max-width:520px){.kickrow{grid-template-columns:repeat(3,1fr);gap:6px}.kickrow .kicker{font-size:.7rem!important;padding:5px 4px!important}}.kickrow .kicker{margin:0}.kicklink{text-decoration:none;color:var(--ink)}.kicklink:hover{background:var(--tint)}
 #own h2.oneline{white-space:nowrap;font-size:min(1.85rem,calc((100vw - 84px) / 20.6))!important}
 </style>
 
@@ -551,7 +554,7 @@ h2 .grad{font-weight:700}
   <section class="block" id="own" hidden>
     <div class="orb b1 peach" aria-hidden="true"></div><div class="orb b3 pink" aria-hidden="true"></div>
     <div class="owave" aria-hidden="true"></div><div class="owave w2" aria-hidden="true"></div>
-    <p class="kickrow"><span class="kicker">Free trial</span><a class="kicker kickpay" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access →</a><a class="kicker kicklink" href="#try">See examples →</a></p>
+    <p class="kickrow"><a class="kicker kickfree" href="#oEmail">Free trial</a><a class="kicker kickpay" href="https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00" target="_blank" rel="noopener">Get full access →</a><a class="kicker kicklink" href="#try">See examples →</a></p>
     <h2>Get Your <span class="grad">Next Action</span></h2>
     <ul class="parts" aria-label="What you get"><li>What I’d do</li><li>What I’d say</li><li>Your next steps</li><li>What to watch out for</li><li>The ideas behind the advice</li></ul>
     <div class="trygrid">
