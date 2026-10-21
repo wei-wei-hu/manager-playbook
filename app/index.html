@@ -909,9 +909,10 @@ h2{font-weight:500!important;letter-spacing:-.02em}
   function askMember(body,fresh){waitMsg((fresh?'Signed in. ':'')+'This may take up to a minute.');
     codes('ticket',{login:me.login}).then(function(j){
       if(j.error==='login')throw {signout:'Please sign in again to continue. If your membership has ended, you can join again any time.'};
-      if(!j.ok)throw {msg:BREAK};
+      if(!j.ok)throw {msg:BREAK+' (Reference: pass '+(j.error||'none')+')'};
       body.ticket=j.ticket;return post(body);
-    }).then(function(res){answerOrError(res,'Full access');})
+    },function(){throw {msg:BREAK+' (Reference: script)'};}).then(function(res){if(!answerOrError(res,'Full access')&&!(res.j&&/^(used|busy|declined|too_long)$/.test(res.j.error)))
+        say(BREAK+' (Reference: server '+((res.j&&res.j.error)||'none')+')');},function(x){throw x&&(x.msg||x.signout)?x:{msg:BREAK+' (Reference: server unreachable)'};})
       .catch(function(x){if(x&&x.signout)signOut(x.signout);else say(x&&x.msg||BREAK);})
       .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});}
   // A spinner with messages that change while the answer is being written.
