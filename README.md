@@ -6,7 +6,7 @@ Bring one situation. Leave with a one-page actionable plan.
 
 <img src="docs/underline-cover.png" alt="Underline AI: practical advice for work and life" width="420">
 
-### [See Underline AI →](https://wei-wei-hu.github.io/underline-ai/)
+### [See Underline AI →](https://wei-wei-hu.github.io/underline-ai/) &nbsp;·&nbsp; [Get full access →](https://wei-wei-hu.github.io/underline-ai/app/)
 
 ## Why Underline AI?
 
@@ -36,8 +36,6 @@ Underline helps you find a better way to handle this than you would have thought
 1. **Share your situation.** What's happening, what you want to happen, and anything else that matters.
 2. **Connect the ideas.** Underline AI searches and brings together the ideas that fit your situation, and turns them into practical advice.
 3. **Leave with Your Next Action.** What to do, what to say, your next steps, and the ideas behind the advice.
-
-### [Get full access →](https://wei-wei-hu.github.io/underline-ai/app/)
 
 ## Contact
 
