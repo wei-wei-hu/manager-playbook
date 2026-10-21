@@ -256,7 +256,7 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
+.ownerr{color:var(--soft);margin:0}#ownWho{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 14px}#ownWho[hidden]{display:none}#ownForm .fld[hidden]{display:none!important}#ownWho b{color:var(--ink)}#ownWho button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
 
 /* Answer board, in the style of the Underline AI slides: a soft peach-pink-lavender gradient,
    floating glossy spheres, frosted white cards, light large title, pill tags and gradient accents. */
@@ -421,8 +421,8 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <a href="#how">How it works</a>
       <a href="#own" class="ownlink" hidden>Free trial</a>
       <a href="#try">See examples</a>
-      <a href="app/" class="signlink">Sign in</a>
-      <a class="btn dark" href="app/">Get full access</a>
+      <a href="#own" class="signlink">Sign in</a>
+      <a class="btn dark" href="#join">Get full access</a>
     </div>
   </nav>
 
@@ -436,7 +436,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <div class="ctas">
         <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn big trybtn" id="heroTry" href="#try"><span class="bt">Free trial</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn big dark" href="app/">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn big dark" href="#join">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
 
@@ -503,8 +503,9 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <div class="panel">
         <p class="plabel">Your situation</p>
         <form id="ownForm" autocomplete="off">
-          <label class="fld"><span>Start with your email <small>(one free Next Action per email)</small></span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
+          <label class="fld"><span>Start with your email <small>(one free Next Action, or full access for members)</small></span><input id="oEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
           <button class="btn big dark trygo" type="button" id="ownSend" hidden>Email me a code</button>
+          <p class="trynote memberline" id="ownWho" hidden></p>
           <div id="ownStep2" class="ownstep">
           <div id="ownCodeBox" hidden>
           <p class="trynote ownsent" id="ownSent"></p>
@@ -544,8 +545,8 @@ h2{font-weight:500!important;letter-spacing:-.02em}
   <section class="closing" id="access">
     <div class="orb" style="width:90px;height:90px;right:-20px;top:-20px" aria-hidden="true"></div>
     <h2>Know your <span class="grad">next best action.</span></h2>
-    <div class="ctas"><a class="btn big dark" href="app/">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-    <p class="member">Already a member? <a href="app/">Sign in</a></p>
+    <div class="ctas"><a class="btn big dark" href="#join">Get full access <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <p class="member">Already a member? <a href="#own">Sign in with your email</a></p>
   </section>
 
   <footer>
@@ -564,7 +565,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     <div class="glock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
     <h3 id="gateT">Get full access to see your answer</h3>
     <p>Get the best advice Underline AI can find in its curated library, applied to your situation: what I'd do, what I'd say, your next steps, one trap to watch out for and the ideas behind it.</p>
-    <a class="btn big dark" href="app/">Get full access</a>
+    <a class="btn big dark" href="#join">Get full access</a>
     <button class="glater" type="button">Maybe later</button>
   </div>
 </dialog>
@@ -798,108 +799,125 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     showSample(D.samples[cur]);out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'start'});
   });
 
-  // Try it (section #own): one free Next Action from the Underline AI server, then full access.
-  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='app/';
-  if(!/^https:\/\//.test(OWN_API))return;
+  // Free trial and full access, one flow (section #own). Every visitor enters an email and gets a code.
+  // Members (in the Underline AI members sheet) unlock full access; everyone else gets one free Next Action.
+  // After the free one, or for an email that already used it, the Join Underline AI pop-up offers membership.
+  var OWN_API='https://underline-ai-api.dsmasterwh.workers.dev/next-action', PAY='https://buy.stripe.com/cNi14nfzP6RKfkX9F2eQM00';
+  var CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec';
   $('#own').hidden=false;document.querySelectorAll('.ownlink').forEach(function(a){a.hidden=false;});
   $('#heroTry').href='#own';
-  var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote');
-  // Free-try codes: a Google Apps Script emails each visitor a code and allows one free try per email.
-  var CODE_API='https://script.google.com/macros/s/AKfycbxtj4H504xpgEEacPR7sCJ9y8aZzp--_2eoeo-dWL1D2fjF5YWRi3Q9_P4pdrRixGjn/exec', oSend=$('#ownSend'), verified='';
-  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
-  function codes(action,extra){var b={action:action,email:$('#oEmail').value.trim()};for(var k in extra)b[k]=extra[k];
+  var oOut=$('#ownOut'), oGo=$('#ownGo'), oNote=$('#ownNote'), oSend=$('#ownSend'), emailField=$('#oEmail').closest('.fld');
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/, BREAK='Underline AI is taking a short break. Please try again in a few minutes.';
+  var mode='', trialUsed=false, verified='';   // mode: '' until the email is checked, then 'trial' or 'member'
+  var me=null;try{me=JSON.parse(localStorage.getItem('ul.member')||'null');}catch(e){}
+  function remember(v){me=v;try{if(v)localStorage.setItem('ul.member',JSON.stringify(v));else localStorage.removeItem('ul.member');}catch(e){}}
+  function email(){return me?me.email:$('#oEmail').value.trim();}
+  // Members' feedback and emailed answers go to the members sheet.
+  function codes(action,extra){if(mode==='member')action={feedback:'mfeedback',plan:'mplan'}[action]||action;
+    var b={action:action,email:email()};for(var k in extra)b[k]=extra[k];
     return fetch(CODE_API,{method:'POST',body:JSON.stringify(b)}).then(function(r){return r.json();});}
-  if(CODE_API){$('#ownStep2').hidden=true;oSend.hidden=false;}
+  function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
+  function join(){$('#gateT').textContent='Join Underline AI';
+    dlg.querySelector('.gcard p').textContent='Full access is for Underline AI members. We will grant your access within 12 to 24 hours of your membership.';
+    if(dlg.showModal&&!dlg.open)dlg.showModal();}
+  // Every Get full access on the page opens the pop-up; its own button goes to the payment page.
+  dlg.querySelector('a.btn').href=PAY;dlg.querySelector('a.btn').target='_blank';dlg.querySelector('a.btn').rel='noopener';
+  document.querySelectorAll('a[href="#join"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();join();});});
+  function full(){var p=el('p','ownerr','Free tries have reached their limit for now. Please come back in a few days and try again. Want your answer today? ');
+    var a=el('a',null,'Get full access');a.href='#join';a.addEventListener('click',function(e){e.preventDefault();join();});p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
+
+  // Before the code: only the email and the button. After it: the code box and the situation.
+  $('#ownStep2').hidden=true;oSend.hidden=false;
   function step2(){$('#ownStep2').hidden=false;$('#ownCodeBox').hidden=false;oSend.hidden=true;
     var m=$('#ownSent');m.replaceChildren('We sent a 6-digit code to '+$('#oEmail').value.trim()+'. Check your inbox, and your spam folder too. ');
-    var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);$('#oCode').focus();}
+    var again=el('button',null,'Send a new code');again.type='button';again.addEventListener('click',sendCode);m.append(again);
+    oGo.textContent=mode==='member'?'Sign in and get my Next Action':'Get my free Next Action';$('#oCode').focus();}
+  function showMember(){mode='member';emailField.hidden=true;oSend.hidden=true;$('#ownCodeBox').hidden=true;$('#ownStep2').hidden=false;
+    var w=$('#ownWho');w.replaceChildren();var who=el('span');who.append('Signed in as ',el('b',null,me.email),' · Full access');
+    var out=el('button',null,'Sign out');out.type='button';out.addEventListener('click',function(){signOut();});w.append(who,out);w.hidden=false;
+    oGo.textContent='Get my Next Action';oNote.textContent='It can take up to a minute.';}
+  function signOut(msg){remember(null);mode='';verified='';emailField.hidden=false;$('#ownWho').hidden=true;$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;
+    oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
+  if(me&&me.email&&me.login)showMember();
+
+  // Email me a code: a member gets a sign-in code, a new visitor a free-trial code, a used email the pop-up.
   function sendCode(){
-    if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email. Each email gets one free Next Action.');return;}
-    oSend.disabled=true;oSend.textContent='Sending your code\u2026';
-    codes('send').then(function(j){
-      if(j.ok){oOut.hidden=true;step2();return;}
-      if(j.error==='used')return usedUp();
-      if(j.error==='wait'){step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
-      if(j.error==='busy')return full();
+    if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email.');return;}
+    oSend.disabled=true;oSend.textContent='Sending your code…';
+    codes('msend').then(function(j){
+      if(j.ok||j.error==='wait'){mode='member';oOut.hidden=true;step2();if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
       if(j.error==='email')return say('Please enter a valid email address.');
-      say('Underline AI is taking a short break. Please try again in a few minutes.');
-    }).catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
-      .then(function(){oSend.disabled=false;oSend.textContent='Email me a code';});}
+      if(j.error!=='not_subscriber')return say(BREAK);
+      return codes('send').then(function(t){
+        if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
+        if(t.error==='used')return join();
+        if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
+        if(t.error==='busy')return full();
+        say(BREAK);});
+    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Email me a code';});}
   oSend.addEventListener('click',sendCode);
-  $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&CODE_API&&!oSend.hidden){e.preventDefault();sendCode();}});
-  $('#oEmail').addEventListener('input',function(){if(CODE_API&&!verified){$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
-  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
-  // An email that already had its free try gets the Get full access pop-up.
-  function usedUp(){say('This email has already used its free Next Action. Get full access for your next situation.');
-    if(!CODE_API){store('ul.own',String(Date.now()));done=true;lock();}
-    $('#gateT').textContent='You\u2019ve used your free Next Action';
-    dlg.querySelector('.gcard p').textContent='This email already had its free try. Get full access for your next situation: what I\u2019d do, what I\u2019d say, your next steps, one trap to watch out for and the ideas behind it.';
-    if(dlg.showModal&&!dlg.open)dlg.showModal();}
-  function lock(){oGo.textContent='Get full access';oNote.textContent='You\u2019ve used your free Next Action. Get full access for your next situation.';}
-  // ?reset makes this browser forget its free try (handy for testing). Each email still gets only one.
-  if(/[?&]reset\b/.test(location.search)){try{localStorage.removeItem('ul.own');}catch(e){}}
-  var done=false;
-  if(!CODE_API&&store('ul.own')){done=true;lock();}
-  // Kept for safety: if the Examples form is ever submitted without an example, send people to Try it.
+  $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&!oSend.hidden){e.preventDefault();sendCode();}});
+  $('#oEmail').addEventListener('input',function(){if(!me&&!verified){mode='';$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
+  // ?reset is kept for old test links; it no longer changes anything, since the email decides.
+  // Kept for safety: if the Examples form is ever submitted without an example, send people to the free trial.
   showGate=function(){out.hidden=true;out.replaceChildren();
     ['Sit','Goal','Ctx'].forEach(function(k){var v=$('#t'+k).value.trim();if(v&&!$('#o'+k).value.trim())$('#o'+k).value=v;});
     $('#own').scrollIntoView({behavior:'smooth',block:'start'});};
   function fromApi(a){return {title:a.title,do:a.do,say_label:a.say_label,say:a.say,next:a.next,
     watch:a.watch?{text:a.watch.text,t:a.watch.title,s:a.watch.source}:{text:'',t:'',s:''},
     und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
-  function say(msg){oOut.replaceChildren(el('p','ownerr',msg));oOut.hidden=false;}
-  // When free tries hit their limit (daily cap or the monthly spend limit), say so kindly and offer full access.
-  function full(){var p=el('p','ownerr','Free tries have reached their limit for now. Please come back in a few days and try again. Want your answer today? ');
-    var a=el('a',null,'Get full access');a.href=PAY;p.append(a,'.');oOut.replaceChildren(p);oOut.hidden=false;}
+
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
-    if(done){location.href=PAY;return;}
-    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim(),email:$('#oEmail').value.trim()};
-    if(!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(body.email)){$('#oEmail').focus();oNote.textContent='Please enter your email. Each email gets one free Next Action.';return;}
-    if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what\u2019s happening.';return;}
-    if(CODE_API&&verified!==body.email){
-      var code=$('#oCode').value.replace(/\D/g,'');
-      if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
-      oGo.disabled=true;oGo.textContent='Checking your code\u2026';working('Checking your code','Just a moment\u2026',[]);
-      codes('verify',{code:code}).then(function(j){
-        oGo.disabled=false;oGo.textContent='Get my free Next Action';
-        if(j.ok){verified=body.email;return ask(body,true);}
-        if(j.error==='used')return usedUp();
-        if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn\u2019t match. Please check the email and try again.');}
-        if(j.error==='expired')return say('That code has expired. Click \u201cSend a new code\u201d to get a fresh one.');
-        say('Underline AI is taking a short break. Please try again in a few minutes.');
-      }).catch(function(){oGo.disabled=false;oGo.textContent='Get my free Next Action';say('Underline AI is taking a short break. Please try again in a few minutes.');});
-      return;
-    }
-    ask(body);
+    if(trialUsed&&mode!=='member')return join();
+    var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
+    if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what’s happening.';return;}
+    oNote.textContent='It can take up to a minute.';
+    if(mode==='member'&&me)return askMember(body);
+    var code=$('#oCode').value.replace(/\D/g,'');
+    if(code.length!==6){$('#oCode').focus();say('Please enter the 6-digit code from your email.');return;}
+    oGo.disabled=true;working('Checking your code','Just a moment…',[]);
+    var bad=function(j){oGo.disabled=false;
+      if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn’t match. Please check the email and try again.');}
+      if(j.error==='expired')return say('That code has expired. Click “Send a new code” to get a fresh one.');
+      if(j.error==='used'||j.error==='not_subscriber')return join();
+      say(BREAK);};
+    if(mode==='member')codes('mverify',{code:code}).then(function(j){
+        if(!j.ok)return bad(j);remember({email:$('#oEmail').value.trim(),login:j.login});showMember();askMember(body,true);}).catch(function(){bad({});});
+    else codes('verify',{code:code}).then(function(j){
+        if(!j.ok)return bad(j);verified=$('#oEmail').value.trim();body.email=verified;askTrial(body);}).catch(function(){bad({});});
   });
+  function waitMsg(first){oGo.disabled=true;working('We’re creating the best personalized advice for your situation.',first,[[35000,'Almost there. Thank you for waiting.']]);
+    oOut.scrollIntoView({behavior:'smooth',block:'start'});}
+  function answerOrError(res,tag){
+    if(res.ok&&res.j.answer){var x=fromApi(res.j.answer);
+      showSample(x,oOut,tag,function(x){return codes('plan',{plan:x,text:planText(x)});});oOut.append(feedback(res.body,res.j.answer));return true;}
+    var er=res.j&&res.j.error;
+    if(er==='used'){join();return false;}
+    if(er==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
+    else if(er==='declined')say('Underline AI can’t answer this one. Try describing it differently.');
+    else if(er==='too_long')say('That’s a bit long. Please shorten it and try again.');
+    else say(BREAK);
+    return false;}
+  function post(body){return fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j,body:body};});});}
+  function askTrial(body){waitMsg('Code confirmed. This may take up to a minute.');
+    post(body).then(function(res){if(answerOrError(res,'Your free answer')){trialUsed=true;oGo.textContent='Get full access';
+        oNote.textContent='You’ve used your free Next Action. Join Underline AI for your next situation.';}})
+      .catch(function(){say(BREAK);}).then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});}
+  function askMember(body,fresh){waitMsg((fresh?'Signed in. ':'')+'This may take up to a minute.');
+    codes('ticket',{login:me.login}).then(function(j){
+      if(j.error==='login')throw {signout:'Please sign in again to continue. If your membership has ended, you can join again any time.'};
+      if(!j.ok)throw {msg:BREAK};
+      body.ticket=j.ticket;return post(body);
+    }).then(function(res){answerOrError(res,'Full access');})
+      .catch(function(x){if(x&&x.signout)signOut(x.signout);else say(x&&x.msg||BREAK);})
+      .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});}
   // A spinner with messages that change while the answer is being written.
   var timers=[];
   function working(title,first,later){timers.forEach(clearTimeout);timers=[];
     var msg=el('span',null,first),t=el('div','thinking');t.append(el('i'),msg);
     oOut.replaceChildren(head(title,null),t);oOut.hidden=false;
     later.forEach(function(m){timers.push(setTimeout(function(){msg.textContent=m[1];},m[0]));});}
-  function ask(body,confirmed){
-    oGo.disabled=true;
-    working('We\u2019re creating the best personalized advice for your situation.',(confirmed?'Code confirmed. ':'')+'This may take up to a minute.',
-      [[35000,'Almost there. Thank you for waiting.']]);
-    oOut.scrollIntoView({behavior:'smooth',block:'start'});
-    fetch(OWN_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
-      .then(function(res){
-        if(res.ok&&res.j.answer){store('ul.own',String(Date.now()));done=true;var x=fromApi(res.j.answer);
-          showSample(x,oOut,'Your free answer',CODE_API?function(x){return codes('plan',{plan:x,text:planText(x)});}:null);lock();
-          if(CODE_API)oOut.append(feedback(body,res.j.answer));return;}
-        var e=res.j&&res.j.error;
-        if(e==='used')usedUp();
-        else if(e==='email'){$('#oEmail').focus();say('Please enter a valid email address.');}
-        else if(e==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
-        else if(e==='declined')say('Underline AI can\u2019t answer this one. Try describing it differently.');
-        else if(e==='too_long')say('That\u2019s a bit long. Please shorten it and try again.');
-        else say('Underline AI is taking a short break. Please try again in a few minutes.');
-      })
-      .catch(function(){say('Underline AI is taking a short break. Please try again in a few minutes.');})
-      .then(function(){timers.forEach(clearTimeout);oGo.disabled=false;});
-  }
   // Thumbs up or down after the free answer. Each choice saves on its own (no send button):
   // it goes to the Feedback tab of the Google Sheet and is emailed to Underline AI.
   function feedback(body,answer){
