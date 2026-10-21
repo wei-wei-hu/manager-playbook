@@ -10,26 +10,17 @@ Bring one situation. Leave with a one-page actionable plan.
 
 ## Why Underline AI?
 
-**First,** we constantly face situations where we don't know the best way to respond:
+**1.** We constantly face situations where we don't know the best way to respond.
 
-- How should I handle this conversation?
-- How do I get buy-in?
-- What should I say to my manager?
-- How do I deal with this person?
+`How do I handle this?` `How do I get buy-in?` `What do I tell my manager?` `How do I deal with them?`
 
-These happen every day.
+**2.** Underline isn't trying to know everything. AI helps connect the thinking and apply it to your specific situation.
 
-**Second,** Underline isn't trying to know everything. AI connects and applies the thinking to someone's specific situation
+`Communication` `Influence` `Negotiation` `Leadership` `Decisions`
 
-**And create your next best action:**
+**3.** Underline helps you find a better way to handle this than you would have thought of yourself. It recommends your next best action:
 
-- What I'd do
-- What I'd say
-- Do this next
-- Watch out
-- Underlined
-
-Underline helps you find a better way to handle this than you would have thought of yourself.
+`What I'd do` `What I'd say` `Do this next` `Watch out` `Underlined`
 
 ## How it works
 
