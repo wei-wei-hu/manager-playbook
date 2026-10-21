@@ -485,7 +485,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
           <p class="trynote ownsent" id="ownSent"></p>
           <label class="fld"><span>Your 6-digit code</span><input id="oCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></label>
           </div>
-          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences. Who is involved and what has happened so far."></textarea></label>
+          <label class="fld"><span>What's happening?</span><textarea id="oSit" rows="4" maxlength="2000" placeholder="Describe your situation in a few sentences (at least 15 characters). Who is involved and what has happened so far."></textarea></label>
           <label class="fld"><span>What do you want to happen?</span><input id="oGoal" type="text" maxlength="300" placeholder="Your goal"></label>
           <label class="fld"><span>Anything else that matters? <small>(optional)</small></span><textarea id="oCtx" rows="2" maxlength="1000" placeholder="People, deadlines, what you've tried"></textarea></label>
           <button class="btn big dark trygo" type="submit" id="ownGo">Get my free Next Action</button>
@@ -878,7 +878,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     if(trialUsed&&mode!=='member')return memberCode();
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
     var sitErr=$('#oSitErr');if(sitErr)sitErr.remove();
-    if(body.sit.length<15){var m=el('p','fielderr','Please write at least one full sentence about what’s happening.');m.id='oSitErr';
+    if(body.sit.length<15){var m=el('p','fielderr','Please write at least 15 characters about what’s happening.');m.id='oSitErr';
       $('#oSit').after(m);$('#oSit').focus();$('#oSit').addEventListener('input',function(){m.remove();},{once:true});return;}
     oNote.textContent='It can take up to a minute.';
     if(mode==='member'&&me)return askMember(body);
