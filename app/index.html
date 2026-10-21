@@ -114,7 +114,19 @@ section.block{padding:56px 0 0}
 .kicker{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 10px}
 .block h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:24px}
 .vlead{margin:0;font-size:1.08rem;color:var(--soft);line-height:1.7}
-.value h2{margin-bottom:16px!important}
+.value h2{margin-bottom:22px!important}
+.whygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.whycard{background:var(--card);border-radius:20px;padding:22px 22px 20px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.whycard h3{margin:12px 0 6px;font-size:1.05rem;letter-spacing:-.01em}
+.whycard p{margin:0;color:var(--soft);font-size:.95rem;line-height:1.6}
+.whynum{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#fff;font-weight:700;font-size:.9rem;background:var(--grad)}
+.whyqs{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.whyqs span{font-size:.86rem;font-style:italic;color:var(--ink);background:var(--tint);border-radius:10px;padding:6px 10px}
+.whyparts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.whyparts span{font-size:.8rem;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--tint);color:var(--ink);border:1px solid var(--line)}
+.whyparts span:first-child{color:#fff;border-color:transparent;background:var(--grad)}
+.whyend{margin-top:20px!important;font-weight:600;color:var(--ink)!important}
+@media (max-width:820px){.whygrid{grid-template-columns:1fr}}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .steps li{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
 .steps .ic{width:44px;height:44px;border-radius:13px;margin-bottom:14px}
@@ -430,8 +442,24 @@ html{overflow-x:hidden}
 
   <section class="block value" id="why">
     <p class="kicker">Why Underline AI</p>
-    <h2>The best personalized advice for your situation.</h2>
-    <p class="vlead">Underline AI draws from a carefully curated library on communication, influence, negotiation, leadership, and getting work done. It brings together the most useful thinking for your situation and turns it into practical advice. You&rsquo;ll see what to do, what to say, and the ideas behind it.</p>
+    <h2>For the moments when you don&rsquo;t know the best way to respond.</h2>
+    <div class="whygrid">
+      <div class="whycard"><span class="whynum">1</span>
+        <h3>It happens every day</h3>
+        <p>We constantly face situations where we don&rsquo;t know the best way to respond.</p>
+        <div class="whyqs"><span>How should I handle this conversation?</span><span>How do I get buy-in?</span><span>What should I say to my manager?</span><span>How do I deal with this person?</span></div>
+      </div>
+      <div class="whycard"><span class="whynum">2</span>
+        <h3>The right thinking, applied to you</h3>
+        <p>Underline isn&rsquo;t trying to know everything. AI connects the thinking from a carefully curated library and applies it to your specific situation.</p>
+      </div>
+      <div class="whycard"><span class="whynum">3</span>
+        <h3>Your next best action</h3>
+        <p>One page you can act on:</p>
+        <div class="whyparts"><span>What I&rsquo;d do</span><span>What I&rsquo;d say</span><span>Do this next</span><span>Watch out</span><span>Underlined</span></div>
+      </div>
+    </div>
+    <p class="vlead whyend">Underline helps you find a better way to handle this than you would have thought of yourself.</p>
   </section>
 
   <section class="block" id="how">

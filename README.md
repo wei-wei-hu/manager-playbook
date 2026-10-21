@@ -8,11 +8,26 @@ Bring one situation. Leave with a one-page actionable plan.
 
 ### [See Underline AI →](https://wei-wei-hu.github.io/underline-ai/)
 
-## What it is
+## Why Underline AI
 
-Underline AI is your personalized AI advisor. Bring a question, a challenge, or a decision you're stuck on, and get advice that fits your situation, all on one page.
+**It happens every day.** We constantly face situations where we don't know the best way to respond:
 
-Underline AI draws from a carefully curated library on communication, influence, negotiation, leadership, and getting work done. It brings together the most useful thinking for your situation and turns it into practical advice. You'll see what to do, what to say, and the ideas behind it.
+- How should I handle this conversation?
+- How do I get buy-in?
+- What should I say to my manager?
+- How do I deal with this person?
+
+**The right thinking, applied to you.** Underline isn't trying to know everything. AI connects the thinking from a carefully curated library on communication, influence, negotiation, leadership and getting work done, and applies it to your specific situation.
+
+**Your next best action**, on one page:
+
+- **What I'd do**
+- **What I'd say**
+- **Do this next**
+- **Watch out**
+- **Underlined**
+
+Underline helps you find a better way to handle this than you would have thought of yourself.
 
 ## How it works
 
