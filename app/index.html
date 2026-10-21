@@ -487,6 +487,10 @@ h2 .grad{font-weight:700}
 #own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#member .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{animation:ulsweep 15s ease-in-out infinite!important;display:block}
 @media (prefers-reduced-motion:reduce){#own .btn.trygo.trygo,#try .btn.trygo.trygo,#gateDlg .gcard>a.btn{animation:none!important}#own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{display:none!important}}
 
+/* Button text keeps its colour on hover (the text-link hover rule doesn't apply to buttons). */
+.links .btn.dark,.links .btn.dark:hover,.links .btn.trybtn:hover,.links .kickpay:hover{color:#fff!important}
+.links .btnwhite:hover{color:var(--ink)!important}
+
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#access{display:none!important}
 #own{margin-top:8px!important}
