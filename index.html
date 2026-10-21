@@ -364,15 +364,15 @@ html{overflow-x:hidden}
 .hero .ctas .btn.line .bt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .ctas .btn.line svg{color:#A855F7}
 .hero .ctas .btn.line:hover{background:linear-gradient(var(--tint),var(--tint)) padding-box,var(--grad) border-box;box-shadow:0 12px 28px rgba(139,92,246,.30)}
-.hero .ctas .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF);background-size:300% 100%;animation:ulflow 12s ease-in-out infinite;
+.hero .ctas .btn.trybtn{color:#fff;background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF);background-size:300% 100%;animation:ulflow 16s ease-in-out infinite;
   box-shadow:0 8px 22px rgba(192,96,216,.42),0 2px 6px rgba(79,107,255,.25)}
 .hero .ctas .btn.trybtn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;transform:skewX(-20deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 9s ease-in-out infinite;pointer-events:none}
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 15s ease-in-out infinite;pointer-events:none}
 .hero .ctas .btn.trybtn:hover{box-shadow:0 14px 32px rgba(192,96,216,.55),0 2px 8px rgba(79,107,255,.3);filter:saturate(1.1)}
 .hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(15,18,34,.28)}
 .hero .ctas .btn.dark:hover{box-shadow:0 0 0 2px #C060D8,0 14px 30px rgba(139,92,246,.35)}
 @keyframes ulflow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes ulsweep{0%,84%{left:-60%}97%,100%{left:130%}}
+@keyframes ulsweep{0%,91%{left:-60%}99%,100%{left:130%}}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero .ctas .btn.dark{box-shadow:0 8px 22px rgba(0,0,0,.4)}}
 @media (prefers-reduced-motion:reduce){.hero .ctas .btn,.hero .ctas .btn svg{transition:none}.hero .ctas .btn:hover,.hero .ctas .btn:hover svg,.hero .ctas .btn:active{transform:none}
   .hero .ctas .btn.trybtn{animation:none}.hero .ctas .btn.trybtn::after{display:none}}
@@ -424,10 +424,10 @@ h2 .grad{font-weight:700}
 /* Key buttons everywhere share the hero's treatment: a moving gradient, a glow, a light sweep,
    a lift on hover and a press on click. Dark buttons get a gradient ring on hover. */
 .navbtns .btn.trybtn,.closing .ctas .btn.trybtn,#own .btn.trygo.trygo,#try .btn.trygo.trygo,#member .btn.trygo.trygo,#gateDlg .gcard>a.btn{position:relative;overflow:hidden;color:#fff!important;border:0;
-  background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF)!important;background-size:300% 100%!important;animation:ulflow 12s ease-in-out infinite;
+  background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6,#4F6BFF)!important;background-size:300% 100%!important;animation:ulflow 16s ease-in-out infinite;
   box-shadow:0 8px 22px rgba(192,96,216,.42),0 2px 6px rgba(79,107,255,.25)!important;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
 .navbtns .btn.trybtn::after,.closing .ctas .btn.trybtn::after,#own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#member .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;
-  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 9s ease-in-out infinite;pointer-events:none}
+  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:ulsweep 15s ease-in-out infinite;pointer-events:none}
 .navbtns .btn.trybtn:hover,.closing .ctas .btn.trybtn:hover,#own .btn.trygo.trygo:hover,#try .btn.trygo.trygo:hover,#member .btn.trygo.trygo:hover,#gateDlg .gcard>a.btn:hover{transform:translateY(-3px);
   box-shadow:0 14px 32px rgba(192,96,216,.55),0 2px 8px rgba(79,107,255,.3)!important;filter:saturate(1.1)}
 .navbtns .btn.trybtn:active,.closing .ctas .btn.trybtn:active,#own .btn.trygo.trygo:active,#try .btn.trygo.trygo:active,#member .btn.trygo.trygo:active,#gateDlg .gcard>a.btn:active{transform:translateY(-1px) scale(.98)}
