@@ -418,11 +418,6 @@ h2{font-weight:500!important;letter-spacing:-.02em}
 #own .trygo.btn.dark:hover,#try .trygo.btn.dark:hover,#member .trygo.btn.dark:hover{filter:brightness(1.06)}
 /* the chosen example: a gradient pill */
 .trychips button[aria-pressed="true"]{background:var(--gblue)!important;color:#fff!important;border-color:transparent!important}
-
-/* Full page: only the email box and the tool */
-.features,#why,#how,#try,#access{display:none!important}
-.hero .ctas{display:flex;width:auto}.hero .ctas .btn.big{width:165px!important}
-.links{display:none}
 </style>
 
 <div class="wrap">
@@ -430,8 +425,8 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     <a class="logo" href="../">Underline AI<span class="by">by Weiwei Hu</span></a>
     <div class="links">
       <a href="../">Home</a>
-      <a href="../#how">How it works</a>
-      <a href="../#try">See examples</a>
+      <a href="#how">How it works</a>
+      <a href="#try">See examples</a>
       <span class="navbtns"><a class="btn trybtn" href="#own">Sign in</a><a class="btn dark" href="#join">Get full access</a></span>
     </div>
   </nav>
@@ -443,7 +438,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <p class="eyebrow">Your full version</p>
       <h1>Practical<br>advice for<br><span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
-      <div class="ctas"><a class="btn big dark" href="../">Home <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a id="heroTry" hidden></a></div>
+      <a id="heroTry" hidden></a>
     </div>
 
     <div class="blob" aria-hidden="true"></div><div class="wave" aria-hidden="true"></div>
