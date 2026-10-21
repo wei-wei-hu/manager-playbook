@@ -262,7 +262,7 @@ html{overflow-x:hidden}
 .thinking i{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--purple);animation:spin .9s linear infinite;flex:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.thinking i{animation:none}}
-.ownerr{color:var(--soft);margin:0}#ownWho{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 14px}#ownWho[hidden]{display:none}#ownForm .fld[hidden]{display:none!important}#ownWho b{color:var(--ink)}#ownWho button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
+.ownerr{color:var(--soft);margin:0}.fielderr{margin:6px 0 0;color:#C2185B;font-size:.9rem;font-weight:600}#ownWho{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 14px}#ownWho[hidden]{display:none}#ownForm .fld[hidden]{display:none!important}#ownWho b{color:var(--ink)}#ownWho button{background:none;border:0;padding:0;font:inherit;color:var(--ink);font-weight:600;text-decoration:underline;cursor:pointer}.copybox{flex-basis:100%;width:100%;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;background:var(--bg);color:var(--ink)}
 
 /* Answer board, in the style of the Underline AI slides: a soft peach-pink-lavender gradient,
    floating glossy spheres, frosted white cards, light large title, pill tags and gradient accents. */
@@ -842,21 +842,26 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
   if(me&&me.email&&me.login)showMember();
 
-  // Email me a code: a member gets a sign-in code, a new visitor a free-trial code, a used email the pop-up.
+  // Email me a code: everyone starts with the free trial. An email that already used it is checked
+  // against the members sheet: members get a sign-in code, everyone else the Join pop-up.
   function sendCode(){
     if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email.');return;}
     oSend.disabled=true;oSend.textContent='Sending your code…';
-    codes('msend').then(function(j){
-      if(j.ok||j.error==='wait'){mode='member';oOut.hidden=true;step2();if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
-      if(j.error==='email')return say('Please enter a valid email address.');
-      if(j.error!=='not_subscriber')return say(BREAK);
-      return codes('send').then(function(t){
-        if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
-        if(t.error==='used')return join();
-        if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
-        if(t.error==='busy')return full();
-        say(BREAK);});
+    codes('send').then(function(t){
+      if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
+      if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
+      if(t.error==='email')return say('Please enter a valid email address.');
+      if(t.error==='busy')return full();
+      if(t.error!=='used')return say(BREAK);
+      return memberCode();
     }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Email me a code';});}
+  // After the free try: a member gets a sign-in code for full access, everyone else the Join pop-up.
+  function memberCode(){
+    return codes('msend').then(function(j){
+      if(j.ok||j.error==='wait'){mode='member';trialUsed=false;$('#oCode').value='';oOut.hidden=true;step2();
+        if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
+      if(j.error==='not_subscriber')return join();
+      say(BREAK);}).catch(function(){say(BREAK);});}
   oSend.addEventListener('click',sendCode);
   $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&!oSend.hidden){e.preventDefault();sendCode();}});
   $('#oEmail').addEventListener('input',function(){if(!me&&!verified){mode='';$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
@@ -870,9 +875,11 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     und:(a.und||[]).map(function(u){return {t:u.title+(u.tr?' (translated)':''),q:u.quote,l:u.line,s:u.source};})};}
 
   $('#ownForm').addEventListener('submit',function(e){e.preventDefault();
-    if(trialUsed&&mode!=='member')return join();
+    if(trialUsed&&mode!=='member')return memberCode();
     var body={sit:$('#oSit').value.trim(),goal:$('#oGoal').value.trim(),ctx:$('#oCtx').value.trim()};
-    if(body.sit.length<15){$('#oSit').focus();oNote.textContent='Tell us a bit more about what’s happening.';return;}
+    var sitErr=$('#oSitErr');if(sitErr)sitErr.remove();
+    if(body.sit.length<15){var m=el('p','fielderr','Please write at least one full sentence about what’s happening.');m.id='oSitErr';
+      $('#oSit').after(m);$('#oSit').focus();$('#oSit').addEventListener('input',function(){m.remove();},{once:true});return;}
     oNote.textContent='It can take up to a minute.';
     if(mode==='member'&&me)return askMember(body);
     var code=$('#oCode').value.replace(/\D/g,'');
@@ -881,7 +888,8 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     var bad=function(j){oGo.disabled=false;
       if(j.error==='bad_code'){$('#oCode').focus();return say('That code doesn’t match. Please check the email and try again.');}
       if(j.error==='expired')return say('That code has expired. Click “Send a new code” to get a fresh one.');
-      if(j.error==='used'||j.error==='not_subscriber')return join();
+      if(j.error==='used')return memberCode();
+      if(j.error==='not_subscriber')return join();
       say(BREAK);};
     if(mode==='member')codes('mverify',{code:code}).then(function(j){
         if(!j.ok)return bad(j);remember({email:$('#oEmail').value.trim(),login:j.login});showMember();askMember(body,true);}).catch(function(){bad({});});
@@ -894,7 +902,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
     if(res.ok&&res.j.answer){var x=fromApi(res.j.answer);
       showSample(x,oOut,tag,function(x){return codes('plan',{plan:x,text:planText(x)});});oOut.append(feedback(res.body,res.j.answer));return true;}
     var er=res.j&&res.j.error;
-    if(er==='used'){join();return false;}
+    if(er==='used'){memberCode();return false;}
     if(er==='busy'||/credit|limit|usage|billing/i.test(res.j&&res.j.detail||''))full();
     else if(er==='declined')say('Underline AI can’t answer this one. Try describing it differently.');
     else if(er==='too_long')say('That’s a bit long. Please shorten it and try again.');
