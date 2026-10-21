@@ -443,7 +443,7 @@ h2 .grad{font-weight:700}
 #own{position:relative;border:2px solid transparent!important;
   background:linear-gradient(135deg,#FFF4EC,#FDEAF1 45%,#EFEAFE) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important;
   box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)}
-#own .kickrow .kicker:first-child{background:linear-gradient(90deg,#FF9C7A,#F57C9A);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(245,124,154,.35)}
+#own .kickrow .kicker:first-child{background:#FBE8E1;color:var(--ink);border-color:#F3D3C7;box-shadow:none}
 #own .panel{background:rgba(255,255,255,.92)!important;box-shadow:0 18px 40px rgba(120,100,170,.18)!important}
 
 /* Example pills carry the template's gradient icon tiles, in the same colours as the categories above. */
@@ -489,6 +489,22 @@ h2 .grad{font-weight:700}
 /* Button text keeps its colour on hover (the text-link hover rule doesn't apply to buttons). */
 .links .btn.dark,.links .btn.dark:hover,.links .btn.trybtn:hover,.links .kickpay:hover{color:#fff!important}
 .links .btnwhite:hover{color:var(--ink)!important}
+
+/* Calm, premium finish, following the template: white space, soft colour washes, thin type with one bold
+   word, colour used sparingly, soft-focus orbs, and ink for emphasis. */
+h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:var(--ink)!important;font-weight:700}
+.orb{opacity:.55!important;filter:blur(.6px) saturate(.85)}
+.trychips button::before{display:none}
+.trychips button{background:#fff!important;border:1px solid var(--line)!important;color:var(--ink)!important}
+.trychips button[aria-pressed="true"]{background:var(--ink)!important;color:#fff!important;border-color:var(--ink)!important}
+.navbtns .btn:hover,.hero .ctas .btn:hover,.closing .ctas .btn:hover,.trygo.btn:hover,.kickrow .kicker:hover,#gateDlg .gcard>a.btn:hover{transform:translateY(-2px)!important;box-shadow:0 12px 26px rgba(29,32,51,.22)!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .trychips button{background:var(--card)!important}}
+
+/* Section panels: near-white with soft colour washes in the corners, as in the template. */
+:root{--wash:radial-gradient(60% 70% at 0% 0%,rgba(255,206,180,.45),transparent 70%),radial-gradient(55% 65% at 100% 100%,rgba(196,190,255,.42),transparent 70%),radial-gradient(40% 50% at 85% 8%,rgba(255,190,215,.28),transparent 70%),#FCFBFE}
+#why,#how,.closing{background:var(--wash)!important;border:1px solid #ECEAF4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #why,:root:not([data-theme="light"]) #how,:root:not([data-theme="light"]) .closing{background:var(--panel)!important;border-color:transparent}}
+:root[data-theme="dark"] #why,:root[data-theme="dark"] #how,:root[data-theme="dark"] .closing{background:var(--panel)!important;border-color:transparent}
 </style>
 
 <div class="wrap">
