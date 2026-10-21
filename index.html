@@ -477,6 +477,14 @@ h2 .grad{font-weight:700}
 /* The examples section looks the same on both pages: calm and light on white. */
 #try{background:var(--card)!important;border:1px solid var(--line);box-shadow:0 10px 30px rgba(120,100,170,.10)}
 #try .panel{background:var(--bg)!important;box-shadow:none!important;border:1px solid var(--line)!important}
+
+/* Only the long, important buttons move: a 15-second colour shift through deep indigo and plum,
+   and a light sweep once every 15 seconds. Smaller buttons stay a still deep ink. */
+.hero .ctas .btn.trybtn,.navbtns .btn.trybtn,.closing .ctas .btn.trybtn{animation:none!important;background-position:0 50%!important}
+.hero .ctas .btn.trybtn::after,.navbtns .btn.trybtn::after,.closing .ctas .btn.trybtn::after{display:none!important}
+#own .btn.trygo.trygo,#try .btn.trygo.trygo,#member .btn.trygo.trygo,#gateDlg .gcard>a.btn{background:linear-gradient(90deg,#1D2033,#33295E,#4E3480,#33295E,#1D2033)!important;background-size:300% 100%!important;animation:ulflow 15s ease-in-out infinite!important}
+#own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#member .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{animation:ulsweep 15s ease-in-out infinite!important;display:block}
+@media (prefers-reduced-motion:reduce){#own .btn.trygo.trygo,#try .btn.trygo.trygo,#gateDlg .gcard>a.btn{animation:none!important}#own .btn.trygo.trygo::after,#try .btn.trygo.trygo::after,#gateDlg .gcard>a.btn::after{display:none!important}}
 </style>
 
 <div class="wrap">
