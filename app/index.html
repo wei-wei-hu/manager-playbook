@@ -420,8 +420,9 @@ h2{font-weight:500!important;letter-spacing:-.02em}
 .trychips button[aria-pressed="true"]{background:var(--gblue)!important;color:#fff!important;border-color:transparent!important}
 
 /* Full page: only the email box and the tool */
-.hero,.features,#why,#how,#try,#access{display:none!important}
-#own{margin-top:8px!important}
+.features,#why,#how,#try,#access{display:none!important}
+.hero .ctas{display:flex;width:auto}.hero .ctas .btn.big{width:165px!important}
+.links{display:none}
 </style>
 
 <div class="wrap">
@@ -442,10 +443,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
       <p class="eyebrow">Your full version</p>
       <h1>Practical<br>advice for<br><span class="grad">work and life.</span></h1>
       <p class="lead">Bring a question, challenge, or decision and get clear, personalized recommendations.</p>
-      <div class="ctas">
-        <a class="btn big line" href="#try"><span class="bt">See examples</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn big trybtn" id="heroTry" href="#own"><span class="bt">Try it free</span> <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+      <div class="ctas"><a class="btn big dark" href="../">Home <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a id="heroTry" hidden></a></div>
     </div>
 
     <div class="blob" aria-hidden="true"></div><div class="wave" aria-hidden="true"></div>
