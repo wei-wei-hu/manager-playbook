@@ -510,6 +510,16 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
 /* Examples: See the answer is the earlier soft blue, the same on both pages. */
 #try .btn.trygo.trygo{background:linear-gradient(135deg,#7B93FF,#5B6CF2)!important;background-size:100% 100%!important;animation:none!important;box-shadow:0 10px 22px rgba(91,108,242,.3)!important}
 #try .btn.trygo.trygo:hover{box-shadow:0 12px 26px rgba(91,108,242,.38)!important}
+
+/* Dark mode: cards, outlines and the Home button follow the dark theme. */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #own .panel{background:var(--frost)!important;box-shadow:0 18px 40px rgba(0,0,0,.35)!important}
+  :root:not([data-theme="light"]) #own,:root:not([data-theme="light"]) #why,:root:not([data-theme="light"]) #how,:root:not([data-theme="light"]) .closing,:root:not([data-theme="light"]) #try{border-color:rgba(255,255,255,.08)!important}
+  :root:not([data-theme="light"]) .links .btn.dark,:root:not([data-theme="light"]) .links .btn.dark:hover{color:var(--bg)!important}}
+:root[data-theme="dark"] #own .panel{background:var(--frost)!important}
+:root[data-theme="dark"] .links .btn.dark,:root[data-theme="dark"] .links .btn.dark:hover{color:var(--bg)!important}
+.trychips button{text-align:left}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero .ctas .btn.trybtn,:root:not([data-theme="light"]) .navbtns .btn.trybtn,:root:not([data-theme="light"]) .closing .ctas .btn.trybtn,:root:not([data-theme="light"]) #own .btn.trygo.trygo,:root:not([data-theme="light"]) #gateDlg .gcard>a.btn{border:1px solid rgba(255,255,255,.18)!important;background:linear-gradient(90deg,#2A2F4A,#43357A,#5A3F95,#43357A,#2A2F4A)!important;background-size:300% 100%!important}}
 </style>
 
 <div class="wrap">
