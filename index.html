@@ -440,9 +440,18 @@ h2 .grad{font-weight:700}
    a filled gradient pill and a whiter card, so it stands out from everything else. */
 #own{position:relative;border:2px solid transparent!important;
   background:linear-gradient(135deg,#FFF4EC,#FDEAF1 45%,#EFEAFE) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important;
-  box-shadow:0 24px 60px rgba(139,92,246,.22),0 6px 18px rgba(79,107,255,.12)}
-#own .kickrow .kicker:first-child{background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(192,96,216,.32)}
+  box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)}
+#own .kickrow .kicker:first-child{background:linear-gradient(90deg,#FF9C7A,#F57C9A);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(245,124,154,.35)}
 #own .panel{background:rgba(255,255,255,.92)!important;box-shadow:0 18px 40px rgba(120,100,170,.18)!important}
+
+/* Example pills carry the template's gradient icon tiles, in the same colours as the categories above. */
+.trychips button{display:inline-flex;align-items:center;gap:7px}
+.trychips button::before{content:"";width:14px;height:14px;border-radius:5px;flex:none;background:var(--gblue);box-shadow:0 2px 6px rgba(91,108,242,.3)}
+.trychips button:nth-child(2)::before{background:var(--gpink)}
+.trychips button:nth-child(3)::before{background:var(--ggreen)}
+.trychips button:nth-child(4)::before{background:var(--gorange)}
+.trychips button:nth-child(5)::before{background:var(--glav)}
+.trychips button[aria-pressed="true"]::before{box-shadow:0 0 0 2px rgba(255,255,255,.9)}
 </style>
 
 <div class="wrap">

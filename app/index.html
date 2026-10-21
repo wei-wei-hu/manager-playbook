@@ -441,13 +441,44 @@ h2 .grad{font-weight:700}
    a filled gradient pill and a whiter card, so it stands out from everything else. */
 #own{position:relative;border:2px solid transparent!important;
   background:linear-gradient(135deg,#FFF4EC,#FDEAF1 45%,#EFEAFE) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important;
-  box-shadow:0 24px 60px rgba(139,92,246,.22),0 6px 18px rgba(79,107,255,.12)}
-#own .kickrow .kicker:first-child{background:linear-gradient(90deg,#4F6BFF,#C060D8,#8B5CF6);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(192,96,216,.32)}
+  box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)}
+#own .kickrow .kicker:first-child{background:linear-gradient(90deg,#FF9C7A,#F57C9A);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(245,124,154,.35)}
 #own .panel{background:rgba(255,255,255,.92)!important;box-shadow:0 18px 40px rgba(120,100,170,.18)!important}
+
+/* Example pills carry the template's gradient icon tiles, in the same colours as the categories above. */
+.trychips button{display:inline-flex;align-items:center;gap:7px}
+.trychips button::before{content:"";width:14px;height:14px;border-radius:5px;flex:none;background:var(--gblue);box-shadow:0 2px 6px rgba(91,108,242,.3)}
+.trychips button:nth-child(2)::before{background:var(--gpink)}
+.trychips button:nth-child(3)::before{background:var(--ggreen)}
+.trychips button:nth-child(4)::before{background:var(--gorange)}
+.trychips button:nth-child(5)::before{background:var(--glav)}
+.trychips button[aria-pressed="true"]::before{box-shadow:0 0 0 2px rgba(255,255,255,.9)}
 
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#access{display:none!important}
 #own{margin-top:8px!important}
+/* The two sections look different: free trial and full access is vivid, with floating bubbles;
+   the examples are calm and light. */
+#own{background:linear-gradient(135deg,#FFE7D6 0%,#FFDCE6 45%,#FBE3F0 70%,#EEE6FF 100%) padding-box,linear-gradient(120deg,#FFB38A,#F57C9A,#E58BC9,#B3A6FF) border-box!important;box-shadow:0 24px 60px rgba(245,124,154,.22),0 6px 18px rgba(255,156,122,.14)!important}
+#own>*:not(.orb):not(.owave){position:relative;z-index:1}
+#own .owave{position:absolute;z-index:0;left:-60px;right:-60px;bottom:-230px;height:330px;border-radius:50%;border-top:1.5px solid rgba(245,124,154,.32);pointer-events:none}
+#own .owave.w2{bottom:-260px;border-top-color:rgba(255,156,122,.3)}
+#own>.orb{opacity:.95}
+#own .b1{width:120px;height:120px;right:-30px;top:-34px}
+#own .b2{width:34px;height:34px;right:150px;top:22px}
+#own .b3{width:56px;height:56px;left:-18px;bottom:40px}
+#own .b4{width:22px;height:22px;right:40%;bottom:14px}
+#own .b5{width:16px;height:16px;left:44%;top:16px}
+.orb.peach{background:radial-gradient(circle at 35% 30%,#fff,#FFC2A8 45%,#FF9C7A)}
+.orb.pink{background:radial-gradient(circle at 35% 30%,#fff,#FFB3C4 45%,#F57C9A)}
+.orb.orange{background:radial-gradient(circle at 35% 30%,#fff,#FBC08D 45%,#F4956A)}
+.orb.lav{background:radial-gradient(circle at 35% 30%,#fff,#D4CCFF 45%,#9B8CF5)}
+@media (prefers-reduced-motion:no-preference){#own .b2,#own .b4{animation:float2 8s ease-in-out infinite}#own .b3{animation:float3 11s ease-in-out -2s infinite}#own .b5{animation:float1 7s ease-in-out -4s infinite}}
+@media (max-width:620px){#own .b1{width:72px;height:72px;right:-18px;top:-20px}#own .b2{right:70px;top:10px;width:24px;height:24px}#own .b3{width:36px;height:36px}}
+#try{background:var(--card)!important;border:1px solid var(--line);box-shadow:0 10px 30px rgba(120,100,170,.10)}
+#try .panel{background:var(--bg)!important;box-shadow:none!important;border:1px solid var(--line)!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #own{background:linear-gradient(135deg,#232A55 0%,#33255A 40%,#4A2440 75%,#4A2E28 100%) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important}}
+:root[data-theme="dark"] #own{background:linear-gradient(135deg,#232A55 0%,#33255A 40%,#4A2440 75%,#4A2E28 100%) padding-box,linear-gradient(120deg,#4F6BFF,#C060D8,#8B5CF6,#FF9C7A) border-box!important}
 .kickrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.kickrow .kicker{margin:0}.kicklink{text-decoration:none;color:var(--ink)}.kicklink:hover{background:var(--tint)}
 #own h2.oneline{white-space:nowrap;font-size:min(1.85rem,calc((100vw - 84px) / 20.6))!important}
 </style>
@@ -497,7 +528,9 @@ h2 .grad{font-weight:700}
   </section>
 
   <section class="block" id="own" hidden>
-    <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
+    <div class="orb b1 peach" aria-hidden="true"></div><div class="orb b2 pink" aria-hidden="true"></div><div class="orb b3 pink" aria-hidden="true"></div>
+    <div class="orb b4 lav" aria-hidden="true"></div><div class="orb b5 orange" aria-hidden="true"></div>
+    <div class="owave" aria-hidden="true"></div><div class="owave w2" aria-hidden="true"></div>
     <p class="kickrow"><span class="kicker">Free trial and full access</span><a class="kicker kicklink" href="#try">See examples →</a></p>
     <h2 class="oneline">Enter your email to get your <span class="grad">next action.</span></h2>
     <div class="trygrid">
