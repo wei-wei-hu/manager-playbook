@@ -34,7 +34,7 @@ Underline helps you find a better way to handle this than you would have thought
 ## How it works
 
 1. **Share your situation.** What's happening, what you want to happen, and anything else that matters.
-2. **Connect the ideas.** Underline AI searches its curated library, brings together the ideas that fit your situation, and turns them into practical advice.
+2. **Connect the ideas.** Underline AI searches and brings together the ideas that fit your situation, and turns them into practical advice.
 3. **Leave with Your Next Action.** What to do, what to say, your next steps, and the ideas behind the advice.
 
 ## Get full access
