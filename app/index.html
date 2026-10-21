@@ -974,29 +974,33 @@ h2 .grad{background:none!important;-webkit-text-fill-color:currentColor;color:va
     oSend.hidden=false;oOut.hidden=true;if(msg)say(msg);}
   if(me&&me.email&&me.login)showMember();
 
-  // Check your email for your sign-in code: everyone starts with the free trial. An email that already used it is checked
-  // against the members sheet: members get a sign-in code, everyone else the Join pop-up.
+  // Asking for a code: members (on the members sheet) get a sign-in code for full access right away.
+  // Everyone else starts with the free trial; an email that already used it gets the Join pop-up.
   function sendCode(){
     if(!EMAIL_RE.test($('#oEmail').value.trim())){$('#oEmail').focus();say('Please enter your email.');return;}
-    oSend.disabled=true;oSend.textContent='Sending your code…';
-    codes('send').then(function(t){
-      if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
-      if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
-      if(t.error==='email')return say('Please enter a valid email address.');
-      if(t.error==='busy')return full();
-      if(t.error!=='used')return say(BREAK);
-      return memberCode();
-    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent='Check your email for your sign-in code';});}
+    oSend.disabled=true;var label=oSend.textContent;oSend.textContent='Sending your code…';
+    codes('msend').then(function(j){
+      if(j.ok||j.error==='wait'){mode='member';visitorPills(false);oOut.hidden=true;step2();
+        if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
+      if(j.error==='email')return say('Please enter a valid email address.');
+      if(j.error!=='not_subscriber')return say(BREAK);
+      return codes('send').then(function(t){
+        if(t.ok){mode='trial';oOut.hidden=true;step2();return;}
+        if(t.error==='wait'){mode='trial';step2();return say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');}
+        if(t.error==='busy')return full();
+        if(t.error==='used')return join();
+        say(BREAK);});
+    }).catch(function(){say(BREAK);}).then(function(){oSend.disabled=false;oSend.textContent=label;});}
   // After the free try: a member gets a sign-in code for full access, everyone else the Join pop-up.
   function memberCode(){
     return codes('msend').then(function(j){
-      if(j.ok||j.error==='wait'){mode='member';trialUsed=false;$('#oCode').value='';oOut.hidden=true;step2();
+      if(j.ok||j.error==='wait'){mode='member';trialUsed=false;visitorPills(false);$('#oCode').value='';oOut.hidden=true;step2();
         if(j.error==='wait')say('We just sent you a code. Please check your inbox and spam folder, or ask for a new one in a minute.');return;}
       if(j.error==='not_subscriber')return join();
       say(BREAK);}).catch(function(){say(BREAK);});}
   oSend.addEventListener('click',sendCode);
   $('#oEmail').addEventListener('keydown',function(e){if(e.key==='Enter'&&!oSend.hidden){e.preventDefault();sendCode();}});
-  $('#oEmail').addEventListener('input',function(){if(!me&&!verified){mode='';$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
+  $('#oEmail').addEventListener('input',function(){if(!me&&!verified){mode='';visitorPills(true);$('#ownStep2').hidden=true;$('#ownCodeBox').hidden=true;oSend.hidden=false;}});
   // ?reset is kept for old test links; it no longer changes anything, since the email decides.
   // Kept for safety: if the Examples form is ever submitted without an example, send people to the free trial.
   showGate=function(){out.hidden=true;out.replaceChildren();
