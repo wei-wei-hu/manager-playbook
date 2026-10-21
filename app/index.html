@@ -422,6 +422,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
 /* Full page: top section, then the onboarding box, then the footer */
 .features,#why,#how,#try,#access{display:none!important}
 #own{margin-top:8px!important}
+.kickrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.kickrow .kicker{margin:0}.kicklink{text-decoration:none;color:var(--ink)}.kicklink:hover{background:var(--tint)}
 #own h2.oneline{white-space:nowrap;font-size:min(1.85rem,calc((100vw - 84px) / 20))!important}
 </style>
 
@@ -471,7 +472,7 @@ h2{font-weight:500!important;letter-spacing:-.02em}
 
   <section class="block" id="own" hidden>
     <div class="orb" style="width:20px;height:20px;left:-34px;top:40px" aria-hidden="true"></div>
-    <p class="kicker">Free trial and full access</p>
+    <p class="kickrow"><span class="kicker">Free trial and full access</span><a class="kicker kicklink" href="../#try">See examples →</a></p>
     <h2 class="oneline">Enter your email to get your next action.</h2>
     <div class="trygrid">
       <div class="panel">
