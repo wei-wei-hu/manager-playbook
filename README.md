@@ -30,6 +30,9 @@ Bring one situation. Leave with a one-page actionable plan.
 
 ## Contact
 
+- Website: https://weiweihu.carrd.co
+- GitHub: https://github.com/wei-wei-hu/underline-ai
+- LinkedIn: https://www.linkedin.com/in/weiweihu/
 - Email: underlineai@gmail.com
 
 ## License
