@@ -1,6 +1,6 @@
 # Underline AI
 
-**Practical advice for work and life.** By Weiwei Hu.
+**Practical advice for work and life.**
 
 Bring one situation. Leave with a one-page actionable plan.
 
@@ -30,10 +30,8 @@ Bring one situation. Leave with a one-page actionable plan.
 
 ## Contact
 
-- Website: https://weiweihu.carrd.co
-- GitHub: https://github.com/wei-wei-hu/underline-ai
-- LinkedIn: https://www.linkedin.com/in/weiweihu/
+- Email: underlineai@gmail.com
 
 ## License
 
-© 2026 Weiwei Hu. All rights reserved. Proprietary: no copying, reuse, redistribution or AI training without written permission. See [LICENSE](LICENSE).
+© 2026 All Rights Reserved. Proprietary: no copying, reuse, redistribution or AI training without written permission. See [LICENSE](LICENSE).
